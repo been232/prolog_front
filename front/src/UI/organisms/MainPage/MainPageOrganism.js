@@ -1,10 +1,19 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PostBoxBottomMolecule from '../../molecules/MainPage/PostBoxBottomMolecule';
 import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecule';
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
+import { useInterval } from './useInterval';
 
 function MainPageOrganism() {
+  var timer;
+  const onMouse = () => {
+    timer = setTimeout(() => console.log('hi'), 1000);
+  };
+  const offMouse = () => {
+    console.log('bye!');
+    clearTimeout(timer);
+  };
   return (
     <Box
       sx={{
@@ -12,6 +21,8 @@ function MainPageOrganism() {
         display: 'flex',
         flexDirection: 'column',
       }}
+      onMouseEnter={onMouse}
+      onMouseLeave={offMouse}
     >
       <PostBoxTopMolecule />
       <PostBoxMiddleMolecule />

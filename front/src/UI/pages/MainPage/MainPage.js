@@ -7,13 +7,16 @@ function MainPage() {
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xl={3} lg={4} sm={6}>
           <MainPageOrganism></MainPageOrganism>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xl={3} lg={4} sm={6}>
           <MainPageOrganism></MainPageOrganism>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xl={3} lg={4} sm={6}>
+          <MainPageOrganism></MainPageOrganism>
+        </Grid>
+        <Grid item xl={3} lg={4} sm={6}>
           <MainPageOrganism></MainPageOrganism>
         </Grid>
       </Grid>
