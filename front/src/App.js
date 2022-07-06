@@ -3,6 +3,7 @@ import React from 'react';
 import HeaderOrganisms from './UI/organisms/Header/HeaderOrganisms';
 import Box from '@mui/material/Box';
 import MainPageOrganism from './UI/organisms/MainPage/MainPageOrganism';
+import MainPage from './UI/pages/MainPage/MainPage';
 const App = () => {
   return (
     <>
