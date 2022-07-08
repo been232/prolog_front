@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import PostBoxBottomMolecule from '../../molecules/MainPage/PostBoxBottomMolecule';
 import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecule';
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
-import { useInterval } from './useInterval';
+// import { useInterval } from './useInterval';
 
 function MainPageOrganism() {
   var timer;
