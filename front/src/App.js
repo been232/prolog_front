@@ -10,8 +10,7 @@ const App = () => {
     <>
       <div className="App">
         <BrowserRouter>
-          <HeaderOrganisms />
-          <Box />
+          <HeaderOrganisms sx={{marginBottom : 10}}/>
           <Routes>
             <Route path="/" element={<MainPage />}></Route>
             <Route path="/Layout/*" element={<LayoutPage />}></Route>
