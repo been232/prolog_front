@@ -31,7 +31,7 @@ export default function Content(props) {
   ));
 
   return (
-    <Box sx={{ marginTop: 5}}>
+    <Box sx={{ marginTop: 5, marginBottom: 10 }}>
       <div
         id="parent"
         style={{

@@ -4,15 +4,16 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ImageListItem from '../../molecules/LayoutPage/ImageListItem';
+import ImageLists from '../../atoms/LayoutPage/ImageLists';
 
-export default function ImageListAccordion() {
-  const [expand, setExpand] = React.useState(false);
+export default function ImageListAccordion(props) {
+  const data = props.data;
+  const [expand, setExpand] = React.useState(true);
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
   };
   return (
-    <div style={{ marginTop: 10, width: 350, height: 200 }}>
+    <div style={{ marginTop: 10, width: data.width, height: data.height, top: data.coordinateY, left: data.coordinateX, position: 'absolute'}}>
       <Accordion expanded={expand}>
         <AccordionSummary
           expandIcon={
@@ -20,22 +21,15 @@ export default function ImageListAccordion() {
               onClick={() => {
                 toggleAcordion()
               }}
-              sx={{
-                marginBottom: 30,
-                marginRight: -1,
-              }}
             />
           }
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <ImageListItem />
+          <ImageLists data={data}/>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+          {data.content}
         </AccordionDetails>
       </Accordion>
     </div>
