@@ -17,7 +17,7 @@ export default function Content(props) {
   function lists(list) {
     switch (list.type) {
       case 2:
-        return <ImageListAccordion key={list.id} data={list}/>;
+        return <ImageListAccordion key={list.id} data={list} />;
       default:
         return (
           <div

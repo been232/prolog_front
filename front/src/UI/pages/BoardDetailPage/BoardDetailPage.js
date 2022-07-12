@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react';
+import UnderButtons from '../../molecules/BoardDetailPage/UnderButtons';
 import Content from '../../organisms/BoardDetailPage/Content';
 
 /* Gird Item 들은 기능 연동 후 map 으로 처리하던가 해야할듯 */
@@ -8,6 +9,7 @@ function BoardDetailPage() {
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
       <h2 style={{ paddingLeft: 20 }}>{data.data.post.title}</h2>
       <Content layout={data}/>
+      <UnderButtons />
     </Box>
   );
 }

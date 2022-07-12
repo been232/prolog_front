@@ -13,7 +13,7 @@ export default function Content(props) {
   };
  
   const layoutlist = props['layout'].map((list) => (
-    <div
+      <div
       key={list.id}
       style={{
         position: 'absolute',

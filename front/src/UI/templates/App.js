@@ -13,9 +13,9 @@ const App = () => {
         <BrowserRouter>
           <HeaderOrganisms sx={{marginBottom : 10}}/>
           <Routes>
-            <Route path="/" element={<MainPage />}></Route>
-            <Route path="/Layout/*" element={<LayoutPage />}></Route>
-            <Route path="/BoardDetail/*" element={<BoardDetailPage />}></Route>
+            <Route path="/" element={<MainPage />} />
+            <Route path="/Layout/*" element={<LayoutPage />}/>
+            <Route path="/BoardDetail/*" element={<BoardDetailPage />}/>
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>
