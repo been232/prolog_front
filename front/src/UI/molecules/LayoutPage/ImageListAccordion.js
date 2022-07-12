@@ -2,8 +2,7 @@ import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import ImageLists from '../../atoms/LayoutPage/ImageLists';
 
 export default function ImageListAccordion(props) {
@@ -13,24 +12,32 @@ export default function ImageListAccordion(props) {
     setExpand((prev) => !prev);
   };
   return (
-    <div style={{ marginTop: 10, width: data.width, height: data.height, top: data.coordinateY, left: data.coordinateX, position: 'absolute'}}>
+    <div
+      style={{
+        marginTop: 10,
+        width: data.width,
+        height: data.height,
+        top: data.coordinateY,
+        left: data.coordinateX,
+        position: 'absolute',
+      }}
+    >
       <Accordion expanded={expand}>
         <AccordionSummary
           expandIcon={
-            <ExpandMoreIcon
+            <KeyboardDoubleArrowDownIcon
+              sx={{ fontSize: 'large', marginTop: 4 }}
               onClick={() => {
-                toggleAcordion()
+                toggleAcordion();
               }}
             />
           }
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <ImageLists data={data}/>
+          <ImageLists data={data} />
         </AccordionSummary>
-        <AccordionDetails>
-          {data.content}
-        </AccordionDetails>
+        <AccordionDetails>{data.content}</AccordionDetails>
       </Accordion>
     </div>
   );
