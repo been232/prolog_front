@@ -36,8 +36,8 @@ const data = [
         type: 2,
         coordinateX: 60.555,
         coordinateY: 600.555,
-        width: 60,
-        height: 60,
+        width: 600,
+        height: 400,
       },
       {
         id: 3,
@@ -59,9 +59,9 @@ const data = [
         id: 5,
         type: 5,
         coordinateX: 500.555,
-        coordinateY: 600.555,
+        coordinateY: 1300.555,
         width: 150,
-        height: 700,
+        height: 200,
       },
       {
         id: 6,
