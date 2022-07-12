@@ -1,5 +1,20 @@
-import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-function Router() {}
+import SignUp from '../UI/organisms/signup/SignUp';
+import LoginPopupPage from '../UI/pages/LoginPopupPage';
+import SignUpLayout from '../UI/pages/SignupPage';
 
-export default Router;
+
+const routes = [
+	{
+		path: "/",
+		element: <SignUpLayout />,
+		children: [
+			{ path: "", element: <LoginPopupPage />}
+		 ],
+   
+	},
+
+];
+
+export default routes;
