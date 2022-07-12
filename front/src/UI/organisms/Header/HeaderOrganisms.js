@@ -19,7 +19,6 @@ function HeaderOrganisms(props) {
       >
         <Box
           sx={{
-            marginLeft: 5,
             float: 'left',
           }}
         >
@@ -27,9 +26,6 @@ function HeaderOrganisms(props) {
             src={process.env.PUBLIC_URL + '/Logo.png'}
             alt="Logo"
             width="17%"
-            style={{
-              marginLeft: -40,
-            }}
           />
         </Box>
         <HeaderMolecules />
