@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box';
 import HeaderMolecules from '../../molecules/Header/HeaderMolecules';
+import { Link } from 'react-router-dom';
 
 function HeaderOrganisms(props) {
   return (
@@ -22,11 +23,13 @@ function HeaderOrganisms(props) {
             float: 'left',
           }}
         >
-          <img
-            src={process.env.PUBLIC_URL + '/Logo.png'}
-            alt="Logo"
-            width="17%"
-          />
+          <Link to="/">
+            <img
+              src={process.env.PUBLIC_URL + '/Logo.png'}
+              alt="Logo"
+              width="17%"
+            />
+          </Link>
         </Box>
         <HeaderMolecules />
       </Box>
