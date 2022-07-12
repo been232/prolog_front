@@ -1,10 +1,11 @@
 import TextField from '../../atoms/LayoutPage/BasicTextFields';
 import { Box } from '@mui/system';
 
-export default function TextFields() {
+export default function TextFields(props) {
+  const title = props;
   return (
     <Box>
-      <TextField />
+      <TextField title={title['title']}/>
     </Box>
   );
 }

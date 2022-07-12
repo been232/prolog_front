@@ -1,62 +1,52 @@
 import { Box } from '@mui/system';
-import ContentToolbar from '../../molecules/LayoutPage/ContentToolbar';
 import { useState, useEffect } from 'react';
+import UnderButtons from '../../molecules/LayoutPage/UnderButtons';
 
-export default function Content() {
-  dragElement(document.getElementById('mydiv'));
+export default function Content(props) {
+  const [maxHeight,setmaxHeight] = useState(0);
+  const [Height , setHeight] = useState(0);
 
-  function dragElement(elmnt) {
-    var pos1 = 0,
-      pos2 = 0,
-      pos3 = 0,
-      pos4 = 0;
-    elmnt.onmousedown = dragMouseDown;
-
-    function dragMouseDown(e) {
-      e = e || window.event;
-      e.preventDefault();
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
+  function max(list) {
+    if(list.coordinateY + list.height > maxHeight + Height) {
+        setmaxHeight(list.coordinateY);
+        setHeight(list.height);
     }
+  };
+ 
+  const layoutlist = props['layout'].map((list) => (
+    <div
+      key={list.id}
+      style={{
+        position: 'absolute',
+        width: list.width,
+        height: list.height,
+        top: list.coordinateY,
+        left: list.coordinateX,
+        type: list.type,
+        border: '2px solid black',
+      }}
+    >
+        {max(list)}
+      {list.type}
+    </div>
+  ));
 
-    function elementDrag(e) {
-      e = e || window.event;
-      e.preventDefault();
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
-      elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
-    }
-
-    function closeDragElement() {
-      document.onmouseup = null;
-      document.onmousemove = null;
-      console.log(
-        '현재 요소의 위치 y는 ' + elmnt.top + ', x는' + elmnt.left + '입니다.'
-      );
-    }
-  }
   return (
-    <Box sx={{ marginTop: 5 }}>
-      <ContentToolbar />
+    <Box sx={{ marginTop: 5, marginBottom: 10 }}>
       <div
         id="parent"
         style={{
-          border: '1px solid black',
+          position: 'relative',
+          border: '2px solid black',
           width: '99%',
-          height: 600,
+          height: maxHeight + Height + 30,
           marginLeft: 5,
           marginBottom: 10,
         }}
       >
-        <div id="mydiv" onClick={() => dragElement("mydiv")}>
-          dd
-        </div>
+        {layoutlist}
       </div>
+      <UnderButtons />
     </Box>
   );
 }
