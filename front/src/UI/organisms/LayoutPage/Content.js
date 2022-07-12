@@ -1,6 +1,5 @@
 import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
-import UnderButtons from '../../molecules/LayoutPage/UnderButtons';
 
 export default function Content(props) {
   const [maxHeight,setmaxHeight] = useState(0);
@@ -32,7 +31,7 @@ export default function Content(props) {
   ));
 
   return (
-    <Box sx={{ marginTop: 5, marginBottom: 10 }}>
+    <Box sx={{ marginTop: 5}}>
       <div
         id="parent"
         style={{
@@ -46,7 +45,6 @@ export default function Content(props) {
       >
         {layoutlist}
       </div>
-      <UnderButtons />
     </Box>
   );
 }
