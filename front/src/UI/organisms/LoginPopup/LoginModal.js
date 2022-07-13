@@ -26,7 +26,7 @@ const LoginModal = (props) => {
 
     return (
         <>
-            <ModalButton value="로그인" handleOpen={handleOpen}></ModalButton>
+            <ModalButton value="Login" handleOpen={handleOpen}></ModalButton>
             <Modal
                 open={open}
                 onClose={handleClose}

@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 
-const LoginTextField = (props) => {
+const SignUpTextField = (props) => {
     const label = props.label;
 
     return (
@@ -9,13 +9,13 @@ const LoginTextField = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                id={label}
+                id="email"
                 label={label}
-                name={label}
-                autoComplete={label}
+                name="email"
+                autoComplete="email"
                 autoFocus
             />
     );
 }
 
-export default LoginTextField
+export default SignUpTextField

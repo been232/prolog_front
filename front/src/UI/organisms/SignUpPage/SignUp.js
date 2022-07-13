@@ -1,21 +1,15 @@
 import React, { useState } from 'react'
 import { useLocation } from "react-router";
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
+import { Link, Avatar, Button, FormControl, Grid, Box, CssBaseline, Typography, Container, FormControlLabel, Switch } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import Typography from '@mui/material/Typography';
-import Container from '@mui/material/Container';
+import SignUpTextField from '../../atoms/SignUpPage/TextField';
+import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
 // import Api from 'api/Api';
 
 const SignUp = () => {
-  
+
   const { state } = useLocation();
-  
+
   const [postBody, setPostBody] = useState({
     email: state,
     password: '',
@@ -24,6 +18,14 @@ const SignUp = () => {
     phone: '',
     address: ''
   });
+
+  const handleIdChange = (event) => {
+    console.log("success");
+    setPostBody((prev) => ({
+      ...prev,
+      email: event.target.value
+    }));
+  };
 
   const handlePasswordChange = (event) => {
     setPostBody((prev) => ({
@@ -101,74 +103,35 @@ const SignUp = () => {
           회원가입
         </Typography>
         <Box noValidate sx={{ mt: 3 }}>
+          <ProfileImage></ProfileImage>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <TextField
-                required
-                disabled
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                defaultValue={state}
-              />
+              <SignUpTextField label="아이디" onChange={handleIdChange} />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                name="password"
-                label="비밀번호를 설정해주세요"
-                type="password"
-                id="password"
-                autoComplete="new-password"
-                defaultValue={postBody.password}
-                onChange={handlePasswordChange}
-              />
+              <SignUpTextField label="이메일" onChange={handleIdChange} />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="name"
-                label="이름을 입력해주세요"
-                name="name"
-                autoComplete="name"
-                defaultValue={postBody.name}
-                onChange={handleNameChange}
-              />
+              <SignUpTextField label="비밀번호" onChange={handleIdChange} />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="nickName"
-                label="닉네임을 설정해주세요"
-                name="nickName"
-                defaultValue={postBody.nickname}
-                onChange={handleNickNameChange}
-              />
+              <SignUpTextField label="비밀번호 확인" onChange={handleIdChange} />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                required
-                fullWidth
-                id="phone"
-                label="전화번호를 입력해주세요"
-                name="phone"
-                defaultValue={postBody.phone}
-                onChange={handlePhoneChange}
-              />
+              <SignUpTextField label="닉네임" onChange={handleIdChange} />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                fullWidth
-                id="address"
-                label="주소를 입력해주세요"
-                name="address"
-                defaultValue={postBody.address}
-                onChange={handleAddressChange}
-              />
+              <SignUpTextField label="한줄소개" onChange={handleIdChange} />
+            </Grid>
+            <Grid item xs={12}>
+              <FormControl component="fieldset">
+                <FormControlLabel
+                  value="start"
+                  control={<Switch color="primary" />}
+                  label="알림 수신 여부"
+                  labelPlacement="start"
+                />
+              </FormControl>
             </Grid>
           </Grid>
           <Button
@@ -182,8 +145,8 @@ const SignUp = () => {
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="/login" variant="body2">
-                Already have an account? Sign in
+              <Link href="/findID" variant="body2">
+                아이디 찾기
               </Link>
             </Grid>
           </Grid>

@@ -5,7 +5,7 @@ const TitleText = (props) => {
     const title = props.title;
 
     return (
-        <Typography variant="h4" component="h4" sx={{ textAlign: 'center' }}>{title}</Typography >
+        <Typography variant="h5" component="h5" sx={{ textAlign: 'center' }}>{title}</Typography >
     )
 }
 

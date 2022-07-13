@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import LoginModal from '../organisms/LoginPopup/LoginModal';
 
@@ -8,7 +8,7 @@ const theme = createTheme({
             main: '#12465A',
         },
         secondary: {
-            main: '#12465A',
+            main: '#BADBF3',
         },
         // 팝업창 배경 색 : #9F9F9F, 바탕 배경 색 : #BADBF3
     },

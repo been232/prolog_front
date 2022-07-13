@@ -1,16 +1,14 @@
 import { Navigate } from 'react-router-dom';
-
-import SignUp from '../UI/organisms/signup/SignUp';
-import LoginPopupPage from '../UI/pages/LoginPopupPage';
-import SignUpLayout from '../UI/pages/SignupPage';
+import MainPage from '../UI/pages/MainPage/MainPage'
 
 
 const routes = [
 	{
 		path: "/",
-		element: <SignUpLayout />,
+		element: <MainPage />,
 		children: [
-			{ path: "", element: <LoginPopupPage />}
+
+			{ path: "main", element: <MainPage />}
 		 ],
    
 	},
