@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Container, Box, Divider, Button } from '@mui/material'
+import { Container, Box, Divider, Button, IconButton } from '@mui/material'
 import LoginTextField from '../../atoms/LoginPopup/TextField';
 import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
+import CloseIcon from '@mui/icons-material/Close';
 
 const ModalContent = (props) => {
     const handleClose = props.handleClose;
@@ -24,6 +25,12 @@ const ModalContent = (props) => {
                 flexDirection: 'column',
                 alignItems: 'center',
             }}>
+                <IconButton
+                    sx={{ position: 'fixed', top: 0, right: 0 }}
+                    onClick={handleClose}
+                >
+                    <CloseIcon />
+                </IconButton>
                 <TitleText title="로그인"></TitleText>
                 <LoginTextField label="아이디"></LoginTextField>
                 <LoginTextField label="비밀번호"></LoginTextField>
