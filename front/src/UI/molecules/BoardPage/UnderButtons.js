@@ -1,20 +1,17 @@
 import * as React from 'react';
-import OutlineButtonDelete from '../../atoms/BoardPage/OutlineButtonDelete';
-import OutlinedButtonsList from '../../atoms/BoardPage/OutlineButtonsList';
-import OutlineButtonCancel from '../../atoms/BoardPage/OutlineButtonCancel';
 
 import { Box } from '@mui/material';
+import OutlinedButton from '../../atoms/Commons/OutlinedButton';
+import { Link } from 'react-router-dom';
 
 export default function UnderButtons() {
   return (
     <Box sx={{ float: 'right' }}>
-      <OutlineButtonCancel />
-      <OutlineButtonDelete />
-      <OutlinedButtonsList
-        content="목록으로"
-        pathname="/"
-        style="{ marginLeft: 2 }"
-      />
+      <OutlinedButton content="수정하기" />
+      <OutlinedButton content="삭제하기" style={{ marginLeft: 2 }} />
+      <Link to="/">
+        <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
+      </Link>
     </Box>
   );
 }
