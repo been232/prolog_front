@@ -14,7 +14,8 @@ export default function TextArea(props) {
   });
 
   useEffect(()=>{
-  },[data]);
+    props.propsFunction(data);
+  },[data.height]);
 
   function handleEvent() {
     const width = document.getElementById(list.id).clientWidth;
@@ -37,7 +38,7 @@ export default function TextArea(props) {
       aria-label="minimum height"
       minRows={3}
       id={list.id}
-      onMouseUp={handleEvent}
+      onClick={handleEvent}
       value={data.content}
       onChange={(e) => {
         setData({
