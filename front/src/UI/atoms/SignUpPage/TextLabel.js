@@ -1,12 +1,14 @@
 import * as React from 'react';
-import { Typography } from '@mui/material'
+import { Typography } from '@mui/material';
 
 const TextLabel = (props) => {
-    const label = props.label;
+  const label = props.label;
 
-    return (
-        <Typography variant="h6" component="h5" sx={{ textAlign: 'center' }}>{label}</Typography >
-    )
-}
+  return (
+    <Typography variant="h6" component="h5" sx={{ textAlign: 'center' }}>
+      {label}
+    </Typography>
+  );
+};
 
-export default TextLabel
+export default TextLabel;
