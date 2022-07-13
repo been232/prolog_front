@@ -2,6 +2,7 @@ import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
 import ImageListAccordion from '../../molecules/BoardDetailPage/ImageListAccordion';
 import { Card, CardContent } from '@mui/material';
+import Text from '../../molecules/BoardDetailPage/Text';
 
 export default function Content(props) {
   const prop = props['layout']['data']['layouts'];
@@ -18,25 +19,7 @@ export default function Content(props) {
   function lists(list) {
     switch (list.type) {
       case 1:
-        return <Card
-        key={list.id}
-        sx={{
-          position: 'absolute',
-          width: list.width,
-          height: list.height,
-          borderRadius: 2,
-          fontSize: '0.875rem',
-          fontWeight: '700',
-          top: list.coordinateY,
-          left: list.coordinateX,
-          type: list.type,
-          border: 1,
-          paddingTop: 1
-        }}
-      >
-          {max(list)}
-          {list.content}
-      </Card>
+        return <Text key={list.id} list={list} />
       case 2:
         return <ImageListAccordion key={list.id} data={list} />;
       default:
