@@ -36,7 +36,9 @@ export default function WriteContent() {
   const [maxHeight, setmaxHeight] = useState(0);
   const [Height, setHeight] = useState(0);
 
-  useEffect(() => {{max(arr)}}, [arr, maxHeight, Height, count]);
+  useEffect(() => {
+    arr.map((list) => max(list));
+  }, [arr, maxHeight, Height, count]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
