@@ -21,7 +21,10 @@ export default function HyperLink(props) {
         paddingTop: 1,
       }}
     >
-      <a target="_blank" href= {list.content}> {list.content}</a>
+      <a target="_blank" href={list.content}>
+        {' '}
+        {list.content}
+      </a>
     </Card>
   );
 }

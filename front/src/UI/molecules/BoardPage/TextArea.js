@@ -13,14 +13,14 @@ export default function TextArea(props) {
     height: '',
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     props.propsFunction(data);
-  },[data.height]);
+  }, [data.height]);
 
   function handleEvent() {
     const width = document.getElementById(list.id).clientWidth;
     const height = document.getElementById(list.id).clientHeight;
-    
+
     setData({
       id: data.id,
       context: data.context,

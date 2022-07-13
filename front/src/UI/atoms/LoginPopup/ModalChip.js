@@ -2,10 +2,7 @@ import * as React from 'react';
 import { Chip } from '@mui/material';
 
 const ModalChip = (props) => {
-  const value = props.value;
-  const handleOpen = props.handleOpen;
-  const direct = props.direct;
-
+  const { value, handleOpen, direct } = props;
   return (
     <Chip
       color="success"
