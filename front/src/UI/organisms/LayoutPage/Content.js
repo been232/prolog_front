@@ -1,33 +1,40 @@
 import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
+import { Card, CardContent } from '@mui/material';
 
 export default function Content(props) {
-  const [maxHeight,setmaxHeight] = useState(0);
-  const [Height , setHeight] = useState(0);
+  const [maxHeight, setmaxHeight] = useState(0);
+  const [Height, setHeight] = useState(0);
 
   function max(list) {
-    if(list.coordinateY + list.height > maxHeight + Height) {
-        setmaxHeight(list.coordinateY);
-        setHeight(list.height);
+    if (list.coordinateY + list.height > maxHeight + Height) {
+      setmaxHeight(list.coordinateY);
+      setHeight(list.height);
     }
-  };
- 
+  }
+
   const layoutlist = props['layout'].map((list) => (
-      <div
+    <Card
       key={list.id}
-      style={{
+      sx={{
         position: 'absolute',
         width: list.width,
         height: list.height,
+        borderRadius: 2,
+        textAlign: 'center',
+        fontSize: '0.875rem',
+        fontWeight: '700',
         top: list.coordinateY,
         left: list.coordinateX,
         type: list.type,
-        border: '2px solid black',
+        border: 1,
       }}
     >
+      <CardContent>
         {max(list)}
-      {list.type}
-    </div>
+        {list.type}
+      </CardContent>
+    </Card>
   ));
 
   return (

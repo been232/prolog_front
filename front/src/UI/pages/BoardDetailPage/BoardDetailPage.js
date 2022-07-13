@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import UnderButtons from '../../molecules/BoardDetailPage/UnderButtons';
 import Content from '../../organisms/BoardDetailPage/Content';
 
@@ -35,9 +35,9 @@ const data = {
         type: 1,
         coordinateX: 0.555,
         coordinateY: 0.555,
-        width: 30,
+        width: 90,
         height: 90,
-        content: '글 내용',
+        content: '글 내용 히히히히히히ㅎㅎㅎㅎ',
       },
       {
         id: 2,
@@ -80,27 +80,27 @@ const data = {
       {
         id: 3,
         type: 3,
-        coordinateX: 100.555,
+        coordinateX: 150.555,
         coordinateY: 100.555,
-        width: 90,
-        height: 90,
+        width: 180,
+        height: 400,
         content: '코드 text',
       },
       {
         id: 4,
         type: 4,
-        coordinateX: 100.555,
+        coordinateX: 500.555,
         coordinateY: 0.555,
-        width: 120,
-        height: 15,
+        width: 500,
+        height: 505,
         content: 'hyperlink',
       },
       {
         id: 5,
         type: 5,
-        coordinateX: 500.555,
-        coordinateY: 1300.555,
-        width: 150,
+        coordinateX: 0.555,
+        coordinateY: 1100.555,
+        width: 1300,
         height: 200,
         content: '수학 text',
       },
@@ -108,15 +108,15 @@ const data = {
         id: 6,
         type: 6,
         coordinateX: 700.555,
-        coordinateY: 700.555,
+        coordinateY: 600.555,
         width: 180,
-        height: 60,
+        height: 180,
         content: 'videoURL',
       },
       {
         id: 7,
         type: 7,
-        coordinateX: 900.555,
+        coordinateX: 1100.555,
         coordinateY: 1.555,
         width: 210,
         height: 900,
