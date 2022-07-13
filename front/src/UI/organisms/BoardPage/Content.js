@@ -1,9 +1,9 @@
 import { Box } from '@mui/system';
 import { useState, useEffect } from 'react';
-import ImageListAccordion from '../../molecules/BoardDetailPage/ImageListAccordion';
+import ImageListAccordion from '../../molecules/BoardPage/ImageListAccordion';
 import { Card, CardContent } from '@mui/material';
-import Text from '../../molecules/BoardDetailPage/Text';
-import HyperLink from '../../molecules/BoardDetailPage/HyperLink';
+import Text from '../../molecules/BoardPage/Text';
+import HyperLink from '../../molecules/BoardPage/HyperLink';
 
 export default function Content(props) {
   const prop = props['layout']['data']['layouts'];

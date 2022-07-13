@@ -1,7 +1,7 @@
 import * as React from 'react';
-import OutlineButtonDelete from '../../atoms/BoardDetailPage/OutlineButtonDelete';
-import OutlinedButtonsList from '../../atoms/BoardDetailPage/OutlineButtonsList';
-import OutlineButtonCancel from '../../atoms/BoardDetailPage/OutlineButtonCancel';
+import OutlineButtonDelete from '../../atoms/BoardPage/OutlineButtonDelete';
+import OutlinedButtonsList from '../../atoms/BoardPage/OutlineButtonsList';
+import OutlineButtonCancel from '../../atoms/BoardPage/OutlineButtonCancel';
 
 import { Box } from '@mui/material';
 
