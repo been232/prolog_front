@@ -1,8 +1,8 @@
 import { Carousel } from 'react-carousel-minimal';
 
 function ImageLists(props) {
-  const data=props.data.images;
-  
+  const data = props.data.images;
+
   return (
     <div className="App">
       <div>
@@ -17,9 +17,9 @@ function ImageLists(props) {
             slideBackgroundColor="white"
             slideImageFit="cover"
             style={{
-              textAlign: "center",
-              maxWidth: "850px",
-              maxHeight: "500px",
+              textAlign: 'center',
+              maxWidth: '850px',
+              maxHeight: '500px',
             }}
           />
         </div>

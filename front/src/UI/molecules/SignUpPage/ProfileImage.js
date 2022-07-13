@@ -17,9 +17,7 @@ const ProfileImage = (props) => {
   };
 
   // X버튼 클릭 시 이미지 삭제
-  const handleDeleteImage = async () => {
-
-  };
+  const handleDeleteImage = async () => {};
 
   return (
     <>
@@ -32,7 +30,10 @@ const ProfileImage = (props) => {
             </label>
           </Grid>
           <Grid item xs={12}>
-            <DeleteButton value="이미지 삭제" handleDeleteImage={handleDeleteImage}></DeleteButton>
+            <DeleteButton
+              value="이미지 삭제"
+              handleDeleteImage={handleDeleteImage}
+            ></DeleteButton>
           </Grid>
         </Grid>
       </Box>
@@ -40,4 +41,4 @@ const ProfileImage = (props) => {
   );
 };
 
-export default ProfileImage
+export default ProfileImage;
