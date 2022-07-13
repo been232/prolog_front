@@ -1,17 +1,31 @@
-import { Box } from '@mui/material';
+import { Box, Button, IconButton, Modal } from '@mui/material';
 import React, { useEffect, useRef, useState } from 'react';
 import PostBoxBottomMolecule from '../../molecules/MainPage/PostBoxBottomMolecule';
 import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecule';
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
+import CloseIcon from '@mui/icons-material/Close';
 // import { useInterval } from './useInterval';
-
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '1px solid #000',
+  boxShadow: 12,
+  pt: 2,
+  px: 4,
+  pb: 3,
+};
 function MainPageOrganism() {
+  const [open, setOpen] = useState(false);
   var timer;
-  const onMouse = () => {
-    timer = setTimeout(() => console.log('hi'), 1000);
+  const handleOpen = () => {
+    timer = setTimeout(() => setOpen(true), 1000);
   };
-  const offMouse = () => {
-    console.log('bye!');
+  const handleClose = () => {
+    setOpen(false);
     clearTimeout(timer);
   };
   return (
@@ -21,9 +35,20 @@ function MainPageOrganism() {
         display: 'flex',
         flexDirection: 'column',
       }}
-      onMouseEnter={onMouse}
-      onMouseLeave={offMouse}
+      onMouseEnter={handleOpen}
+      onMouseLeave={handleClose}
     >
+      <Modal open={open} onClose={handleClose}>
+        <Box sx={{ ...style, width: 400, height: 600 }}>
+          <IconButton
+            sx={{ position: 'fixed', top: 0, right: 0 }}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>
+          <p>게시글 미리보기 들어감.</p>
+        </Box>
+      </Modal>
       <PostBoxTopMolecule />
       <PostBoxMiddleMolecule />
       <PostBoxBottomMolecule />

@@ -6,16 +6,15 @@ import SpeedDialAction from '@mui/material/SpeedDialAction';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';
-import {
-    Link
-  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const withLink = (to, children) => <Link to={to}>{children}</Link>;
 
 const actions = [
-  { icon: withLink("/", <FileCopyIcon />), name: '메인' },
-  { icon: withLink("/Layout", <SaveIcon />), name: '레이아웃조회' },
-  { icon: withLink("/BoardDetail", <PrintIcon />), name: '글조회' },
+  { icon: withLink('/', <FileCopyIcon />), name: '메인' },
+  { icon: withLink('/Layout', <SaveIcon />), name: '레이아웃조회' },
+  { icon: withLink('/BoardDetail', <PrintIcon />), name: '글조회' },
+  { icon: withLink('/BoardWrite', <PrintIcon />), name: '글작성' },
 ];
 
 export default function ControlledOpenSpeedDial() {

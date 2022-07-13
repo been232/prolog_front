@@ -1,7 +1,7 @@
 import AccountCircleIcons from '../../atoms/Header/AccountCircleIcons';
 import SearchIcons from '../../atoms/Header/SearchIcons';
 import Box from '@mui/material/Box';
-
+import { Link } from 'react-router-dom';
 function HeaderMolecules(props) {
   return (
     <>
@@ -11,11 +11,15 @@ function HeaderMolecules(props) {
             m: 1,
           },
           float: 'right',
-          marginTop: 1.5,
+          marginTop: 2.1,
         }}
       >
-        <SearchIcons />
-        <AccountCircleIcons />
+        <Link to="/search">
+          <SearchIcons />
+        </Link>
+        <Link to="/">
+          <AccountCircleIcons />
+        </Link>
       </Box>
     </>
   );
