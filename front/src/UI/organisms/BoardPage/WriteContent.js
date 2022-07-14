@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -6,8 +5,14 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Dropdown from '../../molecules/BoardPage/FontDropdown';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import TextArea from '../../molecules/BoardPage/TextArea';
-import { height } from '@mui/system';
+import { useEffect, useState, useCallback, useRef } from 'react';
+import Content from '../../molecules/BoardPage/TextArea';
+import ReactFlow, {
+  ReactFlowProvider,
+} from 'react-flow-renderer';
+
+let id = 0;
+const getId = () => `${id++}`;
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -31,87 +36,59 @@ TabPanel.propTypes = {
 
 export default function WriteContent() {
   const [value, setValue] = useState('content');
-  const [count, setCount] = useState(0);
   const [arr, setArr] = useState([]);
-  const [maxHeight, setmaxHeight] = useState(0);
-  const [Height, setHeight] = useState(0);
-
-  useEffect(() => {
-    arr.map((list) => max(list));
-  }, [arr, maxHeight, Height, count]);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const reactFlowWrapper = useRef(null);
+  const nodeTypes = { group : Content };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  const handleArrChange = (newValue) => {
-    const content = {
-      id: newValue.id,
-      context: newValue.content,
-      width: newValue.width,
-      height: newValue.height,
-      x: newValue.x,
-      y: newValue.y,
-      type: newValue.type,
-    };
-    setCount(count + 1);
-    setArr([...arr, content]);
+  useEffect(() => {}, [arr]);
+
+  const onDragStart = (event, newValue) => {
+    event.dataTransfer.setData('application/reactflow', newValue.type);
+    event.dataTransfer.effectAllowed = 'move';
   };
 
-  function max(list) {
-    if (list.y + list.height > maxHeight + Height) {
-      setmaxHeight(list.y);
-      setHeight(list.height);
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const onDrop = useCallback(
+    (event) => {
+      event.preventDefault();
+
+      const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
+      const type = event.dataTransfer.getData('application/reactflow');
+
+      // check if the dropped element is valid
+      if (typeof type === 'undefined' || !type) {
+        return;
+      }
+    
+      const position = reactFlowInstance.project({
+        x: event.clientX - reactFlowBounds.left,
+        y: event.clientY - reactFlowBounds.top,
+      });
+
+      const newNode = 
+      {
+        id: getId(),
+        type: 'group',
+        data: { id: this,id, x: position.x, y: position.y },
+        position: { x: position.x, y: position.y },
+      }
+
+      setArr([...arr, newNode]);
     }
-  }
+    ,
+    [reactFlowInstance, arr]
+  );
 
-  const getData = (data) => {
-    setArr(
-      arr.map((list) => (list.id === data.id ? { ...list, ...data } : list))
-    );
-  };
-
-  function lists(list) {
-    switch (list.type) {
-      case 1:
-        return (
-          <TextArea key={list.id} list={list} propsFunction={getData}>
-            {max(list)}
-          </TextArea>
-        );
-      //   case 2:
-      //     return <ImageListAccordion key={list.id} data={list} />;
-      //   case 4:
-      //     return <HyperLink key={list.id} list={list} />;
-      //   default:
-      //     return (
-      //       <Card
-      //       key={list.id}
-      //       sx={{
-      //         position: 'absolute',
-      //         width: list.width,
-      //         height: list.height,
-      //         borderRadius: 2,
-      //         textAlign: 'center',
-      //         fontSize: '0.875rem',
-      //         fontWeight: '700',
-      //         top: list.coordinateY,
-      //         left: list.coordinateX,
-      //         type: list.type,
-      //         border: 1,
-      //       }}
-      //     >
-      //       <CardContent>
-      //         {max(list)}
-      //         {list.type}
-      //       </CardContent>
-      //     </Card>
-      //     );
-    }
-  }
-
-  const layoutlist = arr.map((list) => lists(list));
-
+  const defaultEdges = [];
   return (
     <Box
       sx={{
@@ -129,20 +106,13 @@ export default function WriteContent() {
       >
         <Tabs value={value} onChange={handleChange}>
           <Tab
+            onDragStart={(event) =>
+              onDragStart(event, 'default')
+            }
+            draggable
             icon={<ArticleOutlinedIcon />}
             aria-label="ArticleOutlinedIcon"
             value="content"
-            onClick={() =>
-              handleArrChange({
-                id: count,
-                context: '',
-                width: 200,
-                height: 200,
-                x: 0,
-                y: 0,
-                type: 1,
-              })
-            }
           />
           <Tab label="Item Two" value="2" />
           <Tab label="Item Three" value="3" />
@@ -151,14 +121,21 @@ export default function WriteContent() {
           <Tab icon={<Dropdown />} aria-label="phone" value="6" />
         </Tabs>
       </Box>
-      <Box
-        sx={{
-          position: 'relative',
-          width: '90%',
-          height: 30 + maxHeight + Height,
-        }}
-      >
-        {layoutlist}
+      <Box style={{ width: '100%', height : 500 }}>
+        <ReactFlowProvider>
+          <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ width: '100%', height : 500}}>
+          <ReactFlow
+            fitView
+            onDragOver={onDragOver}
+            onDrop={onDrop}
+            onInit={setReactFlowInstance}
+            nodes={arr} 
+            defaultEdges={defaultEdges}
+            nodeTypes={nodeTypes}
+          >
+          </ReactFlow>
+          </div>
+        </ReactFlowProvider>
       </Box>
     </Box>
   );
