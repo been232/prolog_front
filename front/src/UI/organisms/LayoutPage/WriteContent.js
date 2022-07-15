@@ -3,19 +3,27 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Dropdown from '../../molecules/BoardPage/FontDropdown';
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import { useEffect, useState, useCallback, useRef } from 'react';
-import Content from '../../molecules/BoardPage/TextArea';
 import ReactFlow, {
   ReactFlowProvider,
   useNodesState,
 } from 'react-flow-renderer';
+import resizeNode from '../../molecules/LayoutPage/Moveable';
+import ImageOutlinedIcon from '@mui/icons-material/ImageOutlined';
+import AddLinkOutlinedIcon from '@mui/icons-material/AddLinkOutlined';
+import KeyboardAltOutlinedIcon from '@mui/icons-material/KeyboardAltOutlined';
+import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
+import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
+import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
 
+const nodeTypes = {
+  resizeNode: resizeNode,
+};
 const initialNodes = [
   {
     id: '0',
-    type: 'group',
+    type: 'resizeNode',
     data: {
       id: '0',
       x: 250,
@@ -26,6 +34,7 @@ const initialNodes = [
       type: 1,
     },
     position: { x: 250, y: 5 },
+    dragHandle: '.custom-drag-handle',
   },
 ];
 
@@ -94,7 +103,7 @@ export default function WriteContent() {
       const id = getId();
       const newNode = {
         id: id,
-        type: 'group',
+        type: 'resizeNode',
         data: {
           type: type,
           id: id,
@@ -104,6 +113,7 @@ export default function WriteContent() {
           height: 100,
         },
         position: { x: position.x, y: position.y },
+        dragHandle: '.custom-drag-handle',
       };
 
       setNodes((nds) => nds.concat(newNode));
@@ -131,18 +141,51 @@ export default function WriteContent() {
             onDragStart={(event) => onDragStart(event, 1)}
             draggable
             icon={<ArticleOutlinedIcon />}
-            aria-label="ArticleOutlinedIcon"
             index="1"
+            label="Text"
           />
           <Tab
-            label="Item Two"
+            label="Image"
+            icon={<ImageOutlinedIcon />}
             onDragStart={(event) => onDragStart(event, 2)}
             draggable
             index="2"
           />
-          <Tab label="Item Three" index="3" />
-          <Tab label="Item One" index="4" />
-          <Tab label="Item Two" index="5" />
+          <Tab
+            label="Code"
+            icon={<KeyboardAltOutlinedIcon />}
+            onDragStart={(event) => onDragStart(event, 3)}
+            draggable
+            index="3"
+          />
+          <Tab
+            label="HyperLink"
+            icon={<AddLinkOutlinedIcon />}
+            onDragStart={(event) => onDragStart(event, 4)}
+            draggable
+            index="4"
+          />
+          <Tab
+            label="Math"
+            icon={<CalculateOutlinedIcon />}
+            onDragStart={(event) => onDragStart(event, 5)}
+            draggable
+            index="5"
+          />
+          <Tab
+            label="Video"
+            icon={<VideoLibraryOutlinedIcon />}
+            onDragStart={(event) => onDragStart(event, 6)}
+            draggable
+            index="6"
+          />
+          <Tab
+            label="File"
+            icon={<TopicOutlinedIcon />}
+            onDragStart={(event) => onDragStart(event, 7)}
+            draggable
+            index="7"
+          />
         </Tabs>
       </Box>
       <Box style={{ width: '100%', height: 700, cursor: 'grap' }}>
@@ -159,6 +202,7 @@ export default function WriteContent() {
               onInit={setReactFlowInstance}
               nodes={nodes}
               onNodesChange={onNodesChange}
+              nodeTypes={nodeTypes}
             ></ReactFlow>
           </div>
         </ReactFlowProvider>
