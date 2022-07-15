@@ -6,7 +6,7 @@ import Content from '../../organisms/BoardPage/Content';
 /* Gird Item 들은 기능 연동 후 map 으로 처리하던가 해야할듯 */
 function BoardDetailPage() {
   return (
-    <Box sx={{ marginLeft: 20, marginRight: 20 }}>
+    <Box sx={{ mx: "2rem" }}>
       <h2 style={{ paddingLeft: 20 }}>{data.data.post.title}</h2>
       <Content layout={data}/>
       <UnderButtons />

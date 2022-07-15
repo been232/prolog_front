@@ -105,7 +105,7 @@ export default function WriteContent() {
         id: id,
         type: 'resizeNode',
         data: {
-          type: type,
+          type: parseInt(type),
           id: id,
           x: position.x,
           y: position.y,
@@ -180,7 +180,7 @@ export default function WriteContent() {
             index="6"
           />
           <Tab
-            label="File"
+            label="FILE"
             icon={<TopicOutlinedIcon />}
             onDragStart={(event) => onDragStart(event, 7)}
             draggable
@@ -188,12 +188,12 @@ export default function WriteContent() {
           />
         </Tabs>
       </Box>
-      <Box style={{ width: '100%', height: 700, cursor: 'grap' }}>
+      <Box style={{ width: '100%', height: 1500, cursor: 'grap' }}>
         <ReactFlowProvider>
           <div
             className="reactflow-wrapper"
             ref={reactFlowWrapper}
-            style={{ width: '100%', height: 700 }}
+            style={{ width: '100%', height: 1500 }}
           >
             <ReactFlow
               fitView
