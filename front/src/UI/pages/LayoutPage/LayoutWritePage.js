@@ -2,12 +2,14 @@ import { Box } from '@mui/material';
 import React from 'react';
 import BasicTextFields from '../../atoms/BoardPage/BasicTextFields';
 import WriteContent from '../../organisms/LayoutPage/WriteContent';
+import UnderButtons2 from '../../molecules/LayoutPage/UnderButtons2';
 
 function LayoutWritePage() {
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
       <BasicTextFields />
       <WriteContent data={data}/>
+      <UnderButtons2 />
     </Box>
   );
 }
