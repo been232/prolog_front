@@ -14,7 +14,7 @@ const actions = [
   { icon: withLink('/', <FileCopyIcon />), name: '메인' },
   { icon: withLink('/Layout', <SaveIcon />), name: '레이아웃조회' },
   { icon: withLink('/BoardDetail', <PrintIcon />), name: '글조회' },
-  { icon: withLink('/BoardWrite', <PrintIcon />), name: '글작성' },
+  { icon: withLink('/layoutWrite', <PrintIcon />), name: '레이아웃작성' },
 ];
 
 export default function ControlledOpenSpeedDial() {
