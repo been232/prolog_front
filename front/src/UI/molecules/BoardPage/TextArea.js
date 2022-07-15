@@ -12,7 +12,7 @@ export default function Text(props) {
     y: data[0].y,
     type: 1,
   });
-  
+
   const onChange = useCallback((evt) => {
     const content = {
         id: datas.id,
@@ -27,7 +27,6 @@ export default function Text(props) {
   }, []);
 
   useEffect(() => {
-
   }, [datas]);
 
   return (
