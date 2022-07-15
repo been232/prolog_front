@@ -9,9 +9,27 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import Content from '../../molecules/BoardPage/TextArea';
 import ReactFlow, {
   ReactFlowProvider,
+  useNodesState,
 } from 'react-flow-renderer';
 
-let id = 0;
+const initialNodes = [
+  {
+    id: '0',
+    type: 'group',
+    data: {
+      id: '0',
+      x: 250,
+      y: 5,
+      context: '',
+      width: 200,
+      height: 100,
+      type: 1,
+    },
+    position: { x: 250, y: 5 },
+  },
+];
+
+let id = 1;
 const getId = () => `${id++}`;
 
 function TabPanel(props) {
@@ -35,20 +53,19 @@ TabPanel.propTypes = {
 };
 
 export default function WriteContent() {
-  const [value, setValue] = useState('content');
-  const [arr, setArr] = useState([]);
-  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [value, setValue] = useState(0);
   const reactFlowWrapper = useRef(null);
-  const nodeTypes = { group : Content };
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  useEffect(() => {}, [arr]);
+  useEffect(() => {}, []);
 
   const onDragStart = (event, newValue) => {
-    event.dataTransfer.setData('application/reactflow', newValue.type);
+    event.dataTransfer.setData('application/reactflow', newValue);
     event.dataTransfer.effectAllowed = 'move';
   };
 
@@ -68,27 +85,32 @@ export default function WriteContent() {
       if (typeof type === 'undefined' || !type) {
         return;
       }
-    
+
       const position = reactFlowInstance.project({
         x: event.clientX - reactFlowBounds.left,
         y: event.clientY - reactFlowBounds.top,
       });
 
-      const newNode = 
-      {
-        id: getId(),
+      const id = getId();
+      const newNode = {
+        id: id,
         type: 'group',
-        data: { id: this,id, x: position.x, y: position.y },
+        data: {
+          type: type,
+          id: id,
+          x: position.x,
+          y: position.y,
+          width: 200,
+          height: 100,
+        },
         position: { x: position.x, y: position.y },
-      }
+      };
 
-      setArr([...arr, newNode]);
-    }
-    ,
-    [reactFlowInstance, arr]
+      setNodes((nds) => nds.concat(newNode));
+    },
+    [reactFlowInstance]
   );
 
-  const defaultEdges = [];
   return (
     <Box
       sx={{
@@ -104,36 +126,40 @@ export default function WriteContent() {
           borderColor: 'divider',
         }}
       >
-        <Tabs value={value} onChange={handleChange}>
+        <Tabs value={value} variant="fullWidth" onChange={handleChange}>
           <Tab
-            onDragStart={(event) =>
-              onDragStart(event, 'default')
-            }
+            onDragStart={(event) => onDragStart(event, 1)}
             draggable
             icon={<ArticleOutlinedIcon />}
             aria-label="ArticleOutlinedIcon"
-            value="content"
+            index="1"
           />
-          <Tab label="Item Two" value="2" />
-          <Tab label="Item Three" value="3" />
-          <Tab label="Item One" value="4" />
-          <Tab label="Item Two" value="5" />
-          <Tab icon={<Dropdown />} aria-label="phone" value="6" />
+          <Tab
+            label="Item Two"
+            onDragStart={(event) => onDragStart(event, 2)}
+            draggable
+            index="2"
+          />
+          <Tab label="Item Three" index="3" />
+          <Tab label="Item One" index="4" />
+          <Tab label="Item Two" index="5" />
         </Tabs>
       </Box>
-      <Box style={{ width: '100%', height : 500 }}>
+      <Box style={{ width: '100%', height: 700, cursor: 'grap' }}>
         <ReactFlowProvider>
-          <div className="reactflow-wrapper" ref={reactFlowWrapper} style={{ width: '100%', height : 500}}>
-          <ReactFlow
-            fitView
-            onDragOver={onDragOver}
-            onDrop={onDrop}
-            onInit={setReactFlowInstance}
-            nodes={arr} 
-            defaultEdges={defaultEdges}
-            nodeTypes={nodeTypes}
+          <div
+            className="reactflow-wrapper"
+            ref={reactFlowWrapper}
+            style={{ width: '100%', height: 700 }}
           >
-          </ReactFlow>
+            <ReactFlow
+              fitView
+              onDragOver={onDragOver}
+              onDrop={onDrop}
+              onInit={setReactFlowInstance}
+              nodes={nodes}
+              onNodesChange={onNodesChange}
+            ></ReactFlow>
           </div>
         </ReactFlowProvider>
       </Box>
