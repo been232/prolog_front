@@ -7,10 +7,14 @@ import { Box } from '@mui/material';
 
 export default function UnderButtons() {
   return (
-    <Box sx={{float: 'right'}}>
+    <Box sx={{ float: 'right' }}>
       <OutlineButtonCancel />
       <OutlineButtonDelete />
-      <OutlinedButtonsList />
+      <OutlinedButtonsList
+        content="목록으로"
+        pathname="/"
+        style="{ marginLeft: 2 }"
+      />
     </Box>
   );
 }

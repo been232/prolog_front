@@ -14,15 +14,15 @@ const App = () => {
     <>
       <div className="App">
         <BrowserRouter>
-          <HeaderOrganisms sx={{marginBottom : 10}}/>
+          <HeaderOrganisms sx={{ marginBottom: 10 }} />
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/Layout/*" element={<LayoutPage />}/>
-            <Route path="/BoardDetail/*" element={<BoardDetailPage />}/>
-            <Route path="/sign/*" element={<SignUpPage />}/>
-            <Route path="/login/*" element={<LoginPopupPage />}/>
-            <Route path="/findID/*" element={<LoginPopupPage />}/>
-            <Route path="/BoardWrite/*" element={<BoardWritePage />}/>
+            <Route path="/Layout/*" element={<LayoutPage />} />
+            <Route path="/BoardDetail/*" element={<BoardDetailPage />} />
+            <Route path="/sign/*" element={<SignUpPage />} />
+            <Route path="/login/*" element={<LoginPopupPage />} />
+            <Route path="/findID/*" element={<LoginPopupPage />} />
+            <Route path="/BoardWrite/*" element={<BoardWritePage />} />
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>

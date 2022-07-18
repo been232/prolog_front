@@ -23,7 +23,16 @@ export default function ControlledOpenSpeedDial() {
   const handleClose = () => setOpen(false);
 
   return (
-    <Box sx={{ height: 50, transform: 'translateZ(0px)', flexGrow: 1 }}>
+    <Box
+      sx={{
+        height: 50,
+        transform: 'translateZ(0px)',
+        flexGrow: 1,
+        position: 'fixed',
+        bottom: 16,
+        right: 16,
+      }}
+    >
       <SpeedDial
         ariaLabel="SpeedDial controlled open example"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
