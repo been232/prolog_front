@@ -12,15 +12,14 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Api from 'API/Api';
 
-
 const theme = createTheme({
   palette: {
-      primary: {
-          main: '#ffca00',
-      },
-      secondary: {
-          main: '#ffb000',
-      },
+    primary: {
+      main: '#ffca00',
+    },
+    secondary: {
+      main: '#ffb000',
+    },
   },
 });
 
@@ -36,19 +35,28 @@ export default function Login() {
 
   const [postBody, setPostBody] = useState({
     email: '',
-    password: ''
+    password: '',
   });
 
-  const handleidChange = (event) => {
+  // const handleidChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     email: event.target.value,
+  //   }));
+  // };
+  // const handlepwChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     password: event.target.value,
+  //   }));
+  // };
+
+  // 똑같은 동작하는 코드 두개 하나로 합침.
+  const handleChange = (event) => {
+    console.log(event.target.value);
     setPostBody((prev) => ({
       ...prev,
-      email: event.target.value
-    }));
-  };
-  const handlepwChange = (event) => {
-    setPostBody((prev) => ({
-      ...prev,
-      password: event.target.value
+      [event.target.id]: event.target.value,
     }));
   };
   const handleLogin = async () => {
@@ -60,12 +68,14 @@ export default function Login() {
 
     let response = await Api.postLogin(postBody.email, postBody.password);
 
-    if (response.data.result === "success") {
+    if (response.data.result === 'success') {
       const target = '/';
-      sessionStorage.setItem('user', JSON.stringify(response.data, ['accessToken', 'refreshToken']))
+      sessionStorage.setItem(
+        'user',
+        JSON.stringify(response.data, ['accessToken', 'refreshToken'])
+      );
       window.location.href = target;
-    }
-    else if(response.data.result === "fail") {
+    } else if (response.data.result === 'fail') {
       alert('로그인 실패');
     }
   };
@@ -89,47 +99,47 @@ export default function Login() {
           <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
             <LockOutlinedIcon />
           </Avatar>
-          <Typography component="h1" variant="h5" sx={{textAlign: "justify"}}>
+          <Typography component="h1" variant="h5" sx={{ textAlign: 'justify' }}>
             로그인
           </Typography>
-            <Box sx={{ mt: 1 }}>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="email"
-                    label="Email Address"
-                    name="email"
-                    autoComplete="email"
-                    autoFocus
-                    defaultValue={postBody.email}
-                    onChange={handleidChange}
-                />
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    name="password"
-                    label="Password"
-                    type="password"
-                    id="password"
-                    autoComplete="current-password"
-                    defaultValue={postBody.password}
-                    onChange={handlepwChange}
-                />
-                <Button
-                    fullWidth
-                    variant="contained"
-                    color="secondary"
-                    sx={{ mt: 3, mb: 2 }}
-                    onClick={handleLogin}
-                >
-                    로그인
-                </Button>
-            </Box>
-            <Link href="signup" variant="body2" color="#000" >
-                회원가입
-            </Link>
+          <Box sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+              defaultValue={postBody.email}
+              onChange={handleChange}
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              defaultValue={postBody.password}
+              onChange={handleChange}
+            />
+            <Button
+              fullWidth
+              variant="contained"
+              color="secondary"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={handleLogin}
+            >
+              로그인
+            </Button>
+          </Box>
+          <Link href="signup" variant="body2" color="#000">
+            회원가입
+          </Link>
         </Box>
       </Container>
     </ThemeProvider>

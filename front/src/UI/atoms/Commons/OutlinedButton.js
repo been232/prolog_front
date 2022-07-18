@@ -2,10 +2,11 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import { Link } from 'react-router-dom';
 
-export default function OutlinedButtonsList() {
+export default function OutlineButton(props) {
+  const { style, content } = props;
   return (
-    <Button variant="outlined" sx={{ marginLeft: 2 }}>
-      목록으로
+    <Button variant="outlined" sx={style}>
+      {content}
     </Button>
   );
 }

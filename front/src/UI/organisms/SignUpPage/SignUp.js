@@ -1,61 +1,82 @@
-import React, { useState } from 'react'
-import { useLocation } from "react-router";
-import { Link, Avatar, Button, FormControl, Grid, Box, CssBaseline, Typography, Container, FormControlLabel, Switch } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router';
+import {
+  Link,
+  Avatar,
+  Button,
+  FormControl,
+  Grid,
+  Box,
+  CssBaseline,
+  Typography,
+  Container,
+  FormControlLabel,
+  Switch,
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import SignUpTextField from '../../atoms/SignUpPage/TextField';
+import AuthTextField from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
 // import Api from 'api/Api';
 
 const SignUp = () => {
-
   const { state } = useLocation();
 
   const [postBody, setPostBody] = useState({
     email: state,
     password: '',
+    passwordConfirm: '',
     name: '',
     nickname: '',
     phone: '',
-    address: ''
+    address: '',
   });
 
-  const handleIdChange = (event) => {
-    console.log("success");
-    setPostBody((prev) => ({
-      ...prev,
-      email: event.target.value
-    }));
-  };
+  // const handleIdChange = (event) => {
+  //   console.log('success');
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     email: event.target.value,
+  //   }));
+  // };
 
-  const handlePasswordChange = (event) => {
+  // const handlePasswordChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     password: event.target.value,
+  //   }));
+  // };
+  // const handleNameChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     name: event.target.value,
+  //   }));
+  // };
+  // const handleNickNameChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     nickname: event.target.value,
+  //   }));
+  // };
+  // const handlePhoneChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     phone: event.target.value,
+  //   }));
+  // };
+  // const handleAddressChange = (event) => {
+  //   setPostBody((prev) => ({
+  //     ...prev,
+  //     address: event.target.value,
+  //   }));
+  // };
+
+  // 똑같은 기능 하는 코드 하나로 합침
+  const handleChagne = (event) => {
     setPostBody((prev) => ({
       ...prev,
-      password: event.target.value
+      [event.target.name]: event.target.value,
     }));
-  };
-  const handleNameChange = (event) => {
-    setPostBody((prev) => ({
-      ...prev,
-      name: event.target.value
-    }));
-  };
-  const handleNickNameChange = (event) => {
-    setPostBody((prev) => ({
-      ...prev,
-      nickname: event.target.value
-    }));
-  };
-  const handlePhoneChange = (event) => {
-    setPostBody((prev) => ({
-      ...prev,
-      phone: event.target.value
-    }));
-  };
-  const handleAddressChange = (event) => {
-    setPostBody((prev) => ({
-      ...prev,
-      address: event.target.value
-    }));
+    console.log(postBody);
   };
 
   const handleSignup = async () => {
@@ -71,7 +92,7 @@ const SignUp = () => {
     //   alert('회원가입 성공');
     //   const target = '/';
     //   window.location.href = target;
-    // } 
+    // }
     // else if (response.data.result === "fail") {
     //   alert(response.data.message);
     // }
@@ -80,7 +101,12 @@ const SignUp = () => {
     // }
   };
   const emptyCheck = () => {
-    if (postBody.email === '' || postBody.password === '' || postBody.name === '' || postBody.nickname === '') {
+    if (
+      postBody.email === '' ||
+      postBody.password === '' ||
+      postBody.name === '' ||
+      postBody.nickname === ''
+    ) {
       return false;
     }
   };
@@ -106,22 +132,39 @@ const SignUp = () => {
           <ProfileImage></ProfileImage>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <SignUpTextField label="아이디" onChange={handleIdChange} />
+              <AuthTextField label="아이디" name="id" onChange={handleChagne} />
             </Grid>
             <Grid item xs={12}>
-              <SignUpTextField label="이메일" onChange={handleIdChange} />
+              <AuthTextField
+                label="이메일"
+                name="email"
+                onChange={handleChagne}
+              />
             </Grid>
             <Grid item xs={12}>
-              <SignUpTextField label="비밀번호" onChange={handleIdChange} />
+              <AuthTextField
+                label="비밀번호"
+                name="password"
+                onChange={handleChagne}
+              />
             </Grid>
             <Grid item xs={12}>
-              <SignUpTextField label="비밀번호 확인" onChange={handleIdChange} />
+              <AuthTextField
+                label="비밀번호 확인"
+                name="passwordConfirm"
+                onChange={handleChagne}
+              />
             </Grid>
             <Grid item xs={12}>
-              <SignUpTextField label="닉네임" onChange={handleIdChange} />
+              <AuthTextField
+                label="닉네임"
+                name="nickname"
+                onChange={handleChagne}
+              />
             </Grid>
             <Grid item xs={12}>
-              <SignUpTextField label="한줄소개" onChange={handleIdChange} />
+              {/* 나중에 한줄소개 name 생각해서 넣고 state 추가해야함. */}
+              <AuthTextField label="한줄소개" name="" onChange={handleChagne} />
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
@@ -154,6 +197,6 @@ const SignUp = () => {
       </Box>
     </Container>
   );
-}
+};
 
-export default SignUp
+export default SignUp;

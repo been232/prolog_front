@@ -1,18 +1,20 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import BasicTextFields from '../../atoms/BoardPage/BasicTextFields';
-import WriteContent from '../../organisms/BoardPage/WriteContent';
+import WriteContent from '../../organisms/LayoutPage/WriteContent';
+import UnderButtons2 from '../../molecules/LayoutPage/UnderButtons2';
 
-function BoardWritePage() {
+function LayoutWritePage() {
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
       <BasicTextFields />
-      <WriteContent />
+      <WriteContent data={data}/>
+      <UnderButtons2 />
     </Box>
   );
 }
 
-export default BoardWritePage;
+export default LayoutWritePage;
 
 const data = {
   success: true,
@@ -29,7 +31,7 @@ const data = {
     },
     layouts: [
       {
-        id: 1,
+        id: "1",
         type: 1,
         coordinateX: 0.555,
         coordinateY: 0.555,
@@ -38,7 +40,7 @@ const data = {
         content: '글 내용 히히히히히히ㅎㅎㅎㅎ',
       },
       {
-        id: 2,
+        id: "2",
         type: 2,
         coordinateX: 60.555,
         coordinateY: 600.555,
@@ -76,7 +78,7 @@ const data = {
         content: 'gdgd'
       },
       {
-        id: 3,
+        id: "3",
         type: 3,
         coordinateX: 150.555,
         coordinateY: 100.555,
@@ -85,7 +87,7 @@ const data = {
         content: '코드 text',
       },
       {
-        id: 4,
+        id: "4",
         type: 4,
         coordinateX: 500.555,
         coordinateY: 0.555,
@@ -94,7 +96,7 @@ const data = {
         content: 'https://www.google.com/search?q=mui+accordion+custom&oq=&aqs=chrome.5.69i59i450l8.694643353j0j15&sourceid=chrome&ie=UTF-8',
       },
       {
-        id: 5,
+        id: "5",
         type: 5,
         coordinateX: 0.555,
         coordinateY: 1100.555,
@@ -103,7 +105,7 @@ const data = {
         content: '수학 text',
       },
       {
-        id: 6,
+        id: "6",
         type: 6,
         coordinateX: 700.555,
         coordinateY: 600.555,
@@ -112,7 +114,7 @@ const data = {
         content: 'videoURL',
       },
       {
-        id: 7,
+        id: "7",
         type: 7,
         coordinateX: 1100.555,
         coordinateY: 150.555,

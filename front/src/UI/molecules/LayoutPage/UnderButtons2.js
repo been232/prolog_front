@@ -3,12 +3,11 @@ import { Box } from '@mui/material';
 import OutlinedButton from '../../atoms/Commons/OutlinedButton';
 import { Link } from 'react-router-dom';
 
-export default function UnderButtons() {
+export default function UnderButtons2() {
   return (
     <Box sx={{ float: 'right' }}>
-      <OutlinedButton content="삭제하기" />
       <Link to="/">
-        <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
+        <OutlinedButton content="작성하기" style={{ marginTop: 5, marginBottom: 3}} />
       </Link>
     </Box>
   );
