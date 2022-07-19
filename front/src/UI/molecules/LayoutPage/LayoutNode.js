@@ -3,17 +3,9 @@ import { Box } from '@mui/material';
 
 const LayoutNode = (props) => {
   const data = props;
-  const [datas, setDatas] = React.useState({
-    id: data.data.id,
-    x: data.xPos,
-    y: data.yPos,
-    width: data.data.width,
-    height: data.data.height,
-    type: data.data.type,
-  });
 
   function list() {
-    switch (datas.type) {
+    switch (data.data.type) {
       case 1:
         return <h5>TEXT BOX</h5>;
       case 2:
@@ -40,8 +32,8 @@ const LayoutNode = (props) => {
         justifyContent: 'center',
         border: 'solid 1px #ddd',
         background: '#f0f0f0',
-        width: datas.width, 
-        height: datas.height}}
+        width: data.data.width, 
+        height: data.data.height}}
     >
       {list()}
     </Box>

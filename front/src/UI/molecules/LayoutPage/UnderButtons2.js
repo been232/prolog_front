@@ -24,6 +24,7 @@ export default function UnderButtons2(props) {
       moldName: title,
       layouts: datas
     };
+    console.log(submit)
   };
 
   return (

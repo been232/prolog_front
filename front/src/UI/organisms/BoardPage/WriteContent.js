@@ -8,6 +8,7 @@ import ReactFlow, {
 import UnderButtons from '../../molecules/BoardPage/UnderButtons';
 import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
 import Text from '../../molecules/BoardPage/Text';
+import Image from '../../molecules/BoardPage/ImageListAccordion';
 
 export default function WriteContent(props) {
   const title = props.title;
@@ -19,6 +20,7 @@ export default function WriteContent(props) {
   const nodeTypes = {
     LayoutNode: LayoutNode,
     Text: Text,
+    Image: Image,
   };
 
   {list()}
@@ -42,6 +44,24 @@ export default function WriteContent(props) {
           };
           initialNodes.push(TextNode);
           break;
+          case 2:
+            const ImageNode = {
+              id: dataitem.id.toString(),
+              type: 'Image',
+              data: {
+                id: dataitem.id,
+                x: dataitem.coordinateX,
+                y: dataitem.coordinateY,
+                type: dataitem.type,
+                width: dataitem.width,
+                height: dataitem.height,
+                image: {},
+                content: '',
+              },
+              position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+            };
+            initialNodes.push(ImageNode);
+            break;
         default:
           const newNode = {
             id: dataitem.id.toString(),
