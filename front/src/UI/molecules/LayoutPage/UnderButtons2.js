@@ -1,13 +1,13 @@
 import { Box } from '@mui/material';
 import OutlinedButton from '../../atoms/Commons/OutlinedButton';
 import { Link } from 'react-router-dom';
+import { useEffect,useState } from 'react';
 
 export default function UnderButtons2(props) {
   const data = props.data;
+  const title = props.title.title;
   const datas = [];
-  const Usets = {
-
-  };   
+   
   const handleClick = () => {
     data.map((dataitem) => {
       datas.push({
@@ -18,7 +18,12 @@ export default function UnderButtons2(props) {
         type: dataitem.data.type,
       });
     });
-    console.log(datas);
+
+    const submit = {
+      user : '',
+      moldName: title,
+      layouts: datas
+    };
   };
 
   return (
