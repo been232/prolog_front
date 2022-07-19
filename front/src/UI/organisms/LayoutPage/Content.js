@@ -1,87 +1,69 @@
-import { Box } from '@mui/system';
-import { useState, useEffect } from 'react';
-import { Card, CardContent } from '@mui/material';
+import Box from '@mui/material/Box';
+import { useEffect, useRef, useState } from 'react';
+import ReactFlow, {
+  ReactFlowProvider,
+  useNodesState,
+} from 'react-flow-renderer';
+import UnderButtons from '../../molecules/LayoutPage/UnderButtons';
+import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
+
+const nodeTypes = {
+  LayoutNode: LayoutNode,
+};
 
 export default function Content(props) {
-  const [maxHeight, setmaxHeight] = useState(0);
-  const [Height, setHeight] = useState(0);
+  const layout = props.layout[0];
+  const initialNodes = [];
+  const reactFlowWrapper = useRef(null);
+  const nodeitem = [];
+  const [nodes, setNodes] = useNodesState(initialNodes);
 
-  function max(list) {
-    if (list.coordinateY + list.height > maxHeight + Height) {
-      setmaxHeight(list.coordinateY);
-      setHeight(list.height);
-    }
-  }
-
-  function lists(list) {
-    var text = '';
-
-    switch (list.type) {
-      case 1:
-        text = '글 내용1';
-        break;
-      case 2:
-        text = '이미지2';
-        break;
-      case 3:
-        text = '코드3';
-        break;
-      case 4:
-        text = '하이퍼링크4';
-        break;
-      case 5:
-        text = '수학5';
-        break;
-      case 6:
-        text = '비디오6';
-        break;
-      case 7:
-        text = '피피티7';
-        break;
-    }
-
-    return (
-      <Card
-        key={list.id}
-        sx={{
-          position: 'absolute',
-          width: list.width,
-          height: list.height,
-          borderRadius: 2,
-          textAlign: 'center',
-          fontSize: '0.875rem',
-          fontWeight: '700',
-          top: list.coordinateY,
-          left: list.coordinateX,
-          type: list.type,
-          border: 1,
-        }}
-      >
-        <CardContent>
-          {max(list)}
-          {text}
-        </CardContent>
-      </Card>
-    );
-  }
-
-  const layoutlist =props['layout'].map((list) => lists(list));
+  useEffect(() => {
+    layout.layouts.map((dataitem) => {
+      const newNode = {
+        id: (dataitem.id).toString(),
+        type: 'LayoutNode',
+        data: {
+          id: dataitem.id,
+          x: dataitem.coordinateX,
+          y: dataitem.coordinateY,
+          type: dataitem.type,
+          width: dataitem.width,
+          height: dataitem.height,
+        },
+        position: { x: dataitem.coordinateX, y: dataitem.coordinateY }
+      };
+      nodeitem.push(newNode);
+    });
+    setNodes((nds) => nds.concat(nodeitem));
+  }, []);
 
   return (
-    <Box sx={{ marginTop: 5, marginBottom: 10 }}>
-      <div
-        id="parent"
-        style={{
-          position: 'relative',
-          border: '2px solid black',
-          width: '99%',
-          height: maxHeight + Height + 30,
-          marginLeft: 5,
-          marginBottom: 10,
-        }}
-      >
-        {layoutlist}
-      </div>
+    <Box
+      sx={{
+        width: '90%',
+        marginLeft: '5%',
+        border: 2,
+        marginTop: 5,
+      }}
+    >
+      <Box style={{ width: '100%', height: 1500 }}>
+        <ReactFlowProvider>
+          <div
+            className="reactflow-wrapper"
+            ref={reactFlowWrapper}
+            style={{ width: '100%', height: 1500 }}
+          >
+            <ReactFlow
+              fitView
+              nodes={nodes}
+              nodesDraggable={false}
+              nodeTypes={nodeTypes}
+            ></ReactFlow>
+          </div>
+        </ReactFlowProvider>
+      </Box>
+      <UnderButtons id={layout.layoutId} />
     </Box>
   );
 }

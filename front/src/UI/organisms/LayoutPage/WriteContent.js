@@ -65,7 +65,6 @@ export default function WriteContent(props) {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [data, setData] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
