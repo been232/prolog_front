@@ -11,15 +11,15 @@ export default function ImageListAccordion(props) {
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
   };
+
+  React.useEffect(()=> {
+    console.log(data);
+  })
   return (
     <div
       style={{
-        marginTop: 10,
         width: data.width,
         height: data.height,
-        top: data.coordinateY,
-        left: data.coordinateX,
-        position: 'absolute',
       }}
     >
       <Accordion expanded={expand}>
@@ -35,7 +35,7 @@ export default function ImageListAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <ImageLists data={data} />
+          {/* <ImageLists data={data} /> */}
         </AccordionSummary>
         <AccordionDetails>{data.content}</AccordionDetails>
       </Accordion>

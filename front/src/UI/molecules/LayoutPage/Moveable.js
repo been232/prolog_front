@@ -20,30 +20,16 @@ const dragHandleStyle = {
 };
 const Moveable = (props) => {
   const data = props;
-  const [datas, setDatas] = React.useState({
-    id: data.data.id,
-    x: data.xPos,
-    y: data.yPos,
-    width: data.data.width,
-    height: data.data.height,
-    type: data.data.type,
-  });
   const [width, setWidth] = React.useState(300);
   const [height, setHeight] = React.useState(200);
 
   useEffect(() => {
-    setDatas({
-      id: datas.id,
-      x: datas.x,
-      y: datas.y,
-      width: width,
-      height: height,
-      type: datas.type,
-    });
+    data.data.width = width;
+    data.data.height = height;
   }, [width, height]);
 
   function list() {
-    switch (datas.type) {
+    switch (data.data.type) {
       case 1:
         return <h5>TEXT BOX → </h5>;
       case 2:
