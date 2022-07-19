@@ -1,27 +1,52 @@
-import * as React from 'react';
-import { Card } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { TextField } from '@mui/material';
 
-export default function Text(props) {
-  const list = props.list;
+const Text = (props) => {
+  const data = props;
+  const [datas, setDatas] = React.useState({
+    id: data.data.id,
+    x: data.xPos,
+    y: data.yPos,
+    width: data.data.width,
+    height: data.data.height,
+    type: data.data.type,
+    content: data.data.content,
+  });
+
+  const [text, setText] = useState('');
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  useEffect(() => {
+    setDatas({
+      id: datas.id,
+      x: datas.x,
+      y: datas.y,
+      width: datas.width,
+      height: datas.height,
+      type: datas.type,
+      content: text,
+    });
+  }, [text]);
 
   return (
-    <Card
-      key={list.id}
-      sx={{
-        position: 'absolute',
-        width: list.width,
-        height: list.height,
-        borderRadius: 2,
-        fontSize: '0.875rem',
-        fontWeight: '700',
-        top: list.coordinateY,
-        left: list.coordinateX,
-        type: list.type,
-        border: 1,
-        paddingTop: 1,
+    <TextField
+      multiline
+      rows={datas.height / 20}
+      value={text}
+      onChange={handleChange}
+      inputProps={{
+        style: {
+          fontSize: 14,
+          width: datas.width,
+          height: datas.height,
+          padding: '0 14px',
+          fontWeight: 'bold',
+        },
       }}
-    >
-      {list.content}
-    </Card>
+    />
   );
-}
+};
+
+export default Text;
