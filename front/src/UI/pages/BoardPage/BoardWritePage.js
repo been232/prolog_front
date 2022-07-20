@@ -60,18 +60,18 @@ const data = [
       {
         id: 5,
         type: 5,
-        coordinateX: 0.555,
-        coordinateY: 1100.555,
-        width: 1300,
-        height: 200,
-      },
-      {
-        id: 6,
-        type: 6,
         coordinateX: 500.555,
         coordinateY: 600.555,
         width: 400,
         height: 400,
+      },
+      {
+        id: 6,
+        type: 6,
+        coordinateX: 0.555,
+        coordinateY: 1100.555,
+        width: 1300,
+        height: 200,
       },
       {
         id: 7,

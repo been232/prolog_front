@@ -3,12 +3,12 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   useNodesState,
-  applyNodeChanges
 } from 'react-flow-renderer';
 import UnderButtons from '../../molecules/BoardPage/UnderButtons';
 import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
 import Text from '../../molecules/BoardPage/Text';
 import Image from '../../molecules/BoardPage/ImageListAccordion';
+import Math from '../../molecules/BoardPage/MathAccordion';
 
 export default function WriteContent(props) {
   const title = props.title;
@@ -21,6 +21,7 @@ export default function WriteContent(props) {
     LayoutNode: LayoutNode,
     Text: Text,
     Image: Image,
+    Math: Math,
   };
 
   {list()}
@@ -79,6 +80,23 @@ export default function WriteContent(props) {
           };
           initialNodes.push(LinkNode);
           break;
+          case 5:
+            const MathNode = {
+              id: dataitem.id.toString(),
+              type: 'Math',
+              data: {
+                id: dataitem.id,
+                x: dataitem.coordinateX,
+                y: dataitem.coordinateY,
+                type: dataitem.type,
+                width: dataitem.width,
+                height: dataitem.height,
+                content: '',
+              },
+              position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+            };
+            initialNodes.push(MathNode);
+            break;
         default:
           const newNode = {
             id: dataitem.id.toString(),
