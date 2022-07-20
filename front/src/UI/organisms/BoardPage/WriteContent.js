@@ -62,6 +62,23 @@ export default function WriteContent(props) {
             };
             initialNodes.push(ImageNode);
             break;
+          case 4: 
+          const LinkNode = {
+            id: dataitem.id.toString(),
+            type: 'Text',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: '',
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(LinkNode);
+          break;
         default:
           const newNode = {
             id: dataitem.id.toString(),
