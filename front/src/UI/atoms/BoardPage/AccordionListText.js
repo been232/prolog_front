@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { TextField } from '@mui/material';
 
-const ImageListText = (props) => {
+const AccordionListText = (props) => {
   const [text, setText] = useState('');
   const handleChange = (event) => {
     setText(event.target.value);
@@ -30,4 +30,4 @@ const ImageListText = (props) => {
   );
 };
 
-export default ImageListText;
+export default AccordionListText;

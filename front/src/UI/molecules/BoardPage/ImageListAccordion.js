@@ -4,7 +4,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import ImageLists from '../../atoms/BoardPage/ImageLists';
-import ImageListText from '../../atoms/BoardPage/ImageListText';
+import AccordionListText from '../../atoms/BoardPage/AccordionListText';
 import Box from '@mui/material/Box';
 import AddToPhotosRoundedIcon from '@mui/icons-material/AddToPhotosRounded';
 
@@ -83,7 +83,7 @@ export default function ImageListAccordion(props) {
           )}
         </AccordionSummary>
         <AccordionDetails>
-          <ImageListText propFunction={highFunction} />
+          <AccordionListText propFunction={highFunction} />
         </AccordionDetails>
       </Accordion>
     </div>
