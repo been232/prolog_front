@@ -24,6 +24,7 @@
     "react-moveable": "^0.33.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "^5.0.1",
+    "react-simple-image-slider": "^2.4.1",
     "scenejs": "^1.6.0",
     "slick-carousel": "^1.8.1",
     "web-vitals": "^2.1.4"
