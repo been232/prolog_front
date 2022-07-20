@@ -13,27 +13,40 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+import MathOne from '../../atoms/BoardPage/MathOne';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
-    <div>
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
       {value === index && (
-        <Box sx={{ p: 3, height: 800 }}>
+        <Box sx={{ p: 3 }}>
           <Typography>{children}</Typography>
         </Box>
       )}
     </div>
   );
 }
+
 TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
 };
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    'aria-controls': `simple-tabpanel-${index}`,
+  };
+}
 
 const style = {
   position: 'absolute',
@@ -64,9 +77,11 @@ export default function MathAccordion(props) {
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
   };
+
   const highFunction = (text) => {
     data.content = text;
   };
+
   return (
     <div style={{ width: data.width, height: data.height - 70 }}>
       <Accordion expanded={expand}>
@@ -95,43 +110,107 @@ export default function MathAccordion(props) {
                 aria-describedby="modal-modal-description"
               >
                 <Box sx={style}>
-                  <Tabs value={value} onChange={handleChange}>
-                    <Tab
-                      aria-haspopup="true"
-                      aria-expanded={open ? 'true' : undefined}
-                      icon={<TeX math="\pi" />}
-                      value={0}
-                    />
-                    <Tab icon={<TeX math="\pm" />} value={1} />
-                    <Tab icon={<TeX math="\alpha" />} value={2} />
-                    <Tab icon={<TeX math="\ne" />} value={3} />
-                    <Tab icon={<TeX math="\to" />} value={4} />
-                    <Tab icon={<TeX math="{ x }/{ y }" />} value={5} />
-                    <Tab icon={<TeX math="e^{x}" />} value={6} />
-                    <Tab icon={<TeX math="\sqrt[n]{x}" />} value={7} />
-                    <Tab icon={<TeX math="\int_{-x}^{x}" />} value={8} />
-                    <Tab icon={<TeX math="\sum_{ i=0 }^{ n }" />} value={9} />
-                    <Tab
-                      icon={<TeX math="\Big\{\Big(\Big)\Big\}" />}
-                      value={10}
-                    />
-                    <Tab icon={<TeX math="\sin{\theta }" />} value={11} />
-                    <Tab icon={<TeX math="\ddot{a}" />} value={12} />
-                    <Tab
-                      icon={<TeX math="\lim\limits_{n \to \infty}" />}
-                      value={13}
-                    />
-                    <Tab
-                      icon={<TeX math="\overset{ \Delta}{=}" />}
-                      value={14}
-                    />
-                    <Tab
-                      icon={
-                        <TeX math="\begin{bmatrix} {1}&{2} \\ {3}&{4} \end{bmatrix}" />
-                      }
-                      value={15}
-                    />
-                  </Tabs>
+                  <Box>
+                    <Tabs
+                      variant="fullWidth"
+                      value={value}
+                      onChange={handleChange}
+                    >
+                      <Tab icon={<TeX math="\pi" />} {...a11yProps(0)} />
+                      <Tab icon={<TeX math="\pm" />} {...a11yProps(1)} />
+                      <Tab icon={<TeX math="\alpha" />} {...a11yProps(2)} />
+                      <Tab icon={<TeX math="\ne" />} {...a11yProps(3)} />
+                      <Tab icon={<TeX math="\to" />} {...a11yProps(4)} />
+                      <Tab
+                        icon={<TeX math="{ x }/{ y }" />}
+                        {...a11yProps(5)}
+                      />
+                      <Tab icon={<TeX math="e^{x}" />} {...a11yProps(6)} />
+                      <Tab
+                        icon={<TeX math="\sqrt[n]{x}" />}
+                        {...a11yProps(7)}
+                      />
+                      <Tab
+                        icon={<TeX math="\int_{-x}^{x}" />}
+                        {...a11yProps(8)}
+                      />
+                      <Tab
+                        icon={<TeX math="\sum_{ i=10 }^{ n }" />}
+                        {...a11yProps(9)}
+                      />
+                      <Tab
+                        icon={<TeX math="\Big\{\Big(\Big)\Big\}" />}
+                        {...a11yProps(10)}
+                      />
+                      <Tab
+                        icon={<TeX math="\sin{\theta }" />}
+                        {...a11yProps(11)}
+                      />
+                      <Tab icon={<TeX math="\ddot{a}" />} {...a11yProps(12)} />
+                      <Tab
+                        icon={<TeX math="\lim\limits_{n \to \infty}" />}
+                        {...a11yProps(13)}
+                      />
+                      <Tab
+                        icon={<TeX math="\overset{ \Delta}{=}" />}
+                        {...a11yProps(14)}
+                      />
+                      <Tab
+                        icon={
+                          <TeX math="\begin{bmatrix} {1}&{2} \\ {3}&{4} \end{bmatrix}" />
+                        }
+                        {...a11yProps(15)}
+                      />
+                    </Tabs>
+                  </Box>
+                  <TabPanel value={value} index={0}>
+                    <MathOne />
+                  </TabPanel>
+                  <TabPanel value={value} index={1}>
+                    2
+                  </TabPanel>
+                  <TabPanel value={value} index={2}>
+                    3
+                  </TabPanel>
+                  <TabPanel value={value} index={3}>
+                    4
+                  </TabPanel>
+                  <TabPanel value={value} index={4}>
+                    5
+                  </TabPanel>
+                  <TabPanel value={value} index={5}>
+                    6
+                  </TabPanel>
+                  <TabPanel value={value} index={6}>
+                    7
+                  </TabPanel>
+                  <TabPanel value={value} index={7}>
+                    8
+                  </TabPanel>
+                  <TabPanel value={value} index={8}>
+                    9
+                  </TabPanel>
+                  <TabPanel value={value} index={9}>
+                    10
+                  </TabPanel>
+                  <TabPanel value={value} index={10}>
+                    11
+                  </TabPanel>
+                  <TabPanel value={value} index={11}>
+                    12
+                  </TabPanel>
+                  <TabPanel value={value} index={12}>
+                    13
+                  </TabPanel>
+                  <TabPanel value={value} index={13}>
+                    14
+                  </TabPanel>
+                  <TabPanel value={value} index={14}>
+                    15
+                  </TabPanel>
+                  <TabPanel value={value} index={15}>
+                    16
+                  </TabPanel>
                 </Box>
               </Modal>
             </Box>
