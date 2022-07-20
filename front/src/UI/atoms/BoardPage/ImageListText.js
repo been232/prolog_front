@@ -5,21 +5,25 @@ const ImageListText = (props) => {
   const [text, setText] = useState('');
   const handleChange = (event) => {
     setText(event.target.value);
+    props.propFunction(event.target.value);
   };
 
   useEffect(() => {
-    // data.data.content = text
   }, [text]);
 
   return (
     <TextField
       value={text}
+      fullWidth
+      multiline
+      row={3}
       onChange={handleChange}
       inputProps={{
         style: {
           fontSize: 14,
           padding: '0 14px',
           fontWeight: 'bold',
+          height: 70
         },
       }}
     />

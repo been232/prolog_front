@@ -10,16 +10,28 @@ export default function UnderButtons(props) {
   const datas = [];
    
   const handleClick = () => {
-    console.log(data)
     data.map((dataitem) => {
-      datas.push({
-        height: dataitem.height,
-        width: dataitem.width,
-        coordinateX: dataitem.position.x,
-        coordinateY: dataitem.position.y,
-        type: dataitem.data.type,
-        content: dataitem.data.content
-      });
+      if(dataitem.data.type == 2){
+        datas.push({
+          height: dataitem.data.height,
+          width: dataitem.data.width,
+          coordinateX: dataitem.position.x,
+          coordinateY: dataitem.position.y,
+          type: dataitem.data.type,
+          content: dataitem.data.content,
+          image: dataitem.data.image
+        });
+      }
+      else {
+        datas.push({
+          height: dataitem.data.height,
+          width: dataitem.data.width,
+          coordinateX: dataitem.position.x,
+          coordinateY: dataitem.position.y,
+          type: dataitem.data.type,
+          content: dataitem.data.content
+        });
+      }
     });
 
     const submit = {
