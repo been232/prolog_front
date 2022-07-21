@@ -1,91 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router';
-import {
-  Link,
-  Avatar,
-  Button,
-  FormControl,
-  Grid,
-  Box,
-  CssBaseline,
-  Typography,
-  Container,
-  FormControlLabel,
-  Switch,
-} from '@mui/material';
+import { Link, Avatar, Button, FormControl, Grid, Box, CssBaseline, 
+  Typography, Container, FormControlLabel, Switch, Divider } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AuthTextField from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
-// import Api from 'api/Api';
 
 const SignUp = () => {
-  const { state } = useLocation();
+  const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+  const [alarm, setAlarm] = useState(true);
 
-  const [postBody, setPostBody] = useState({
-    email: state,
-    password: '',
-    passwordConfirm: '',
+  const [info, setInfo] = useState({
     name: '',
-    nickname: '',
-    phone: '',
-    address: '',
+    account: '',
+    Email: '',
+    password: password,
+    Nickname: '',
+    Image : '',
+    Introduction: '',
+    Alarm: alarm,
   });
 
-  // const handleIdChange = (event) => {
-  //   console.log('success');
-  //   setPostBody((prev) => ({
-  //     ...prev,
-  //     email: event.target.value,
-  //   }));
-  // };
-
-  // const handlePasswordChange = (event) => {
-  //   setPostBody((prev) => ({
-  //     ...prev,
-  //     password: event.target.value,
-  //   }));
-  // };
-  // const handleNameChange = (event) => {
-  //   setPostBody((prev) => ({
-  //     ...prev,
-  //     name: event.target.value,
-  //   }));
-  // };
-  // const handleNickNameChange = (event) => {
-  //   setPostBody((prev) => ({
-  //     ...prev,
-  //     nickname: event.target.value,
-  //   }));
-  // };
-  // const handlePhoneChange = (event) => {
-  //   setPostBody((prev) => ({
-  //     ...prev,
-  //     phone: event.target.value,
-  //   }));
-  // };
-  // const handleAddressChange = (event) => {
-  //   setPostBody((prev) => ({
-  //     ...prev,
-  //     address: event.target.value,
-  //   }));
-  // };
-
   // 똑같은 기능 하는 코드 하나로 합침
-  const handleChagne = (event) => {
-    setPostBody((prev) => ({
+  const handleChange = (event) => {
+    setInfo((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
-    console.log(postBody);
+  };
+
+  const handleCheckChange = (event) => {
+    setAlarm(event.target.checked);
+    setInfo((prev) => ({
+      ...prev,
+      Alarm: event.target.checked,
+    }));
+  };
+
+  const handlePWChange = (event) => {
+    setPassword(event.target.value);
+    handleChange(event);
+  };
+
+  const handlePWConfirmChange = (event) => {
+    setPasswordConfirm(event.target.value);
   };
 
   const handleSignup = async () => {
-    const isEmpty = emptyCheck();
-    if (isEmpty === false) {
-      alert('필수 항목을 채워주세요.');
-      return false;
+    if (password !== passwordConfirm) {
+      alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+      return;
     }
 
+    console.log(info);
     // let response = await Api.postSignup(postBody);
 
     // if (response.data.result === "success") {
@@ -99,16 +66,6 @@ const SignUp = () => {
     // else {
     //   alert('회원가입 실패');
     // }
-  };
-  const emptyCheck = () => {
-    if (
-      postBody.email === '' ||
-      postBody.password === '' ||
-      postBody.name === '' ||
-      postBody.nickname === ''
-    ) {
-      return false;
-    }
   };
 
   return (
@@ -125,54 +82,65 @@ const SignUp = () => {
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
-          회원가입
-        </Typography>
+        <Typography component="h1" variant="h5">회원가입</Typography>
         <Box noValidate sx={{ mt: 3 }}>
-          <ProfileImage></ProfileImage>
+          <Divider sx={{ marginBottom: 2 }}/>
+          <ProfileImage setInfo={setInfo} />
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <AuthTextField label="아이디" name="id" onChange={handleChagne} />
+              <AuthTextField label="아이디" name="account" onChange={handleChange} />
             </Grid>
             <Grid item xs={12}>
               <AuthTextField
                 label="이메일"
-                name="email"
-                onChange={handleChagne}
+                name="Email"
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
               <AuthTextField
                 label="비밀번호"
                 name="password"
-                onChange={handleChagne}
+                onChange={handlePWChange}
               />
             </Grid>
             <Grid item xs={12}>
               <AuthTextField
                 label="비밀번호 확인"
                 name="passwordConfirm"
-                onChange={handleChagne}
+                onChange={handlePWConfirmChange}
+              />
+              {(password === passwordConfirm)? "" : 
+                <Typography sx={{ color: "red"}}>
+                  비밀번호 불일치: 다시 입력해주세요.
+                </Typography>
+              }
+            </Grid>
+            <Grid item xs={12}>
+              <AuthTextField
+                label="이름"
+                name="name"
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
               <AuthTextField
                 label="닉네임"
-                name="nickname"
-                onChange={handleChagne}
+                name="Nickname"
+                onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
-              {/* 나중에 한줄소개 name 생각해서 넣고 state 추가해야함. */}
-              <AuthTextField label="한줄소개" name="" onChange={handleChagne} />
+              <AuthTextField label="한줄소개" name="Introduction" onChange={handleChange} />
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
                 <FormControlLabel
-                  value="start"
-                  control={<Switch color="primary" />}
+                  value='start'
+                  control={<Switch checked={alarm} onChange={handleCheckChange} color="primary" />}
                   label="알림 수신 여부"
-                  labelPlacement="start"
+                  name='Alarm'
+                  labelPlacement='start'
                 />
               </FormControl>
             </Grid>

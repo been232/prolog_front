@@ -1,6 +1,6 @@
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import LoginModal from '../organisms/LoginPopup/LoginModal';
+import SignUp from '../../organisms/SignUpPage/SignUp';
 
 const theme = createTheme({
     palette: {
@@ -28,13 +28,13 @@ theme.typography.p = {
     },
 };
 
-const LoginPopupPage = () => {
+const SignUpPage = () => {
     return (
         <ThemeProvider theme={theme}>
-            <LoginModal>
-                
-            </LoginModal>
+            <SignUp>
+
+            </SignUp>
         </ThemeProvider>
     );
 }
-export default LoginPopupPage
+export default SignUpPage

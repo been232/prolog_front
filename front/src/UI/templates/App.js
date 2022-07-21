@@ -5,8 +5,8 @@ import BoardDetailPage from '../pages/BoardPage/BoardDetailPage';
 import MainPage from '../pages/MainPage/MainPage';
 import LayoutPage from '../pages/LayoutPage/LayoutPage';
 import ControlledOpenSpeedDial from '../atoms/MainPage/ControlledOpenSpeedDial';
-import LoginPopupPage from '../pages/LoginPopupPage';
-import SignUpPage from '../pages/SignupPage';
+import LoginPopupPage from '../pages/LoginPopupPage/LoginPopupPage';
+import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
 
 const App = () => {

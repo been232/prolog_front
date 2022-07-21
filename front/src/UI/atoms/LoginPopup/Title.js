@@ -2,9 +2,10 @@ import * as React from 'react';
 import { Typography } from '@mui/material';
 
 const TitleText = (props) => {
-  const { title } = props;
+  const { title, direction, size, fontWeight } = props;
   return (
-    <Typography variant="h5" component="h5" sx={{ textAlign: 'center' }}>
+    <Typography variant={size} component={size}
+      sx={{ textAlign: direction, fontWeight: fontWeight }}>
       {title}
     </Typography>
   );
