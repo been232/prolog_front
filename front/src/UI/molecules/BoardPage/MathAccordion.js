@@ -238,7 +238,7 @@ export default function MathAccordion(props) {
               </Modal>
             </Box>
           ) : (
-            <Card style={{ width: data.width - 50, height: data.height - 170}}>
+            <Card onClick={handleOpen} style={{ width: data.width - 50, height: data.height - 170}}>
               <CardContent>
                 <TeX math={textValue} />
               </CardContent>
