@@ -14,7 +14,7 @@ import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
 import Maths from '../../atoms/BoardPage/Maths';
 import TextField from '@mui/material/TextField';
-import { Card,CardContent } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -170,18 +170,16 @@ export default function MathAccordion(props) {
                     </Tabs>
                   </Box>
                   <TabPanel value={value} index={0}>
-                    기본 제공
-                    <Maths propFunction={highFunctions} Type={1} rows={4}/>
+                    <Maths propFunction={highFunctions} Type={1} rows={4} />
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    기본 수학 연산자
-                    <Maths propFunction={highFunctions} Type={2} rows={1}/>
+                    <Maths propFunction={highFunctions} Type={2} rows={0.8} />
                   </TabPanel>
                   <TabPanel value={value} index={2}>
-                    3
+                    <Maths propFunction={highFunctions} Type={3} rows={0.8} />
                   </TabPanel>
                   <TabPanel value={value} index={3}>
-                    4
+                    <Maths propFunction={highFunctions} Type={4} rows={0.8} />
                   </TabPanel>
                   <TabPanel value={value} index={4}>
                     5
@@ -227,9 +225,9 @@ export default function MathAccordion(props) {
                       placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
                     />
                   </Box>
-                  <Box style={{marginTop: 20}}>
+                  <Box style={{ marginTop: 20 }}>
                     <Card>
-                      <CardContent style={{ height: 100}}>
+                      <CardContent style={{ height: 100 }}>
                         <TeX math={textValue} />
                       </CardContent>
                     </Card>
