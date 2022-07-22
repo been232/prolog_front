@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
@@ -10,10 +10,11 @@ import CalculateIcon from '@mui/icons-material/Calculate';
 import Modal from '@mui/material/Modal';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
-import MathOne from '../../atoms/BoardPage/MathOne';
+import Maths from '../../atoms/BoardPage/Maths';
+import TextField from '@mui/material/TextField';
+import { Card,CardContent } from '@mui/material';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -26,11 +27,7 @@ function TabPanel(props) {
       aria-labelledby={`simple-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -50,7 +47,7 @@ function a11yProps(index) {
 
 const style = {
   position: 'absolute',
-  top: '25%',
+  top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: 1500,
@@ -66,6 +63,7 @@ export default function MathAccordion(props) {
   const [expand, setExpand] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = useState(0);
+  const [textValue, settextValue] = useState('');
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -74,12 +72,20 @@ export default function MathAccordion(props) {
     setValue(newValue);
   };
 
+  const handletextChange = (event) => {
+    settextValue(event.target.value);
+  };
+
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
   };
 
   const highFunction = (text) => {
     data.content = text;
+  };
+
+  const highFunctions = (text) => {
+    settextValue(textValue.concat(text));
   };
 
   return (
@@ -164,10 +170,12 @@ export default function MathAccordion(props) {
                     </Tabs>
                   </Box>
                   <TabPanel value={value} index={0}>
-                    <MathOne />
+                    기본 제공
+                    <Maths propFunction={highFunctions} Type={1} rows={4}/>
                   </TabPanel>
                   <TabPanel value={value} index={1}>
-                    2
+                    기본 수학 연산자
+                    <Maths propFunction={highFunctions} Type={2} rows={1}/>
                   </TabPanel>
                   <TabPanel value={value} index={2}>
                     3
@@ -211,6 +219,21 @@ export default function MathAccordion(props) {
                   <TabPanel value={value} index={15}>
                     16
                   </TabPanel>
+                  <Box>
+                    <TextField
+                      fullWidth
+                      value={textValue}
+                      onChange={handletextChange}
+                      placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
+                    />
+                  </Box>
+                  <Box style={{marginTop: 20}}>
+                    <Card>
+                      <CardContent style={{ height: 100}}>
+                        <TeX math={textValue} />
+                      </CardContent>
+                    </Card>
+                  </Box>
                 </Box>
               </Modal>
             </Box>
