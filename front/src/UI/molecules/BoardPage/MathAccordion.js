@@ -14,7 +14,7 @@ import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
 import Maths from '../../atoms/BoardPage/Maths';
 import TextField from '@mui/material/TextField';
-import { Card, CardContent } from '@mui/material';
+import { Button, Card, CardContent } from '@mui/material';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -65,8 +65,8 @@ export default function MathAccordion(props) {
   const [value, setValue] = useState(0);
   const [textValue, settextValue] = useState('');
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleOpen = () => {setOpen(true); setMath(false);};
+  const handleClose = () => {setOpen(false); setMath(true)};
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -87,6 +87,8 @@ export default function MathAccordion(props) {
   const highFunctions = (text) => {
     settextValue(textValue.concat(text));
   };
+
+  React.useEffect(() => {data.math = textValue;}, [textValue]);
 
   return (
     <div style={{ width: data.width, height: data.height - 70 }}>
@@ -182,40 +184,40 @@ export default function MathAccordion(props) {
                     <Maths propFunction={highFunctions} Type={4} rows={0.8} />
                   </TabPanel>
                   <TabPanel value={value} index={4}>
-                    5
+                    <Maths propFunction={highFunctions} Type={5} rows={0.8} />
                   </TabPanel>
                   <TabPanel value={value} index={5}>
-                    6
+                    <Maths propFunction={highFunctions} Type={6} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={6}>
-                    7
+                    <Maths propFunction={highFunctions} Type={7} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={7}>
-                    8
+                    <Maths propFunction={highFunctions} Type={8} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={8}>
-                    9
+                    <Maths propFunction={highFunctions} Type={9} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={9}>
-                    10
+                    <Maths propFunction={highFunctions} Type={10} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={10}>
-                    11
+                    <Maths propFunction={highFunctions} Type={11} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={11}>
-                    12
+                    <Maths propFunction={highFunctions} Type={12} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={12}>
-                    13
+                    <Maths propFunction={highFunctions} Type={13} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={13}>
-                    14
+                    <Maths propFunction={highFunctions} Type={14} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={14}>
-                    15
+                    <Maths propFunction={highFunctions} Type={15} rows={3} />
                   </TabPanel>
                   <TabPanel value={value} index={15}>
-                    16
+                    <Maths propFunction={highFunctions} Type={16} rows={3} />
                   </TabPanel>
                   <Box>
                     <TextField
@@ -236,7 +238,11 @@ export default function MathAccordion(props) {
               </Modal>
             </Box>
           ) : (
-            'hh'
+            <Card style={{ width: data.width - 50, height: data.height - 170}}>
+              <CardContent>
+                <TeX math={textValue} />
+              </CardContent>
+            </Card>
           )}
         </AccordionSummary>
         <AccordionDetails>
