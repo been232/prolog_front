@@ -92,6 +92,7 @@ export default function WriteContent(props) {
                 width: dataitem.width,
                 height: dataitem.height,
                 content: '',
+                math : '',
               },
               position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
             };

@@ -21,6 +21,16 @@ export default function UnderButtons(props) {
           content: dataitem.data.content,
           image: dataitem.data.image
         });
+      } else if(dataitem.data.type == 5){
+        datas.push({
+          height: dataitem.data.height,
+          width: dataitem.data.width,
+          coordinateX: dataitem.position.x,
+          coordinateY: dataitem.position.y,
+          type: dataitem.data.type,
+          content: dataitem.data.content,
+          math: dataitem.data.math
+        });
       }
       else {
         datas.push({
