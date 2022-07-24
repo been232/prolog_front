@@ -9,6 +9,7 @@ import LoginPopupPage from '../pages/LoginPopupPage';
 import SignUpPage from '../pages/SignupPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
 import BoardWritePage from '../pages/BoardPage/BoardWritePage';
+import SearchPage from '../pages/SearchPage/SearchPage';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/sign/*" element={<SignUpPage />} />
             <Route path="/login/*" element={<LoginPopupPage />} />
             <Route path="/findID/*" element={<LoginPopupPage />} />
+            <Route path="/search" element={<SearchPage />} />
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>

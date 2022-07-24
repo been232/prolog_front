@@ -14,7 +14,7 @@ import {
   Switch,
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import AuthTextField from '../../atoms/Commons/TextField';
+import { AuthTextField } from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
 // import Api from 'api/Api';
 

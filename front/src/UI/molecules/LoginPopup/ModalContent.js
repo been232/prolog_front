@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Container, Box, Divider, Button } from '@mui/material';
-import AuthTextField from '../../atoms/Commons/TextField';
+import { AuthTextField } from '../../atoms/Commons/TextField';
 import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
 
