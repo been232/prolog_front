@@ -16,6 +16,7 @@ import KeyboardAltOutlinedIcon from '@mui/icons-material/KeyboardAltOutlined';
 import CalculateOutlinedIcon from '@mui/icons-material/CalculateOutlined';
 import VideoLibraryOutlinedIcon from '@mui/icons-material/VideoLibraryOutlined';
 import TopicOutlinedIcon from '@mui/icons-material/TopicOutlined';
+import UnderButtons2 from '../../molecules/LayoutPage/UnderButtons2';
 
 const nodeTypes = {
   resizeNode: resizeNode,
@@ -28,9 +29,6 @@ const initialNodes = [
       id: '0',
       x: 250,
       y: 5,
-      context: '',
-      width: 200,
-      height: 100,
       type: 1,
     },
     position: { x: 250, y: 5 },
@@ -61,7 +59,8 @@ TabPanel.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function WriteContent() {
+export default function WriteContent(props) {
+  const title = props;
   const [value, setValue] = useState(0);
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -109,8 +108,6 @@ export default function WriteContent() {
           id: id,
           x: position.x,
           y: position.y,
-          width: 200,
-          height: 100,
         },
         position: { x: position.x, y: position.y },
         dragHandle: '.custom-drag-handle',
@@ -207,6 +204,7 @@ export default function WriteContent() {
           </div>
         </ReactFlowProvider>
       </Box>
+      <UnderButtons2 data={nodes} title={title}/>
     </Box>
   );
 }

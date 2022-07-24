@@ -1,15 +1,13 @@
 import { Box } from '@mui/material';
 import React, { useState, useEffect } from 'react';
 import Content from '../../organisms/LayoutPage/Content';
-import UnderButtons from '../../molecules/LayoutPage/UnderButtons';
 
 function LayoutPage() {
   return (
     <>
       <Box sx={{ marginLeft: 20, marginRight: 20 }}>
-        <h2 style={{ paddingLeft: 20 }}>{data[0].title}</h2>
-        <Content layout={data[0].layouts}/>
-        <UnderButtons />
+        <h2 style={{ paddingLeft: 70}}>{data[0].title}</h2>
+        <Content layout={data}/>
       </Box>
     </>
   );
