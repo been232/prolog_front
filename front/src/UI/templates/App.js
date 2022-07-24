@@ -7,6 +7,7 @@ import LayoutPage from '../pages/LayoutPage/LayoutPage';
 import ControlledOpenSpeedDial from '../atoms/MainPage/ControlledOpenSpeedDial';
 import LoginPopupPage from '../pages/LoginPopupPage/LoginPopupPage';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
+import FindIdPage from '../pages/FindIdPage/FindIdPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
             <Route path="/BoardDetail/*" element={<BoardDetailPage />} />
             <Route path="/sign/*" element={<SignUpPage />} />
             <Route path="/login/*" element={<LoginPopupPage />} />
-            <Route path="/findID/*" element={<LoginPopupPage />} />
+            <Route path="/findID/*" element={<FindIdPage />} />
             <Route path="/LayoutWrite/*" element={<LayoutWritePage />} />
           </Routes>
           <ControlledOpenSpeedDial />
