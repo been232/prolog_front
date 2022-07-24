@@ -26,16 +26,13 @@ const App = () => {
             <Route path="/BoardWrite/*" element={<BoardWritePage />} />
             <Route path="/sign/*" element={<SignUpPage />} />
             <Route path="/login/*" element={<LoginPopupPage />} />
-<<<<<<< HEAD
+
             <Route path="/findID/*" element={<FindIdPage />} />
             <Route path="/LayoutWrite/*" element={<LayoutWritePage />} />
-=======
+
             <Route path="/findID/*" element={<LoginPopupPage />} />
-<<<<<<< HEAD
+
             <Route path="/search" element={<SearchPage />} />
-=======
->>>>>>> fc813c6a9f10bfaabcd37350c9c623ad7033bcde
->>>>>>> e88d9e7565b33a8997976e036a1d3fd56cb0a1ff
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>
