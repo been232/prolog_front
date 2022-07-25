@@ -52,10 +52,10 @@ const data = [
       {
         id: 4,
         type: 4,
-        coordinateX: 0.555,
-        coordinateY: -20,
-        width: 90,
-        height: 85,
+        coordinateX: -50.555,
+        coordinateY: -500,
+        width: 200,
+        height: 300,
       },
       {
         id: 5,
