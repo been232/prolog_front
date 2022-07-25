@@ -28,10 +28,10 @@ const data = [
       {
         id: 1,
         type: 1,
-        coordinateX: 500.555,
-        coordinateY: 0.555,
-        width: 500,
-        height: 505,
+        coordinateX: -50.555,
+        coordinateY: 110.555,
+        width: 200,
+        height: 400,
       },
       {
         id: 2,
@@ -44,10 +44,10 @@ const data = [
       {
         id: 3,
         type: 3,
-        coordinateX: -50.555,
-        coordinateY: 110.555,
-        width: 500,
-        height: 400,
+        coordinateX: 300.555,
+        coordinateY: 0.555,
+        width: 750,
+        height: 505,
       },
       {
         id: 4,

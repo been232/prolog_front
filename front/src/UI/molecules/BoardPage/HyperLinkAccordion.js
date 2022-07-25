@@ -28,7 +28,7 @@ export default function HyperLinkAccordion(props) {
     <div
       style={{
         width: data.width,
-        height: data.height - 70,
+        height: data.height,
       }}
     >
       <Accordion expanded={expand}>
@@ -44,7 +44,7 @@ export default function HyperLinkAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-            <HyperLink propFunction={highFunction}/>
+            <HyperLink propFunction={highFunction} />
         </AccordionSummary>
         <AccordionDetails>
           <AccordionListText propFunction={highFunctionText} />
