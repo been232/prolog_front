@@ -6,20 +6,22 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import AccordionListText from '../../atoms/BoardPage/AccordionListText';
 import Editor from '@monaco-editor/react';
 import Box from '@mui/material/Box';
-import { MenuItem, Select, FormControl,InputLabel } from '@mui/material';
+import { MenuItem, Select, FormControl, InputLabel } from '@mui/material';
 
 export default function CodeAccordion(props) {
   const data = props.data;
   const [expand, setExpand] = React.useState(true);
   const [Code, setCode] = React.useState(false);
   const [Type, setType] = React.useState('');
-
+  const [codes, setcodes] = React.useState('코드');
+  const [explain,setexplaincodes] = React.useState('설명');
+  const [postdata, setpostdata] = React.useState([codes, explain, Type]);
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
   };
 
   const highFunctionText = (text) => {
-    data.content = text;
+    data.explanation = text;
   };
 
   const handleChange = (event) => {
@@ -27,7 +29,17 @@ export default function CodeAccordion(props) {
     setCode(true);
   };
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {data.content = postdata}, [codes, explain, Type]);
+
+  function onChange(newValue, e) {
+    setcodes(newValue);
+    setpostdata([newValue,explain, Type])
+  }
+
+  function onexplainChange(newValue, e) {
+    setexplaincodes(newValue);
+    setpostdata([codes,newValue, Type])
+  }
 
   return (
     <div
@@ -52,34 +64,95 @@ export default function CodeAccordion(props) {
           {Code == false ? (
             <Box sx={{ minWidth: data.width - 50 }}>
               <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">코드 언어 선택</InputLabel>
-                <Select label="코드 언어 선택" value={Type} onChange={handleChange}>
-                  <MenuItem value={'TypeScript'}>TypeScript</MenuItem>
-                  <MenuItem value={'JavaScript'}>JavaScript</MenuItem>
-                  <MenuItem value={'CSS'}>CSS</MenuItem>
-                  <MenuItem value={'LESS'}>LESS</MenuItem>
-                  <MenuItem value={'SCSS'}>SCSS</MenuItem>
-                  <MenuItem value={'JSON'}>JSON</MenuItem>
-                  <MenuItem value={'HTML'}>HTML</MenuItem>
-                  <MenuItem value={'XML'}>XML</MenuItem>
-                  <MenuItem value={'PHP'}>PHP</MenuItem>
-                  <MenuItem value={'C#'}>C#</MenuItem>
-                  <MenuItem value={'C++'}>C++</MenuItem>
-                  <MenuItem value={'Razor'}>Razor</MenuItem>
-                  <MenuItem value={'Markdown'}>Markdown</MenuItem>
-                  <MenuItem value={'Diff'}>Diff</MenuItem>
-                  <MenuItem value={'Java'}>Java</MenuItem>
-                  <MenuItem value={'VB'}>VB</MenuItem>
-                  <MenuItem value={'CoffeeScript'}>CoffeeScript</MenuItem>
-                  <MenuItem value={'Handlebars'}>Handlebars</MenuItem>
-                  <MenuItem value={'Batch'}>Batch</MenuItem>
-                  <MenuItem value={'Pug'}>Pug</MenuItem>
-                  <MenuItem value={'F#'}>F#</MenuItem>
-                  <MenuItem value={'Lua'}>Lua</MenuItem>
-                  <MenuItem value={'Powershell'}>Powershell</MenuItem>
-                  <MenuItem value={'Python'}>Python</MenuItem>
-                  <MenuItem value={'Ruby'}>Ruby</MenuItem>
-                  <MenuItem value={'SASS'}>SASS</MenuItem>
+                <InputLabel id="demo-simple-select-label">
+                  코드 언어 선택
+                </InputLabel>
+                <Select
+                  label="코드 언어 선택"
+                  value={Type}
+                  onChange={handleChange}
+                >
+                  <MenuItem value={'abap'}>abap</MenuItem>
+                  <MenuItem value={'aes'}>aes</MenuItem>
+                  <MenuItem value={'apex'}>apex</MenuItem>
+                  <MenuItem value={'azcli'}>azcli</MenuItem>
+                  <MenuItem value={'bat'}>bat</MenuItem>
+                  <MenuItem value={'bicep'}>bicep</MenuItem>
+                  <MenuItem value={'c'}>c</MenuItem>
+                  <MenuItem value={'cameligo'}>cameligo</MenuItem>
+                  <MenuItem value={'clojure'}>clojure</MenuItem>
+                  <MenuItem value={'coffeescript'}>coffeescript</MenuItem>
+                  <MenuItem value={'cpp'}>cpp</MenuItem>
+                  <MenuItem value={'csharp'}>csharp</MenuItem>
+                  <MenuItem value={'csp'}>csp</MenuItem>
+                  <MenuItem value={'css'}>css</MenuItem>
+                  <MenuItem value={'dart'}>dart</MenuItem>
+                  <MenuItem value={'dockerfile'}>dockerfile</MenuItem>
+                  <MenuItem value={'ecl'}>ecl</MenuItem>
+                  <MenuItem value={'elixir'}>elixir</MenuItem>
+                  <MenuItem value={'flow9'}>flow9</MenuItem>
+                  <MenuItem value={'freemarker2'}>freemarker2</MenuItem>
+                  <MenuItem value={'fsharp'}>fsharp</MenuItem>
+                  <MenuItem value={'go'}>go</MenuItem>
+                  <MenuItem value={'graphql'}>graphql</MenuItem>
+                  <MenuItem value={'handlebars'}>handlebars</MenuItem>
+                  <MenuItem value={'hcl'}>hcl</MenuItem>
+                  <MenuItem value={'html'}>html</MenuItem>
+                  <MenuItem value={'ini'}>ini</MenuItem>
+                  <MenuItem value={'java'}>java</MenuItem>
+                  <MenuItem value={'javascript'}>javascript</MenuItem>
+                  <MenuItem value={'json'}>json</MenuItem>
+                  <MenuItem value={'julia'}>julia</MenuItem>
+                  <MenuItem value={'kotlin'}>kotlin</MenuItem>
+                  <MenuItem value={'less'}>less</MenuItem>
+                  <MenuItem value={'lexon'}>lexon</MenuItem>
+                  <MenuItem value={'liquid'}>liquid</MenuItem>
+                  <MenuItem value={'lua'}>lua</MenuItem>
+                  <MenuItem value={'m3'}>m3</MenuItem>
+                  <MenuItem value={'markdown'}>markdown</MenuItem>
+                  <MenuItem value={'mips'}>mips</MenuItem>
+                  <MenuItem value={'msdax'}>msdax</MenuItem>
+                  <MenuItem value={'mysql'}>mysql</MenuItem>
+                  <MenuItem value={'objective-c'}>objective-c</MenuItem>
+                  <MenuItem value={'pascal'}>pascal</MenuItem>
+                  <MenuItem value={'pascaligo'}>pascaligo</MenuItem>
+                  <MenuItem value={'perl'}>perl</MenuItem>
+                  <MenuItem value={'pgsql'}>pgsql</MenuItem>
+                  <MenuItem value={'php'}>php</MenuItem>
+                  <MenuItem value={'pla'}>pla</MenuItem>
+                  <MenuItem value={'plaintext'}>plaintext</MenuItem>
+                  <MenuItem value={'postiats'}>postiats</MenuItem>
+                  <MenuItem value={'powerquery'}>powerquery</MenuItem>
+                  <MenuItem value={'powershell'}>powershell</MenuItem>
+                  <MenuItem value={'proto'}>proto</MenuItem>
+                  <MenuItem value={'pug'}>pug</MenuItem>
+                  <MenuItem value={'python'}>python</MenuItem>
+                  <MenuItem value={'qsharp'}>qsharp</MenuItem>
+                  <MenuItem value={'r'}>r</MenuItem>
+                  <MenuItem value={'razor'}>razor</MenuItem>
+                  <MenuItem value={'redis'}>redis</MenuItem>
+                  <MenuItem value={'redshift'}>redshift</MenuItem>
+                  <MenuItem value={'restructuredtext'}>restructuredtext</MenuItem>
+                  <MenuItem value={'ruby'}>ruby</MenuItem>
+                  <MenuItem value={'rust'}>rust</MenuItem>
+                  <MenuItem value={'sb'}>sb</MenuItem>
+                  <MenuItem value={'scala'}>scala</MenuItem>
+                  <MenuItem value={'scheme'}>scheme</MenuItem>
+                  <MenuItem value={'scss'}>scss</MenuItem>
+                  <MenuItem value={'shell'}>shell</MenuItem>
+                  <MenuItem value={'sol'}>sol</MenuItem>
+                  <MenuItem value={'sparql'}>sparql</MenuItem>
+                  <MenuItem value={'sql'}>sql</MenuItem>
+                  <MenuItem value={'st'}>st</MenuItem>
+                  <MenuItem value={'swift'}>swift</MenuItem>
+                  <MenuItem value={'systemverilog'}>systemverilog</MenuItem>
+                  <MenuItem value={'tcl'}>tcl</MenuItem>
+                  <MenuItem value={'twig'}>twig</MenuItem>
+                  <MenuItem value={'typescript'}>typescript</MenuItem>
+                  <MenuItem value={'vb'}>vb</MenuItem>
+                  <MenuItem value={'verilog'}>verilog</MenuItem>
+                  <MenuItem value={'xml'}>xml</MenuItem>
+                  <MenuItem value={'yaml'}>yaml</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -90,17 +163,19 @@ export default function CodeAccordion(props) {
                 width={(data.width - 50) / 2}
                 height={data.height - 170}
                 defaultLanguage={Type}
-                defaultValue="코드"
                 options={{
                   minimap: { enabled: false },
                 }}
+                value={codes}
+                onChange={onChange}
               />
               <Editor
                 width={(data.width - 50) / 2}
                 style={{ display: 'inlineblock' }}
                 height={data.height - 170}
                 defaultLanguage="text"
-                defaultValue="설명"
+                value={explain}
+                onChange={onexplainChange}
                 options={{
                   minimap: { enabled: false },
                 }}
