@@ -38,7 +38,7 @@ export default function ImageListAccordion(props) {
   };
 
   const highFunction = (text) => {
-    data.content = text;
+    data.explanation = text;
   };
 
   React.useEffect(() => {}, [image]);

@@ -3,7 +3,8 @@ import { useState, useEffect } from 'react';
 import ImageListAccordion from '../../molecules/BoardPage/ImageListAccordion';
 import { Card, CardContent } from '@mui/material';
 import Text from '../../molecules/BoardPage/Text';
-import HyperLink from '../../molecules/BoardPage/HyperLink';
+import HyperLink from '../../atoms/BoardPage/HyperLink';
+import HyperLinkAccordion from '../../molecules/BoardPage/HyperLinkAccordion';
 
 export default function Content(props) {
   const prop = props['layout']['data']['layouts'];
@@ -24,7 +25,7 @@ export default function Content(props) {
       case 2:
         return <ImageListAccordion key={list.id} data={list} />;
       case 4:
-        return <HyperLink key={list.id} list={list} />;
+        return <HyperLinkAccordion key={list.id} list={list} />;
       default:
         return (
           <Card

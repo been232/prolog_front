@@ -9,6 +9,7 @@ import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
 import Text from '../../molecules/BoardPage/Text';
 import Image from '../../molecules/BoardPage/ImageListAccordion';
 import Math from '../../molecules/BoardPage/MathAccordion';
+import Link from '../../molecules/BoardPage/HyperLinkAccordion';
 
 export default function WriteContent(props) {
   const title = props.title;
@@ -22,6 +23,7 @@ export default function WriteContent(props) {
     Text: Text,
     Image: Image,
     Math: Math,
+    Link : Link,
   };
 
   {list()}
@@ -57,7 +59,7 @@ export default function WriteContent(props) {
                 width: dataitem.width,
                 height: dataitem.height,
                 image: {},
-                content: '',
+                explanation: '',
               },
               position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
             };
@@ -66,7 +68,7 @@ export default function WriteContent(props) {
           case 4: 
           const LinkNode = {
             id: dataitem.id.toString(),
-            type: 'Text',
+            type: 'Link',
             data: {
               id: dataitem.id,
               x: dataitem.coordinateX,
@@ -75,6 +77,7 @@ export default function WriteContent(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
+              explanation : '',
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -92,7 +95,7 @@ export default function WriteContent(props) {
                 width: dataitem.width,
                 height: dataitem.height,
                 content: '',
-                math : '',
+                explanation : '',
               },
               position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
             };

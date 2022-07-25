@@ -11,7 +11,7 @@ export default function UnderButtons(props) {
    
   const handleClick = () => {
     data.map((dataitem) => {
-      if(dataitem.data.type == 2){
+      if(dataitem.data.type == 1){
         datas.push({
           height: dataitem.data.height,
           width: dataitem.data.width,
@@ -19,6 +19,16 @@ export default function UnderButtons(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
+        });
+      }
+      else if(dataitem.data.type == 2){
+        datas.push({
+          height: dataitem.data.height,
+          width: dataitem.data.width,
+          coordinateX: dataitem.position.x,
+          coordinateY: dataitem.position.y,
+          type: dataitem.data.type,
+          explanation: dataitem.data.explanation,
           image: dataitem.data.image
         });
       } else if(dataitem.data.type == 5){
@@ -29,7 +39,7 @@ export default function UnderButtons(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          math: dataitem.data.math
+          explanation: dataitem.data.explanation
         });
       }
       else {
@@ -39,7 +49,8 @@ export default function UnderButtons(props) {
           coordinateX: dataitem.position.x,
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
-          content: dataitem.data.content
+          content: dataitem.data.content,
+          explanation: dataitem.data.explanation
         });
       }
     });
@@ -49,6 +60,8 @@ export default function UnderButtons(props) {
       moldName: title,
       layouts: datas
     };
+
+    console.log(submit);
   };
 
   return (

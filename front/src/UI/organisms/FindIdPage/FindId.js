@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Avatar, Button, Grid, Box, CssBaseline, 
   Typography, Container, Divider } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import AuthTextField from '../../atoms/Commons/TextField';
+// import AuthTextField from '../../atoms/Commons/TextField';
 
 const FindId = () => {
   const [info, setInfo] = useState({
@@ -53,11 +53,11 @@ const FindId = () => {
         <Box noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              <AuthTextField
+              {/* <AuthTextField
                 label="이메일"
                 name="Email"
                 onChange={handleChange}
-              />
+              /> */}
             </Grid>
           </Grid>
           <Button
