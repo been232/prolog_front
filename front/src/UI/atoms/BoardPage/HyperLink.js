@@ -16,7 +16,7 @@ export default function HyperLink(props) {
       <TextField
         variant="standard"
         placeholder="하이퍼 링크"
-        sx={{ marginLeft: '5%' }}
+        fullWidth
         onChange={textChangeHandler}
       />
     </Box>
