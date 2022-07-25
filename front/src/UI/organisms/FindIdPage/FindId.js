@@ -5,6 +5,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import AuthTextField from '../../atoms/Commons/TextField';
 
 const FindId = () => {
+  const [account, setAccount] = useState('');
   const [info, setInfo] = useState({
     Email: '',
   });
@@ -22,13 +23,11 @@ const FindId = () => {
     console.log(info);
     // let response = await Api.postSignup(postBody);
 
-    // if (response.data.result === "success") {
-    //   alert('회원가입 성공');
-    //   const target = '/';
-    //   window.location.href = target;
+    // if (response.success === true) {
+    //   setAccount(response.account);
     // }
-    // else if (response.data.result === "fail") {
-    //   alert(response.data.message);
+    // else if (response.success === false) {
+    //   alert(response.success);
     // }
     // else {
     //   alert('회원가입 실패');
