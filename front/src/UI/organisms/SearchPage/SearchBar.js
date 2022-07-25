@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import React from 'react';
-import { SearchTextField } from '../../atoms/Commons/TextField';
+// import { SearchTextField } from '../../atoms/Commons/TextField';
 import SearchButton from '../../atoms/SearchPage/SearchButton';
 
 function SearchBar() {
@@ -15,9 +15,9 @@ function SearchBar() {
         alignItems: 'center',
       }}
     >
-      <SearchTextField
+      {/* <SearchTextField
         style={{ width: '500px', marginRight: '10px' }}
-      ></SearchTextField>
+      ></SearchTextField> */}
       <SearchButton></SearchButton>
     </Box>
   );

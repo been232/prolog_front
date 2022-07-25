@@ -20,10 +20,3 @@ const AuthTextField = (props) => {
 };
 
 export default AuthTextField;
-
-/*
-export const SearchTextField = (props) => {
-  const { style } = props;
-  return <TextField sx={style}></TextField>;
-};
-*/

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Avatar, Button, FormControl, Grid, Box, CssBaseline, 
   Typography, Container, FormControlLabel, Switch, Divider } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { AuthTextField } from '../../atoms/Commons/TextField';
+import AuthTextField from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
 
 const SignUp = () => {
