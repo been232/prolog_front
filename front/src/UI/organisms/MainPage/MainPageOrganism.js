@@ -18,7 +18,8 @@ const style = {
   px: 4,
   pb: 3,
 };
-function MainPageOrganism() {
+
+function MainPageOrganism(props) {
   const [open, setOpen] = useState(false);
   var timer;
   const handleOpen = () => {
@@ -28,6 +29,8 @@ function MainPageOrganism() {
     setOpen(false);
     clearTimeout(timer);
   };
+  const { id, title, written, member, memberImage, likes, mainLayout } =
+    props.data;
   return (
     <Box
       sx={{
@@ -46,12 +49,17 @@ function MainPageOrganism() {
           >
             <CloseIcon />
           </IconButton>
-          <p>게시글 미리보기 들어감.</p>
+          {/* <p>게시글 미리보기 들어감.</p> */}
+          <Box>{mainLayout.content}</Box>
         </Box>
       </Modal>
       <PostBoxTopMolecule />
-      <PostBoxMiddleMolecule />
-      <PostBoxBottomMolecule />
+      <PostBoxMiddleMolecule title={title} />
+      <PostBoxBottomMolecule
+        member={member}
+        memberImage={memberImage}
+        likes={likes}
+      />
     </Box>
   );
 }

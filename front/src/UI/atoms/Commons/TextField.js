@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 
-const AuthTextField = (props) => {
+export const AuthTextField = (props) => {
   const { id, name, autoComplete, label, onChange } = props;
   return (
     <TextField
@@ -18,4 +18,7 @@ const AuthTextField = (props) => {
   );
 };
 
-export default AuthTextField;
+export const SearchTextField = (props) => {
+  const { style } = props;
+  return <TextField sx={style}></TextField>;
+};
