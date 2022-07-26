@@ -101,6 +101,7 @@ export default function WriteContent(props) {
               height: dataitem.height,
               content: '',
               explanation: '',
+              board: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };

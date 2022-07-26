@@ -7,7 +7,7 @@ import Content from '../../organisms/BoardPage/Content';
 function BoardDetailPage() {
   return (
     <Box sx={{ mx: "2rem" }}>
-      <h2 style={{ paddingLeft: 20 }}>{data.data.post.title}</h2>
+      <h2 style={{ marginLeft: '5%' }}>{data.data.post.title}</h2>
       <Content layout={data}/>
     </Box> 
   );
@@ -91,10 +91,10 @@ const data = {
         type: 4,
         coordinateX: -50.555,
         coordinateY: -500,
-        width: 200,
+        width: 500,
         height: 300,
         content: 'https://www.google.com/search?q=mui+accordion+custom&oq=&aqs=chrome.5.69i59i450l8.694643353j0j15&sourceid=chrome&ie=UTF-8',
-        explanation: ''
+        explanation: '하이이이퍼링ㅋ으응'
       },
       {
         id: 5,
