@@ -69,24 +69,25 @@ export default function Content(props) {
           };
           initialNodes.push(ImageNode);
           break;
-        // case 3:
-        //   const CodeNode = {
-        //     id: dataitem.id.toString(),
-        //     type: 'Code',
-        //     data: {
-        //       id: dataitem.id,
-        //       x: dataitem.coordinateX,
-        //       y: dataitem.coordinateY,
-        //       type: dataitem.type,
-        //       width: dataitem.width,
-        //       height: dataitem.height,
-        //       content: '',
-        //       explanation: [],
-        //     },
-        //     position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
-        //   };
-        //   initialNodes.push(CodeNode);
-        //   break;
+        case 3:
+          const CodeNode = {
+            id: dataitem.id.toString(),
+            type: 'Code',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+              explanation: dataitem.explanation,
+              board: true
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(CodeNode);
+          break;
         case 4:
           const LinkNode = {
             id: dataitem.id.toString(),
@@ -106,24 +107,25 @@ export default function Content(props) {
           };
           initialNodes.push(LinkNode);
           break;
-        // case 5:
-        //   const MathNode = {
-        //     id: dataitem.id.toString(),
-        //     type: 'Math',
-        //     data: {
-        //       id: dataitem.id,
-        //       x: dataitem.coordinateX,
-        //       y: dataitem.coordinateY,
-        //       type: dataitem.type,
-        //       width: dataitem.width,
-        //       height: dataitem.height,
-        //       content: '',
-        //       explanation: '',
-        //     },
-        //     position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
-        //   };
-        //   initialNodes.push(MathNode);
-        //   break;
+        case 5:
+          const MathNode = {
+            id: dataitem.id.toString(),
+            type: 'Math',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+              explanation: dataitem.explanation,
+              board: true
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(MathNode);
+          break;
         default:
           const newNode = {
             id: dataitem.id.toString(),

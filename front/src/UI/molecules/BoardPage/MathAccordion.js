@@ -15,7 +15,7 @@ import TeX from '@matejmazur/react-katex';
 import Maths from '../../atoms/BoardPage/Maths';
 import TextField from '@mui/material/TextField';
 import { Button, Card, CardContent } from '@mui/material';
-
+import ContentText from '../../atoms/BoardPage/ContentText';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -59,14 +59,21 @@ const style = {
 
 export default function MathAccordion(props) {
   const data = props.data;
+  const board = data.board;
   const [math, setMath] = React.useState(false);
   const [expand, setExpand] = React.useState(true);
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = useState(0);
   const [textValue, settextValue] = useState('');
 
-  const handleOpen = () => {setOpen(true); setMath(false);};
-  const handleClose = () => {setOpen(false); setMath(true)};
+  const handleOpen = () => {
+    setOpen(true);
+    setMath(false);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setMath(true);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -74,6 +81,7 @@ export default function MathAccordion(props) {
 
   const handletextChange = (event) => {
     settextValue(event.target.value);
+    data.content = event.target.value;
   };
 
   const toggleAcordion = () => {
@@ -86,9 +94,12 @@ export default function MathAccordion(props) {
 
   const highFunctions = (text) => {
     settextValue(textValue.concat(text));
+    data.content = textValue.concat(text);
   };
 
-  React.useEffect(() => {data.content = textValue;}, [textValue]);
+  React.useEffect(() => {
+   
+  }, [textValue]);
 
   return (
     <div style={{ width: data.width, height: data.height - 70 }}>
@@ -105,148 +116,168 @@ export default function MathAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          {math == false ? (
-            <Box>
-              <CalculateIcon
+          {board == false ? (
+            math == false ? (
+              <Box>
+                <CalculateIcon
+                  onClick={handleOpen}
+                  style={{ width: data.width - 50, height: data.height - 170 }}
+                />
+                <Modal
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="modal-modal-title"
+                  aria-describedby="modal-modal-description"
+                >
+                  <Box sx={style}>
+                    <Box>
+                      <Tabs
+                        variant="fullWidth"
+                        value={value}
+                        onChange={handleChange}
+                      >
+                        <Tab icon={<TeX math="\pi" />} {...a11yProps(0)} />
+                        <Tab icon={<TeX math="\pm" />} {...a11yProps(1)} />
+                        <Tab icon={<TeX math="\alpha" />} {...a11yProps(2)} />
+                        <Tab icon={<TeX math="\ne" />} {...a11yProps(3)} />
+                        <Tab icon={<TeX math="\to" />} {...a11yProps(4)} />
+                        <Tab
+                          icon={<TeX math="{ x }/{ y }" />}
+                          {...a11yProps(5)}
+                        />
+                        <Tab icon={<TeX math="e^{x}" />} {...a11yProps(6)} />
+                        <Tab
+                          icon={<TeX math="\sqrt[n]{x}" />}
+                          {...a11yProps(7)}
+                        />
+                        <Tab
+                          icon={<TeX math="\int_{-x}^{x}" />}
+                          {...a11yProps(8)}
+                        />
+                        <Tab
+                          icon={<TeX math="\sum_{ i=10 }^{ n }" />}
+                          {...a11yProps(9)}
+                        />
+                        <Tab
+                          icon={<TeX math="\Big\{\Big(\Big)\Big\}" />}
+                          {...a11yProps(10)}
+                        />
+                        <Tab
+                          icon={<TeX math="\sin{\theta }" />}
+                          {...a11yProps(11)}
+                        />
+                        <Tab
+                          icon={<TeX math="\ddot{a}" />}
+                          {...a11yProps(12)}
+                        />
+                        <Tab
+                          icon={<TeX math="\lim\limits_{n \to \infty}" />}
+                          {...a11yProps(13)}
+                        />
+                        <Tab
+                          icon={<TeX math="\overset{ \Delta}{=}" />}
+                          {...a11yProps(14)}
+                        />
+                        <Tab
+                          icon={
+                            <TeX math="\begin{bmatrix} {1}&{2} \\ {3}&{4} \end{bmatrix}" />
+                          }
+                          {...a11yProps(15)}
+                        />
+                      </Tabs>
+                    </Box>
+                    <TabPanel value={value} index={0}>
+                      <Maths propFunction={highFunctions} Type={1} rows={4} />
+                    </TabPanel>
+                    <TabPanel value={value} index={1}>
+                      <Maths propFunction={highFunctions} Type={2} rows={0.8} />
+                    </TabPanel>
+                    <TabPanel value={value} index={2}>
+                      <Maths propFunction={highFunctions} Type={3} rows={0.8} />
+                    </TabPanel>
+                    <TabPanel value={value} index={3}>
+                      <Maths propFunction={highFunctions} Type={4} rows={0.8} />
+                    </TabPanel>
+                    <TabPanel value={value} index={4}>
+                      <Maths propFunction={highFunctions} Type={5} rows={0.8} />
+                    </TabPanel>
+                    <TabPanel value={value} index={5}>
+                      <Maths propFunction={highFunctions} Type={6} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={6}>
+                      <Maths propFunction={highFunctions} Type={7} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={7}>
+                      <Maths propFunction={highFunctions} Type={8} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={8}>
+                      <Maths propFunction={highFunctions} Type={9} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={9}>
+                      <Maths propFunction={highFunctions} Type={10} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={10}>
+                      <Maths propFunction={highFunctions} Type={11} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={11}>
+                      <Maths propFunction={highFunctions} Type={12} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={12}>
+                      <Maths propFunction={highFunctions} Type={13} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={13}>
+                      <Maths propFunction={highFunctions} Type={14} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={14}>
+                      <Maths propFunction={highFunctions} Type={15} rows={3} />
+                    </TabPanel>
+                    <TabPanel value={value} index={15}>
+                      <Maths propFunction={highFunctions} Type={16} rows={3} />
+                    </TabPanel>
+                    <Box>
+                      <TextField
+                        fullWidth
+                        value={textValue}
+                        onChange={handletextChange}
+                        placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
+                      />
+                    </Box>
+                    <Box style={{ marginTop: 20 }}>
+                      <Card>
+                        <CardContent style={{ height: 100 }}>
+                          <TeX math={textValue} />
+                        </CardContent>
+                      </Card>
+                    </Box>
+                  </Box>
+                </Modal>
+              </Box>
+            ) : (
+              <Card
                 onClick={handleOpen}
                 style={{ width: data.width - 50, height: data.height - 170 }}
-              />
-              <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
               >
-                <Box sx={style}>
-                  <Box>
-                    <Tabs
-                      variant="fullWidth"
-                      value={value}
-                      onChange={handleChange}
-                    >
-                      <Tab icon={<TeX math="\pi" />} {...a11yProps(0)} />
-                      <Tab icon={<TeX math="\pm" />} {...a11yProps(1)} />
-                      <Tab icon={<TeX math="\alpha" />} {...a11yProps(2)} />
-                      <Tab icon={<TeX math="\ne" />} {...a11yProps(3)} />
-                      <Tab icon={<TeX math="\to" />} {...a11yProps(4)} />
-                      <Tab
-                        icon={<TeX math="{ x }/{ y }" />}
-                        {...a11yProps(5)}
-                      />
-                      <Tab icon={<TeX math="e^{x}" />} {...a11yProps(6)} />
-                      <Tab
-                        icon={<TeX math="\sqrt[n]{x}" />}
-                        {...a11yProps(7)}
-                      />
-                      <Tab
-                        icon={<TeX math="\int_{-x}^{x}" />}
-                        {...a11yProps(8)}
-                      />
-                      <Tab
-                        icon={<TeX math="\sum_{ i=10 }^{ n }" />}
-                        {...a11yProps(9)}
-                      />
-                      <Tab
-                        icon={<TeX math="\Big\{\Big(\Big)\Big\}" />}
-                        {...a11yProps(10)}
-                      />
-                      <Tab
-                        icon={<TeX math="\sin{\theta }" />}
-                        {...a11yProps(11)}
-                      />
-                      <Tab icon={<TeX math="\ddot{a}" />} {...a11yProps(12)} />
-                      <Tab
-                        icon={<TeX math="\lim\limits_{n \to \infty}" />}
-                        {...a11yProps(13)}
-                      />
-                      <Tab
-                        icon={<TeX math="\overset{ \Delta}{=}" />}
-                        {...a11yProps(14)}
-                      />
-                      <Tab
-                        icon={
-                          <TeX math="\begin{bmatrix} {1}&{2} \\ {3}&{4} \end{bmatrix}" />
-                        }
-                        {...a11yProps(15)}
-                      />
-                    </Tabs>
-                  </Box>
-                  <TabPanel value={value} index={0}>
-                    <Maths propFunction={highFunctions} Type={1} rows={4} />
-                  </TabPanel>
-                  <TabPanel value={value} index={1}>
-                    <Maths propFunction={highFunctions} Type={2} rows={0.8} />
-                  </TabPanel>
-                  <TabPanel value={value} index={2}>
-                    <Maths propFunction={highFunctions} Type={3} rows={0.8} />
-                  </TabPanel>
-                  <TabPanel value={value} index={3}>
-                    <Maths propFunction={highFunctions} Type={4} rows={0.8} />
-                  </TabPanel>
-                  <TabPanel value={value} index={4}>
-                    <Maths propFunction={highFunctions} Type={5} rows={0.8} />
-                  </TabPanel>
-                  <TabPanel value={value} index={5}>
-                    <Maths propFunction={highFunctions} Type={6} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={6}>
-                    <Maths propFunction={highFunctions} Type={7} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={7}>
-                    <Maths propFunction={highFunctions} Type={8} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={8}>
-                    <Maths propFunction={highFunctions} Type={9} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={9}>
-                    <Maths propFunction={highFunctions} Type={10} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={10}>
-                    <Maths propFunction={highFunctions} Type={11} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={11}>
-                    <Maths propFunction={highFunctions} Type={12} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={12}>
-                    <Maths propFunction={highFunctions} Type={13} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={13}>
-                    <Maths propFunction={highFunctions} Type={14} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={14}>
-                    <Maths propFunction={highFunctions} Type={15} rows={3} />
-                  </TabPanel>
-                  <TabPanel value={value} index={15}>
-                    <Maths propFunction={highFunctions} Type={16} rows={3} />
-                  </TabPanel>
-                  <Box>
-                    <TextField
-                      fullWidth
-                      value={textValue}
-                      onChange={handletextChange}
-                      placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
-                    />
-                  </Box>
-                  <Box style={{ marginTop: 20 }}>
-                    <Card>
-                      <CardContent style={{ height: 100 }}>
-                        <TeX math={textValue} />
-                      </CardContent>
-                    </Card>
-                  </Box>
-                </Box>
-              </Modal>
-            </Box>
+                <CardContent>
+                  <TeX math={textValue} />
+                </CardContent>
+              </Card>
+            )
           ) : (
-            <Card onClick={handleOpen} style={{ width: data.width - 50, height: data.height - 170}}>
+            <Card
+              style={{ width: data.width - 50, height: data.height - 170 }}
+            >
               <CardContent>
-                <TeX math={textValue} />
+                <TeX math={data.content} />
               </CardContent>
             </Card>
           )}
         </AccordionSummary>
         <AccordionDetails>
-          <AccordionListText propFunction={highFunction} />
+          {board == true ? (
+            <ContentText data={data} />
+          ) : (
+            <AccordionListText propFunction={highFunction} />
+          )}
         </AccordionDetails>
       </Accordion>
     </div>

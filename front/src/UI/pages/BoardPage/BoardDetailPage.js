@@ -83,8 +83,8 @@ const data = {
         coordinateY: 0.555,
         width: 750,
         height: 505,
-        content: ['','',''],
-        explanation: []
+        content: ['int main() {\r\n    int a = b;\r\n    print(b)\r\n}','메인 문\r\n\r\n프린트문','c'],
+        explanation: 'ㅎㅎㅎㅎㅎ'
       },
       {
         id: 4,
@@ -103,8 +103,8 @@ const data = {
         coordinateY: 600.555,
         width: 400,
         height: 400,
-        content: '수학 text',
-        explanation: ''
+        content: 'x = \\frac{ -b \\pm \\sqrt{ b^2-4ac } }{ 2a }',
+        explanation: '수학 설며여영'
       },
       {
         id: 6,
