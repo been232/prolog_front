@@ -7,12 +7,13 @@ import ImageLists from '../../atoms/BoardPage/ImageLists';
 import AccordionListText from '../../atoms/BoardPage/AccordionListText';
 import Box from '@mui/material/Box';
 import AddToPhotosRoundedIcon from '@mui/icons-material/AddToPhotosRounded';
-
+import ContentText from '../../atoms/BoardPage/ContentText';
 export default function ImageListAccordion(props) {
   const data = props.data;
+  const board = data.board;
   const [expand, setExpand] = React.useState(true);
   const imageInput = React.useRef();
-  const [image, setImage] = React.useState(false);
+  const [image, setImage] = React.useState(board);
 
   const onCickImageUpload = () => {
     imageInput.current.click();
@@ -83,7 +84,11 @@ export default function ImageListAccordion(props) {
           )}
         </AccordionSummary>
         <AccordionDetails>
-          <AccordionListText propFunction={highFunction} />
+        {board == true ? (
+            <ContentText data={data}/>
+          ) : (
+            <AccordionListText propFunction={highFunction}/>
+          )}
         </AccordionDetails>
       </Accordion>
     </div>
