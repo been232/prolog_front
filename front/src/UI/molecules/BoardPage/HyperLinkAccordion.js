@@ -5,9 +5,11 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import AccordionListText from '../../atoms/BoardPage/AccordionListText';
 import HyperLink from '../../atoms/BoardPage/HyperLink';
+import ContentText from '../../atoms/BoardPage/ContentText';
 
 export default function HyperLinkAccordion(props) {
   const data = props.data;
+  const board = data.board;
   const [expand, setExpand] = React.useState(true);
 
   const toggleAcordion = () => {
@@ -44,10 +46,18 @@ export default function HyperLinkAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
+          {board == true ? (
+            <ContentText data={data} level={1}/>
+          ) : (
             <HyperLink propFunction={highFunction} />
+          )}
         </AccordionSummary>
         <AccordionDetails>
-          <AccordionListText propFunction={highFunctionText} />
+          {board == true ? (
+            <ContentText data={data} level={2}/>
+          ) : (
+            <AccordionListText propFunction={highFunction} />
+          )}
         </AccordionDetails>
       </Accordion>
     </div>

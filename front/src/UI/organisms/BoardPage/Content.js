@@ -6,7 +6,7 @@ import ReactFlow, {
 } from 'react-flow-renderer';
 import UnderButtons from '../../molecules/BoardPage/UnderButtons';
 import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
-import Text from '../../molecules/BoardPage/Text';
+import Text from '../../atoms/BoardPage/ContentText';
 import Image from '../../molecules/BoardPage/ImageListAccordion';
 import Math from '../../molecules/BoardPage/MathAccordion';
 import Link from '../../molecules/BoardPage/HyperLinkAccordion';
@@ -33,23 +33,23 @@ export default function Content(props) {
   function list() {
     layout.layouts.map((dataitem) => {
       switch (dataitem.type) {
-        // case 1:
-        //   const TextNode = {
-        //     id: dataitem.id.toString(),
-        //     type: 'Text',
-        //     data: {
-        //       id: dataitem.id,
-        //       x: dataitem.coordinateX,
-        //       y: dataitem.coordinateY,
-        //       type: dataitem.type,
-        //       width: dataitem.width,
-        //       height: dataitem.height,
-        //       content: '',
-        //     },
-        //     position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
-        //   };
-        //   initialNodes.push(TextNode);
-        //   break;
+        case 1:
+          const TextNode = {
+            id: dataitem.id.toString(),
+            type: 'Text',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(TextNode);
+          break;
         case 2:
           const ImageNode = {
             id: dataitem.id.toString(),
@@ -87,24 +87,25 @@ export default function Content(props) {
         //   };
         //   initialNodes.push(CodeNode);
         //   break;
-        // case 4:
-        //   const LinkNode = {
-        //     id: dataitem.id.toString(),
-        //     type: 'Link',
-        //     data: {
-        //       id: dataitem.id,
-        //       x: dataitem.coordinateX,
-        //       y: dataitem.coordinateY,
-        //       type: dataitem.type,
-        //       width: dataitem.width,
-        //       height: dataitem.height,
-        //       content: '',
-        //       explanation: '',
-        //     },
-        //     position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
-        //   };
-        //   initialNodes.push(LinkNode);
-        //   break;
+        case 4:
+          const LinkNode = {
+            id: dataitem.id.toString(),
+            type: 'Link',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+              explanation: dataitem.explanation,
+              board: true
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(LinkNode);
+          break;
         // case 5:
         //   const MathNode = {
         //     id: dataitem.id.toString(),
