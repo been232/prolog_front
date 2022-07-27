@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@mui/material/TextField';
 
 export const AuthTextField = (props) => {
-  const { id, name, autoComplete, label, onChange } = props;
+  const { id, name, autoComplete, label, onChange, value } = props;
   
   return (
     <TextField
@@ -15,6 +15,7 @@ export const AuthTextField = (props) => {
       autoComplete={autoComplete}
       autoFocus
       onChange={onChange}
+      value={value}
     />
   );
 };

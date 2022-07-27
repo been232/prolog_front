@@ -48,10 +48,23 @@ const SignUp = () => {
     setPasswordConfirm(event.target.value);
   };
 
+  const emptyCheck = () => {
+    if (info.name === '' || info.account === '' || info.Email === '' 
+    || info.password === '' || info.Nickname === '' || info.Introduction === '') {
+      return false;
+    }
+  };
+
   const handleSignup = async () => {
     if (password !== passwordConfirm) {
       alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
       return;
+    }
+
+    const isEmpty = emptyCheck();
+    if (isEmpty === false) {
+      alert('이름, 아이디, 이메일, 비밀번호, 닉네임, 한줄소개를 입력하세요');
+      return false;
     }
 
     console.log(info);
@@ -65,9 +78,9 @@ const SignUp = () => {
     }
 
     if (response.data.result === "success") {
-      const target = '/';
+      // const target = '/';
       alert('회원가입 성공');
-      window.location.href = target;
+      // window.location.href = target;
     }
     else if (response.data.result === "fail") {
       alert(response.data.message);

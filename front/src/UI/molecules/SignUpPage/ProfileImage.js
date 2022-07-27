@@ -71,7 +71,7 @@ const ProfileImage = (props) => {
           <Box>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Box sx={{ paddingLeft: 1, paddingTop: 2 }}>
+                <Box sx={{ paddingLeft: 1, paddingTop:2 }}>
                   <label htmlFor="input-file" onChange={onSaveImage} style={{ backgroundColor: "#BADBF3", borderRadius: "4px", cursor: "pointer", padding: "8px 11px", fontSize: "12px" }} >
                     이미지 첨부
                     <input type="file" id="input-file" accept="image/*" style={{ display: "none" }} />
