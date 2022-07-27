@@ -11,6 +11,7 @@ function ImageLists(props) {
           images={data.image}
           showBullets={true}
           showNavs={true}
+          autoPlay={true}
         />
     </div>
   );

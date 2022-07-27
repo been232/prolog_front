@@ -11,7 +11,8 @@ export default function ImageListAccordion(props) {
   const data = props.data;
   const [expand, setExpand] = React.useState(true);
   const imageInput = React.useRef();
-
+  const [change, setChange] = React.useState(data);
+  
   const onCickImageUpload = () => {
     imageInput.current.click();
   };
@@ -26,11 +27,11 @@ export default function ImageListAccordion(props) {
     }
 
     data.image = imageUrlLists;
-  }
-
-  const ChangeType = () => {
-
-  }
+    setChange({
+      ...change,
+      image : imageUrlLists
+    })
+  };
 
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
@@ -62,11 +63,21 @@ export default function ImageListAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-            <ImageLists data={data} />
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            multiple="multiple"
+            ref={imageInput}
+            onChange={ImageChange}
+            accept="image/*"
+          />
+          <ImageLists data={change} />
         </AccordionSummary>
         <AccordionDetails>
-              <AccordionListText propFunction={highFunction} data={data}/>
-              <Button onClick={ChangeType} style={{float:'right'}}>사진 다시 선택</Button>
+          <AccordionListText propFunction={highFunction} data={data} />
+          <Button onClick={onCickImageUpload} style={{ float: 'right' }}>
+            사진 다시 선택
+          </Button>
         </AccordionDetails>
       </Accordion>
     </div>

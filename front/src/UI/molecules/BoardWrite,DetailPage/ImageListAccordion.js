@@ -15,6 +15,7 @@ export default function ImageListAccordion(props) {
   const [expand, setExpand] = React.useState(true);
   const imageInput = React.useRef();
   const [image, setImage] = React.useState(board);
+  const [change, setChange] = React.useState(data);
 
   const onCickImageUpload = () => {
     imageInput.current.click();
@@ -30,14 +31,14 @@ export default function ImageListAccordion(props) {
     }
 
     data.image = imageUrlLists;
-    if(data.image[0] != null){
-      setImage(true)
+    if (data.image[0] != null) {
+      setImage(true);
+      setChange({
+        ...change,
+        image: imageUrlLists,
+      });
     }
-  }
-
-  const ChangeType = () => {
-    setImage(false)
-  }
+  };
 
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
@@ -69,32 +70,34 @@ export default function ImageListAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            multiple="multiple"
+            ref={imageInput}
+            onChange={ImageChange}
+            accept="image/*"
+          />
           {image == false ? (
             <Box>
-              <input
-                type="file"
-                style={{ display: 'none' }}
-                multiple="multiple"
-                ref={imageInput}
-                onChange={ImageChange}
-                accept="image/*"
-              />
               <AddToPhotosRoundedIcon
                 style={{ width: data.width - 50, height: data.height - 170 }}
                 onClick={onCickImageUpload}
               />
             </Box>
           ) : (
-            <ImageLists data={data} />
+            <ImageLists data={change} />
           )}
         </AccordionSummary>
         <AccordionDetails>
-        {board == true ? (
-            <ContentText data={data}/>
+          {board == true ? (
+            <ContentText data={data} />
           ) : (
             <Box>
-              <AccordionListText propFunction={highFunction}/>
-              <Button onClick={ChangeType} style={{float:'right'}}>사진 다시 선택</Button>
+              <AccordionListText propFunction={highFunction} />
+              <Button onClick={onCickImageUpload} style={{ float: 'right' }}>
+                사진 다시 선택
+              </Button>
             </Box>
           )}
         </AccordionDetails>
