@@ -4,17 +4,16 @@ import ReactFlow, {
   ReactFlowProvider,
   useNodesState,
 } from 'react-flow-renderer';
-import UnderButton from '../../molecules/BoardPage/UnderButton';
+import UnderButtons from '../../molecules/BoardWrite,DetailPage/UnderButtons';
 import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
-import Text from '../../molecules/BoardPage/Text';
-import Image from '../../molecules/BoardPage/ImageListAccordion';
-import Math from '../../molecules/BoardPage/MathAccordion';
-import Link from '../../molecules/BoardPage/HyperLinkAccordion';
-import Code from '../../molecules/BoardPage/CodeAccordion';
+import Text from '../../atoms/BoardWrite,DetailPage/ContentText';
+import Image from '../../molecules/BoardWrite,DetailPage/ImageListAccordion';
+import Math from '../../molecules/BoardWrite,DetailPage/MathAccordion';
+import Link from '../../molecules/BoardWrite,DetailPage/HyperLinkAccordion';
+import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
 
-export default function WriteContent(props) {
-  const title = props.title;
-  const layout = props.layout[0];
+export default function Content(props) {
+  const layout = props.layout.data;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -45,7 +44,7 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: '',
+              content: dataitem.content,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -62,9 +61,9 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              image: {},
-              explanation: '',
-              board: false
+              image: dataitem.images,
+              explanation: dataitem.explanation,
+              board: true
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -81,9 +80,9 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: '',
-              explanation: [],
-              board: false
+              content: dataitem.content,
+              explanation: dataitem.explanation,
+              board: true
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -100,9 +99,9 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: '',
-              explanation: '',
-              board: false
+              content: dataitem.content,
+              explanation: dataitem.explanation,
+              board: true
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -119,9 +118,9 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: '',
-              explanation: '',
-              board: false
+              content: dataitem.content,
+              explanation: dataitem.explanation,
+              board: true
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -175,7 +174,7 @@ export default function WriteContent(props) {
           </div>
         </ReactFlowProvider>
       </Box>
-      <UnderButton id={layout.layoutId} title={title} data={nodes} />
+      <UnderButtons id={layout.layoutId} data={nodes} />
     </Box>
   );
 }
