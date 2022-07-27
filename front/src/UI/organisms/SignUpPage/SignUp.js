@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Avatar, Button, FormControl, Grid, Box, CssBaseline, 
-  Typography, Container, FormControlLabel, Switch, Divider } from '@mui/material';
+import {
+  Link, Avatar, Button, FormControl, Grid, Box, CssBaseline,
+  Typography, Container, FormControlLabel, Switch, Divider
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
@@ -16,7 +18,7 @@ const SignUp = () => {
     Email: '',
     password: password,
     Nickname: '',
-    Image : '',
+    Image: '',
     Introduction: '',
     Alarm: alarm,
   });
@@ -53,19 +55,26 @@ const SignUp = () => {
     }
 
     console.log(info);
-    // let response = await Api.postSignup(postBody);
 
-    // if (response.data.result === "success") {
-    //   alert('회원가입 성공');
-    //   const target = '/';
-    //   window.location.href = target;
-    // }
-    // else if (response.data.result === "fail") {
-    //   alert(response.data.message);
-    // }
-    // else {
-    //   alert('회원가입 실패');
-    // }
+    // -----------------------  response 예시 데이터 -----------------------
+    // let response = await Api.postSignup(info);
+    let response = {
+      data: {
+        result: "success",
+      }
+    }
+
+    if (response.data.result === "success") {
+      const target = '/';
+      alert('회원가입 성공');
+      window.location.href = target;
+    }
+    else if (response.data.result === "fail") {
+      alert(response.data.message);
+    }
+    else {
+      alert('회원가입 실패');
+    }
   };
 
   return (
@@ -84,7 +93,7 @@ const SignUp = () => {
         </Avatar>
         <Typography component="h1" variant="h5">회원가입</Typography>
         <Box noValidate sx={{ mt: 3 }}>
-          <Divider sx={{ marginBottom: 2 }}/>
+          <Divider sx={{ marginBottom: 2 }} />
           <ProfileImage setInfo={setInfo} />
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -110,8 +119,8 @@ const SignUp = () => {
                 name="passwordConfirm"
                 onChange={handlePWConfirmChange}
               />
-              {(password === passwordConfirm)? "" : 
-                <Typography sx={{ color: "red"}}>
+              {(password === passwordConfirm) ? "" :
+                <Typography sx={{ color: "red" }}>
                   비밀번호 불일치: 다시 입력해주세요.
                 </Typography>
               }
