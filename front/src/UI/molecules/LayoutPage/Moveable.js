@@ -1,6 +1,9 @@
 import React, { useEffect } from 'react';
 import { render } from 'react-dom';
 import { Resizable } from 're-resizable';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Box } from '@mui/material';
+import { data } from 'jquery';
 
 const style = {
   display: 'flex',
@@ -18,10 +21,15 @@ const dragHandleStyle = {
   marginLeft: 5,
   borderRadius: '50%',
 };
+
 const Moveable = (props) => {
   const data = props;
   const [width, setWidth] = React.useState(300);
   const [height, setHeight] = React.useState(200);
+
+  const remove = () => {
+    data.data.remove = true;
+  };
 
   useEffect(() => {
     data.data.width = width;
@@ -48,18 +56,22 @@ const Moveable = (props) => {
         return <h5>ERROR BOX → </h5>;
     }
   }
+
   return (
-    <Resizable
-      style={style}
-      size={{ width, height }}
-      onResizeStop={(e, direction, ref, d) => {
-        setWidth(width + d.width);
-        setHeight(height + d.height);
-      }}
-    >
-      {list()}
-      <span className="custom-drag-handle" style={dragHandleStyle} />
-    </Resizable>
+    <Box>
+      <HighlightOffIcon onClick={remove} style={{ float: 'right' }} />
+      <Resizable
+        style={style}
+        size={{ width, height }}
+        onResizeStop={(e, direction, ref, d) => {
+          setWidth(width + d.width);
+          setHeight(height + d.height);
+        }}
+      >
+        {list()}
+        <span className="custom-drag-handle" style={dragHandleStyle} />
+      </Resizable>
+    </Box>
   );
 };
 
