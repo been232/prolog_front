@@ -52,13 +52,14 @@ const ModalContent = (props) => {
         result : "success",
         accessToken : "dfsgdfegsd",
         refreshToken : "dfsgsdfsdg",
+        memberId: 2,
       }
     }
 
     if (response.data.result === "success") {
       // const target = '/';
-      console.log(JSON.stringify(response.data, ['accessToken', 'refreshToken']));
       sessionStorage.setItem('user', JSON.stringify(response.data, ['accessToken', 'refreshToken']))
+      sessionStorage.setItem('userId', JSON.stringify(response.data.memberId))
       // window.location.href = target;
     }
     else if(response.data.result === "fail") {
@@ -107,13 +108,7 @@ const ModalContent = (props) => {
           </Button>
         </Link>
         <Divider />
-        <Box
-          sx={{
-            textAlign: 'center',
-          }}
-        >
-          소셜로그인
-        </Box>
+        <Box sx={{ textAlign: 'center'}}> 소셜로그인 </Box>
       </Box>
     </Container>
   );
