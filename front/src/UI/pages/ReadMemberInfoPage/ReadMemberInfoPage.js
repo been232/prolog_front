@@ -1,6 +1,6 @@
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import SignUp from '../../organisms/SignUpPage/SignUp';
+import ReadMemberInfo from '../../organisms/ReadMemberInfoPage/ReadMemberInfo';
 
 const theme = createTheme({
     palette: {
@@ -14,13 +14,13 @@ const theme = createTheme({
     },
 });
 
-const SignUpPage = () => {
+const ReadMemberInfoPage = () => {
     return (
         <ThemeProvider theme={theme}>
-            <ReadMemberInfo>
+            <SignUp>
 
-            </ReadMemberInfo>
+            </SignUp>
         </ThemeProvider>
     );
 }
-export default SignUpPage
+export default ReadMemberInfoPage
