@@ -11,7 +11,7 @@ import FindIdPage from '../pages/FindIdPage/FindIdPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
 import BoardWritePage from '../pages/BoardWrite,DetailPage/BoardWritePage';
 import SearchPage from '../pages/SearchPage/SearchPage';
-import BoardModifyPage from '../pages/BoardWrite,DetailPage/BoardModifyPage';
+import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 
 const App = () => {
   return (
