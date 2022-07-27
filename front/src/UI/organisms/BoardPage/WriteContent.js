@@ -4,7 +4,7 @@ import ReactFlow, {
   ReactFlowProvider,
   useNodesState,
 } from 'react-flow-renderer';
-import UnderButtons from '../../molecules/BoardPage/UnderButtons';
+import UnderButton from '../../molecules/BoardPage/UnderButton';
 import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
 import Text from '../../molecules/BoardPage/Text';
 import Image from '../../molecules/BoardPage/ImageListAccordion';
@@ -175,7 +175,7 @@ export default function WriteContent(props) {
           </div>
         </ReactFlowProvider>
       </Box>
-      <UnderButtons id={layout.layoutId} title={title} data={nodes} />
+      <UnderButton id={layout.layoutId} title={title} data={nodes} />
     </Box>
   );
 }
