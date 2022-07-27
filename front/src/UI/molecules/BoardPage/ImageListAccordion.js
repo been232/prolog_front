@@ -6,6 +6,7 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import ImageLists from '../../atoms/BoardPage/ImageLists';
 import AccordionListText from '../../atoms/BoardPage/AccordionListText';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import AddToPhotosRoundedIcon from '@mui/icons-material/AddToPhotosRounded';
 import ContentText from '../../atoms/BoardPage/ContentText';
 export default function ImageListAccordion(props) {
@@ -32,6 +33,10 @@ export default function ImageListAccordion(props) {
     if(data.image[0] != null){
       setImage(true)
     }
+  }
+
+  const ChangeType = () => {
+    setImage(false)
   }
 
   const toggleAcordion = () => {
@@ -87,7 +92,10 @@ export default function ImageListAccordion(props) {
         {board == true ? (
             <ContentText data={data}/>
           ) : (
-            <AccordionListText propFunction={highFunction}/>
+            <Box>
+              <AccordionListText propFunction={highFunction}/>
+              <Button onClick={ChangeType} style={{float:'right'}}>사진 다시 선택</Button>
+            </Box>
           )}
         </AccordionDetails>
       </Accordion>
