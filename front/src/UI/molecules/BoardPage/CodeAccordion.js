@@ -6,7 +6,13 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import AccordionListText from '../../atoms/BoardPage/AccordionListText';
 import Editor from '@monaco-editor/react';
 import Box from '@mui/material/Box';
-import { MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import {
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Button,
+} from '@mui/material';
 import ContentText from '../../atoms/BoardPage/ContentText';
 
 export default function CodeAccordion(props) {
@@ -32,9 +38,11 @@ export default function CodeAccordion(props) {
     data.content = [codes, explain, event.target.value];
   };
 
-  React.useEffect(() => {
+  React.useEffect(() => {}, [codes, explain, Type]);
 
-  }, [codes, explain, Type]);
+  const ChangeType = () => {
+    setCode(false);
+  }
 
   function onChange(newValue, e) {
     setcodes(newValue);
@@ -201,7 +209,7 @@ export default function CodeAccordion(props) {
                 defaultLanguage={data.content[2]}
                 options={{
                   minimap: { enabled: false },
-                  readOnly: true
+                  readOnly: true,
                 }}
                 value={data.content[0]}
               />
@@ -213,7 +221,7 @@ export default function CodeAccordion(props) {
                 value={data.content[1]}
                 options={{
                   minimap: { enabled: false },
-                  readOnly: true
+                  readOnly: true,
                 }}
               />
             </>
@@ -223,7 +231,10 @@ export default function CodeAccordion(props) {
           {board == true ? (
             <ContentText data={data} />
           ) : (
-            <AccordionListText propFunction={highFunctionText} />
+            <Box>
+              <AccordionListText propFunction={highFunctionText} />
+              <Button onClick={ChangeType} style={{float:'right'}}>언어 다시 선택</Button>
+            </Box>
           )}
         </AccordionDetails>
       </Accordion>
