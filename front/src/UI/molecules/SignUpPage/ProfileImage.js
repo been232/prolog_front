@@ -21,19 +21,24 @@ const ProfileImage = (props) => {
     const formData = new FormData();
     formData.append('attachments', imageFile);
 
-    /* 이미지 업로드 코드 -> 백엔드에서 주는 데이터 형식보고 코드 수정 필요
-    let response = await Api.getReadFile(formData);
-    if (response.sucess) {
-      let image_path = response.files[0].file_path.replace('file\\', '');
-      let image = server_path + image_path;
-      setInfo({
-        ...prev,
-        Image: image,
-      });
-    } else {
-      console.log('이미지 업로드 실패');
-    }
-    */
+    setInfo((prev) => ({
+      ...prev,
+      Image: imageUrl,
+    }));
+
+    // 이미지 업로드 코드 -> 백엔드에서 주는 데이터 형식보고 코드 수정 필요
+    // let response = await Api.getReadFile(formData);
+    // if (response.success) {
+    //   let image_path = response.files[0].file_path.replace('file\\', '');
+    //   let image = server_path + image_path;
+    //   setInfo({
+    //     ...prev,
+    //     Image: image,
+    //   });
+    // } else {
+    //   console.log('이미지 업로드 실패');
+    // }
+    
   };
 
   // X버튼 클릭 시 이미지 삭제

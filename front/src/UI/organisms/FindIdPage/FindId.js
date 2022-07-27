@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link, Avatar, Button, Grid, Box, CssBaseline, 
   Typography, Container, Divider } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import AuthTextField from '../../atoms/Commons/TextField';
+import { AuthTextField } from '../../atoms/Commons/TextField';
 
 const FindId = () => {
-  const [account, setAccount] = useState('');
+  const [account, setAccount] = useState('ㄴㄹㅇㄴ');
   const [info, setInfo] = useState({
     Email: '',
   });
@@ -68,6 +68,9 @@ const FindId = () => {
           >
             아이디 찾기
           </Button>
+          {(account === '') ? 
+            <Typography component="h6" variant="h6">귀하의 아이디는 {account} 입니다.</Typography> : <Typography component="h6" variant="h6">귀하의 아이디는 {account} 입니다.</Typography>
+          }
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/" variant="body2">

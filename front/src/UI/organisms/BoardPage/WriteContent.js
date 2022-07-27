@@ -9,6 +9,8 @@ import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
 import Text from '../../molecules/BoardPage/Text';
 import Image from '../../molecules/BoardPage/ImageListAccordion';
 import Math from '../../molecules/BoardPage/MathAccordion';
+import Link from '../../molecules/BoardPage/HyperLinkAccordion';
+import Code from '../../molecules/BoardPage/CodeAccordion';
 
 export default function WriteContent(props) {
   const title = props.title;
@@ -22,9 +24,13 @@ export default function WriteContent(props) {
     Text: Text,
     Image: Image,
     Math: Math,
+    Link: Link,
+    Code: Code,
   };
 
-  {list()}
+  {
+    list();
+  }
   function list() {
     layout.layouts.map((dataitem) => {
       switch (dataitem.type) {
@@ -45,28 +51,28 @@ export default function WriteContent(props) {
           };
           initialNodes.push(TextNode);
           break;
-          case 2:
-            const ImageNode = {
-              id: dataitem.id.toString(),
-              type: 'Image',
-              data: {
-                id: dataitem.id,
-                x: dataitem.coordinateX,
-                y: dataitem.coordinateY,
-                type: dataitem.type,
-                width: dataitem.width,
-                height: dataitem.height,
-                image: {},
-                content: '',
-              },
-              position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
-            };
-            initialNodes.push(ImageNode);
-            break;
-          case 4: 
-          const LinkNode = {
+        case 2:
+          const ImageNode = {
             id: dataitem.id.toString(),
-            type: 'Text',
+            type: 'Image',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              image: {},
+              explanation: '',
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(ImageNode);
+          break;
+        case 3:
+          const CodeNode = {
+            id: dataitem.id.toString(),
+            type: 'Code',
             data: {
               id: dataitem.id,
               x: dataitem.coordinateX,
@@ -75,29 +81,48 @@ export default function WriteContent(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
+              explanation: [],
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(CodeNode);
+          break;
+        case 4:
+          const LinkNode = {
+            id: dataitem.id.toString(),
+            type: 'Link',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: '',
+              explanation: '',
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
           initialNodes.push(LinkNode);
           break;
-          case 5:
-            const MathNode = {
-              id: dataitem.id.toString(),
-              type: 'Math',
-              data: {
-                id: dataitem.id,
-                x: dataitem.coordinateX,
-                y: dataitem.coordinateY,
-                type: dataitem.type,
-                width: dataitem.width,
-                height: dataitem.height,
-                content: '',
-                math : '',
-              },
-              position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
-            };
-            initialNodes.push(MathNode);
-            break;
+        case 5:
+          const MathNode = {
+            id: dataitem.id.toString(),
+            type: 'Math',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: '',
+              explanation: '',
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(MathNode);
+          break;
         default:
           const newNode = {
             id: dataitem.id.toString(),
@@ -119,8 +144,7 @@ export default function WriteContent(props) {
     });
   }
 
-  useEffect(() => {
-  }, [reactFlowInstance]);
+  useEffect(() => {}, [reactFlowInstance]);
 
   return (
     <Box
@@ -143,8 +167,7 @@ export default function WriteContent(props) {
               nodes={nodes}
               nodesDraggable={false}
               nodeTypes={nodeTypes}
-            >
-            </ReactFlow>
+            ></ReactFlow>
           </div>
         </ReactFlowProvider>
       </Box>

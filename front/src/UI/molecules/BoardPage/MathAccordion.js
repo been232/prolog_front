@@ -81,14 +81,14 @@ export default function MathAccordion(props) {
   };
 
   const highFunction = (text) => {
-    data.content = text;
+    data.explanation = text;
   };
 
   const highFunctions = (text) => {
     settextValue(textValue.concat(text));
   };
 
-  React.useEffect(() => {data.math = textValue;}, [textValue]);
+  React.useEffect(() => {data.content = textValue;}, [textValue]);
 
   return (
     <div style={{ width: data.width, height: data.height - 70 }}>

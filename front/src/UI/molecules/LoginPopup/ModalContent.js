@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Container, Box, Divider, Button } from '@mui/material';
-import AuthTextField from '../../atoms/Commons/TextField';
+import { AuthTextField } from '../../atoms/Commons/TextField';
 import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
 import CloseIcon from '@mui/icons-material/Close';
@@ -28,15 +28,48 @@ const ModalContent = (props) => {
     }));
   };
 
+  const emptyCheck = () => {
+    if (info.id === '' || info.password === '') {
+      return false;
+    }
+  };
+
   function handleLogin() {
+
+    const isEmpty = emptyCheck();
+    if (isEmpty === false) {
+      alert('아이디 또는 비밀번호를 입력하세요');
+      return false;
+    }
+
     // info 보내서 로그인 성공 여부 확인 코드 작성
     console.log(info);
-    alert("로그인");
 
-    // handleClose() 호출하기
+    // -----------------------  response 예시 데이터 -----------------------
+    // let response = await Api.postLogin(info);
+    let response = {
+      data : {
+        result : "success",
+        accessToken : "dfsgdfegsd",
+        refreshToken : "dfsgsdfsdg",
+      }
+    }
+
+    if (response.data.result === "success") {
+      // const target = '/';
+      console.log(JSON.stringify(response.data, ['accessToken', 'refreshToken']));
+      sessionStorage.setItem('user', JSON.stringify(response.data, ['accessToken', 'refreshToken']))
+      // window.location.href = target;
+    }
+    else if(response.data.result === "fail") {
+      alert('로그인 실패');
+    }
+
+    // LoginPopUp : handleClose() 호출하기
     handleClose();
   }
 
+  // 회원가입 페이지 요청 시에 LoginPopUp을 close하는 코드를 실행하려고 우선 작성함.
   function handleSignUp() {
     // handleClose() 호출하기
     handleClose();
