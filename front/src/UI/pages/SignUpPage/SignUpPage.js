@@ -17,9 +17,9 @@ const theme = createTheme({
 const SignUpPage = () => {
     return (
         <ThemeProvider theme={theme}>
-            <ReadMemberInfo>
+            <SignUp>
 
-            </ReadMemberInfo>
+            </SignUp>
         </ThemeProvider>
     );
 }
