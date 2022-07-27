@@ -1,7 +1,7 @@
 import { Box, StepContext } from '@mui/material';
 import React, { useEffect } from 'react';
-import BasicTextFields from '../../atoms/BoardPage/BasicTextFields';
-import WriteContent from '../../organisms/BoardPage/WriteContent';
+import BasicTextFields from '../../atoms/BoardWrite,DetailPage/BasicTextFields';
+import WriteContent from '../../organisms/BoardWrite,DetailPage/WriteContent';
 
 function BoardWritePage() {
   const [texts, setText] = React.useState('');

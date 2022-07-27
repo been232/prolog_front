@@ -3,12 +3,12 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import ImageLists from '../../atoms/BoardPage/ImageLists';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
+import ImageLists from '../../atoms/BoardWrite,DetailPage/ImageLists';
+import AccordionListText from '../../atoms/BoardWrite,DetailPage/AccordionListText';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import AddToPhotosRoundedIcon from '@mui/icons-material/AddToPhotosRounded';
-import ContentText from '../../atoms/BoardPage/ContentText';
+import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
 export default function ImageListAccordion(props) {
   const data = props.data;
   const board = data.board;

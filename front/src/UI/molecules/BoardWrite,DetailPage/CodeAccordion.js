@@ -3,7 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
+import AccordionListText from '../../atoms/BoardWrite,DetailPage/AccordionListText';
 import Editor from '@monaco-editor/react';
 import Box from '@mui/material/Box';
 import {
@@ -13,7 +13,7 @@ import {
   InputLabel,
   Button,
 } from '@mui/material';
-import ContentText from '../../atoms/BoardPage/ContentText';
+import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
 
 export default function CodeAccordion(props) {
   const data = props.data;

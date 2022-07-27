@@ -1,7 +1,7 @@
 import { Box } from '@mui/material';
 import React, { useEffect } from 'react';
-import UnderButtons from '../../molecules/BoardPage/UnderButtons';
-import Content from '../../organisms/BoardPage/Content';
+import UnderButtons from '../../molecules/BoardWrite,DetailPage/UnderButtons';
+import Content from '../../organisms/BoardWrite,DetailPage/Content';
 
 /* Gird Item 들은 기능 연동 후 map 으로 처리하던가 해야할듯 */
 function BoardDetailPage() {

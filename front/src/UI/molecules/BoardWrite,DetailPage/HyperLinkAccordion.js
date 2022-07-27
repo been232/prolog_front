@@ -3,9 +3,9 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
-import HyperLink from '../../atoms/BoardPage/HyperLink';
-import ContentText from '../../atoms/BoardPage/ContentText';
+import AccordionListText from '../../atoms/BoardWrite,DetailPage/AccordionListText';
+import HyperLink from '../../atoms/BoardWrite,DetailPage/HyperLink';
+import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
 
 export default function HyperLinkAccordion(props) {
   const data = props.data;

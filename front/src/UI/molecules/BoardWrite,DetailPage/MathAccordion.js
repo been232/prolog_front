@@ -4,7 +4,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
+import AccordionListText from '../../atoms/BoardWrite,DetailPage/AccordionListText';
 import Box from '@mui/material/Box';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import Modal from '@mui/material/Modal';
@@ -12,10 +12,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import 'katex/dist/katex.min.css';
 import TeX from '@matejmazur/react-katex';
-import Maths from '../../atoms/BoardPage/Maths';
+import Maths from '../../atoms/BoardWrite,DetailPage/Maths';
 import TextField from '@mui/material/TextField';
 import { Button, Card, CardContent } from '@mui/material';
-import ContentText from '../../atoms/BoardPage/ContentText';
+import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
