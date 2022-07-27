@@ -44,12 +44,12 @@ const FindId = () => {
       }
     }
 
-    // if (response.data.result === "success") {
-    //   setAccount(response.data.account);
-    // }
-    // else {
-    //   alert('회원가입 실패');
-    // }
+    if (response.data.result === "success") {
+      setAccount(response.data.account);
+    }
+    else {
+      alert('회원가입 실패');
+    }
   };
 
   return (
@@ -87,7 +87,7 @@ const FindId = () => {
             아이디 찾기
           </Button>
           {(account === '') ?
-            <Typography component="h6" variant="h6">귀하의 아이디는 {account} 입니다.</Typography> : <Typography component="h6" variant="h6">귀하의 아이디는 {account} 입니다.</Typography>
+            "" : <Typography component="h6" variant="h6">귀하의 아이디는 {account} 입니다.</Typography>
           }
           <Grid container justifyContent="flex-end">
             <Grid item>
