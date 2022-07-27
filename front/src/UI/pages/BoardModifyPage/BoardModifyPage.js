@@ -15,7 +15,7 @@ function BoardModifyPage() {
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
       <BasicTextFields propFunction={highFunction} data={data}/>
-      {/* <ModifyContent title={texts} layout={data} /> */}
+      <ModifyContent title={texts} layout={data} />
     </Box>
   );
 }
