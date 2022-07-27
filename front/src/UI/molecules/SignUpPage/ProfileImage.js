@@ -54,9 +54,9 @@ const ProfileImage = (props) => {
   return (
     <>
       <Grid container spacing={1}>
-        <Grid item>
+        <Grid item xs={6}>
           <Box>
-            <Box sx={{ float: 'left', width: "20%", height: "100px", paddingTop: "40px" }}>
+            <Box sx={{ float: 'left', width: "30%", height: "100px", paddingTop: "40px" }}>
               <TitleText title="프로필" fontWeight="bold" ></TitleText>
             </Box>
             <Box sx={{ float: 'left', width: "50%", height: "100px" }}>
@@ -67,11 +67,11 @@ const ProfileImage = (props) => {
             </Box>
           </Box>
         </Grid>
-        <Grid item>
+        <Grid item xs={6}>
           <Box>
             <Grid container spacing={2}>
               <Grid item xs={12}>
-                <Box sx={{ paddingLeft: 11 }}>
+                <Box sx={{ paddingLeft: 1, paddingTop: 2 }}>
                   <label htmlFor="input-file" onChange={onSaveImage} style={{ backgroundColor: "#BADBF3", borderRadius: "4px", cursor: "pointer", padding: "8px 11px", fontSize: "12px" }} >
                     이미지 첨부
                     <input type="file" id="input-file" accept="image/*" style={{ display: "none" }} />
@@ -79,7 +79,7 @@ const ProfileImage = (props) => {
                 </Box>
               </Grid>
               <Grid item xs={12}>
-                <Box sx={{ paddingLeft: 11 }}>
+                <Box sx={{ paddingLeft: 1 }}>
                   <DeleteButton
                     value="이미지 삭제"
                     handleDeleteImage={handleDeleteImage}
