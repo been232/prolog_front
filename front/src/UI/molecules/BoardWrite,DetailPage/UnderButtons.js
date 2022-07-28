@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom';
 export default function UnderButtons(props) {
   const data = props.data;
   const title = props.title;
+  console.log(props)
+  const tags = props.tags;
   const datas = [];
    
   const handleClick = () => {
@@ -58,7 +60,8 @@ export default function UnderButtons(props) {
     const submit = {
       user : '',
       moldName: title,
-      layouts: datas
+      layouts: datas,
+      tag : tags,
     };
 
     console.log(submit);

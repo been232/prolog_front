@@ -20,6 +20,8 @@ export default function WriteContent(props) {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [tag, setTag] = useState([]);
+
   const nodeTypes = {
     LayoutNode: LayoutNode,
     Text: Text,
@@ -28,6 +30,10 @@ export default function WriteContent(props) {
     Link: Link,
     Code: Code,
   };
+
+  const highComponent = (text) => {
+    setTag(text);
+  }
 
   {
     list();
@@ -178,8 +184,8 @@ export default function WriteContent(props) {
           </ReactFlowProvider>
         </Box>
       </Box>
-      <ChipInput />
-      <UnderButton id={layout.layoutId} title={title} data={nodes} />
+      <ChipInput propfunction = {highComponent} tag={tag}/>
+      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag}/>
     </Box>
   );
 }
