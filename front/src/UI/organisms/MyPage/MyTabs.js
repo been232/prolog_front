@@ -51,9 +51,7 @@ export default function MyTabs() {
         <Tabs value={value} onChange={handleChange} centered aria-label="basic tabs example" >
           <Tab label="내가 쓴 글" {...a11yProps(0)} />
           <Tab label="좋아요 한 글" {...a11yProps(1)} />
-          <Hidden smDown>
-            <Tab label="내 레이아웃" {...a11yProps(2)} />
-          </Hidden>
+          <Tab label="내 레이아웃" {...a11yProps(2)} sx={{ display: { xs: 'none', md: 'block' } }} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -62,11 +60,9 @@ export default function MyTabs() {
       <TabPanel value={value} index={1}>
         <ThumbUpBoardList></ThumbUpBoardList>
       </TabPanel>
-      {/* <Hidden smDown>
-        <TabPanel value={value} index={2}>
-          <MyLayoutList></MyLayoutList>
-        </TabPanel>
-      </Hidden> */}
+      <TabPanel value={value} index={2} sx={{ display: { xs: 'none', md: 'block' } }}>
+        <MyLayoutList></MyLayoutList>
+      </TabPanel>
     </Box>
   );
 }
