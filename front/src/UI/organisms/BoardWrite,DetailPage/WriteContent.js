@@ -11,6 +11,7 @@ import Image from '../../molecules/BoardWrite,DetailPage/ImageListAccordion';
 import Math from '../../molecules/BoardWrite,DetailPage/MathAccordion';
 import Link from '../../molecules/BoardWrite,DetailPage/HyperLinkAccordion';
 import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
+import ChipInput from '../../molecules/BoardWrite,DetailPage/ChipInput';
 
 export default function WriteContent(props) {
   const title = props.title;
@@ -64,7 +65,7 @@ export default function WriteContent(props) {
               height: dataitem.height,
               image: {},
               explanation: '',
-              board: false
+              board: false,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -83,7 +84,7 @@ export default function WriteContent(props) {
               height: dataitem.height,
               content: '',
               explanation: [],
-              board: false
+              board: false,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -102,7 +103,7 @@ export default function WriteContent(props) {
               height: dataitem.height,
               content: '',
               explanation: '',
-              board: false
+              board: false,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -121,7 +122,7 @@ export default function WriteContent(props) {
               height: dataitem.height,
               content: '',
               explanation: '',
-              board: false
+              board: false,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -151,30 +152,33 @@ export default function WriteContent(props) {
   useEffect(() => {}, [reactFlowInstance]);
 
   return (
-    <Box
-      sx={{
-        width: '90%',
-        marginLeft: '5%',
-        border: 2,
-        marginTop: 5,
-      }}
-    >
-      <Box style={{ width: '100%', height: 1500 }}>
-        <ReactFlowProvider>
-          <div
-            className="reactflow-wrapper"
-            ref={reactFlowWrapper}
-            style={{ width: '100%', height: 1500 }}
-          >
-            <ReactFlow
-              fitView
-              nodes={nodes}
-              nodesDraggable={false}
-              nodeTypes={nodeTypes}
-            ></ReactFlow>
-          </div>
-        </ReactFlowProvider>
+    <Box>
+      <Box
+        sx={{
+          width: '90%',
+          marginLeft: '5%',
+          border: 2,
+          marginTop: 5,
+        }}
+      >
+        <Box style={{ width: '100%', height: 1500 }}>
+          <ReactFlowProvider>
+            <div
+              className="reactflow-wrapper"
+              ref={reactFlowWrapper}
+              style={{ width: '100%', height: 1500 }}
+            >
+              <ReactFlow
+                fitView
+                nodes={nodes}
+                nodesDraggable={false}
+                nodeTypes={nodeTypes}
+              ></ReactFlow>
+            </div>
+          </ReactFlowProvider>
+        </Box>
       </Box>
+      <ChipInput />
       <UnderButton id={layout.layoutId} title={title} data={nodes} />
     </Box>
   );
