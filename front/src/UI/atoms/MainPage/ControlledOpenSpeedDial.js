@@ -16,6 +16,8 @@ const actions = [
   { icon: withLink('/layoutWrite', <PrintIcon />), name: '레이아웃작성' },
   { icon: withLink('/BoardDetail', <PrintIcon />), name: '글조회' },
   { icon: withLink('/BoardWrite', <PrintIcon />), name: '글작성' },
+  { icon: withLink('/BoardModify', <PrintIcon />), name: '글수정' },
+  { icon: withLink('/AllStatistics', <PrintIcon />), name: '전체 통계' },
 ];
 
 export default function ControlledOpenSpeedDial() {

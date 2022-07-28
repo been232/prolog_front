@@ -1,6 +1,6 @@
 import { Box, StepContext } from '@mui/material';
 import React, { useEffect } from 'react';
-import BasicTextFields from '../../atoms/BoardPage/BasicTextFields';
+import BasicTextFields from '../../atoms/BoardWrite,DetailPage/BasicTextFields';
 import WriteContent from '../../organisms/LayoutPage/WriteContent';
 
 function LayoutWritePage() {

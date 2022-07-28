@@ -6,7 +6,7 @@ function LayoutPage() {
   return (
     <>
       <Box sx={{ marginLeft: 20, marginRight: 20 }}>
-        <h2 style={{ paddingLeft: 70}}>{data[0].title}</h2>
+        <h2 style={{ marginLeft: '5%'}}>{data[0].title}</h2>
         <Content layout={data}/>
       </Box>
     </>

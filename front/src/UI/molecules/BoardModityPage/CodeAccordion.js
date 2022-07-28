@@ -3,18 +3,24 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
+import AccordionListText from '../../atoms/BoardModifyPage/AccordionListText';
 import Editor from '@monaco-editor/react';
 import Box from '@mui/material/Box';
-import { MenuItem, Select, FormControl, InputLabel } from '@mui/material';
+import {
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
+  Button,
+} from '@mui/material';
 
 export default function CodeAccordion(props) {
   const data = props.data;
   const [expand, setExpand] = React.useState(true);
-  const [Code, setCode] = React.useState(false);
-  const [Type, setType] = React.useState('');
-  const [codes, setcodes] = React.useState('코드');
-  const [explain,setexplaincodes] = React.useState('설명');
+  const [Code, setCode] = React.useState(true);
+  const [Type, setType] = React.useState(data.content[2]);
+  const [codes, setcodes] = React.useState(data.content[0]);
+  const [explain, setexplaincodes] = React.useState(data.content[1]);
   const [postdata, setpostdata] = React.useState([codes, explain, Type]);
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
@@ -27,18 +33,25 @@ export default function CodeAccordion(props) {
   const handleChange = (event) => {
     setType(event.target.value);
     setCode(true);
+    data.content = [codes, explain, event.target.value];
   };
 
-  React.useEffect(() => {data.content = postdata}, [codes, explain, Type]);
+  React.useEffect(() => {}, [codes, explain, Type]);
+
+  const ChangeType = () => {
+    setCode(false);
+  };
 
   function onChange(newValue, e) {
     setcodes(newValue);
-    setpostdata([newValue,explain, Type])
+    setpostdata([newValue, explain, Type]);
+    data.content = [newValue, explain, Type];
   }
 
   function onexplainChange(newValue, e) {
     setexplaincodes(newValue);
-    setpostdata([codes,newValue, Type])
+    setpostdata([codes, newValue, Type]);
+    data.content = [codes, newValue, Type];
   }
 
   return (
@@ -132,7 +145,9 @@ export default function CodeAccordion(props) {
                   <MenuItem value={'razor'}>razor</MenuItem>
                   <MenuItem value={'redis'}>redis</MenuItem>
                   <MenuItem value={'redshift'}>redshift</MenuItem>
-                  <MenuItem value={'restructuredtext'}>restructuredtext</MenuItem>
+                  <MenuItem value={'restructuredtext'}>
+                    restructuredtext
+                  </MenuItem>
                   <MenuItem value={'ruby'}>ruby</MenuItem>
                   <MenuItem value={'rust'}>rust</MenuItem>
                   <MenuItem value={'sb'}>sb</MenuItem>
@@ -184,7 +199,12 @@ export default function CodeAccordion(props) {
           )}
         </AccordionSummary>
         <AccordionDetails>
-          <AccordionListText propFunction={highFunctionText} />
+            <Box>
+              <AccordionListText propFunction={highFunctionText} data={data}/>
+              <Button onClick={ChangeType} style={{ float: 'right' }}>
+                언어 다시 선택
+              </Button>
+            </Box>
         </AccordionDetails>
       </Accordion>
     </div>

@@ -8,7 +8,8 @@ export default function UnderButtons(props) {
 
   return (
     <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3 }}>
-      <OutlinedButton content="삭제하기" />
+      <OutlinedButton content="삭제하기" style={{ marginLeft: 2 }}/>
+      <OutlinedButton content="사용하기" style={{ marginLeft: 2 }}/>
       <Link to="/">
         <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
       </Link>

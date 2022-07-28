@@ -3,16 +3,19 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import ImageLists from '../../atoms/BoardPage/ImageLists';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
+import ImageLists from '../../atoms/BoardWrite,DetailPage/ImageLists';
+import AccordionListText from '../../atoms/BoardWrite,DetailPage/AccordionListText';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
 import AddToPhotosRoundedIcon from '@mui/icons-material/AddToPhotosRounded';
-
+import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
 export default function ImageListAccordion(props) {
   const data = props.data;
+  const board = data.board;
   const [expand, setExpand] = React.useState(true);
   const imageInput = React.useRef();
-  const [image, setImage] = React.useState(false);
+  const [image, setImage] = React.useState(board);
+  const [change, setChange] = React.useState(data);
 
   const onCickImageUpload = () => {
     imageInput.current.click();
@@ -28,10 +31,14 @@ export default function ImageListAccordion(props) {
     }
 
     data.image = imageUrlLists;
-    if(data.image[0] != null){
-      setImage(true)
+    if (data.image[0] != null) {
+      setImage(true);
+      setChange({
+        ...change,
+        image: imageUrlLists,
+      });
     }
-  }
+  };
 
   const toggleAcordion = () => {
     setExpand((prev) => !prev);
@@ -63,27 +70,36 @@ export default function ImageListAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
+          <input
+            type="file"
+            style={{ display: 'none' }}
+            multiple="multiple"
+            ref={imageInput}
+            onChange={ImageChange}
+            accept="image/*"
+          />
           {image == false ? (
             <Box>
-              <input
-                type="file"
-                style={{ display: 'none' }}
-                multiple="multiple"
-                ref={imageInput}
-                onChange={ImageChange}
-                accept="image/*"
-              />
               <AddToPhotosRoundedIcon
                 style={{ width: data.width - 50, height: data.height - 170 }}
                 onClick={onCickImageUpload}
               />
             </Box>
           ) : (
-            <ImageLists data={data} />
+            <ImageLists data={change} />
           )}
         </AccordionSummary>
         <AccordionDetails>
-          <AccordionListText propFunction={highFunction} />
+          {board == true ? (
+            <ContentText data={data} />
+          ) : (
+            <Box>
+              <AccordionListText propFunction={highFunction} />
+              <Button onClick={onCickImageUpload} style={{ float: 'right' }}>
+                사진 다시 선택
+              </Button>
+            </Box>
+          )}
         </AccordionDetails>
       </Accordion>
     </div>

@@ -3,8 +3,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
-import AccordionListText from '../../atoms/BoardPage/AccordionListText';
-import HyperLink from '../../atoms/BoardPage/HyperLink';
+import AccordionListText from '../../atoms/BoardModifyPage/AccordionListText';
+import HyperLink from '../../atoms/BoardModifyPage/HyperLink';
 
 export default function HyperLinkAccordion(props) {
   const data = props.data;
@@ -44,10 +44,10 @@ export default function HyperLinkAccordion(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-            <HyperLink propFunction={highFunction} />
+            <HyperLink propFunction={highFunctionText} data={data}/>
         </AccordionSummary>
         <AccordionDetails>
-          <AccordionListText propFunction={highFunctionText} />
+            <AccordionListText propFunction={highFunction} data={data}/>
         </AccordionDetails>
       </Accordion>
     </div>

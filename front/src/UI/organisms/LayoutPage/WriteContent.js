@@ -21,20 +21,7 @@ import UnderButtons2 from '../../molecules/LayoutPage/UnderButtons2';
 const nodeTypes = {
   resizeNode: resizeNode,
 };
-const initialNodes = [
-  {
-    id: '0',
-    type: 'resizeNode',
-    data: {
-      id: '0',
-      x: 250,
-      y: 5,
-      type: 1,
-    },
-    position: { x: 250, y: 5 },
-    dragHandle: '.custom-drag-handle',
-  },
-];
+const initialNodes = [];
 
 let id = 1;
 const getId = () => `${id++}`;
@@ -70,8 +57,11 @@ export default function WriteContent(props) {
     setValue(newValue);
   };
 
-  useEffect(() => {}, []);
 
+  useEffect(()=> {
+    setNodes(nodes.filter(item => item.data.remove != true));
+  } , []);
+  
   const onDragStart = (event, newValue) => {
     event.dataTransfer.setData('application/reactflow', newValue);
     event.dataTransfer.effectAllowed = 'move';
@@ -82,6 +72,10 @@ export default function WriteContent(props) {
     event.dataTransfer.dropEffect = 'move';
   }, []);
 
+  const remove = () => {
+    setNodes(nodes.filter(item => item.data.remove != true));
+  }
+  
   const onDrop = useCallback(
     (event) => {
       event.preventDefault();
@@ -108,6 +102,7 @@ export default function WriteContent(props) {
           id: id,
           x: position.x,
           y: position.y,
+          remove: false
         },
         position: { x: position.x, y: position.y },
         dragHandle: '.custom-drag-handle',
@@ -194,13 +189,15 @@ export default function WriteContent(props) {
           >
             <ReactFlow
               fitView
+              onClick = {remove}
               onDragOver={onDragOver}
               onDrop={onDrop}
               onInit={setReactFlowInstance}
               nodes={nodes}
               onNodesChange={onNodesChange}
               nodeTypes={nodeTypes}
-            ></ReactFlow>
+            >
+            </ReactFlow>
           </div>
         </ReactFlowProvider>
       </Box>
