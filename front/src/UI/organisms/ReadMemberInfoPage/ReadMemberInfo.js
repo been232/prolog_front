@@ -44,7 +44,7 @@ const ReadMemberInfo = () => {
                 account: 'sojeong!',
                 Email: 'sojeong@email.com',
                 Nickname: '북극곰구하자',
-                Image: "https://kumbang.vercel.app/static/media/logo192.d89c8b589ae66b952147.png",
+                Image: "https://avatars.githubusercontent.com/u/74320060?v=4",
                 Introduction: '프론트엔드',
                 Alarm: true,
             });

@@ -13,6 +13,7 @@ import BoardWritePage from '../pages/BoardPage/BoardWritePage';
 import SearchPage from '../pages/SearchPage/SearchPage';
 import ReadMemberInfoPage from '../pages/ReadMemberInfoPage/ReadMemberInfoPage';
 import ChangePWPage from '../pages/ChangePWPage/ChangePWPage';
+import MyPage from '../pages/MyPage/MyPage';
 
 const App = () => {
   return (
@@ -34,6 +35,7 @@ const App = () => {
 
             <Route path="/memberInfo/*" element={<ReadMemberInfoPage />} />
             <Route path="/changePW/*" element={<ChangePWPage />} />
+            <Route path="/mypage/*" element={<MyPage />} />
 
             <Route path="/search" element={<SearchPage />} />
           </Routes>
