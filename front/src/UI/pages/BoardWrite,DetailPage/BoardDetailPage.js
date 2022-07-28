@@ -142,7 +142,7 @@ const data = {
     //         url : http::/~
     //     }
     // ],
-    // tag : [tag1,tag2],
+    tag : ["gg","Zz"],
     hits: 123,
     likes: { count: 11, exist: false }, // exist : 내가 좋아요를 눌렀는지
     // comments : [

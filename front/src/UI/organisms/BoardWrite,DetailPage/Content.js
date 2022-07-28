@@ -11,9 +11,11 @@ import Image from '../../molecules/BoardWrite,DetailPage/ImageListAccordion';
 import Math from '../../molecules/BoardWrite,DetailPage/MathAccordion';
 import Link from '../../molecules/BoardWrite,DetailPage/HyperLinkAccordion';
 import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
+import ChipList from '../../molecules/BoardWrite,DetailPage/ChipList';
 
 export default function Content(props) {
   const layout = props.layout.data;
+  const tag = layout.tag;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -63,7 +65,7 @@ export default function Content(props) {
               height: dataitem.height,
               image: dataitem.images,
               explanation: dataitem.explanation,
-              board: true
+              board: true,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -82,7 +84,7 @@ export default function Content(props) {
               height: dataitem.height,
               content: dataitem.content,
               explanation: dataitem.explanation,
-              board: true
+              board: true,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -101,7 +103,7 @@ export default function Content(props) {
               height: dataitem.height,
               content: dataitem.content,
               explanation: dataitem.explanation,
-              board: true
+              board: true,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -120,7 +122,7 @@ export default function Content(props) {
               height: dataitem.height,
               content: dataitem.content,
               explanation: dataitem.explanation,
-              board: true
+              board: true,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -150,31 +152,34 @@ export default function Content(props) {
   useEffect(() => {}, [reactFlowInstance]);
 
   return (
-    <Box
-      sx={{
-        width: '90%',
-        marginLeft: '5%',
-        border: 2,
-        marginTop: 5,
-      }}
-    >
-      <Box style={{ width: '100%', height: 1500 }}>
-        <ReactFlowProvider>
-          <div
-            className="reactflow-wrapper"
-            ref={reactFlowWrapper}
-            style={{ width: '100%', height: 1500 }}
-          >
-            <ReactFlow
-              fitView
-              nodes={nodes}
-              nodesDraggable={false}
-              nodeTypes={nodeTypes}
-            ></ReactFlow>
-          </div>
-        </ReactFlowProvider>
+    <Box>
+      <Box
+        sx={{
+          width: '90%',
+          marginLeft: '5%',
+          border: 2,
+          marginTop: 5,
+        }}
+      >
+        <Box style={{ width: '100%', height: 1500 }}>
+          <ReactFlowProvider>
+            <div
+              className="reactflow-wrapper"
+              ref={reactFlowWrapper}
+              style={{ width: '100%', height: 1500 }}
+            >
+              <ReactFlow
+                fitView
+                nodes={nodes}
+                nodesDraggable={false}
+                nodeTypes={nodeTypes}
+              ></ReactFlow>
+            </div>
+          </ReactFlowProvider>
+        </Box>
       </Box>
-      <UnderButtons id={layout.layoutId} data={nodes} />
+      <ChipList tag={tag}/>
+      <UnderButtons id={layout.layoutId} data={nodes} tags={tag}/>
     </Box>
   );
 }

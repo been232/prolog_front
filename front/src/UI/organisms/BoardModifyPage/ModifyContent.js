@@ -11,6 +11,7 @@ import Image from '../../molecules/BoardModityPage/ImageListAccordion';
 import Math from '../../molecules/BoardModityPage/MathAccordion';
 import Link from '../../molecules/BoardModityPage/HyperLinkAccordion';
 import Code from '../../molecules/BoardModityPage/CodeAccordion';
+import ChipInput from '../../molecules/BoardModityPage/ChipInput';
 
 export default function ModifyContent(props) {
   const layout = props.layout.data;
@@ -18,6 +19,7 @@ export default function ModifyContent(props) {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [tag, setTag] = useState(layout.tag);
   const nodeTypes = {
     LayoutNode: LayoutNode,
     Text: Text,
@@ -26,6 +28,10 @@ export default function ModifyContent(props) {
     Link: Link,
     Code: Code,
   };
+
+  const highComponent = (text) => {
+    setTag(text);
+  }
 
   {
     list();
@@ -146,31 +152,34 @@ export default function ModifyContent(props) {
   useEffect(() => {}, [reactFlowInstance]);
 
   return (
-    <Box
-      sx={{
-        width: '90%',
-        marginLeft: '5%',
-        border: 2,
-        marginTop: 5,
-      }}
-    >
-      <Box style={{ width: '100%', height: 1500 }}>
-        <ReactFlowProvider>
-          <div
-            className="reactflow-wrapper"
-            ref={reactFlowWrapper}
-            style={{ width: '100%', height: 1500 }}
-          >
-            <ReactFlow
-              fitView
-              nodes={nodes}
-              nodesDraggable={false}
-              nodeTypes={nodeTypes}
-            ></ReactFlow>
-          </div>
-        </ReactFlowProvider>
+    <Box>
+      <Box
+        sx={{
+          width: '90%',
+          marginLeft: '5%',
+          border: 2,
+          marginTop: 5,
+        }}
+      >
+        <Box style={{ width: '100%', height: 1500 }}>
+          <ReactFlowProvider>
+            <div
+              className="reactflow-wrapper"
+              ref={reactFlowWrapper}
+              style={{ width: '100%', height: 1500 }}
+            >
+              <ReactFlow
+                fitView
+                nodes={nodes}
+                nodesDraggable={false}
+                nodeTypes={nodeTypes}
+              ></ReactFlow>
+            </div>
+          </ReactFlowProvider>
+        </Box>
       </Box>
-      <UnderButton id={layout.layoutId} data={nodes} />
+      <ChipInput propfunction={highComponent} tag={tag} />
+      <UnderButton id={layout.layoutId} data={nodes} tags={tag}/>
     </Box>
   );
 }

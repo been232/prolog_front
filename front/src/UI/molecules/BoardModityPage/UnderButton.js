@@ -6,6 +6,7 @@ import OutlinedButton from '../../atoms/Commons/OutlinedButton';
 export default function UnderButton(props) {
   const data = props.data;
   const title = props.title;
+  const tags = props.tags;
   const datas = [];
    
   const handleClick = () => {
@@ -57,7 +58,8 @@ export default function UnderButton(props) {
     const submit = {
       user : '',
       moldName: title,
-      layouts: datas
+      layouts: datas,
+      tag : tags,
     };
 
     console.log(submit);
