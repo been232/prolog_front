@@ -12,6 +12,7 @@ import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
 import BoardWritePage from '../pages/BoardWrite,DetailPage/BoardWritePage';
 import SearchPage from '../pages/SearchPage/SearchPage';
 import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
+import StatisticsPage from '../pages/StatisticsPage/StatisticsPage';
 
 const App = () => {
   return (
@@ -35,6 +36,8 @@ const App = () => {
             <Route path="/findID/*" element={<LoginPopupPage />} />
 
             <Route path="/search" element={<SearchPage />} />
+
+            <Route path="/AllStatistics/*" element={<StatisticsPage />} />
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>
