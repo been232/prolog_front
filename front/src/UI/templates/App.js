@@ -13,6 +13,7 @@ import BoardWritePage from '../pages/BoardWrite,DetailPage/BoardWritePage';
 import SearchPage from '../pages/SearchPage/SearchPage';
 import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 import StatisticsPage from '../pages/StatisticsPage/StatisticsPage';
+import './App.css'
 
 const App = () => {
   return (
