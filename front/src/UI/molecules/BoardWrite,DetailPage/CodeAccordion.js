@@ -80,7 +80,7 @@ export default function CodeAccordion(props) {
             Code == false ? (
               <Box sx={{ minWidth: data.width - 50 }}>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label">
+                  <InputLabel id="demo-simple-select-label" style={{fontFamily: "KOTRAHOPE"}}>
                     코드 언어 선택
                   </InputLabel>
                   <Select
@@ -183,6 +183,7 @@ export default function CodeAccordion(props) {
                   defaultLanguage={Type}
                   options={{
                     minimap: { enabled: false },
+                    fontFamily: "KOTRAHOPE"
                   }}
                   value={codes}
                   onChange={onChange}
@@ -196,6 +197,7 @@ export default function CodeAccordion(props) {
                   onChange={onexplainChange}
                   options={{
                     minimap: { enabled: false },
+                    fontFamily: "KOTRAHOPE"
                   }}
                 />
               </>
@@ -210,8 +212,10 @@ export default function CodeAccordion(props) {
                 options={{
                   minimap: { enabled: false },
                   readOnly: true,
+                  fontFamily: "KOTRAHOPE"
                 }}
                 value={data.content[0]}
+                
               />
               <Editor
                 width={(data.width - 50) / 2}
@@ -222,6 +226,7 @@ export default function CodeAccordion(props) {
                 options={{
                   minimap: { enabled: false },
                   readOnly: true,
+                  fontFamily: "KOTRAHOPE"
                 }}
               />
             </>
@@ -233,7 +238,7 @@ export default function CodeAccordion(props) {
           ) : (
             <Box>
               <AccordionListText propFunction={highFunctionText} />
-              <Button onClick={ChangeType} style={{float:'right'}}>언어 다시 선택</Button>
+              <Button onClick={ChangeType} style={{float:'right',fontFamily: "KOTRAHOPE"}}>언어 다시 선택</Button>
             </Box>
           )}
         </AccordionDetails>

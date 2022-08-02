@@ -24,7 +24,8 @@ const AccordionListText = (props) => {
           fontSize: 14,
           padding: '0 14px',
           fontWeight: 'bold',
-          height: 70
+          height: 70,
+          fontFamily: "KOTRAHOPE"
         },
       }}
     />

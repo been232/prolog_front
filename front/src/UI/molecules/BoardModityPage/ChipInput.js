@@ -38,8 +38,9 @@ export default function ChipInput(props) {
     setSelectedItem(newSelectedItem);
   }
 
-  const getMembers = async (value) => { //통신후 입력마다 값 불러와야함
-    const member_list = ['gggg','zzz'];
+  const getMembers = async (value) => {
+    //통신후 입력마다 값 불러와야함
+    const member_list = ['gggg', 'zzz'];
     setMembers(member_list);
   };
 
@@ -103,6 +104,7 @@ export default function ChipInput(props) {
                   borderTopLeftRadius: 5,
                   backgroundColor: 'primary.smoothgreen',
                 }}
+                inputProps={{ style: { fontFamily: 'KOTRAHOPE' } }}
                 style={{ width: '90%', marginLeft: '5%', marginTop: 20 }}
                 placeholder="팀원의 아이디를 입력해주세요"
                 InputProps={{
@@ -112,6 +114,7 @@ export default function ChipInput(props) {
                       tabIndex={-1}
                       label={item}
                       onDelete={handleDelete(item)}
+                      style={{ fontFamily: 'KOTRAHOPE' }}
                     />
                   )),
                   onBlur,
@@ -125,11 +128,15 @@ export default function ChipInput(props) {
                 {...inputProps}
               />
               {state ? (
-                <Paper style={{ width: '90%', marginLeft: '5%'}} sx={{boxShadow: 5 }}>
+                <Paper
+                  style={{ width: '90%', marginLeft: '5%' }}
+                  sx={{ boxShadow: 5 }}
+                >
                   <MenuList>
                     {members?.map((s) => {
                       return (
                         <MenuItem
+                          style={{ fontFamily: 'KOTRAHOPE' }}
                           onClick={() => {
                             makeChip(s);
                             setMembers([]);
@@ -153,4 +160,3 @@ export default function ChipInput(props) {
     </React.Fragment>
   );
 }
-
