@@ -24,8 +24,8 @@ const dragHandleStyle = {
 
 const Moveable = (props) => {
   const data = props;
-  const [width, setWidth] = React.useState(300);
-  const [height, setHeight] = React.useState(200);
+  const [width, setWidth] = React.useState(800);
+  const [height, setHeight] = React.useState(600);
 
   const remove = () => {
     data.data.remove = true;
@@ -57,6 +57,27 @@ const Moveable = (props) => {
     }
   }
 
+  function max() {
+    switch (data.data.type) {
+      case 1:
+        return 100;
+      case 2:
+        return 400;
+      case 3:
+        return 600;
+      case 4:
+        return 150;
+      case 5:
+        return 300;
+      case 6:
+        return 600;
+      case 7:
+        return 600;
+      default:
+        return 300;
+    }
+  }
+
   return (
     <Box>
       <HighlightOffIcon onClick={remove} style={{ float: 'right' }} />
@@ -67,6 +88,8 @@ const Moveable = (props) => {
           setWidth(width + d.width);
           setHeight(height + d.height);
         }}
+        minWidth = {600}
+        minHeight = {max()}
       >
         {list()}
         <span className="custom-drag-handle" style={dragHandleStyle} />

@@ -187,12 +187,12 @@ export default function WriteContent(props) {
           />
         </Tabs>
       </Box>
-      <Box style={{ width: '100%', height: 1500, cursor: 'grap' }}>
+      <Box style={{ width: '100%', height: 800, cursor: 'grap' }}>
         <ReactFlowProvider>
           <div
             className="reactflow-wrapper"
             ref={reactFlowWrapper}
-            style={{ width: '100%', height: 1500 }}
+            style={{ width: '100%', height: 800 }}
           >
             <ReactFlow
               fitView
