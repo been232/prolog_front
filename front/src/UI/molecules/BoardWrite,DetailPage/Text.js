@@ -34,6 +34,7 @@ const Text = (props) => {
           height: data.data.height,
           padding: '0 14px',
           fontWeight: 'bold',
+          fontFamily: "KOTRAHOPE"
         },
       }}
     />

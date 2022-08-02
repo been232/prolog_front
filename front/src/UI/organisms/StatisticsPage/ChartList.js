@@ -1,7 +1,6 @@
 import Box from '@mui/material/Box';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, registerables } from 'chart.js';
-import { Chart } from 'react-chartjs-2';
 
 export default function ChartList(props) {
   ChartJS.register(...registerables);
