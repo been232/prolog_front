@@ -33,7 +33,7 @@ export default function HyperLinkAccordion(props) {
         width: data.width,
       }}
     >
-      <Accordion style={{height: data.height}} expanded={expand}>
+      <Accordion expanded={expand}>
         <AccordionSummary
           expandIcon={
             <KeyboardDoubleArrowDownIcon

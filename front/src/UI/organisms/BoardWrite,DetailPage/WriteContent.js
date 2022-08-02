@@ -175,6 +175,7 @@ export default function WriteContent(props) {
               style={{ width: '100%', height: 800 }}
             >
               <ReactFlow
+                            fitView
                 nodes={nodes}
                 nodesDraggable={false}
                 nodeTypes={nodeTypes}

@@ -16,15 +16,10 @@ const AccordionListText = (props) => {
     <TextField
       value={text}
       fullWidth
-      multiline
-      row={3}
       onChange={handleChange}
       inputProps={{
         style: {
-          fontSize: 14,
-          padding: '0 14px',
           fontWeight: 'bold',
-          height: 70,
           fontFamily: "KOTRAHOPE"
         },
       }}
