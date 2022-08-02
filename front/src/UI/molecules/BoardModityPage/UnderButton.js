@@ -66,7 +66,7 @@ export default function UnderButton(props) {
   };
 
   return (
-    <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3 }} onClick={handleClick}>
+    <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10}} onClick={handleClick}>
       <OutlinedButton content="수정하기" style={{ marginLeft: 2 }} />
       <OutlinedButton content="삭제하기" style={{ marginLeft: 2 }} />
       {/* <Link to="/"> */}
