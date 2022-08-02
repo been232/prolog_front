@@ -277,7 +277,7 @@ export default function MathAccordion(props) {
           {board == true ? (
             <ContentText data={data} />
           ) : (
-            <AccordionListText propFunction={highFunction} />
+            <AccordionListText data={data} propFunction={highFunction} />
           )}
         </AccordionDetails>
       </Accordion>

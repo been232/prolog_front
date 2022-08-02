@@ -12,7 +12,7 @@ export default function UnderButtons2(props) {
     data.map((dataitem) => {
       datas.push({
         height: dataitem.height,
-        width: dataitem.width,
+        width: dataitem.width - 30,
         coordinateX: dataitem.position.x,
         coordinateY: dataitem.position.y,
         type: dataitem.data.type,
@@ -25,6 +25,8 @@ export default function UnderButtons2(props) {
       moldName: title,
       layouts: datas,
     };
+
+    console.log(submit)
   };
 
   return (

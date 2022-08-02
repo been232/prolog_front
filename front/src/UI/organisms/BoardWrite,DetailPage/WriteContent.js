@@ -167,15 +167,14 @@ export default function WriteContent(props) {
           marginTop: 5,
         }}
       >
-        <Box style={{ width: '100%', height: 1500 }}>
+        <Box style={{ width: '100%', height: 800 }}>
           <ReactFlowProvider>
             <div
               className="reactflow-wrapper"
               ref={reactFlowWrapper}
-              style={{ width: '100%', height: 1500 }}
+              style={{ width: '100%', height: 800 }}
             >
               <ReactFlow
-                fitView
                 nodes={nodes}
                 nodesDraggable={false}
                 nodeTypes={nodeTypes}

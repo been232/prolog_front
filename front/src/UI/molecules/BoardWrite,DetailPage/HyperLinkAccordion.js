@@ -6,6 +6,7 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import AccordionListText from '../../atoms/BoardWrite,DetailPage/AccordionListText';
 import HyperLink from '../../atoms/BoardWrite,DetailPage/HyperLink';
 import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
+import { Box } from '@mui/material';
 
 export default function HyperLinkAccordion(props) {
   const data = props.data;
@@ -27,13 +28,12 @@ export default function HyperLinkAccordion(props) {
   React.useEffect(() => {}, []);
 
   return (
-    <div
+    <Box
       style={{
         width: data.width,
-        height: data.height,
       }}
     >
-      <Accordion expanded={expand}>
+      <Accordion style={{height: data.height}} expanded={expand}>
         <AccordionSummary
           expandIcon={
             <KeyboardDoubleArrowDownIcon
@@ -49,17 +49,17 @@ export default function HyperLinkAccordion(props) {
           {board == true ? (
             <ContentText data={data} level={1}/>
           ) : (
-            <HyperLink propFunction={highFunction} />
+            <HyperLink data={data} propFunction={highFunction} />
           )}
         </AccordionSummary>
         <AccordionDetails>
           {board == true ? (
             <ContentText data={data} level={2}/>
           ) : (
-            <AccordionListText propFunction={highFunction} />
+            <AccordionListText data={data} propFunction={highFunction} />
           )}
         </AccordionDetails>
       </Accordion>
-    </div>
+    </Box>
   );
 }
