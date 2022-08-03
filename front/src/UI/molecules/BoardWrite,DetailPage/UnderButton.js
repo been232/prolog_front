@@ -19,6 +19,7 @@ export default function UnderButton(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
+          leader: dataitem.data.leader
         });
       }
       else if(dataitem.data.type == 2){
@@ -29,7 +30,8 @@ export default function UnderButton(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           explanation: dataitem.data.explanation,
-          image: dataitem.data.image
+          image: dataitem.data.image,
+          leader: dataitem.data.leader
         });
       } else if(dataitem.data.type == 5){
         datas.push({
@@ -39,7 +41,8 @@ export default function UnderButton(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          explanation: dataitem.data.explanation
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
         });
       }
       else {
@@ -50,7 +53,8 @@ export default function UnderButton(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          explanation: dataitem.data.explanation
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
         });
       }
     });

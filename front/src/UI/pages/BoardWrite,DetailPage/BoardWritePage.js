@@ -1,4 +1,4 @@
-import { Box, StepContext } from '@mui/material';
+import { Box, StepContext, Button } from '@mui/material';
 import React, { useEffect } from 'react';
 import BasicTextFields from '../../atoms/BoardWrite,DetailPage/BasicTextFields';
 import WriteContent from '../../organisms/BoardWrite,DetailPage/WriteContent';
@@ -10,7 +10,7 @@ function BoardWritePage() {
     setText(text);
   };
 
-  useEffect(() => {}, [texts,data]);
+  useEffect(() => {}, [texts, data]);
 
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
@@ -33,6 +33,7 @@ const data = [
         remove: false,
         type: 1,
         width: 594,
+        leader: false
       },
       {
         id: 2,
@@ -42,6 +43,7 @@ const data = [
         remove: false,
         type: 2,
         width: 594,
+        leader: false
       },
       {
         id: 4,
@@ -51,6 +53,7 @@ const data = [
         remove: false,
         type: 4,
         width: 594,
+        leader: false
       },
       {
         id: 3,
@@ -60,6 +63,7 @@ const data = [
         remove: false,
         type: 3,
         width: 594,
+        leader: true
       },
       {
         id: 6,
@@ -69,6 +73,7 @@ const data = [
         remove: false,
         type: 6,
         width: 594,
+        leader: false
       },
       {
         id: 5,
@@ -78,6 +83,7 @@ const data = [
         remove: false,
         type: 5,
         width: 594,
+        leader: false
       },
       // {
       //   id: 7,
