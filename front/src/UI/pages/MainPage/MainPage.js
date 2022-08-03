@@ -53,11 +53,12 @@ function MainPage() {
         <Grid item xl={3} lg={4} sm={6}>
           <MainPageOrganism data={data}></MainPageOrganism>
         </Grid> */}
-        {datas.data.map((data) => (
-          <Grid item xl={3} lg={4} sm={6} id={data.id}>
-            <MainPageOrganism data={data}></MainPageOrganism>
-          </Grid>
-        ))}
+        {datas &&
+          datas.data.map((data) => (
+            <Grid item xl={3} lg={4} sm={6} id={data.id}>
+              <MainPageOrganism data={data}></MainPageOrganism>
+            </Grid>
+          ))}
       </Grid>
     </Box>
   );

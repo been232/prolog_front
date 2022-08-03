@@ -1,9 +1,13 @@
 import { Box } from '@mui/material';
 import React from 'react';
 import { SearchTextField } from '../../atoms/Commons/TextField';
-import SearchButton from '../../atoms/SearchPage/SearchButton';
+import { SearchButton } from '../../atoms/SearchPage/SearchButton';
 
 function SearchBar() {
+  const getSearch = () => {
+    //검색하는 통신
+    console.log('test');
+  };
   return (
     <Box
       sx={{
@@ -18,7 +22,7 @@ function SearchBar() {
       <SearchTextField
         style={{ width: '500px', marginRight: '10px' }}
       ></SearchTextField>
-      <SearchButton></SearchButton>
+      <SearchButton onClick={getSearch}></SearchButton>
     </Box>
   );
 }
