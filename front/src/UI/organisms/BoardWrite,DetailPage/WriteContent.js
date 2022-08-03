@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box';
+import { Box, StepContext, Button } from '@mui/material';
 import { useEffect, useRef, useState, useCallback } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
@@ -21,6 +21,9 @@ export default function WriteContent(props) {
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [tag, setTag] = useState([]);
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const nodeTypes = {
     LayoutNode: LayoutNode,
@@ -33,11 +36,12 @@ export default function WriteContent(props) {
 
   const highComponent = (text) => {
     setTag(text);
-  }
+  };
 
   {
     list();
   }
+
   function list() {
     layout.layouts.map((dataitem) => {
       switch (dataitem.type) {
@@ -53,6 +57,7 @@ export default function WriteContent(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
+              leader: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -72,6 +77,7 @@ export default function WriteContent(props) {
               image: {},
               explanation: '',
               board: false,
+              leader: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -91,6 +97,7 @@ export default function WriteContent(props) {
               content: '',
               explanation: [],
               board: false,
+              leader: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -110,6 +117,7 @@ export default function WriteContent(props) {
               content: '',
               explanation: '',
               board: false,
+              leader: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -129,6 +137,7 @@ export default function WriteContent(props) {
               content: '',
               explanation: '',
               board: false,
+              leader: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -146,6 +155,7 @@ export default function WriteContent(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
+              leader: false
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -159,6 +169,12 @@ export default function WriteContent(props) {
 
   return (
     <Box>
+      <Button
+        onClick={handleOpen}
+        style={{ float: 'right', fontFamily: 'KOTRAHOPE', marginRight: '5%' }}
+      >
+        대표 설정
+      </Button>
       <Box
         sx={{
           width: '90%',
@@ -172,10 +188,10 @@ export default function WriteContent(props) {
             <div
               className="reactflow-wrapper"
               ref={reactFlowWrapper}
-              style={{ width: '100%', height: 800 }}
+              style={{ width: '100%', height: 750 }}
             >
               <ReactFlow
-                            fitView
+                fitView
                 nodes={nodes}
                 nodesDraggable={false}
                 nodeTypes={nodeTypes}
@@ -184,8 +200,8 @@ export default function WriteContent(props) {
           </ReactFlowProvider>
         </Box>
       </Box>
-      <ChipInput propfunction = {highComponent} tag={tag}/>
-      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag}/>
+      <ChipInput propfunction={highComponent} tag={tag} />
+      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag} />
     </Box>
   );
 }
