@@ -3,6 +3,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Box, Container, Hidden } from '@mui/material';
 import MyInfo from '../../organisms/MyPage/MyInfo';
 import MyTabs from '../../organisms/MyPage/MyTabs';
+import TreeList from '../../organisms/MyPage/Category/TreeList';
 
 const theme = createTheme({
     palette: {
@@ -21,7 +22,10 @@ const MyPage = () => {
         <>
             <ThemeProvider theme={theme}>
                 <Hidden smDown>
-                    <Box sx={{ marginLeft: 20, marginRight: 20 }}>
+                    <TreeList>
+
+                    </TreeList>
+                    <Box sx={{ paddingLeft: 40, marginRight: 20 }}>
                         <Box sx={{ marginBottom: 5 }}>
                             <MyInfo />
                         </Box>
