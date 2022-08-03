@@ -233,6 +233,7 @@ export default function MathAccordion(props) {
                         value={textValue}
                         onChange={handletextChange}
                         placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
+                        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
                       />
                     </Box>
                     <Box style={{ marginTop: 20 }}>

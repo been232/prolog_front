@@ -16,16 +16,16 @@ const Text = (props) => {
   return (
     <TextField
       multiline
-      rows={data.data.height / 20}
+      rows={data.data.height / 40}
       value={text}
       onChange={handleChange}
       inputProps={{
         style: {
           fontSize: 14,
-          width: data.data.width,
+          width: data.data.width - 30,
           height: data.data.height,
-          padding: '0 14px',
           fontWeight: 'bold',
+          fontFamily: "KOTRAHOPE"
         },
       }}
     />

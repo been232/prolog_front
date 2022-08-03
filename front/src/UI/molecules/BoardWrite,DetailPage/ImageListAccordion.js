@@ -94,8 +94,8 @@ export default function ImageListAccordion(props) {
             <ContentText data={data} />
           ) : (
             <Box>
-              <AccordionListText propFunction={highFunction} />
-              <Button onClick={onCickImageUpload} style={{ float: 'right' }}>
+              <AccordionListText data={data} propFunction={highFunction} />
+              <Button onClick={onCickImageUpload} style={{ float: 'right', fontFamily: "KOTRAHOPE"}}>
                 사진 다시 선택
               </Button>
             </Box>

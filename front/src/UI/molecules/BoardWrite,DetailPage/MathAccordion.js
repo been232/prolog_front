@@ -240,12 +240,13 @@ export default function MathAccordion(props) {
                         value={textValue}
                         onChange={handletextChange}
                         placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
+                        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
                       />
                     </Box>
                     <Box style={{ marginTop: 20 }}>
                       <Card>
                         <CardContent style={{ height: 100 }}>
-                          <TeX math={textValue} />
+                          <TeX math={textValue} style={{fontFamily: "KOTRAHOPE"}}/>
                         </CardContent>
                       </Card>
                     </Box>
@@ -258,7 +259,7 @@ export default function MathAccordion(props) {
                 style={{ width: data.width - 50, height: data.height - 170 }}
               >
                 <CardContent>
-                  <TeX math={textValue} />
+                  <TeX math={textValue} style={{fontFamily: "KOTRAHOPE"}}/>
                 </CardContent>
               </Card>
             )
@@ -267,7 +268,7 @@ export default function MathAccordion(props) {
               style={{ width: data.width - 50, height: data.height - 170 }}
             >
               <CardContent>
-                <TeX math={data.content} />
+                <TeX math={data.content} style={{fontFamily: "KOTRAHOPE"}}/>
               </CardContent>
             </Card>
           )}
@@ -276,7 +277,7 @@ export default function MathAccordion(props) {
           {board == true ? (
             <ContentText data={data} />
           ) : (
-            <AccordionListText propFunction={highFunction} />
+            <AccordionListText data={data} propFunction={highFunction} />
           )}
         </AccordionDetails>
       </Accordion>
