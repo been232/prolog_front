@@ -37,6 +37,7 @@ const data = {
         type: 1,
         width: 594,
         content: '글 내용 히히히히히히ㅎㅎㅎㅎ',
+        leader: false
       },
       {
         id: 2,
@@ -74,7 +75,8 @@ const data = {
             url: "https://www.oyorooms.com/travel-guide/wp-content/uploads/2019/02/summer-7.jpg",
           }
         ],
-        explanation: 'ㅎㅇㅎㅇㅎㅇ\nㅎㅎㅎㅎ'
+        explanation: 'ㅎㅇㅎㅇㅎㅇ\nㅎㅎㅎㅎ',
+        leader: true
       },
       {
         id: 3,
@@ -84,7 +86,8 @@ const data = {
         type: 3,
         width: 594,
         content: ['int main() {\r\n    int a = b;\r\n    print(b)\r\n}','메인 문\r\n\r\n프린트문','c'],
-        explanation: 'ㅎㅎㅎㅎㅎ'
+        explanation: 'ㅎㅎㅎㅎㅎ',
+        leader: false
       },
       {
         id: 4,
@@ -94,7 +97,8 @@ const data = {
         type: 4,
         width: 594,
         content: 'https://www.google.com/search?q=mui+accordion+custom&oq=&aqs=chrome.5.69i59i450l8.694643353j0j15&sourceid=chrome&ie=UTF-8',
-        explanation: '하이이이퍼링ㅋ으응'
+        explanation: '하이이이퍼링ㅋ으응',
+        leader: false
       },
       {
         id: 5,
@@ -104,7 +108,8 @@ const data = {
         type: 5,
         width: 594,
         content: 'x = \\frac{ -b \\pm \\sqrt{ b^2-4ac } }{ 2a }',
-        explanation: '수학 설며여영'
+        explanation: '수학 설며여영',
+        leader: false
       },
       {
         id: 6,
@@ -114,7 +119,8 @@ const data = {
         type: 6,
         width: 594,
         content: 'videoURL',
-        explanation: ''
+        explanation: '',
+        leader: false
       },
       // {
       //   id: 7,

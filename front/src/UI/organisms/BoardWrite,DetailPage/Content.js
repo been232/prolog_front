@@ -47,6 +47,7 @@ export default function Content(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: dataitem.content,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -66,6 +67,7 @@ export default function Content(props) {
               image: dataitem.images,
               explanation: dataitem.explanation,
               board: true,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -85,6 +87,7 @@ export default function Content(props) {
               content: dataitem.content,
               explanation: dataitem.explanation,
               board: true,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -104,6 +107,7 @@ export default function Content(props) {
               content: dataitem.content,
               explanation: dataitem.explanation,
               board: true,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -123,6 +127,7 @@ export default function Content(props) {
               content: dataitem.content,
               explanation: dataitem.explanation,
               board: true,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -140,6 +145,7 @@ export default function Content(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };

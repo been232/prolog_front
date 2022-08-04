@@ -97,9 +97,7 @@ export default function MathAccordion(props) {
     data.content = textValue.concat(text);
   };
 
-  React.useEffect(() => {
-   
-  }, [textValue]);
+  React.useEffect(() => {}, [textValue]);
 
   return (
     <div style={{ width: data.width, height: data.height - 70 }}>
@@ -240,13 +238,16 @@ export default function MathAccordion(props) {
                         value={textValue}
                         onChange={handletextChange}
                         placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
-                        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+                        inputProps={{ style: { fontFamily: 'KOTRAHOPE' } }}
                       />
                     </Box>
                     <Box style={{ marginTop: 20 }}>
                       <Card>
                         <CardContent style={{ height: 100 }}>
-                          <TeX math={textValue} style={{fontFamily: "KOTRAHOPE"}}/>
+                          <TeX
+                            math={textValue}
+                            style={{ fontFamily: 'KOTRAHOPE' }}
+                          />
                         </CardContent>
                       </Card>
                     </Box>
@@ -259,16 +260,14 @@ export default function MathAccordion(props) {
                 style={{ width: data.width - 50, height: data.height - 170 }}
               >
                 <CardContent>
-                  <TeX math={textValue} style={{fontFamily: "KOTRAHOPE"}}/>
+                  <TeX math={textValue} style={{ fontFamily: 'KOTRAHOPE' }} />
                 </CardContent>
               </Card>
             )
           ) : (
-            <Card
-              style={{ width: data.width - 50, height: data.height - 170 }}
-            >
+            <Card style={{ width: data.width - 50, height: data.height - 170 }}>
               <CardContent>
-                <TeX math={data.content} style={{fontFamily: "KOTRAHOPE"}}/>
+                <TeX math={data.content} style={{ fontFamily: 'KOTRAHOPE' }} />
               </CardContent>
             </Card>
           )}
@@ -277,7 +276,10 @@ export default function MathAccordion(props) {
           {board == true ? (
             <ContentText data={data} />
           ) : (
-            <AccordionListText data={data} propFunction={highFunction} />
+            <Box>
+              <AccordionListText data={data} propFunction={highFunction} />
+              ID: {data.id}
+            </Box>
           )}
         </AccordionDetails>
       </Accordion>

@@ -12,7 +12,7 @@ export default function HyperLink(props) {
   React.useEffect(()=> {props.propFunction(text)}, [text])
 
   return (
-    <Box>
+    <Box style ={{float: 'right', marginLeft: 30}}>
       <TextField
         variant="standard"
         placeholder="하이퍼 링크"

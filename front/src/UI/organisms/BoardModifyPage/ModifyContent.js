@@ -51,6 +51,7 @@ export default function ModifyContent(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: dataitem.content,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -69,6 +70,7 @@ export default function ModifyContent(props) {
               height: dataitem.height,
               image: dataitem.images,
               explanation: dataitem.explanation,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -87,6 +89,7 @@ export default function ModifyContent(props) {
               height: dataitem.height,
               content: dataitem.content,
               explanation: dataitem.explanation,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -105,6 +108,7 @@ export default function ModifyContent(props) {
               height: dataitem.height,
               content: dataitem.content,
               explanation: dataitem.explanation,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -123,6 +127,7 @@ export default function ModifyContent(props) {
               height: dataitem.height,
               content: dataitem.content,
               explanation: dataitem.explanation,
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -140,6 +145,7 @@ export default function ModifyContent(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
+              leader: dataitem.leader
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
