@@ -30,12 +30,12 @@ export default function ImageListAccordion(props) {
       imageUrlLists.push(currentImageUrl);
     }
 
-    data.image = imageUrlLists;
-    if (data.image[0] != null) {
+    data.images = imageUrlLists;
+    if (data.images[0] != null) {
       setImage(true);
       setChange({
         ...change,
-        image: imageUrlLists,
+        images: imageUrlLists,
       });
     }
   };

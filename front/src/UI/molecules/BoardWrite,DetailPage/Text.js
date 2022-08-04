@@ -20,12 +20,13 @@ const Text = (props) => {
   return (
     <TextField
       multiline
-      rows={data.data.height / 40}
+      rows={(data.data.height-20) / 25}
       value={text}
       onChange={handleChange}
       placeholder={place}
       style={{width: data.data.width}}
       inputProps={{
+        sx: { height: data.data.height-30 },
         style: {
           fontSize: 14,
           fontWeight: 'bold',

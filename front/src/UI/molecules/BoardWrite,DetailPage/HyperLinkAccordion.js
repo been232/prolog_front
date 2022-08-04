@@ -51,7 +51,7 @@ export default function HyperLinkAccordion(props) {
           ) : (
             <Box>
               ID : {data.id}
-              <HyperLink data={data} propFunction={highFunction} />
+              <HyperLink data={data} propFunction={highFunctionText} />
             </Box>
           )}
         </AccordionSummary>

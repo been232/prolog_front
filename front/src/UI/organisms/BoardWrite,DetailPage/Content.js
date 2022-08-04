@@ -64,7 +64,7 @@ export default function Content(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              image: dataitem.images,
+              images: dataitem.images,
               explanation: dataitem.explanation,
               board: true,
               leader: dataitem.leader
