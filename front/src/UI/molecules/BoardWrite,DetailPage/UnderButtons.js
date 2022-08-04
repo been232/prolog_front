@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 export default function UnderButtons(props) {
   const data = props.data;
   const title = props.title;
-  console.log(props)
   const tags = props.tags;
   const datas = [];
    
@@ -21,6 +20,7 @@ export default function UnderButtons(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
+          leader: dataitem.data.leader
         });
       }
       else if(dataitem.data.type == 2){
@@ -31,7 +31,8 @@ export default function UnderButtons(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           explanation: dataitem.data.explanation,
-          image: dataitem.data.image
+          image: dataitem.data.image,
+          leader: dataitem.data.leader
         });
       } else if(dataitem.data.type == 5){
         datas.push({
@@ -41,7 +42,8 @@ export default function UnderButtons(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          explanation: dataitem.data.explanation
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
         });
       }
       else {
@@ -52,7 +54,8 @@ export default function UnderButtons(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          explanation: dataitem.data.explanation
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
         });
       }
     });

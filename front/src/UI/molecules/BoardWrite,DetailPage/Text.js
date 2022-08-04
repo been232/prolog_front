@@ -12,10 +12,7 @@ const Text = (props) => {
 
   useEffect(() => {
     if(data.data.type == 1) {
-      setPlace("텍스트입니다.")
-    }
-    else if(data.data.type == 4) {
-      setPlace("하이퍼링크입니다.")
+      setPlace("텍스트입니다. ID: " + data.data.id)
     }
     data.data.content = text
   }, [text, place]);
