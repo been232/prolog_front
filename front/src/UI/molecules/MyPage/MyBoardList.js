@@ -43,8 +43,8 @@ const MyBoardList = () => {
     return (
         <>
             <Grid container spacing={3}>
-                {datas.data.map((data) => (
-                    <Grid item xl={3} lg={4} sm={6} id={data.id}>
+                {datas.data.map((data, i) => (
+                    <Grid item xl={4} lg={6} sm={6} id={data.id} key={i}>
                         <MainPageOrganism data={data}></MainPageOrganism>
                     </Grid>
                 ))}
