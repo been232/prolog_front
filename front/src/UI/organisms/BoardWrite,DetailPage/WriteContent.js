@@ -14,7 +14,15 @@ import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
 import ChipInput from '../../molecules/BoardWrite,DetailPage/ChipInput';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import Fade from '@mui/material/Fade';
+
+const nodeTypes = {
+  LayoutNode: LayoutNode,
+  Text: Text,
+  Image: Image,
+  Math: Math,
+  Link: Link,
+  Code: Code,
+};
 
 export default function WriteContent(props) {
   const title = props.title;
@@ -27,21 +35,13 @@ export default function WriteContent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [leader, setLeader] = useState(0);
   const open = Boolean(anchorEl);
+  
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    setAnchorEl(event.target);
   };
   const handleClose = (event) => {
     setAnchorEl(null);
     setLeader(event.target.value);
-  };
-
-  const nodeTypes = {
-    LayoutNode: LayoutNode,
-    Text: Text,
-    Image: Image,
-    Math: Math,
-    Link: Link,
-    Code: Code,
   };
 
   const highComponent = (text) => {
@@ -84,7 +84,7 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              image: {},
+              images: {},
               explanation: '',
               board: false,
               leader: false,
@@ -206,7 +206,6 @@ export default function WriteContent(props) {
           anchorEl={anchorEl}
           open={open}
           onClose={handleClose}
-          TransitionComponent={Fade}
         >
           {nodes.map((option) => (
             <MenuItem

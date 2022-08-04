@@ -26,10 +26,10 @@ export default function ImageListAccordion(props) {
       imageUrlLists.push(currentImageUrl);
     }
 
-    data.image = imageUrlLists;
+    data.images = imageUrlLists;
     setChange({
       ...change,
-      image : imageUrlLists
+      images : imageUrlLists
     })
   };
 
@@ -41,7 +41,7 @@ export default function ImageListAccordion(props) {
     data.explanation = text;
   };
 
-  React.useEffect(() => {}, []);
+  React.useEffect(() => {}, [change]);
 
   return (
     <div

@@ -11,12 +11,12 @@ export default function UnderButtons2(props) {
   const handleClick = () => {
     data.map((dataitem) => {
       datas.push({
+        id: parseInt(dataitem.id),
         height: dataitem.height,
         width: dataitem.width - 30,
         coordinateX: dataitem.position.x,
         coordinateY: dataitem.position.y,
         type: dataitem.data.type,
-        remove: dataitem.data.remove
       });
     });
 

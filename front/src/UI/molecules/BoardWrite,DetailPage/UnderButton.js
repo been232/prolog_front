@@ -8,11 +8,15 @@ export default function UnderButton(props) {
   const title = props.title;
   const tags = props.tags;
   const datas = [];
+  const [image, setImage] = React.useState({
+    url: ''
+  })
    
   const handleClick = () => {
     data.map((dataitem) => {
       if(dataitem.data.type == 1){
         datas.push({
+          id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
@@ -23,18 +27,26 @@ export default function UnderButton(props) {
         });
       }
       else if(dataitem.data.type == 2){
+        const i = [];
+        dataitem.data.images.map((images) => {
+          i.push(
+            {url: images}
+          )
+        });
         datas.push({
+          id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           explanation: dataitem.data.explanation,
-          image: dataitem.data.image,
+          image: i,
           leader: dataitem.data.leader
         });
       } else if(dataitem.data.type == 5){
         datas.push({
+          id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
@@ -47,6 +59,7 @@ export default function UnderButton(props) {
       }
       else {
         datas.push({
+          id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,

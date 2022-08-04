@@ -15,19 +15,19 @@ const Text = (props) => {
 
   return (
     <TextField
-      multiline
-      rows={data.data.height / 40}
-      value={text}
-      onChange={handleChange}
-      inputProps={{
-        style: {
-          fontSize: 14,
-          width: data.data.width - 30,
-          height: data.data.height,
-          fontWeight: 'bold',
-          fontFamily: "KOTRAHOPE"
-        },
-      }}
+    multiline
+    rows={(data.data.height-20) / 25}
+    value={text}
+    onChange={handleChange}
+    style={{width: data.data.width}}
+    inputProps={{
+      sx: { height: data.data.height-30 },
+      style: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        fontFamily: "KOTRAHOPE"
+      },
+    }}
     />
   );
 };
