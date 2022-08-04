@@ -238,6 +238,7 @@ export default function CodeAccordion(props) {
           ) : (
             <Box>
               <AccordionListText data={data} propFunction={highFunctionText} />
+              ID: {data.id}
               <Button onClick={ChangeType} style={{float:'right',fontFamily: "KOTRAHOPE"}}>언어 다시 선택</Button>
             </Box>
           )}

@@ -47,16 +47,19 @@ export default function HyperLinkAccordion(props) {
           id="panel1a-header"
         >
           {board == true ? (
-            <ContentText data={data} level={1}/>
+            <ContentText data={data} level={1} />
           ) : (
-            <HyperLink data={data} propFunction={highFunction} />
+            <Box>
+              ID : {data.id}
+              <HyperLink data={data} propFunction={highFunctionText} />
+            </Box>
           )}
         </AccordionSummary>
         <AccordionDetails>
           {board == true ? (
-            <ContentText data={data} level={2}/>
+            <ContentText data={data} level={2} />
           ) : (
-            <AccordionListText data={data} propFunction={highFunction} />
+            <AccordionListText propFunction={highFunction} />
           )}
         </AccordionDetails>
       </Accordion>

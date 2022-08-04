@@ -25,7 +25,7 @@ const MyPage = () => {
                     <Box >
                         <Box
                             sx={{
-                                height: 250,
+
                                 transform: 'translateZ(0px)',
                                 flexGrow: 1,
                                 position: 'fixed',

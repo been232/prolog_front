@@ -8,7 +8,7 @@ function ImageLists(props) {
         <SimpleImageSlider
           width={data.width - 50}
           height={data.height - 170}
-          images={data.image}
+          images={data.images}
           showBullets={true}
           showNavs={true}
           autoPlay={true}

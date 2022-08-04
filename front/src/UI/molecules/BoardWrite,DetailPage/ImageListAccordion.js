@@ -30,12 +30,12 @@ export default function ImageListAccordion(props) {
       imageUrlLists.push(currentImageUrl);
     }
 
-    data.image = imageUrlLists;
-    if (data.image[0] != null) {
+    data.images = imageUrlLists;
+    if (data.images[0] != null) {
       setImage(true);
       setChange({
         ...change,
-        image: imageUrlLists,
+        images: imageUrlLists,
       });
     }
   };
@@ -95,6 +95,7 @@ export default function ImageListAccordion(props) {
           ) : (
             <Box>
               <AccordionListText data={data} propFunction={highFunction} />
+              ID: {data.id}
               <Button onClick={onCickImageUpload} style={{ float: 'right', fontFamily: "KOTRAHOPE"}}>
                 사진 다시 선택
               </Button>

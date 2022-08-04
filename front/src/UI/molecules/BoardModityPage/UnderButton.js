@@ -13,44 +13,58 @@ export default function UnderButton(props) {
     data.map((dataitem) => {
       if(dataitem.data.type == 1){
         datas.push({
+          id: dataitem.data.id,
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
+          leader: dataitem.data.leader
         });
       }
       else if(dataitem.data.type == 2){
+        const i = [];
+        dataitem.data.images.map((images) => {
+          i.push(
+            {url: images}
+          )
+        });
         datas.push({
+          id: dataitem.data.id,
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           explanation: dataitem.data.explanation,
-          image: dataitem.data.image
+          image: i,
+          leader: dataitem.data.leader
         });
       } else if(dataitem.data.type == 5){
         datas.push({
+          id: dataitem.data.id,
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          explanation: dataitem.data.explanation
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
         });
       }
       else {
         datas.push({
+          id: dataitem.data.id,
           height: dataitem.data.height,
           width: dataitem.data.width,
           coordinateX: dataitem.position.x,
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          explanation: dataitem.data.explanation
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
         });
       }
     });

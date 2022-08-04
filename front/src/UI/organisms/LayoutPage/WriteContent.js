@@ -102,7 +102,7 @@ export default function WriteContent(props) {
           id: id,
           x: position.x,
           y: position.y,
-          remove: false
+          remove: false,
         },
         position: { x: position.x, y: position.y },
         dragHandle: '.custom-drag-handle',
