@@ -1,6 +1,6 @@
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import SignUp from '../../organisms/SignUpPage/SignUp';
+import ChangePW from '../../organisms/ChangePWPage/ChangePW';
 
 const theme = createTheme({
     palette: {
@@ -14,13 +14,15 @@ const theme = createTheme({
     },
 });
 
-const SignUpPage = () => {
+const ChangePWPage = () => {
+
+
     return (
         <ThemeProvider theme={theme}>
-            <SignUp>
+            <ChangePW>
 
-            </SignUp>
+            </ChangePW>
         </ThemeProvider>
     );
 }
-export default SignUpPage
+export default ChangePWPage

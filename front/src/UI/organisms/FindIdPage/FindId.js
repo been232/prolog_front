@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, Avatar, Button, Grid, Box, CssBaseline, 
-  Typography, Container, Divider } from '@mui/material';
+import {
+  Link, Avatar, Button, Grid, Box, CssBaseline,
+  Typography, Container, Divider
+} from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-// import AuthTextField from '../../atoms/Commons/TextField';
+import { AuthTextField } from '../../atoms/Commons/TextField';
 
 const FindId = () => {
+  const [account, setAccount] = useState('ㄴㄹㅇㄴ');
   const [info, setInfo] = useState({
     Email: '',
   });
@@ -17,22 +20,36 @@ const FindId = () => {
     }));
   };
 
+  const emptyCheck = () => {
+    if (info.Email === '') {
+      return false;
+    }
+  };
+
   const handleFindId = async () => {
 
-    console.log(info);
-    // let response = await Api.postSignup(postBody);
+    const isEmpty = emptyCheck();
+    if (isEmpty === false) {
+      alert('이메일을 입력해주세요');
+      return false;
+    }
 
-    // if (response.data.result === "success") {
-    //   alert('회원가입 성공');
-    //   const target = '/';
-    //   window.location.href = target;
-    // }
-    // else if (response.data.result === "fail") {
-    //   alert(response.data.message);
-    // }
-    // else {
-    //   alert('회원가입 실패');
-    // }
+    console.log(info);
+    // -----------------------  response 예시 데이터 -----------------------
+    // let response = await Api.postSignup(info);
+    let response = {
+      data: {
+        result: "success",
+        account: "dfsgdfegsd",
+      }
+    }
+
+    if (response.data.result === "success") {
+      setAccount(response.data.account);
+    }
+    else {
+      alert('회원가입 실패');
+    }
   };
 
   return (
@@ -53,11 +70,11 @@ const FindId = () => {
         <Box noValidate sx={{ mt: 3 }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
-              {/* <AuthTextField
+              <AuthTextField
                 label="이메일"
                 name="Email"
                 onChange={handleChange}
-              /> */}
+              />
             </Grid>
           </Grid>
           <Button
@@ -69,6 +86,9 @@ const FindId = () => {
           >
             아이디 찾기
           </Button>
+          {(account === '') ?
+            "" : <Typography component="h6" variant="h6">귀하의 아이디는 {account} 입니다.</Typography>
+          }
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link href="/" variant="body2">

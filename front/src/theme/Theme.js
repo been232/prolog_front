@@ -8,9 +8,9 @@ const theme = createTheme({
 			paper: colors.common.white
 		},
 		primary: {
+			main: '#BADBF3',
 			green: '#2e6411',
 			contrastText: '#000000',
-			main: '#ffffff',
 			smoothgreen: '#F0F7EC',
 			darkgreen: '#006400'
 		},
@@ -19,8 +19,12 @@ const theme = createTheme({
 			secondary: '#6b778c',
 		}
 	},
-	shadows,
-	typography
+	// shadows,
+	// typography
 });
 
 export default theme;
+
+/*        secondary: {
+            main: '#BADBF3',
+        },*/ 

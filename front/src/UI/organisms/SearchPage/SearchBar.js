@@ -19,10 +19,10 @@ function SearchBar() {
         alignItems: 'center',
       }}
     >
-      <SearchTextField
+      {/* <SearchTextField
         style={{ width: '500px', marginRight: '10px' }}
-      ></SearchTextField>
-      <SearchButton onClick={getSearch}></SearchButton>
+      ></SearchTextField> */}
+      <SearchButton></SearchButton>
     </Box>
   );
 }
