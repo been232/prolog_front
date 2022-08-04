@@ -68,14 +68,14 @@ const ReadMemberInfo = () => {
         }));
     };
 
-    const handlePWChange = (event) => {
-        setPassword(event.target.value);
-        handleChange(event);
-    };
+    // const handlePWChange = (event) => {
+    //     setPassword(event.target.value);
+    //     handleChange(event);
+    // };
 
-    const handlePWConfirmChange = (event) => {
-        setPasswordConfirm(event.target.value);
-    };
+    // const handlePWConfirmChange = (event) => {
+    //     setPasswordConfirm(event.target.value);
+    // };
 
     const emptyCheck = () => {
         if (info.name === '' || info.account === '' || info.Email === ''
@@ -85,10 +85,10 @@ const ReadMemberInfo = () => {
     };
 
     const handleUpdateInfo = async () => {
-        if (password !== passwordConfirm) {
-            alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-            return false;
-        }
+        // if (password !== passwordConfirm) {
+        //     alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+        //     return false;
+        // }
 
         const isEmpty = emptyCheck();
         if (isEmpty === false) {
