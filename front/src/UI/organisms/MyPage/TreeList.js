@@ -23,6 +23,9 @@ export default function TreeList() {
 
     const handleIsEdit = () => {
         setIsEdit(!isEdit);
+        if (visible) {
+            setVisible(!visible);
+        }
     };
 
     const handleAdd = (id) => {
@@ -62,38 +65,7 @@ export default function TreeList() {
             console.log("ㅇㅇㅇ");
         }
 
-        setResponse({
-            "success": true,
-            "data": [
-                {
-                    "id": 1,
-                    "name": "웹",
-                    "count": 5,
-                    "child": [
-                        {
-                            "id": 4,
-                            "name": "리액트",
-                            "count": 1
-                        },
-                    ]
-                },
-                {
-                    "id": 2,
-                    "name": "앱",
-                    "count": 1,
-                    "child": [
-                    ]
-                },
-                {
-                    "id": 3,
-                    "name": "정보처리기사",
-                    "count": 0,
-                    "child": [
-                    ]
-                }
-            ]
-        })
-
+        //setResponse()
         console.log(response);
     };
 
@@ -102,45 +74,40 @@ export default function TreeList() {
         "data": [
             {
                 "id": 1,
-                "name": "웹",
+                "name": "전체",
                 "count": 5,
                 "child": [
                     {
-                        "id": 4,
-                        "name": "리액트",
-                        "count": 1
+                        "id": 2,
+                        "name": "앱",
+                        "count": 1,
+                        "child": [
+                            {
+                                "id": 4,
+                                "name": "IOS",
+                                "count": 1
+                            },
+                            {
+                                "id": 5,
+                                "name": "안드로이드",
+                                "count": 1
+                            },
+                        ]
                     },
                     {
-                        "id": 5,
-                        "name": "자바스크립트",
-                        "count": 1
-                    },
-                    {
-                        "id": 6,
-                        "name": "노드JS",
-                        "count": 1
-                    },
+                        "id": 3,
+                        "name": "정보처리기사",
+                        "count": 0,
+                        "child": [
+                        ]
+                    }
                 ]
             },
-            {
-                "id": 2,
-                "name": "앱",
-                "count": 1,
-                "child": [
-                ]
-            },
-            {
-                "id": 3,
-                "name": "정보보안기사",
-                "count": 0,
-                "child": [
-                ]
-            }
         ]
     });
 
     return (
-        <Box sx={{ height: 240, flexGrow: 1, maxWidth: 300 }}>
+        <Box sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}>
             <Box sx={{ display: "flex", marginLeft: 9, marginBottom: 1 }} >
                 <Typography sx={{ alignContent: "center", fontSize: "15px", marginRight: 2 }}>* 카테고리 *</Typography>
                 <ContainedButton content="Edit" fontSize="11px" handleClick={handleIsEdit}></ContainedButton>
@@ -150,7 +117,7 @@ export default function TreeList() {
                 aria-label="file system navigator"
                 defaultCollapseIcon={<ExpandMoreIcon />}
                 defaultExpandIcon={<ChevronRightIcon />}
-                sx={{ height: 240, flexGrow: 1, maxWidth: 350, marginTop: 1 }}
+                sx={{ height: 240, flexGrow: 1, maxWidth: 400, marginTop: 1 }}
             >
                 {response.data.map(function (val, i) {
                     return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
@@ -158,18 +125,39 @@ export default function TreeList() {
                             nodeId={val.name}
                             label={val.name}
                         >
-                            {val.child.map(function (item, i) {
+                            {val.child.map(function (level2, i) {
                                 return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
                                     <TreeItem
-                                        nodeId={item.name}
-                                        label={item.name}
-                                    />
+                                        nodeId={level2.name}
+                                        label={level2.name}
+                                    >
+                                        {level2.child.map(function (level3, i) {
+                                            return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
+                                                <TreeItem
+                                                    nodeId={level3.name}
+                                                    label={level3.name}
+                                                />
+                                                {(isEdit) ?
+                                                    (<Box sx={{ float: "right" }}>
+                                                        <IconButton size="small" onClick={() => handleUpdate(level3.id)}>
+                                                            <ChangeCircleIcon fontSize="inherit" />
+                                                        </IconButton>
+                                                        <IconButton size="small" onClick={() => handleDelete(level3.id)}>
+                                                            <DeleteIcon fontSize="inherit" />
+                                                        </IconButton>
+                                                    </Box>) : ("")
+                                                }
+                                            </Box>)
+                                        })}</TreeItem>
                                     {(isEdit) ?
                                         (<Box sx={{ float: "right" }}>
-                                            <IconButton size="small" onClick={() => handleUpdate(item.id)}>
+                                            <IconButton size="small" onClick={() => handleAdd(val.id)}>
+                                                <AddCircleOutlineIcon fontSize="inherit" />
+                                            </IconButton>
+                                            <IconButton size="small" onClick={() => handleUpdate(level2.id)}>
                                                 <ChangeCircleIcon fontSize="inherit" />
                                             </IconButton>
-                                            <IconButton size="small" onClick={() => handleDelete(item.id)}>
+                                            <IconButton size="small" onClick={() => handleDelete(level2.id)}>
                                                 <DeleteIcon fontSize="inherit" />
                                             </IconButton>
                                         </Box>) : ("")

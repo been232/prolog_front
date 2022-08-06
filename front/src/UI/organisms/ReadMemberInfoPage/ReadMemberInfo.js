@@ -68,15 +68,6 @@ const ReadMemberInfo = () => {
         }));
     };
 
-    const handlePWChange = (event) => {
-        setPassword(event.target.value);
-        handleChange(event);
-    };
-
-    const handlePWConfirmChange = (event) => {
-        setPasswordConfirm(event.target.value);
-    };
-
     const emptyCheck = () => {
         if (info.name === '' || info.account === '' || info.Email === ''
             || info.Nickname === '' || info.Introduction === '') {

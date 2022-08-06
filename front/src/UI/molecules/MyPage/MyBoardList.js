@@ -1,6 +1,6 @@
 import { Box, Grid } from '@mui/material';
 import React from 'react';
-import MainPageOrganism from '../../organisms/MainPage/MainPageOrganism';
+import MainPageOrganism from '../../atoms/MyPage/MainPageOrganism';
 
 /* Gird Item 들은 기능 연동 후 map 으로 처리하던가 해야할듯 */
 
