@@ -23,7 +23,8 @@ const style = {
 };
 
 function MainPageOrganism(props) {
-  const { id, title, written, member, memberImage, likes, mainLayout } = props.data;
+  const { id, title, written, member, memberImage, likes, mainLayout } =
+    props.data;
   const [open, setOpen] = useState(false);
   var timer;
 
@@ -46,7 +47,7 @@ function MainPageOrganism(props) {
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}
     >
-      <Modal open={open} onClose={handleClose}>
+      {/* <Modal open={open} onClose={handleClose}>
         <Box sx={{ ...style, width: 600, height: 600 }}>
           <IconButton
             sx={{ position: 'fixed', top: 0, right: 0 }}
@@ -58,7 +59,7 @@ function MainPageOrganism(props) {
           <ChartList data={data} />
           <UnderButton />
         </Box>
-      </Modal>
+      </Modal> */}
       <PostBoxTopMolecule />
       <PostBoxMiddleMolecule title={title} />
       <PostBoxBottomMolecule
