@@ -23,7 +23,9 @@ function MainPageOrganism(props) {
   const [open, setOpen] = useState(false);
   var timer;
   const handleOpen = () => {
-    timer = setTimeout(() => setOpen(true), 1000);
+    timer = setTimeout(() => {
+      setOpen(true);
+    }, 1000);
   };
   const handleClose = () => {
     setOpen(false);

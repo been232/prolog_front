@@ -22,10 +22,10 @@ function MainPage() {
         },
       },
       {
-        id: 'postId',
+        id: 'postId1',
         title: 'title',
         content: '어쩌구 저쩌구',
-        written: '2022-06-07',
+        written: '2022-06-08',
         member: 'memberName',
         memberImage: 'http://~',
         likes: '8',
@@ -41,21 +41,9 @@ function MainPage() {
   return (
     <Box sx={{ marginLeft: '10%', marginRight: '10%' }}>
       <Grid container spacing={3}>
-        {/* <Grid item xl={3} lg={4} sm={6}>
-          <MainPageOrganism data={data}></MainPageOrganism>
-        </Grid>
-        <Grid item xl={3} lg={4} sm={6}>
-          <MainPageOrganism data={data}></MainPageOrganism>
-        </Grid>
-        <Grid item xl={3} lg={4} sm={6}>
-          <MainPageOrganism data={data}></MainPageOrganism>
-        </Grid>
-        <Grid item xl={3} lg={4} sm={6}>
-          <MainPageOrganism data={data}></MainPageOrganism>
-        </Grid> */}
         {datas &&
           datas.data.map((data) => (
-            <Grid item xl={3} lg={4} sm={6} id={data.id}>
+            <Grid item xl={3} lg={4} sm={6} key={data.id}>
               <MainPageOrganism data={data}></MainPageOrganism>
             </Grid>
           ))}

@@ -3,7 +3,7 @@ import TextField from '@mui/material/TextField';
 
 export const AuthTextField = (props) => {
   const { id, name, autoComplete, label, onChange, value } = props;
-  
+
   return (
     <TextField
       margin="normal"
@@ -20,9 +20,14 @@ export const AuthTextField = (props) => {
   );
 };
 
-
 export const SearchTextField = (props) => {
-  const { style } = props;
-  return <TextField sx={style}></TextField>;
+  const { style, onChange, name } = props;
+  return (
+    <TextField
+      sx={style}
+      onChange={onChange}
+      name={name}
+      autoComplete="off"
+    ></TextField>
+  );
 };
-
