@@ -16,7 +16,7 @@ const style = {
 };
 
 const LoginModal = (props) => {
-
+    const { isLogin, setIsLogin } = props;
     // 모달 관련 변수, 함수 정의
     const [open, setOpen] = useState(false);
     async function handleOpen() {
@@ -32,7 +32,7 @@ const LoginModal = (props) => {
                 onClose={handleClose}
             >
                 <Box sx={style}>
-                    <ModalContent handleClose={handleClose}></ModalContent>
+                    <ModalContent isLogin={isLogin} setIsLogin={setIsLogin} handleClose={handleClose}></ModalContent>
                 </Box>
             </Modal>
         </>
