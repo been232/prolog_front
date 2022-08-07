@@ -33,6 +33,7 @@ function MainPageOrganism(props) {
   };
   const { id, title, written, member, memberImage, likes, mainLayout } =
     props.data;
+  // 게시글 조회로 연동
   return (
     <Box
       sx={{

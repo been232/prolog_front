@@ -16,7 +16,8 @@ import ChangePWPage from '../pages/ChangePWPage/ChangePWPage';
 import MyPage from '../pages/MyPage/MyPage';
 import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 import StatisticsPage from '../pages/StatisticsPage/StatisticsPage';
-import './App.css'
+import './App.css';
+import FileViewer from '../atoms/BoardWrite,DetailPage/FileViewer';
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
             <Route path="/search" element={<SearchPage />} />
 
             <Route path="/AllStatistics/*" element={<StatisticsPage />} />
+            <Route path="/Test" element={<FileViewer />} />
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>
