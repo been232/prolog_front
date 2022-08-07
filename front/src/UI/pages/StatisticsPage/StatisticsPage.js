@@ -5,15 +5,34 @@ import ChartList from '../../organisms/StatisticsPage/ChartList';
 import UnderButton from '../../molecules/StatisticsPage/UnderButton';
 
 function StatisticsPage() {
-  return (
-    <>
-      <Box sx={{ marginLeft: 20, marginRight: 20 }}>
-        <StatisticsContent data={data}/>
-        <ChartList data={data}/>
-        <UnderButton />
-      </Box>
-    </>
-  );
+  const [texts, setTexts] = useState(undefined);
+  const highFucntion = (text) => {
+    setTexts(text);
+  };
+
+  useEffect(() => {
+  }, [texts]);
+
+  function list() {
+    if (texts != undefined) {
+      return (
+        <Box sx={{ marginLeft: 20, marginRight: 20 }}>
+          <StatisticsContent data={data} propFunction={highFucntion} />
+          <ChartList data={data} text={texts} />
+          <UnderButton />
+        </Box>
+      );
+    } else {
+      return (
+        <Box sx={{ marginLeft: 20, marginRight: 20 }}>
+          <StatisticsContent data={data} propFunction={highFucntion} />
+          <UnderButton />
+        </Box>
+      );
+    }
+  }
+
+  return list();
 }
 
 export default StatisticsPage;

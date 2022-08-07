@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom';
 
 const ModalContent = (props) => {
   const handleClose = props.handleClose;
+  const isLogin = props.isLogin;
+  const setIsLogin = props.setIsLogin;
 
   const [info, setInfo] = useState({
     id: '',
@@ -48,10 +50,10 @@ const ModalContent = (props) => {
     // -----------------------  response 예시 데이터 -----------------------
     // let response = await Api.postLogin(info);
     let response = {
-      data : {
-        result : "success",
-        accessToken : "dfsgdfegsd",
-        refreshToken : "dfsgsdfsdg",
+      data: {
+        result: "success",
+        accessToken: "dfsgdfegsd",
+        refreshToken: "dfsgsdfsdg",
         memberId: 2,
       }
     }
@@ -60,9 +62,10 @@ const ModalContent = (props) => {
       // const target = '/';
       sessionStorage.setItem('user', JSON.stringify(response.data, ['accessToken', 'refreshToken']))
       sessionStorage.setItem('userId', JSON.stringify(response.data.memberId))
+      setIsLogin(true);
       // window.location.href = target;
     }
-    else if(response.data.result === "fail") {
+    else if (response.data.result === "fail") {
       alert('로그인 실패');
     }
 
@@ -108,7 +111,14 @@ const ModalContent = (props) => {
           </Button>
         </Link>
         <Divider />
-        <Box sx={{ textAlign: 'center'}}> 소셜로그인 </Box>
+        <Box sx={{ textAlign: 'center', mt: 3 }}>
+            <a id="custom-login-btn">
+              <img
+                src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
+                width="242"
+              />
+            </a>
+        </Box>
       </Box>
     </Container>
   );

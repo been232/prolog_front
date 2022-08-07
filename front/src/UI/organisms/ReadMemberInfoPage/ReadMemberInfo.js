@@ -76,10 +76,10 @@ const ReadMemberInfo = () => {
     };
 
     const handleUpdateInfo = async () => {
-        if (password !== passwordConfirm) {
-            alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-            return false;
-        }
+        // if (password !== passwordConfirm) {
+        //     alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+        //     return false;
+        // }
 
         const isEmpty = emptyCheck();
         if (isEmpty === false) {
