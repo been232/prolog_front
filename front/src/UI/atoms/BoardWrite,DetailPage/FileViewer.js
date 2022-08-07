@@ -1,6 +1,5 @@
 import React from 'react';
 import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
-import FileViewer from 'react-file-viewer';
 import { Box } from '@mui/material';
 function MyFileViewer() {
   const getFile = (e) => {
@@ -28,7 +27,6 @@ function MyFileViewer() {
       <div>
         <button onClick={() => inputRef.click()}>파일 등록</button>
       </div>
-      <FileViewer fileType="pdf" filePath="../../../testFile/mobile.pdf" />
     </Box>
   );
 }
