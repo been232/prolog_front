@@ -45,7 +45,7 @@ function SearchPage() {
       <Grid container spacing={3} sx={{ marginTop: '3%' }}>
         {datas &&
           datas.data.map((data) => (
-            <Grid item xl={3} lg={4} sm={6} id={data.id}>
+            <Grid item xl={3} lg={4} sm={6} key={data.id}>
               <MainPageOrganism data={data}></MainPageOrganism>
             </Grid>
           ))}
