@@ -47,6 +47,9 @@ const MyInfo = (props) => {
                         <Typography>{info.Nickname}</Typography>
                         <Typography>{info.Introduction}</Typography>
                         <Typography>이메일: {info.Email}</Typography>
+                        <Link to="/AllStatistics">
+                            전체 통계
+                        </Link>
                     </Box>
                 </Grid>
             </Grid>

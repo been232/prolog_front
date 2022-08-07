@@ -25,13 +25,11 @@ const MyPage = () => {
                     <Box >
                         <Box
                             sx={{
-
                                 transform: 'translateZ(0px)',
                                 flexGrow: 1,
                                 position: 'fixed',
                                 top: 120,
                                 left: 20,
-                                border: "solid #BADBF3",
                                 padding: "8px 4px"
                             }}>
                             <TreeList />

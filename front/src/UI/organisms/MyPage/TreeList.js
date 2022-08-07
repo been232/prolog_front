@@ -57,6 +57,7 @@ export default function TreeList() {
 
         if (handle === '추가') {
             console.log("추가 완료", data);
+            
 
         } else if (handle === '변경') {
             console.log("변경 완료", data);

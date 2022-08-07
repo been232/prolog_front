@@ -7,7 +7,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 
 const FindId = () => {
-  const [account, setAccount] = useState('ㄴㄹㅇㄴ');
+  const [account, setAccount] = useState('_____');
   const [info, setInfo] = useState({
     Email: '',
   });
