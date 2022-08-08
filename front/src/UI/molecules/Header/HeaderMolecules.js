@@ -35,10 +35,9 @@ theme.typography.p = {
 
 function HeaderMolecules(props) {
   const [isLogin, setIsLogin] = useState(false);
+  const user = sessionStorage.getItem('user'); // 토큰 받아오기
 
   const Logout = () => {
-    sessionStorage.removeItem('user')
-    sessionStorage.removeItem('memberId')
     window.location.href = '/';
     alert('로그아웃되었습니다.');
     setIsLogin(false);
@@ -49,25 +48,58 @@ function HeaderMolecules(props) {
       <ThemeProvider theme={theme}>
         <Box
           sx={{
-            '& > :not(style)': {
-              m: 1,
-            },
+            '& > :not(style)': { m: 1 },
             float: 'right',
-            marginTop: 2.1,
+            marginTop: 2,
           }}
         >
-          <Link to="/search">
-            <SearchIcons />
-          </Link>
           {(isLogin) ?
             (<>
-              <Link to="/mypage">
-                <AccountCircleIcons />
-              </Link>
-              <ContainedButton content="로그아웃" fontSize="11px" handleClick={Logout}></ContainedButton>
-            </>) : (
-              <LoginModal isLogin={isLogin} setIsLogin={setIsLogin} />
+              <Box sx={{ float: 'right' }}>
+                  <ContainedButton content="로그아웃" fontSize="11px" handleClick={Logout}></ContainedButton>
+              </Box>
+              <Box sx={{ float: 'right' }}>
+                <Link to="/mypage">
+                  <AccountCircleIcons id="icon" />
+                </Link>
+              </Box>
+            </>
+            ) : (
+              <Box sx={{ float: 'right' }}>
+                <LoginModal isLogin={isLogin} setIsLogin={setIsLogin} />
+              </Box>
             )}
+
+          <Box sx={{ float: 'right' }}>
+            <Link to="/search">
+              <SearchIcons id="icon" />
+            </Link>
+          </Box>
+          {/* 이게 찐 sessionStorage 사용해서 로그인, 로그아웃 되는 코드
+          {(!(user === null)) ?
+            (<>
+              <Box sx={{ float: 'right' }}>
+                <Link to="/logout" state={{ setIsLogin: setIsLogin() }}>
+                  <ContainedButton content="로그아웃" fontSize="11px"></ContainedButton>
+                </Link>
+              </Box>
+              <Box sx={{ float: 'right' }}>
+                <Link to="/mypage">
+                  <AccountCircleIcons id="icon" />
+                </Link>
+              </Box>
+            </>
+            ) : (
+              <Box sx={{ float: 'right' }}>
+                <LoginModal isLogin={isLogin} setIsLogin={setIsLogin} />
+              </Box>
+            )}
+
+          <Box sx={{ float: 'right' }}>
+            <Link to="/search">
+              <SearchIcons id="icon" />
+            </Link>
+          </Box> */}
         </Box>
       </ThemeProvider>
     </>

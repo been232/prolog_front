@@ -6,6 +6,7 @@ import MainPage from '../pages/MainPage/MainPage';
 import LayoutPage from '../pages/LayoutPage/LayoutPage';
 import ControlledOpenSpeedDial from '../atoms/MainPage/ControlledOpenSpeedDial';
 import LoginPopupPage from '../pages/LoginPopupPage/LoginPopupPage';
+import Logout from '../atoms/Header/Logout';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import FindIdPage from '../pages/FindIdPage/FindIdPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/BoardModify/*" element={<BoardModifyPage />} />
             <Route path="/sign/*" element={<SignUpPage />} />
             <Route path="/login/*" element={<LoginPopupPage />} />
+            <Route path="/logout/*" element={<Logout />} />
 
             <Route path="/findID/*" element={<FindIdPage />} />
             <Route path="/LayoutWrite/*" element={<LayoutWritePage />} />
