@@ -260,6 +260,7 @@ export default function MathAccordion(props) {
         </AccordionSummary>
         <AccordionDetails>
             <AccordionListText propFunction={highFunction} data={data}/>
+            ID: {data.id}
         </AccordionDetails>
       </Accordion>
     </div>

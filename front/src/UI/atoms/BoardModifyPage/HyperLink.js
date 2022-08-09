@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import { TextField } from '@mui/material';
+import { Box, TextField } from '@mui/material';
 
 export default function HyperLink(props) {
   const [text, setText] = React.useState(props.data.content);
@@ -9,16 +8,20 @@ export default function HyperLink(props) {
     setText(e.currentTarget.value);
   };
 
-  React.useEffect(()=> {props.propFunction(text)}, [text])
+  React.useEffect(() => {
+    props.propFunction(text);
+  }, [text]);
 
   return (
+    <Box style={{ marginBottom: 20 }}>
       <TextField
         variant="standard"
         placeholder="하이퍼 링크"
         fullWidth
         value={text}
         onChange={textChangeHandler}
-        inputProps={{style: {fontFamily: "SUIT-Regular"}}}
-    />
+        inputProps={{ style: { fontFamily: 'SUIT-Regular' } }}
+      />
+    </Box>
   );
 }

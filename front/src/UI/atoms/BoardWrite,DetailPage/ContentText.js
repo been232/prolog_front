@@ -14,7 +14,7 @@ export default function ContentText(props) {
         if(props.level == 1){
             const data = props.data.content;
             return (
-              <Card style={{ width: props.data.width- 50, height: props.data.height/3}}>
+              <Card style={{ width: props.data.width- 50, height: props.data.height/3, marginBottom: 20}}>
                 <CardContent style={{height: props.data.height/4}}><a style={{fontFamily: "SUIT-Regular"}} href={data}>링크 클릭</a></CardContent>
               </Card>
             );
