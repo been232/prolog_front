@@ -103,7 +103,7 @@ export default function ChipInput(props) {
                   borderTopLeftRadius: 5,
                   backgroundColor: 'primary.smoothgreen',
                 }}
-                inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+                inputProps={{style: {fontFamily: "SUIT-Regular"}}}
                 style={{ width: '90%', marginLeft: '5%', marginTop: 20 }}
                 placeholder="팀원의 아이디를 입력해주세요"
                 InputProps={{
@@ -112,7 +112,7 @@ export default function ChipInput(props) {
                       key={item}
                       tabIndex={-1}
                       label={item}
-                      style={{fontFamily: "KOTRAHOPE"}} 
+                      style={{fontFamily: "SUIT-Regular"}} 
                       onDelete={handleDelete(item)}
                     />
                   )),
@@ -138,7 +138,7 @@ export default function ChipInput(props) {
                           }}
                           key={s}
                           value={s}
-                          style={{fontFamily: "KOTRAHOPE"}}
+                          style={{fontFamily: "SUIT-Regular"}}
                         >
                           {s ?? s}
                         </MenuItem>

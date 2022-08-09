@@ -104,7 +104,7 @@ export default function ChipInput(props) {
                   borderTopLeftRadius: 5,
                   backgroundColor: 'primary.smoothgreen',
                 }}
-                inputProps={{ style: { fontFamily: 'KOTRAHOPE' } }}
+                inputProps={{ style: { fontFamily: 'SUIT-Regular' } }}
                 style={{ width: '90%', marginLeft: '5%', marginTop: 20 }}
                 placeholder="팀원의 아이디를 입력해주세요"
                 InputProps={{
@@ -114,7 +114,7 @@ export default function ChipInput(props) {
                       tabIndex={-1}
                       label={item}
                       onDelete={handleDelete(item)}
-                      style={{ fontFamily: 'KOTRAHOPE' }}
+                      style={{ fontFamily: 'SUIT-Regular' }}
                     />
                   )),
                   onBlur,
@@ -136,7 +136,7 @@ export default function ChipInput(props) {
                     {members?.map((s) => {
                       return (
                         <MenuItem
-                          style={{ fontFamily: 'KOTRAHOPE' }}
+                          style={{ fontFamily: 'SUIT-Regular' }}
                           onClick={() => {
                             makeChip(s);
                             setMembers([]);

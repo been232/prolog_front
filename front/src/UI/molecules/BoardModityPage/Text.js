@@ -25,7 +25,7 @@ const Text = (props) => {
       style: {
         fontSize: 14,
         fontWeight: 'bold',
-        fontFamily: "KOTRAHOPE"
+        fontFamily: "SUIT-Regular"
       },
     }}
     />

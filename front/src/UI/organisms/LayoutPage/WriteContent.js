@@ -135,7 +135,7 @@ export default function WriteContent(props) {
             icon={<ArticleOutlinedIcon />}
             index="1"
             label="Text"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
             label="Image"
@@ -143,7 +143,7 @@ export default function WriteContent(props) {
             onDragStart={(event) => onDragStart(event, 2)}
             draggable
             index="2"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
             label="Code"
@@ -151,7 +151,7 @@ export default function WriteContent(props) {
             onDragStart={(event) => onDragStart(event, 3)}
             draggable
             index="3"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
             label="HyperLink"
@@ -159,7 +159,7 @@ export default function WriteContent(props) {
             onDragStart={(event) => onDragStart(event, 4)}
             draggable
             index="4"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
             label="Math"
@@ -167,7 +167,7 @@ export default function WriteContent(props) {
             onDragStart={(event) => onDragStart(event, 5)}
             draggable
             index="5"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
             label="Video"
@@ -175,7 +175,7 @@ export default function WriteContent(props) {
             onDragStart={(event) => onDragStart(event, 6)}
             draggable
             index="6"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
             label="FILE"
@@ -183,7 +183,7 @@ export default function WriteContent(props) {
             onDragStart={(event) => onDragStart(event, 7)}
             draggable
             index="7"
-            style={{fontFamily: "KOTRAHOPE"}}
+            style={{fontFamily: "SUIT-Regular"}}
           />
         </Tabs>
       </Box>

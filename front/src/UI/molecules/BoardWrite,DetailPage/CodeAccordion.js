@@ -80,7 +80,7 @@ export default function CodeAccordion(props) {
             Code == false ? (
               <Box sx={{ minWidth: data.width - 50 }}>
                 <FormControl fullWidth>
-                  <InputLabel id="demo-simple-select-label" style={{fontFamily: "KOTRAHOPE"}}>
+                  <InputLabel id="demo-simple-select-label" style={{fontFamily: "SUIT-Regular"}}>
                     코드 언어 선택
                   </InputLabel>
                   <Select
@@ -183,7 +183,7 @@ export default function CodeAccordion(props) {
                   defaultLanguage={Type}
                   options={{
                     minimap: { enabled: false },
-                    fontFamily: "KOTRAHOPE"
+                    fontFamily: "SUIT-Regular"
                   }}
                   value={codes}
                   onChange={onChange}
@@ -197,7 +197,7 @@ export default function CodeAccordion(props) {
                   onChange={onexplainChange}
                   options={{
                     minimap: { enabled: false },
-                    fontFamily: "KOTRAHOPE"
+                    fontFamily: "SUIT-Regular"
                   }}
                 />
               </>
@@ -212,7 +212,7 @@ export default function CodeAccordion(props) {
                 options={{
                   minimap: { enabled: false },
                   readOnly: true,
-                  fontFamily: "KOTRAHOPE"
+                  fontFamily: "SUIT-Regular"
                 }}
                 value={data.content[0]}
                 
@@ -226,7 +226,7 @@ export default function CodeAccordion(props) {
                 options={{
                   minimap: { enabled: false },
                   readOnly: true,
-                  fontFamily: "KOTRAHOPE"
+                  fontFamily: "SUIT-Regular"
                 }}
               />
             </>
@@ -239,7 +239,7 @@ export default function CodeAccordion(props) {
             <Box>
               <AccordionListText data={data} propFunction={highFunctionText} />
               ID: {data.id}
-              <Button onClick={ChangeType} style={{float:'right',fontFamily: "KOTRAHOPE"}}>언어 다시 선택</Button>
+              <Button onClick={ChangeType} style={{float:'right',fontFamily: "SUIT-Regular"}}>언어 다시 선택</Button>
             </Box>
           )}
         </AccordionDetails>

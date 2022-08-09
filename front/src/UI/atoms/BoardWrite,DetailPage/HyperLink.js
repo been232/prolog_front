@@ -18,7 +18,7 @@ export default function HyperLink(props) {
         placeholder="하이퍼 링크"
         fullWidth
         onChange={textChangeHandler}
-        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+        inputProps={{style: {fontFamily: "SUIT-Regular"}}}
       />
     </Box>
   );
