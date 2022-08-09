@@ -9,12 +9,12 @@ export default function UnderButton(props) {
   const tags = props.tags;
   const datas = [];
   const [image, setImage] = React.useState({
-    url: ''
-  })
-   
+    url: '',
+  });
+
   const handleClick = () => {
     data.map((dataitem) => {
-      if(dataitem.data.type == 1){
+      if (dataitem.data.type == 1) {
         datas.push({
           id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
@@ -23,16 +23,16 @@ export default function UnderButton(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           content: dataitem.data.content,
-          leader: dataitem.data.leader
+          leader: dataitem.data.leader,
         });
-      }
-      else if(dataitem.data.type == 2){
+      } else if (dataitem.data.type == 2) {
         const i = [];
-        dataitem.data.images.map((images) => {
-          i.push(
-            {url: images}
-          )
-        });
+        if (dataitem.data.images[0] != undefined) {
+          dataitem.data.images.map((images) => {
+            i.push({ url: images });
+          });
+        }
+
         datas.push({
           id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
@@ -42,9 +42,9 @@ export default function UnderButton(props) {
           type: dataitem.data.type,
           explanation: dataitem.data.explanation,
           image: i,
-          leader: dataitem.data.leader
+          leader: dataitem.data.leader,
         });
-      } else if(dataitem.data.type == 5){
+      } else if (dataitem.data.type == 5) {
         datas.push({
           id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
@@ -54,10 +54,9 @@ export default function UnderButton(props) {
           type: dataitem.data.type,
           content: dataitem.data.content,
           explanation: dataitem.data.explanation,
-          leader: dataitem.data.leader
+          leader: dataitem.data.leader,
         });
-      }
-      else {
+      } else {
         datas.push({
           id: parseInt(dataitem.data.id),
           height: dataitem.data.height,
@@ -67,26 +66,29 @@ export default function UnderButton(props) {
           type: dataitem.data.type,
           content: dataitem.data.content,
           explanation: dataitem.data.explanation,
-          leader: dataitem.data.leader
+          leader: dataitem.data.leader,
         });
       }
     });
 
     const submit = {
-      user : '',
+      user: '',
       moldName: title,
       layouts: datas,
-      tag : tags,
+      tag: tags,
     };
 
     console.log(submit);
   };
 
   return (
-    <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10 }} onClick={handleClick}>
+    <Box
+      sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10 }}
+      onClick={handleClick}
+    >
       <OutlinedButton content="저장하기" style={{ marginLeft: 2 }} />
       {/* <Link to="/"> */}
-        <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
+      <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
       {/* </Link> */}
     </Box>
   );

@@ -12,10 +12,10 @@ export default function HyperLink(props) {
   React.useEffect(()=> {props.propFunction(text)}, [text])
 
   return (
-    <Box style={{marginBottom: 20}}>
+    <Box>
       <TextField
         variant="standard"
-        placeholder="하이퍼 링크"
+        placeholder="하이퍼 링크 설명"
         fullWidth
         onChange={textChangeHandler}
         inputProps={{style: {fontFamily: "SUIT-Regular"}}}
