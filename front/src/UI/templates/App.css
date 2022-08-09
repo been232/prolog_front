@@ -1,5 +1,5 @@
 .App {
-  font-family: "KOTRAHOPE";
+  font-family: "SUIT-Regular";
 }
 
 .App-logo {
@@ -39,9 +39,8 @@
 }
 
 @font-face {
-  font-family: 'KOTRAHOPE';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2110@1.0/KOTRAHOPE.woff2') format('woff2');
+  font-family: '';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
-  size-adjust: 140%;
 }

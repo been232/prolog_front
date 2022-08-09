@@ -25,7 +25,7 @@ export default function ChipList(props) {
       {chipData.map((data) => {
         return (
           <ListItem key={data}>
-              <Chip style={{fontFamily: "KOTRAHOPE"}} label={data} />
+              <Chip style={{fontFamily: "SUIT-Regular"}} label={data} />
           </ListItem>
         );
       })}

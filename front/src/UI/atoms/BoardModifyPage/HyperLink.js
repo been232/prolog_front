@@ -18,7 +18,7 @@ export default function HyperLink(props) {
         fullWidth
         value={text}
         onChange={textChangeHandler}
-        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+        inputProps={{style: {fontFamily: "SUIT-Regular"}}}
     />
   );
 }

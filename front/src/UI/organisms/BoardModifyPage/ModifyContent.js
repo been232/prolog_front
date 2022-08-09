@@ -26,6 +26,7 @@ const nodeTypes = {
 };
 
 export default function ModifyContent(props) {
+  const title = props.title;
   const layout = props.layout.data;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
@@ -201,7 +202,7 @@ export default function ModifyContent(props) {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          style={{ float: 'right', fontFamily: 'KOTRAHOPE', marginRight: '5%' }}
+          style={{ float: 'right', fontFamily: 'SUIT-Regular', marginRight: '5%' }}
         >
           대표 설정
         </Button>
@@ -251,7 +252,7 @@ export default function ModifyContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton id={layout.layoutId} data={nodes} tags={tag} />
+      <UnderButton id={layout.layoutId} data={nodes} tags={tag} title={title} />
     </Box>
   );
 }
