@@ -16,6 +16,7 @@ export const AuthTextField = (props) => {
       autoFocus
       onChange={onChange}
       value={value}
+      style={{ fontFamily: "SUIT-Regular" }}
     />
   );
 };

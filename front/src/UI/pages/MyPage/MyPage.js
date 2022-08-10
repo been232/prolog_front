@@ -1,5 +1,4 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import theme from '../../../theme/Theme'
 import { Box, Container, Hidden } from '@mui/material';
 import MyInfo from '../../organisms/MyPage/MyInfo';
 import MyTabs from '../../organisms/MyPage/MyTabs';

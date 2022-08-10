@@ -6,8 +6,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ContainedButton from '../../atoms/Commons/ContainedButton';
 import { Box, Button, IconButton, TextField, Typography, Divider } from '@mui/material';
+import ContainedButton from '../../atoms/Commons/ContainedButton';
 
 export default function TreeList() {
     const [isEdit, setIsEdit] = useState(false); // 카테고리 편집 상태 확인
@@ -110,7 +110,8 @@ export default function TreeList() {
     return (
         <Box sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}>
             <Box sx={{ display: "flex", marginLeft: 9, marginBottom: 1 }} >
-                <Typography sx={{ alignContent: "center", fontSize: "15px", marginRight: 2 }}>* 카테고리 *</Typography>
+                <Typography sx={{ alignContent: "center", fontSize: "15px", marginRight: 2 }} 
+                    style={{ fontFamily: "SUIT-Regular" }}>* 카테고리 *</Typography>
                 <ContainedButton content="Edit" fontSize="11px" handleClick={handleIsEdit}></ContainedButton>
             </Box>
             <Divider />

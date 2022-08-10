@@ -31,8 +31,8 @@ const LoginModal = (props) => {
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={style}>
-                    <ModalContent isLogin={isLogin} setIsLogin={setIsLogin} handleClose={handleClose}></ModalContent>
+                <Box sx={style} style={{ fontFamily: "SUIT-Regular" }}>
+                    <ModalContent setIsLogin={setIsLogin} handleClose={handleClose}></ModalContent>
                 </Box>
             </Modal>
         </>

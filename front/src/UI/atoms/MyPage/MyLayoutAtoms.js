@@ -18,6 +18,7 @@ function MyLayoutAtoms(props) {
                     display: 'flex',
                     flexDirection: 'column',
                 }}
+                style={{ fontFamily: "SUIT-Regular" }}
             >
                 <PostBoxMiddleMolecule title={name} />
             </Box>

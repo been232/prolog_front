@@ -94,6 +94,7 @@ const ChangePW = (props) => {
                     flexDirection: 'column',
                     alignItems: 'center',
                 }}
+                style={{ fontFamily: "SUIT-Regular" }}
             >
                 <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
                     <LockOutlinedIcon />

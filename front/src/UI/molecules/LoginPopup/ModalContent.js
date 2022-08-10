@@ -87,6 +87,7 @@ const ModalContent = (props) => {
           flexDirection: 'column',
           alignItems: 'center',
         }}
+        style={{ fontFamily: "SUIT-Regular" }}
       >
         <TitleText title="로그인" direction="center" size="h5"></TitleText>
         <AuthTextField label="아이디" onChange={handleIdChange}></AuthTextField>

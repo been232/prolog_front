@@ -44,9 +44,9 @@ const MyInfo = (props) => {
                 </Grid>
                 <Grid item xs={7}>
                     <Box sx={{ marginTop: 2 }}>
-                        <Typography>{info.Nickname}</Typography>
-                        <Typography>{info.Introduction}</Typography>
-                        <Typography>이메일: {info.Email}</Typography>
+                        <Typography style={{ fontFamily: "SUIT-Regular" }}>{info.Nickname}</Typography>
+                        <Typography style={{ fontFamily: "SUIT-Regular" }}>{info.Introduction}</Typography>
+                        <Typography style={{ fontFamily: "SUIT-Regular" }}>이메일: {info.Email}</Typography>
                         <Link to="/AllStatistics">
                             전체 통계
                         </Link>
