@@ -19,7 +19,7 @@ export default function BasicTextFields(props) {
         defaultValue={text}
         sx={{ marginLeft: '5%' }}
         onChange={textChangeHandler}
-        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+        inputProps={{style: {fontFamily: "SUIT-Regular"}}}
       />
     </Box>
   );

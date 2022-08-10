@@ -233,7 +233,7 @@ export default function MathAccordion(props) {
                         value={textValue}
                         onChange={handletextChange}
                         placeholder="위의 박스를 클릭하거나 직접 마크다운으로 입력하세요"
-                        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+                        inputProps={{style: {fontFamily: "SUIT-Regular"}}}
                       />
                     </Box>
                     <Box style={{ marginTop: 20 }}>
@@ -260,6 +260,7 @@ export default function MathAccordion(props) {
         </AccordionSummary>
         <AccordionDetails>
             <AccordionListText propFunction={highFunction} data={data}/>
+            ID: {data.id}
         </AccordionDetails>
       </Accordion>
     </div>

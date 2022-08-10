@@ -18,7 +18,7 @@ export default function BasicTextFields(props) {
         placeholder="제목"
         sx={{ marginLeft: '5%' }}
         onChange={textChangeHandler}
-        inputProps={{style: {fontFamily: "KOTRAHOPE"}}}
+        inputProps={{style: {fontFamily: "SUIT-Regular"}}}
       />
     </Box>
   );

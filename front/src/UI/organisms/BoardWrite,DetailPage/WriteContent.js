@@ -194,7 +194,7 @@ export default function WriteContent(props) {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          style={{ float: 'right', fontFamily: 'KOTRAHOPE', marginRight: '5%' }}
+          style={{ float: 'right', fontFamily: 'SUIT-Regular', marginRight: '5%' }}
         >
           대표 설정
         </Button>

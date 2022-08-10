@@ -19,7 +19,7 @@ const AccordionListText = (props) => {
       inputProps={{
         style: {
           fontWeight: 'bold',
-          fontFamily: "KOTRAHOPE"
+          fontFamily: "SUIT-Regular"
         },
       }}
     />
