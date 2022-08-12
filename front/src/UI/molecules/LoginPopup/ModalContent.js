@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Container, Box, Divider, Button } from '@mui/material';
+import { Container, Box, Divider, Button, IconButton } from '@mui/material';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
+import { KAKAO_AUTH_URL } from "../../atoms/KakaoSocialLogin/OAuth";
+import { GITHUB_AUTH_URL } from "../../atoms/GithubSocialLogin/OAuth";
 
 const ModalContent = (props) => {
   const handleClose = props.handleClose;
@@ -89,6 +91,12 @@ const ModalContent = (props) => {
         }}
         style={{ fontFamily: "SUIT-Regular" }}
       >
+        <IconButton
+            sx={{ position: 'fixed', top: 0, right: 0 }}
+            onClick={handleClose}
+          >
+            <CloseIcon />
+          </IconButton>
         <TitleText title="로그인" direction="center" size="h5"></TitleText>
         <AuthTextField label="아이디" onChange={handleIdChange}></AuthTextField>
         <AuthTextField label="비밀번호" onChange={handlePwChange}></AuthTextField>
@@ -112,14 +120,29 @@ const ModalContent = (props) => {
           </Button>
         </Link>
         <Divider />
-        <Box sx={{ textAlign: 'center', mt: 3 }}>
-            <a id="custom-login-btn">
+        <Box sx={{ alignItems: "center", mt: 2, display: "flex" }} >
+          <Box sx={{ marginLeft: 5, marginRight: 3}}>
+            <a id="custom-login-btn" href={KAKAO_AUTH_URL}>
               <img
-                src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-                width="242"
+                src={process.env.PUBLIC_URL + '/카카오 로그인.png'}
+                alt="Logo"
+                width='55px'
+                height='55px'
               />
             </a>
+          </Box>
+          <Box sx={{ marginLeft: 2 }}>
+            <a id="custom-login-btn" href={GITHUB_AUTH_URL}>
+              <img
+                src={process.env.PUBLIC_URL + '/깃허브 로그인.png'}
+                alt="Logo"
+                width='50px'
+                height='50px'
+              />
+            </a>
+          </Box>
         </Box>
+
       </Box>
     </Container>
   );

@@ -19,6 +19,8 @@ import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 import StatisticsPage from '../pages/StatisticsPage/StatisticsPage';
 import './App.css';
 import FileViewer from '../atoms/BoardWrite,DetailPage/FileViewer';
+import KakaoOAuthRedirectHandler from '../atoms/KakaoSocialLogin/SocialLogin';
+import GithubOAuthRedirectHandler from '../atoms/GithubSocialLogin/SocialLogin';
 
 const App = () => {
   return (
@@ -48,6 +50,9 @@ const App = () => {
 
             <Route path="/AllStatistics/*" element={<StatisticsPage />} />
             <Route path="/Test" element={<FileViewer />} />
+
+            <Route path="/oauth/callback/kakao" component={KakaoOAuthRedirectHandler}></Route>
+            <Route path="/oauth/callback/github" component={GithubOAuthRedirectHandler}></Route>
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>
