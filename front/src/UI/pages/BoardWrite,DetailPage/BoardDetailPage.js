@@ -165,6 +165,14 @@ const data = {
         upper: '1',
         isBlocked: false,
       },
+      {
+        id: '4',
+        context: '글 내용3',
+        writter: 'efg',
+        written: '2022-06-07 22:00:00',
+        upper: '3',
+        isBlocked: false,
+      },
     ],
   },
 };

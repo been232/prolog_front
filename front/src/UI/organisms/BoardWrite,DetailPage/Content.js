@@ -19,6 +19,7 @@ export default function Content(props) {
   const layout = props.layout.data;
   const tag = layout.tag;
   const comment = layout.comments;
+  const postid = layout.post.id;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -207,7 +208,7 @@ export default function Content(props) {
           </ReactFlowProvider>
         </Box>
       </Box>
-      <Comment comment={comment}></Comment>
+      <Comment comment={comment} postid={postid}></Comment>
       <ChipList tag={tag} />
       <UnderButtons id={layout.layoutId} data={nodes} tags={tag} />
     </Box>
