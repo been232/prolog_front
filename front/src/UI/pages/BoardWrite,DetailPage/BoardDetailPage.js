@@ -37,10 +37,10 @@ const data = {
         id: 2,
         images: [
           {
-            url: "blob:http://localhost:3000/9a2bbe9c-5855-4e48-afe7-b85cddde179a",
+            url: 'blob:http://localhost:3000/9a2bbe9c-5855-4e48-afe7-b85cddde179a',
           },
           {
-            url: "blob:http://localhost:3000/ddb04dbd-f613-4319-8e57-c05933b17d75",
+            url: 'blob:http://localhost:3000/ddb04dbd-f613-4319-8e57-c05933b17d75',
           },
         ],
         length: 2,
@@ -81,7 +81,8 @@ const data = {
         width: 794,
       },
       {
-        content: 'https://www.postman.com/galactic-water-517231/workspace/prolog/example/18419399-3d762dc1-a884-4c76-aac4-01758061136b',
+        content:
+          'https://www.postman.com/galactic-water-517231/workspace/prolog/example/18419399-3d762dc1-a884-4c76-aac4-01758061136b',
         coordinateX: 465.5513725236415,
         coordinateY: 2188.1029916903926,
         explanation: '66',
@@ -130,28 +131,41 @@ const data = {
     tag: ['gggg'],
     hits: 123,
     likes: { count: 11, exist: false }, // exist : 내가 좋아요를 눌렀는지
-    // comments : [
-    //     {
-    //         id : commentId,
-    //         context : 글 내용,
-    //         written : 2022-06-07 22:00:00,
-    //         upper : upperCommentId,
-    //         isBlocked : true
-    //     },
-    //     {
-    //         id : commentId,
-    //         context : 글 내용,
-    //         written : 2022-06-07 22:00:00,
-    //         upper : upperCommentId,
-    //         isBlocked : false
-    //     },
-    //     {
-    //         id : commentId,
-    //         context : 글 내용,
-    //         written : 2022-06-07 22:00:00,
-    //         upper : upperCommentId,
-    //         isBlocked : true
-    //     }
-    // ]
+    comments: [
+      {
+        id: '1',
+        context: '글 내용',
+        writter: 'abc',
+        written: '2022-06-07 22:00:00',
+        upper: '0',
+        isBlocked: true,
+      },
+      {
+        id: '3',
+        context:
+          '글 내용 asdf asdf asdf asdf asdf aasdf asdf safaadfasdfasdf asf \n asdfa aasdfasdf s sdf asdfa sdf asdfa sdf ',
+        writter: 'qwr',
+        written: '2022-06-07 22:00:00',
+        upper: '0',
+        isBlocked: true,
+      },
+
+      {
+        id: '2',
+        context: '글 내용',
+        writter: 'efg',
+        written: '2022-06-07 22:00:00',
+        upper: '1',
+        isBlocked: false,
+      },
+      {
+        id: '4',
+        context: '글 내용2',
+        writter: 'efg',
+        written: '2022-06-07 22:00:00',
+        upper: '1',
+        isBlocked: false,
+      },
+    ],
   },
 };
