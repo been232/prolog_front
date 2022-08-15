@@ -7,7 +7,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 
 const FindId = () => {
-  const [account, setAccount] = useState('ㄴㄹㅇㄴ');
+  const [account, setAccount] = useState('_____');
   const [info, setInfo] = useState({
     Email: '',
   });
@@ -62,6 +62,7 @@ const FindId = () => {
           flexDirection: 'column',
           alignItems: 'center',
         }}
+        style={{ fontFamily: "SUIT-Regular" }}
       >
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           <LockOutlinedIcon />

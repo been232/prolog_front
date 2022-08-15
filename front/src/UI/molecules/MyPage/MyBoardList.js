@@ -1,6 +1,7 @@
-import { Box, Grid, IconButton, Modal } from '@mui/material';
+import { Box, Grid, IconButton, Modal, TextField, Button } from '@mui/material';
 import React, { useState } from 'react';
-import MainPageOrganism from '../../atoms/MyPage/MainPageOrganism';
+import { Link } from 'react-router-dom';
+import MyBoardAtoms from '../../atoms/MyPage/MyBoardAtoms';
 import CloseIcon from '@mui/icons-material/Close';
 import StatisticsContent from '../../atoms/MyPage/StatisticsContent';
 import ChartList from '../../organisms/StatisticsPage/ChartList';
@@ -34,34 +35,12 @@ const datas = {
         type: '1',
         width: '12',
         height: '35',
-        content: '어쩌구 저쩌구',
+        content: '어쩌구 저쩌구ddd',
       },
     },
   ],
 };
-const data = [
-  {
-    success: true,
-    data: [
-      {
-        cumulativeView: '78',
-        tenView: '7',
-        januaryView: '1',
-        februaryView: '2',
-        marchView: '3',
-        aprilView: '4',
-        mayView: '5',
-        juneView: '6',
-        julyView: '7',
-        augustView: '8',
-        septemberView: '9',
-        octoberView: '10',
-        novemberView: '11',
-        decemberView: '12',
-      },
-    ],
-  },
-];
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -75,7 +54,7 @@ const style = {
   px: 4,
   pb: 3,
 };
-const MyBoardList = () => {
+const MyBoardList = (props) => {
   const [open, setOpen] = useState(false);
   var timer;
 
@@ -87,6 +66,18 @@ const MyBoardList = () => {
     setOpen(false);
     clearTimeout(timer);
   };
+
+  const [text, setText] = useState('');
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  const handle = () => {
+    props.propFunction(text);
+  }
+  
+
   return (
     <>
       <Grid container spacing={3}>
@@ -100,23 +91,10 @@ const MyBoardList = () => {
             key={i}
             onClick={handleOpen}
           >
-            <MainPageOrganism data={data}></MainPageOrganism>
+            <MyBoardAtoms data={data}></MyBoardAtoms>
           </Grid>
         ))}
       </Grid>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={{ ...style, width: 600, height: 600 }}>
-          <IconButton
-            sx={{ position: 'fixed', top: 0, right: 0 }}
-            onClick={handleClose}
-          >
-            <CloseIcon />
-          </IconButton>
-          <StatisticsContent data={data} />
-          <ChartList data={data} />
-          <UnderButton />
-        </Box>
-      </Modal>
     </>
   );
 };

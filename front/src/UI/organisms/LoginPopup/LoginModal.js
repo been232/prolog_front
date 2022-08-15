@@ -3,16 +3,16 @@ import { Box, Modal } from '@mui/material'
 import ModalContent from '../../molecules/LoginPopup/ModalContent';
 import ModalButton from '../../atoms/LoginPopup/ModalButton'
 
-const style = {
+const styleXs = {
     position: 'absolute',
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: 280,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 3,
 };
 
 const LoginModal = (props) => {
@@ -31,8 +31,8 @@ const LoginModal = (props) => {
                 open={open}
                 onClose={handleClose}
             >
-                <Box sx={style}>
-                    <ModalContent isLogin={isLogin} setIsLogin={setIsLogin} handleClose={handleClose}></ModalContent>
+                <Box sx={styleXs} style={{ fontFamily: "SUIT-Regular" }}>
+                    <ModalContent setIsLogin={setIsLogin} handleClose={handleClose}></ModalContent>
                 </Box>
             </Modal>
         </>

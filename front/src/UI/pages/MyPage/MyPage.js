@@ -1,5 +1,4 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-// import theme from '../../../theme/Theme'
 import { Box, Container, Hidden } from '@mui/material';
 import MyInfo from '../../organisms/MyPage/MyInfo';
 import MyTabs from '../../organisms/MyPage/MyTabs';
@@ -25,13 +24,11 @@ const MyPage = () => {
                     <Box >
                         <Box
                             sx={{
-
                                 transform: 'translateZ(0px)',
                                 flexGrow: 1,
                                 position: 'fixed',
                                 top: 120,
                                 left: 20,
-                                border: "solid #BADBF3",
                                 padding: "8px 4px"
                             }}>
                             <TreeList />

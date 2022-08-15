@@ -5,7 +5,7 @@ const TitleText = (props) => {
   const { title, direction, size, fontWeight } = props;
   return (
     <Typography variant={size} component={size}
-      sx={{ textAlign: direction, fontWeight: fontWeight }}>
+      sx={{ textAlign: direction, fontWeight: fontWeight }} style={{ fontFamily: "SUIT-Regular" }}>
       {title}
     </Typography>
   );

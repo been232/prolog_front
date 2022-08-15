@@ -22,6 +22,10 @@ const ProfileImage = (props) => {
     // 이미지 상대경로 저장
     const onSaveImage = (event) => {
         const imageFile = event.target.files[0];
+        if (!imageFile) {
+            return;
+          }
+          
         const imageUrl = URL.createObjectURL(imageFile);
         setimage(imageFile);
         setFileUrl(imageUrl);

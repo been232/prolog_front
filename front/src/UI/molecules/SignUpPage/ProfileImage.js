@@ -14,6 +14,11 @@ const ProfileImage = (props) => {
   // 이미지 상대경로 저장
   const onSaveImage = (event) => {
     const imageFile = event.target.files[0];
+
+    if (!imageFile) {
+      return;
+    }
+    
     const imageUrl = URL.createObjectURL(imageFile);
     setimage(imageFile);
     setFileUrl(imageUrl);
@@ -55,7 +60,7 @@ const ProfileImage = (props) => {
     <>
       <Grid container spacing={1}>
         <Grid item xs={6}>
-          <Box>
+          <Box style={{ fontFamily: "SUIT-Regular" }}>
             <Box sx={{ float: 'left', width: "30%", height: "100px", paddingTop: "40px" }}>
               <TitleText title="프로필" fontWeight="bold" ></TitleText>
             </Box>
@@ -68,7 +73,7 @@ const ProfileImage = (props) => {
           </Box>
         </Grid>
         <Grid item xs={6}>
-          <Box>
+          <Box style={{ fontFamily: "SUIT-Regular" }}>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Box sx={{ paddingLeft: 1, paddingTop:2 }}>

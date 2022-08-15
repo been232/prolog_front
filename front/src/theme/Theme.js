@@ -1,4 +1,3 @@
-import React from 'react';
 import { createTheme, colors } from '@mui/material';
 
 const theme = createTheme({
@@ -19,6 +18,9 @@ const theme = createTheme({
 			secondary: '#6b778c',
 		}
 	},
+	TreeItem: {
+		fontFamily: "SUIT-Regular",
+	}
 	// shadows,
 	// typography
 });

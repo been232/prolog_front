@@ -56,6 +56,7 @@ export default function ChartList(props) {
         marginTop: 1,
         display: 'inline-block',
       }}
+      style={{ fontFamily: "SUIT-Regular" }}
     >
       <Bar data={dataBar} width={100} height={50} />
     </Box>

@@ -84,6 +84,10 @@ const Api = {
             password
         });
     },
+    // 카카오 소셜로그인
+    postKakaoLogin: async (code) => {
+        return await getRequest(`/auth/login/kakao?${code}`);
+    },
     // 로그아웃
     postLogout: async () => {
         return await postJsonReqest('/auth/logout', null);

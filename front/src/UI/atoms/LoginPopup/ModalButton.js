@@ -10,6 +10,7 @@ const ModalButton = (props) => {
       size="small"
       sx={{ float: direct }}
       onClick={(event) => handleOpen()}
+      style={{ fontFamily: "SUIT-Regular" }}
     >
       {value}
     </Button>

@@ -6,6 +6,7 @@ import MainPage from '../pages/MainPage/MainPage';
 import LayoutPage from '../pages/LayoutPage/LayoutPage';
 import ControlledOpenSpeedDial from '../atoms/MainPage/ControlledOpenSpeedDial';
 import LoginPopupPage from '../pages/LoginPopupPage/LoginPopupPage';
+import Logout from '../atoms/Header/Logout';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
 import FindIdPage from '../pages/FindIdPage/FindIdPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
@@ -18,7 +19,12 @@ import BoardModifyPage from '../pages/BoardModifyPage/BoardModifyPage';
 import StatisticsPage from '../pages/StatisticsPage/StatisticsPage';
 import './App.css';
 import FileViewer from '../atoms/BoardWrite,DetailPage/FileViewer';
+
+import KakaoOAuthRedirectHandler from '../atoms/KakaoSocialLogin/SocialLogin';
+import GithubOAuthRedirectHandler from '../atoms/GithubSocialLogin/SocialLogin';
+
 import FileViewerMolecule from '../molecules/BoardWrite,DetailPage/FileViewerMolecules';
+
 
 const App = () => {
   return (
@@ -35,6 +41,7 @@ const App = () => {
             <Route path="/BoardModify/*" element={<BoardModifyPage />} />
             <Route path="/sign/*" element={<SignUpPage />} />
             <Route path="/login/*" element={<LoginPopupPage />} />
+            <Route path="/logout/*" element={<Logout />} />
 
             <Route path="/findID/*" element={<FindIdPage />} />
             <Route path="/LayoutWrite/*" element={<LayoutWritePage />} />
@@ -46,7 +53,13 @@ const App = () => {
             <Route path="/search" element={<SearchPage />} />
 
             <Route path="/AllStatistics/*" element={<StatisticsPage />} />
+
+
+            <Route path="/oauth/callback/kakao" component={KakaoOAuthRedirectHandler}></Route>
+            <Route path="/oauth/callback/github" component={GithubOAuthRedirectHandler}></Route>
+
             <Route path="/Test" element={<FileViewerMolecule />} />
+
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>
