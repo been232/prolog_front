@@ -149,7 +149,6 @@ const data = {
         upper: '0',
         isBlocked: true,
       },
-
       {
         id: '2',
         context: '글 내용',

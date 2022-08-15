@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 
 import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
 import { Box } from '@mui/material';
-import { maxHeight } from '@mui/system';
-function MyFileViewer() {
+import FileViewer from '../../atoms/BoardWrite,DetailPage/FileDocViewer';
+function FileViewerMolecule() {
   const [prv, setPrv] = useState('');
   const getFile = (e) => {
     // console.log(e.target.files);
@@ -33,18 +33,9 @@ function MyFileViewer() {
       <div>
         <button onClick={() => inputRef.click()}>파일 등록</button>
       </div>
-      <DocViewer
-        documents={docs}
-        pluginRenderers={DocViewerRenderers}
-        style={{ width: 1000, height: 800 }}
-        config={{
-          header: {
-            disableHeader: true,
-          },
-        }}
-      />
+      <FileViewer prv={prv}></FileViewer>
     </Box>
   );
 }
 
-export default MyFileViewer;
+export default FileViewerMolecule;
