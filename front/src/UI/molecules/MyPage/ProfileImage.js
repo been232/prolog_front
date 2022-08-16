@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Link } from 'react-router-dom';
-import ContainedButton from '../../atoms/Commons/ContainedButton';
+import LinkButton from '../../atoms/Commons/LinkButton';
 
 const ProfileImage = (props) => {
     const base_image = props.Image;
@@ -24,7 +24,7 @@ const ProfileImage = (props) => {
                             <AccountCircleIcon sx={{ width: "100px", height: "100px" }} />
                             <Box sx={{ marginTop: 1, marginLeft: 1 }}>
                                 <Link to="/memberInfo">
-                                    <ContainedButton content="내 상세정보" fontSize="11px"></ContainedButton>
+                                    <LinkButton content="내 상세정보" fontSize="11px"></LinkButton>
                                 </Link>
                             </Box>
                         </Box>
@@ -33,7 +33,7 @@ const ProfileImage = (props) => {
                             <img src={base_image} alt="profile" width="100px" height="100px" style={{ objectFit: "cover", borderRadius: "70%" }} />
                             <Box sx={{ marginTop: 1, marginLeft: 1 }}>
                                 <Link to="/memberInfo">
-                                    <ContainedButton content="내 상세정보" fontSize="11px"></ContainedButton>
+                                    <LinkButton content="내 상세정보" fontSize="11px"></LinkButton>
                                 </Link>
                             </Box>
                         </Box>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ProfileImage from '../../molecules/MyPage/ProfileImage';
-import ContainedButton from '../../atoms/Commons/ContainedButton';
 
 const MyInfo = (props) => {
     const [info, setInfo] = useState({
