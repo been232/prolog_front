@@ -25,7 +25,6 @@ import GithubOAuthRedirectHandler from '../atoms/GithubSocialLogin/SocialLogin';
 
 import FileViewerMolecule from '../molecules/BoardWrite,DetailPage/FileViewerMolecules';
 
-
 const App = () => {
   return (
     <>
@@ -54,12 +53,16 @@ const App = () => {
 
             <Route path="/AllStatistics/*" element={<StatisticsPage />} />
 
-
-            <Route path="/oauth/callback/kakao" component={KakaoOAuthRedirectHandler}></Route>
-            <Route path="/oauth/callback/github" component={GithubOAuthRedirectHandler}></Route>
+            <Route
+              path="/oauth/callback/kakao"
+              component={KakaoOAuthRedirectHandler}
+            ></Route>
+            <Route
+              path="/oauth/callback/github"
+              component={GithubOAuthRedirectHandler}
+            ></Route>
 
             <Route path="/Test" element={<FileViewerMolecule />} />
-
           </Routes>
           <ControlledOpenSpeedDial />
         </BrowserRouter>

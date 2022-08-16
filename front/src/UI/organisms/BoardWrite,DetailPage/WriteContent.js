@@ -14,6 +14,7 @@ import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
 import ChipInput from '../../molecules/BoardWrite,DetailPage/ChipInput';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
 
 const nodeTypes = {
   LayoutNode: LayoutNode,
@@ -22,6 +23,7 @@ const nodeTypes = {
   Math: Math,
   Link: Link,
   Code: Code,
+  Viewer: Viewer,
 };
 
 export default function WriteContent(props) {
@@ -35,7 +37,7 @@ export default function WriteContent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [leader, setLeader] = useState(0);
   const open = Boolean(anchorEl);
-  
+
   const handleClick = (event) => {
     setAnchorEl(event.target);
   };
@@ -178,8 +180,8 @@ export default function WriteContent(props) {
   useEffect(() => {
     {
       nodes.map((option) => {
-        if(option.data.id == leader) {
-          option.data.leader = true
+        if (option.data.id == leader) {
+          option.data.leader = true;
         }
       });
     }
@@ -194,7 +196,11 @@ export default function WriteContent(props) {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          style={{ float: 'right', fontFamily: 'SUIT-Regular', marginRight: '5%' }}
+          style={{
+            float: 'right',
+            fontFamily: 'SUIT-Regular',
+            marginRight: '5%',
+          }}
         >
           대표 설정
         </Button>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
 import { Box } from '@mui/material';
 import { maxHeight } from '@mui/system';
+import DocViewer, { DocViewerRenderers } from '@cyntler/react-doc-viewer';
 function MyFileViewer() {
   const [prv, setPrv] = useState('');
   const getFile = (e) => {

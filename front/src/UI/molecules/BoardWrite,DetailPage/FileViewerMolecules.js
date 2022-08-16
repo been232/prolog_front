@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
-import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
 import { Box } from '@mui/material';
 import FileViewer from '../../atoms/BoardWrite,DetailPage/FileDocViewer';
-function FileViewerMolecule(props) {
-  console.log(props);
+function FileViewerMolecule() {
   const [prv, setPrv] = useState('');
+
   const getFile = (e) => {
-    // console.log(e.target.files);
     e.preventDefault();
     const fileReader = new FileReader();
     if (e.target.files[0]) {
@@ -15,7 +13,6 @@ function FileViewerMolecule(props) {
     }
 
     fileReader.onload = () => {
-      // imf = e.target.files[0];
       setPrv(fileReader.result);
     };
   };
