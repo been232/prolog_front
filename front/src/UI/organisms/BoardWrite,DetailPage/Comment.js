@@ -6,7 +6,12 @@ import CommentContent from '../../molecules/BoardWrite,DetailPage/CommentContent
 function Comment(props) {
   const { comment, postid } = props;
   const [commentContent, setCommentCotent] = useState('');
-
+  const [isOpen, setIsOpen] = useState('0');
+  const test = (e) => {
+    console.log(`isOpen:${e}`);
+    setIsOpen(e);
+  };
+  console.log(isOpen);
   const onChangeCommentContent = (e) => {
     const content = e.target.value;
     setCommentCotent(content);
@@ -50,7 +55,7 @@ function Comment(props) {
               order: comment.upper == '0' ? comment.id : comment.upper,
               marginBottom: '0.3%',
               paddingBottom: '0.7%',
-              marginLeft: `${comment.upper == '0' ? '0' : '1%'}`,
+              marginLeft: `${comment.upper == '0' ? '0' : '1.5%'}`,
               borderBottom: '1px solid lightgray',
             }}
             id={comment.id}
@@ -62,7 +67,9 @@ function Comment(props) {
               id={comment.id}
               upper={comment.upper != '0' ? comment.upper : comment.id}
               postid={postid}
-              isBlocked={comment.isBlocked}
+              isBlocked={comment.upper != '0' ? false : true} //isBlocked가 필요한가?
+              setIsOpen={test}
+              isOpen={isOpen}
             ></CommentContent>
           </Box>
         ))}

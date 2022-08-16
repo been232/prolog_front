@@ -1,15 +1,37 @@
 import { Button } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentWriteBox from './CommentWriteBox';
 
 function CommentContent(props) {
-  const { writter, written, context, id, upper, postid, isBlocked } = props;
+  const {
+    writter,
+    written,
+    context,
+    id,
+    upper,
+    postid,
+    isBlocked,
+    setIsOpen,
+    isOpen,
+  } = props;
 
   const [display, setDisplay] = useState(false);
 
   const setCommentWriteBox = () => {
-    setDisplay(!display);
+    if (isOpen == id) {
+      setDisplay(false);
+      console.log(`display ${id}:${display}`);
+    } else {
+      setDisplay(true);
+      setIsOpen(id);
+    }
   };
+  useEffect(() => {
+    if (isOpen != id) {
+      setDisplay(false);
+    }
+  }, [isOpen]);
+
   const [commentContent, setCommentCotent] = useState('');
 
   const onChangeCommentContent = (e) => {
@@ -17,6 +39,7 @@ function CommentContent(props) {
     setCommentCotent(content);
   };
   const submitComment = (e) => {
+    setDisplay(!display);
     //서버에 댓글 전송하는 로직
     console.log({
       postId: postid,
