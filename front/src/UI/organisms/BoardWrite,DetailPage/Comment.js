@@ -8,10 +8,8 @@ function Comment(props) {
   const [commentContent, setCommentCotent] = useState('');
   const [isOpen, setIsOpen] = useState('0');
   const test = (e) => {
-    console.log(`isOpen:${e}`);
     setIsOpen(e);
   };
-  console.log(isOpen);
   const onChangeCommentContent = (e) => {
     const content = e.target.value;
     setCommentCotent(content);
@@ -24,6 +22,8 @@ function Comment(props) {
       upperCommentId: '0',
       context: commentContent,
     });
+    const blank = '';
+    setCommentCotent(blank);
   };
 
   return (
@@ -74,11 +74,14 @@ function Comment(props) {
           </Box>
         ))}
       </Box>
-      <CommentWriteBox
-        onChange={onChangeCommentContent}
-        onClick={submitComment}
-        display={'flex'}
-      ></CommentWriteBox>
+      {isOpen == '0' && (
+        <CommentWriteBox
+          onChange={onChangeCommentContent}
+          onClick={submitComment}
+          display={'flex'}
+          value={commentContent}
+        ></CommentWriteBox>
+      )}
     </Box>
   );
 }
