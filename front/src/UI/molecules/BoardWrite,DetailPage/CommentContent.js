@@ -20,7 +20,7 @@ function CommentContent(props) {
   const setCommentWriteBox = () => {
     if (isOpen == id) {
       setDisplay(false);
-      console.log(`display ${id}:${display}`);
+      setIsOpen('0');
     } else {
       setDisplay(true);
       setIsOpen(id);
