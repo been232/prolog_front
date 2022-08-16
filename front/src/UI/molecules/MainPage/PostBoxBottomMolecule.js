@@ -21,8 +21,9 @@ function PostBoxBottomMolecule({ member, memberImage, likes }) {
           alignItems: 'center',
         }}
       >
-        <HeartIcon fontSize="small" />
-        {likes}
+        {/* <HeartIcon fontSize="small" />
+        {likes} */}
+        <span>조회수 : {}</span>
       </Box>
     </Box>
   );

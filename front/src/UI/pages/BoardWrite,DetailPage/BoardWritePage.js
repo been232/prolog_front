@@ -81,6 +81,14 @@ const data = [
         type: 1,
         width: 794,
       },
+      {
+        coordinateX: 467.5513725236415,
+        coordinateY: 2954.8970083096074,
+        height: 800,
+        id: 8,
+        type: 6,
+        width: 794,
+      },
     ],
   },
 ];

@@ -12,10 +12,14 @@ import Math from '../../molecules/BoardWrite,DetailPage/MathAccordion';
 import Link from '../../molecules/BoardWrite,DetailPage/HyperLinkAccordion';
 import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
 import ChipList from '../../molecules/BoardWrite,DetailPage/ChipList';
+import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
+import Comment from './Comment';
 
 export default function Content(props) {
   const layout = props.layout.data;
   const tag = layout.tag;
+  const comment = layout.comments;
+  const postid = layout.post.id;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -27,6 +31,7 @@ export default function Content(props) {
     Math: Math,
     Link: Link,
     Code: Code,
+    Viewer: Viewer,
   };
 
   {
@@ -47,7 +52,7 @@ export default function Content(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: dataitem.content,
-              leader: dataitem.leader
+              leader: dataitem.leader,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -67,7 +72,7 @@ export default function Content(props) {
               images: dataitem.images,
               explanation: dataitem.explanation,
               board: true,
-              leader: dataitem.leader
+              leader: dataitem.leader,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -87,7 +92,7 @@ export default function Content(props) {
               content: dataitem.content,
               explanation: dataitem.explanation,
               board: true,
-              leader: dataitem.leader
+              leader: dataitem.leader,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -107,7 +112,7 @@ export default function Content(props) {
               content: dataitem.content,
               explanation: dataitem.explanation,
               board: true,
-              leader: dataitem.leader
+              leader: dataitem.leader,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -127,11 +132,30 @@ export default function Content(props) {
               content: dataitem.content,
               explanation: dataitem.explanation,
               board: true,
-              leader: dataitem.leader
+              leader: dataitem.leader,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
           initialNodes.push(MathNode);
+          break;
+        case 6:
+          const ViewerNode = {
+            id: dataitem.id.toString(),
+            type: 'Viewer',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+              board: true,
+              leader: dataitem.leader,
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(ViewerNode);
           break;
         default:
           const newNode = {
@@ -145,7 +169,7 @@ export default function Content(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: '',
-              leader: dataitem.leader
+              leader: dataitem.leader,
             },
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
@@ -184,8 +208,9 @@ export default function Content(props) {
           </ReactFlowProvider>
         </Box>
       </Box>
-      <ChipList tag={tag}/>
-      <UnderButtons id={layout.layoutId} data={nodes} tags={tag}/>
+      <Comment comment={comment} postid={postid}></Comment>
+      <ChipList tag={tag} />
+      <UnderButtons id={layout.layoutId} data={nodes} tags={tag} />
     </Box>
   );
 }
