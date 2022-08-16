@@ -116,7 +116,7 @@ const data = {
         content: '11',
         coordinateX: 467.5513725236415,
         coordinateY: 2954.1029916903926,
-        height: 300,
+        height: 800,
         id: 9,
         leader: false,
         type: 6,

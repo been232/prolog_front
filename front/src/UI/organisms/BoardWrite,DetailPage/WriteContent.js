@@ -155,6 +155,25 @@ export default function WriteContent(props) {
           };
           initialNodes.push(MathNode);
           break;
+        case 6:
+          const ViewerNode = {
+            id: dataitem.id.toString(),
+            type: 'Viewer',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+              board: false,
+              leader: false,
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(ViewerNode);
+          break;
         default:
           const newNode = {
             id: dataitem.id.toString(),
