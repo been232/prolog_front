@@ -112,22 +112,33 @@ const data = {
         type: 1,
         width: 794,
       },
+      {
+        content: '11',
+        coordinateX: 467.5513725236415,
+        coordinateY: 2954.1029916903926,
+        height: 300,
+        id: 9,
+        leader: false,
+        type: 6,
+        width: 794,
+      },
     ],
-    // category : {
-    //     id : categoryId,
-    //     name : categoryName
-    // },
-    // attachment : [
-    //     {
-    //         id : attachmentId,
-    //         name : name,
-    //         url : http::/~
-    //     },{
-    //         id : attachmentId,
-    //         name : name,
-    //         url : http::/~
-    //     }
-    // ],
+    category: {
+      id: 'categoryId',
+      name: 'categoryName',
+    },
+    attachment: [
+      {
+        id: 'attachmentId',
+        name: 'name',
+        url: 'http::/~',
+      },
+      {
+        id: 'attachmentId',
+        name: 'name',
+        url: 'http::/~',
+      },
+    ],
     tag: ['gggg'],
     hits: 123,
     likes: { count: 11, exist: false }, // exist : 내가 좋아요를 눌렀는지

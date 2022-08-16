@@ -150,10 +150,10 @@ export default function Content(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: dataitem.content,
-              explanation: dataitem.explanation,
               board: true,
               leader: dataitem.leader,
             },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
           initialNodes.push(ViewerNode);
           break;

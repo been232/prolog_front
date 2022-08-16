@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import DocViewer, { DocViewerRenderers } from 'react-doc-viewer';
 import { Box } from '@mui/material';
 import FileViewer from '../../atoms/BoardWrite,DetailPage/FileDocViewer';
-function FileViewerMolecule() {
+function FileViewerMolecule(props) {
+  console.log(props);
   const [prv, setPrv] = useState('');
   const getFile = (e) => {
     // console.log(e.target.files);
@@ -19,7 +20,6 @@ function FileViewerMolecule() {
     };
   };
 
-  const docs = [{ uri: `${prv}` }];
   let inputRef;
 
   return (
