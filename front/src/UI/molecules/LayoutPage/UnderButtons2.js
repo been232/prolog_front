@@ -2,11 +2,13 @@ import { Box } from '@mui/material';
 import OutlinedButton from '../../atoms/Commons/OutlinedButton';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import Api from '../../../api/Api';
 
 export default function UnderButtons2(props) {
   const data = props.data;
   const title = props.title.title;
   const datas = [];
+  const user = props.user;
 
   const handleClick = () => {
     data.map((dataitem) => {
@@ -21,12 +23,16 @@ export default function UnderButtons2(props) {
     });
 
     const submit = {
-      user: '',
+      user: user,
       moldName: title,
       layouts: datas,
     };
 
-    console.log(submit)
+    const getData = async () => {
+      const infoBody = await Api.getLayoutWrite(submit);
+      console.log(infoBody);
+    };
+    getData();
   };
 
   return (
