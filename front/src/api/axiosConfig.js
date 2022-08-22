@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { base_url } from 'API/Url';
+import { base_url } from './Url';
 
 /*
 const httpsAgent = new https.Agent({

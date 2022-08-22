@@ -1,5 +1,5 @@
 
-import client from 'API/axiosConfig';
+import client from './axiosConfig';
 import qs from "qs";
 
 
@@ -124,6 +124,12 @@ const Api = {
     getMyPost: async () => {
         return await getRequest(`/mypage/post`);
     },
+
+    //채연이 연동
+    //Layout제작
+    getLayoutWrite: async (layout) => {
+        return await postJsonReqest(`/layout`,layout);
+    }
 
 };
 
