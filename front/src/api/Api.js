@@ -33,7 +33,22 @@ const postJsonReqest = async (path, body) => {
         const data = await client.post(path, body, {
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+            }
+        })
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const postJsonUserReqest = async (path, body, user) => {
+    try {
+        const data = await client.post(path, body, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                memberPk: user
             }
         })
         return data;
@@ -127,8 +142,9 @@ const Api = {
 
     //채연이 연동
     //Layout제작
-    getLayoutWrite: async (layout) => {
-        return await postJsonReqest(`/layout`,layout);
+    getLayoutWrite: async (layout, user) => {
+        console.log(layout)
+        return await postJsonUserReqest(`/layout`,JSON.stringify(layout), user);
     }
 
 };

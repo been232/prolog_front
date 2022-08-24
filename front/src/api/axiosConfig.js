@@ -13,7 +13,7 @@ const instance = axios.create({ httpsAgent })
 */
 
 const client = axios.create({
-    baseURL: base_url + '/api'
+    baseURL: base_url
 })
 
 client.interceptors.request.use(
