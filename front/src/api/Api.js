@@ -167,8 +167,12 @@ const Api = {
     },
     getDeleteLayout: async(id) => {
         return await deleteJsonReqest(`/layouts/${id}`);
-    }
+    },
 
+    //Board
+    getBoardWrite: async (board) => {
+        return await postJsonUserReqest(`/board`,JSON.stringify(board));
+    },
 };
 
 export default Api;
