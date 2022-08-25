@@ -15,6 +15,7 @@ import ChipInput from '../../molecules/BoardWrite,DetailPage/ChipInput';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
+import { data } from 'jquery';
 
 const nodeTypes = {
   LayoutNode: LayoutNode,
@@ -37,6 +38,7 @@ export default function WriteContent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [leader, setLeader] = useState(0);
   const open = Boolean(anchorEl);
+  const user = sessionStorage.getItem('userId');
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
@@ -269,7 +271,7 @@ export default function WriteContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag} />
+      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
     </Box>
   );
 }

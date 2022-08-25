@@ -1,12 +1,15 @@
 import * as React from 'react';
-
 import { Box } from '@mui/material';
 import OutlinedButton from '../../atoms/Commons/OutlinedButton';
+import Api from "../../../api/Api";
 
 export default function UnderButton(props) {
   const data = props.data;
   const title = props.title;
   const tags = props.tags;
+  const user = props.user;
+  const id = props.layoutId;
+
   const datas = [];
   const [image, setImage] = React.useState({
     url: '',
@@ -72,13 +75,28 @@ export default function UnderButton(props) {
     });
 
     const submit = {
-      user: '',
-      moldName: title,
+      layoutID: id,
+      title: title,
       layouts: datas,
       tag: tags,
+      category : "",
+      attachment : [],
     };
 
-    console.log(submit);
+    const getData = async () => {
+      console.log(submit)
+      if (submit.title == undefined) {
+        alert("제목을 입력해주세요.");
+      } else {
+        const infoBody = await Api.getBoardWrite(submit);
+        console.log(infoBody)
+        if (infoBody.status == 200) {
+          alert("작성되었습니다");
+          // window.location.href = "/";
+        }
+      }
+    };
+    getData();
   };
 
   return (

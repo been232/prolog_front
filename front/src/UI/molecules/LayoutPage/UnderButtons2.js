@@ -27,7 +27,7 @@ export default function UnderButtons2(props) {
     };
 
     const getData = async () => {
-      if (submit.title == undefined) {
+      if (submit.moldName == undefined) {
         alert("제목을 입력해주세요.");
       } else {
         const infoBody = await Api.getLayoutWrite(submit);
