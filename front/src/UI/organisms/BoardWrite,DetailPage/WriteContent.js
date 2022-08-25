@@ -271,7 +271,7 @@ export default function WriteContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
+      <UnderButton title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
     </Box>
   );
 }

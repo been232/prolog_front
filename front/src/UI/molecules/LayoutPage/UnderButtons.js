@@ -10,7 +10,10 @@ export default function UnderButtons(props) {
   const handledelete = async () => {
     const getData = async () => {
       const infoBody = await Api.getDeleteLayout(id);
-      console.log(infoBody);
+      if (infoBody.status == 200) {
+        alert("삭제되었습니다");
+        window.location.href = "/";
+      }
     };
     getData();
   };
