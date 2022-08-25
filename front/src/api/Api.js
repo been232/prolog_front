@@ -2,6 +2,7 @@
 import client from './axiosConfig';
 import qs from "qs";
 
+const user = sessionStorage.getItem('userId');
 
 const getRequest = async (path, params) => {
     try {
@@ -42,7 +43,23 @@ const postJsonReqest = async (path, body) => {
     }
 };
 
-const postJsonUserReqest = async (path, body, user) => {
+const GetJsonUserReqest = async (path) => {
+    try {
+        const data = await client.get(path, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+                memberPk: user
+            }
+        })
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+
+const postJsonUserReqest = async (path, body) => {
     try {
         const data = await client.post(path, body, {
             headers: {
@@ -141,10 +158,15 @@ const Api = {
     },
 
     //채연이 연동
-    //Layout제작
-    getLayoutWrite: async (layout, user) => {
-        console.log(layout)
-        return await postJsonUserReqest(`/layout`,JSON.stringify(layout), user);
+    //Layout
+    getLayoutWrite: async (layout) => {
+        return await postJsonUserReqest(`/layout`,JSON.stringify(layout));
+    },
+    getLayout: async(id) => {
+        return await GetJsonUserReqest(`/layouts/${id}`);
+    },
+    getDeleteLayout: async(id) => {
+        return await deleteJsonReqest(`/layouts/${id}`);
     }
 
 };

@@ -28,7 +28,7 @@ const nodeTypes = {
 
 export default function WriteContent(props) {
   const title = props.title;
-  const layout = props.layout[0];
+  const layout = props.layout;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -56,7 +56,7 @@ export default function WriteContent(props) {
 
   function list() {
     layout.layouts.map((dataitem) => {
-      switch (dataitem.type) {
+      switch (dataitem.dtype) {
         case 1:
           const TextNode = {
             id: dataitem.id.toString(),
@@ -65,7 +65,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -83,7 +83,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               images: {},
@@ -103,7 +103,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -123,7 +123,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -143,7 +143,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -163,7 +163,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: dataitem.content,
@@ -182,7 +182,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
