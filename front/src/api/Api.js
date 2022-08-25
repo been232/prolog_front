@@ -173,6 +173,9 @@ const Api = {
     getBoardWrite: async (board) => {
         return await postJsonUserReqest(`/board`,JSON.stringify(board));
     },
+    getBoard: async(id) => {
+        return await GetJsonUserReqest(`/board/${id}`);
+    },
 };
 
 export default Api;

@@ -92,7 +92,7 @@ export default function UnderButton(props) {
         console.log(infoBody)
         if (infoBody.status == 200) {
           alert("작성되었습니다");
-          // window.location.href = "/";
+          window.location.href = "/";
         }
       }
     };
