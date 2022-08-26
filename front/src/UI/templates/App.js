@@ -12,6 +12,7 @@ import FindIdPage from '../pages/FindIdPage/FindIdPage';
 import LayoutWritePage from '../pages/LayoutPage/LayoutWritePage';
 import BoardWritePage from '../pages/BoardWrite,DetailPage/BoardWritePage';
 import SearchPage from '../pages/SearchPage/SearchPage';
+import Authentication from '../pages/AuthenticationPage/AuthenticationPage';
 import ReadMemberInfoPage from '../pages/ReadMemberInfoPage/ReadMemberInfoPage';
 import ChangePWPage from '../pages/ChangePWPage/ChangePWPage';
 import MyPage from '../pages/MyPage/MyPage';
@@ -38,7 +39,8 @@ const App = () => {
             <Route path="/BoardDetail/*" element={<BoardDetailPage />} />
             <Route path="/BoardWrite/*" element={<BoardWritePage />} />
             <Route path="/BoardModify/*" element={<BoardModifyPage />} />
-            <Route path="/sign/*" element={<SignUpPage />} />
+            <Route path="/signup/*" element={<SignUpPage />} />
+            <Route path="/auth/*" element={<Authentication />} />
             <Route path="/login/*" element={<LoginPopupPage />} />
             <Route path="/logout/*" element={<Logout />} />
 

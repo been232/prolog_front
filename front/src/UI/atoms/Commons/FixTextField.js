@@ -1,7 +1,7 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 
-export const AuthTextField = (props) => {
+export const FixTextField = (props) => {
   const { id, name, autoComplete, label, onChange, value, defaultValue } = props;
 
   return (
@@ -17,6 +17,9 @@ export const AuthTextField = (props) => {
       onChange={onChange}
       value={value}
       defaultValue={defaultValue}
+      InputProps={{
+        readOnly: true,
+      }}
       style={{ fontFamily: "SUIT-Regular" }}
     />
   );

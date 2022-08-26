@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Link, Avatar, Button, FormControl, Grid, Box, CssBaseline,
   Typography, Container, FormControlLabel, Switch, Divider
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { AuthTextField } from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
+import { AuthTextField } from '../../atoms/Commons/TextField';
+import { FixTextField } from '../../atoms/Commons/FixTextField';
 
 const SignUp = () => {
+  const location = useLocation();
+  const email = location.state;
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [alarm, setAlarm] = useState(true);
@@ -15,7 +19,7 @@ const SignUp = () => {
   const [info, setInfo] = useState({
     name: '',
     account: '',
-    Email: '',
+    Email: email,
     password: password,
     Nickname: '',
     Image: '',
@@ -113,10 +117,13 @@ const SignUp = () => {
               <AuthTextField label="아이디" name="account" onChange={handleChange} />
             </Grid>
             <Grid item xs={12}>
-              <AuthTextField
+              <FixTextField
                 label="이메일"
                 name="Email"
-                onChange={handleChange}
+                defaultValue={email}
+                InputProps={{
+                  readOnly: true,
+                }}
               />
             </Grid>
             <Grid item xs={12}>

@@ -7,6 +7,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
 import { KAKAO_AUTH_URL } from "../../atoms/KakaoSocialLogin/OAuth";
 import { GITHUB_AUTH_URL } from "../../atoms/GithubSocialLogin/OAuth";
+import Api from '../../../api/Api';
 
 const ModalContent = (props) => {
   const handleClose = props.handleClose;
@@ -14,14 +15,14 @@ const ModalContent = (props) => {
   const setIsLogin = props.setIsLogin;
 
   const [info, setInfo] = useState({
-    id: '',
+    account: '',
     password: '',
   });
 
   const handleIdChange = (event) => {
     setInfo((prev) => ({
       ...prev,
-      id: event.target.value,
+      account: event.target.value,
     }));
   };
 
@@ -33,12 +34,12 @@ const ModalContent = (props) => {
   };
 
   const emptyCheck = () => {
-    if (info.id === '' || info.password === '') {
+    if (info.account === '' || info.password === '') {
       return false;
     }
   };
 
-  function handleLogin() {
+  async function handleLogin() {
 
     const isEmpty = emptyCheck();
     if (isEmpty === false) {
@@ -50,16 +51,16 @@ const ModalContent = (props) => {
     console.log(info);
 
     // -----------------------  response 예시 데이터 -----------------------
-    // let response = await Api.postLogin(info);
-    let response = {
-      data: {
-        result: "success",
-        accessToken: "dfsgdfegsd",
-        refreshToken: "dfsgsdfsdg",
-        memberId: 2,
-      }
-    }
-
+    let response = await Api.postLogin(info);
+    // let response = {
+    //   data: {
+    //     result: "success",
+    //     accessToken: "dfsgdfegsd",
+    //     refreshToken: "dfsgsdfsdg",
+    //     memberId: 2,
+    //   }
+    // }
+    console.log(response);
     if (response.data.result === "success") {
       // const target = '/';
       sessionStorage.setItem('user', JSON.stringify(response.data, ['accessToken', 'refreshToken']))
@@ -109,7 +110,7 @@ const ModalContent = (props) => {
         >
           Login
         </Button>
-        <Link to="/sign">
+        <Link to="/auth">
           <Button
             fullWidth
             variant="contained"

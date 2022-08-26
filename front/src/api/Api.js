@@ -1,5 +1,5 @@
 
-import client from 'API/axiosConfig';
+import client from '../api/axiosConfig';
 import qs from "qs";
 
 
@@ -78,11 +78,8 @@ const Api = {
     pageCount: 3,
 
     // 로그인
-    postLogin: async (email, password) => {
-        return await postJsonReqest('/auth/login', {
-            email,
-            password
-        });
+    postLogin: async (info) => {
+        return await postJsonReqest('/login', info );
     },
     // 카카오 소셜로그인
     postKakaoLogin: async (code) => {
