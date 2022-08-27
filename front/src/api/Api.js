@@ -81,46 +81,45 @@ const Api = {
     postLogin: async (info) => {
         return await postJsonReqest('/login', info );
     },
-    // 카카오 소셜로그인
-    postKakaoLogin: async (code) => {
-        return await getRequest(`/auth/login/kakao?${code}`);
-    },
-    // 로그아웃
-    postLogout: async () => {
-        return await postJsonReqest('/auth/logout', null);
-    },
     // 이메일 인증 번호 전송
     postEmail: async (email) => {
-        return await postJsonReqest('/auth/sendmail', { email }
-        );
+        return await postJsonReqest('/email', email);
     },
     // 이메일 인증 번호 확인
-    postAuthEmail: async (email, authkey) => {
-        console.log(email, authkey)
-        return await postJsonReqest('/auth/authmail', { email, authkey });
+    postAuthEmail: async (email, emailAuthNumber) => {
+        return await postJsonReqest('/email/auth', { email, emailAuthNumber });
     },
     // 회원가입
     postSignup: async (info) => {
-        return await postJsonReqest('/auth/signup', info);
+        return await postJsonReqest('/signup/email', info);
     },
     // 회원탈퇴
     getWithdrawal: async () => {
-        return await deleteJsonReqest('/user');
+        return await getRequest('/memberout');
+    },
+    // 아이디 찾기
+    postFindID: async (info) => {
+        return await postJsonReqest(`/idauth`, info);
+    },
+    // 비밀번호 변경
+    postChangePW: async (info) => {
+        return await postJsonReqest(`/updatepw`, info);
+    },
+    // 카카오 소셜 로그인: 인가코드 및 정보 전송
+    postKakaoLogin: async (info) => {
+        return await postJsonReqest(`/login-kakao-code`, info);
     },
 
     // Mypage--------------------------------------------------------------------------------
     // 내 정보 조회
-    getInfo: async () => {
-        return await getRequest(`/mypage/my-info`);
+    getReadMyInfo: async () => {
+        return await getRequest(`/my-info`);
     },
     // 내 정보 수정
-    postUpdateMyInfo: async (userId, user) => {
-        return await postJsonReqest(`/mypage/${userId}`, user);
+    putUpdateMyInfo: async (info) => {
+        return await putJsonReqest(`/my-info-update`, info);
     },
-    // 내가 쓴 글 조회
-    getMyPost: async () => {
-        return await getRequest(`/mypage/post`);
-    },
+
 
 };
 

@@ -19,16 +19,18 @@ const client = axios.create({
 
 client.interceptors.request.use(
     function (config) {
-        const user = sessionStorage.getItem('user'); // 토큰 받아오기
-        
+        const user = sessionStorage.getItem('token'); // 토큰 받아오기
+        const userId = sessionStorage.getItem('userId');
+
         // 토큰 유무 판단 코드
         if (!user) {
             config.headers["X-AUTH-TOKEN"] = null;
+            config.headers["USER-ID"] = null;
             return config
         }
-        const { accessToken, refreshToken } = JSON.parse(user)
+        const accessToken = JSON.parse(user).accesstoken;
         config.headers["X-AUTH-TOKEN"] = accessToken;
-
+        config.headers["USER-ID"] = userId;
         return config
     }
 )
@@ -38,38 +40,38 @@ client.interceptors.response.use(
         return response
     },
     async function (error) {
-      if (error.response && error.response.status === 403) {
-          try {
-              const originalRequest = error.config;
-        
-              const user = sessionStorage.getItem('user'); // 토큰 받아오기
-              const { accessToken, refreshToken } = JSON.parse(user)
-              const data = await client.get('auth/refreshtoken', {
-                headers: {
-                    REFRESHTOKEN: refreshToken
+        if (error.response && error.response.status === 403) {
+            try {
+                const originalRequest = error.config;
+
+                const user = sessionStorage.getItem('token'); // 토큰 받아오기
+                const { accessToken, refreshToken } = JSON.parse(user)
+                const data = await client.get('auth/refreshtoken', {
+                    headers: {
+                        REFRESHTOKEN: refreshToken
+                    }
+                })
+                console.log(data);
+                if (data.data.result === 'fail') {
+                    sessionStorage.removeItem('token')
+                    window.location.href = '/login';
+                    alert('세션이 만료되었습니다.');
+                    return null;
                 }
-            })
-            console.log(data);
-            if(data.data.result === 'fail'){
-                sessionStorage.removeItem('user')
-                window.location.href = '/login';
-                alert('세션이 만료되었습니다.');
-                return null;
+                if (data) {
+                    const { accessToken, refreshToken } = data.data
+                    sessionStorage.removeItem('token')
+                    sessionStorage.setItem('token', JSON.stringify(data.data, ['accessToken', 'refreshToken']))
+                    originalRequest.headers['accessToken'] = accessToken;
+                    return await client.request(originalRequest);
+                }
+            } catch (error) {
+                localStorage.removeItem('token');
+                console.log(error);
             }
-              if (data) {
-                  const {accessToken, refreshToken} = data.data
-                  sessionStorage.removeItem('user')
-                  sessionStorage.setItem('user', JSON.stringify(data.data, ['accessToken', 'refreshToken']))
-                  originalRequest.headers['X-AUTH-TOKEN'] = accessToken;
-                  return await client.request(originalRequest);
-                  }
-          } catch (error){
-              localStorage.removeItem('user');
-              console.log(error);
-          }
-          return Promise.reject(error)
-      }
-      return Promise.reject(error)
+            return Promise.reject(error)
+        }
+        return Promise.reject(error)
     }
 )
 

@@ -5,11 +5,12 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { AuthTextField } from '../../atoms/Commons/TextField';
+import Api from '../../../api/Api';
 
 const FindId = () => {
   const [account, setAccount] = useState('_____');
   const [info, setInfo] = useState({
-    Email: '',
+    email: '',
   });
 
   // 똑같은 기능 하는 코드 하나로 합침
@@ -21,7 +22,7 @@ const FindId = () => {
   };
 
   const emptyCheck = () => {
-    if (info.Email === '') {
+    if (info.email === '') {
       return false;
     }
   };
@@ -33,22 +34,14 @@ const FindId = () => {
       alert('이메일을 입력해주세요');
       return false;
     }
+    
+    let response = await Api.postFindID(info);
 
-    console.log(info);
-    // -----------------------  response 예시 데이터 -----------------------
-    // let response = await Api.postSignup(info);
-    let response = {
-      data: {
-        result: "success",
-        account: "dfsgdfegsd",
-      }
-    }
-
-    if (response.data.result === "success") {
-      setAccount(response.data.account);
+    if (response.data.success === true) {
+      setAccount(response.data.data);
     }
     else {
-      alert('회원가입 실패');
+      alert('이메일을 다시 확인해주세요!');
     }
   };
 
@@ -73,7 +66,7 @@ const FindId = () => {
             <Grid item xs={12}>
               <AuthTextField
                 label="이메일"
-                name="Email"
+                name="email"
                 onChange={handleChange}
               />
             </Grid>

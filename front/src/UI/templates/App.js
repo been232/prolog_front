@@ -41,7 +41,6 @@ const App = () => {
             <Route path="/BoardModify/*" element={<BoardModifyPage />} />
             <Route path="/signup/*" element={<SignUpPage />} />
             <Route path="/auth/*" element={<Authentication />} />
-            <Route path="/login/*" element={<LoginPopupPage />} />
             <Route path="/logout/*" element={<Logout />} />
 
             <Route path="/findID/*" element={<FindIdPage />} />
@@ -56,8 +55,8 @@ const App = () => {
             <Route path="/AllStatistics/*" element={<StatisticsPage />} />
 
             <Route
-              path="/oauth/callback/kakao"
-              component={KakaoOAuthRedirectHandler}
+              path="/oauth/login/kakao"
+              element={<KakaoOAuthRedirectHandler />}
             ></Route>
             <Route
               path="/oauth/callback/github"

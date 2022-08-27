@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Button, TextField, Grid, Box, Typography, Container } from '@mui/material';
+import { Link, Button, TextField, Grid, Box, Typography, Container } from '@mui/material';
 import ContainedButton from '../../atoms/Commons/ContainedButton';
 import Api from '../../../api/Api';
 
@@ -19,7 +19,7 @@ const CodeField = (props) => {
                     onChange={props.handleField}
                 />
                 <Grid container justifyContent="flex-end">
-                    <Timer setField={props.setField}/>
+                    <Timer setField={props.setField} />
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={4}>
@@ -38,15 +38,6 @@ export default function Authentication() {
     const [field, setField] = useState();
     const navigate = useNavigate();
 
-    const [infoSendMail, setInfoSendMail] = useState({
-        Email: email,
-    });
-
-    const [info, setInfo] = useState({
-        Email: email,
-        emailAuthNumber : authkey
-    });
-
     const codeSubmit = async () => {
         const isEmpty = emptyCheck();
         if (isEmpty === false) {
@@ -54,10 +45,9 @@ export default function Authentication() {
             return false;
         }
 
-        let response = {
-            "success": true
-        };
-        if (response.success === true) {
+        let response = await Api.postAuthEmail(email, authkey);
+        console.log(response);
+        if (response.data.success === true) {
             alert('인증 완료');
             navigate('/signup', { state: email });
         } else {
@@ -85,10 +75,10 @@ export default function Authentication() {
     const emailCheck = () => {
         //일반 이메일 형식의 정규표현식
         const emailRegex =
-        /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
+            /^(([^<>()\[\].,;:\s@"]+(\.[^<>()\[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
         //골뱅이 뒤 문자 정규표현식
         const schoolEmailRegex = /(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})/i;
-        
+
         if (emailRegex.test(email) === true) {
             // if(schoolEmailRegex.exec(email)[0] === 'kumoh.ac.kr')
             //     return 2; //학교 이메일 형식입니다.
@@ -118,15 +108,13 @@ export default function Authentication() {
                 return false;
             }
             else {
-                let response = {
-                    "success": true
-                };
-                console.log(response)
-                if (response.success === true) {
+                let response = await Api.postEmail(email);
+                console.log(response);
+                if (response.data.success === true) {
                     alert('전송 완료! 메일함을 확인해주세요.');
                     setField(true);
                 } else {
-                    alert(response.success);
+                    alert(response.data.success);
                 }
             }
         }
@@ -168,7 +156,14 @@ export default function Authentication() {
                             />
                         </Grid>
                     </Grid>
-                    {field && <CodeField authkey={authkey} handleField={handleCode} handleBtn={codeSubmit} setField={setField}/>}
+                    {field && <CodeField authkey={authkey} handleField={handleCode} handleBtn={codeSubmit} setField={setField} />}
+                </Grid>
+                <Grid container justifyContent="flex-end">
+                    <Grid item>
+                        <Link href="/findID" variant="body2">
+                            아이디 찾기
+                        </Link>
+                    </Grid>
                 </Grid>
             </Box>
         </Container>
@@ -176,6 +171,7 @@ export default function Authentication() {
 }
 
 const Timer = (props) => {
+    const setField = props.setField;
     const [min, setMin] = useState(2);
     const [sec, setSec] = useState(59);
     const time = useRef(179); //useRef는 값이 변화하더라도 리랜더링을 발생시키지 않아서 useEffect를 호출하지 않음
@@ -199,15 +195,15 @@ const Timer = (props) => {
             console.log("time out!!");
             clearInterval(timerId.current);
             //인증코드 필드 없애기
-            props.setField(false);
+            setField(false);
             alert("시간초과! 다시 인증코드를 전송하세요.")
         }
         //초가 한자리일 경우 true
-        if(parseInt(sec, 10) < 10) {
+        if (parseInt(sec, 10) < 10) {
             setIsOne(true);
         }
         //초가 두자리일 경우 false
-        else if(parseInt(sec, 10) >= 10) {
+        else if (parseInt(sec, 10) >= 10) {
             setIsOne(false);
         }
     }, [sec])

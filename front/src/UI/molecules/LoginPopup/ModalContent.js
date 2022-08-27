@@ -5,14 +5,12 @@ import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import { KAKAO_AUTH_URL } from "../../atoms/KakaoSocialLogin/OAuth";
+import { REDIRECT_URI, KAKAO_AUTH_URL } from "../../atoms/KakaoSocialLogin/OAuth";
 import { GITHUB_AUTH_URL } from "../../atoms/GithubSocialLogin/OAuth";
 import Api from '../../../api/Api';
 
 const ModalContent = (props) => {
   const handleClose = props.handleClose;
-  const isLogin = props.isLogin;
-  const setIsLogin = props.setIsLogin;
 
   const [info, setInfo] = useState({
     account: '',
@@ -50,26 +48,16 @@ const ModalContent = (props) => {
     // info 보내서 로그인 성공 여부 확인 코드 작성
     console.log(info);
 
-    // -----------------------  response 예시 데이터 -----------------------
     let response = await Api.postLogin(info);
-    // let response = {
-    //   data: {
-    //     result: "success",
-    //     accessToken: "dfsgdfegsd",
-    //     refreshToken: "dfsgsdfsdg",
-    //     memberId: 2,
-    //   }
-    // }
     console.log(response);
-    if (response.data.result === "success") {
-      // const target = '/';
-      sessionStorage.setItem('user', JSON.stringify(response.data, ['accessToken', 'refreshToken']))
-      sessionStorage.setItem('userId', JSON.stringify(response.data.memberId))
-      setIsLogin(true);
-      // window.location.href = target;
+    if (response.data.success === true) {
+      const target = '/';
+      sessionStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
+      sessionStorage.setItem('userId', parseInt(response.headers.userid))
+      window.location.href = target;
     }
-    else if (response.data.result === "fail") {
-      alert('로그인 실패');
+    else if (response.data.success === false) {
+      alert('로그인 실패: 아이디나 비밀번호를 다시 확인해주세요!');
     }
 
     // LoginPopUp : handleClose() 호출하기
