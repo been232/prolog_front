@@ -49,6 +49,18 @@ export default function UnderButton(props) {
           image: i,
           leader: dataitem.data.leader,
         });
+      } else if (dataitem.data.type == 3) {
+        datas.push({
+          id: parseInt(dataitem.data.id),
+          height: dataitem.data.height,
+          width: dataitem.data.width,
+          coordinateX: dataitem.position.x,
+          coordinateY: dataitem.position.y,
+          type: dataitem.data.type,
+          codes: dataitem.data.content,
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader,
+        });
       } else if (dataitem.data.type == 5) {
         datas.push({
           id: parseInt(dataitem.data.id),
@@ -86,6 +98,7 @@ export default function UnderButton(props) {
     };
 
     const getData = async () => {
+      console.log(submit)
       if (submit.title == undefined) {
         alert("제목을 입력해주세요.");
       } else {
