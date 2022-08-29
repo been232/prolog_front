@@ -4,7 +4,9 @@ import React, { useEffect } from 'react';
 function Category(props) {
     const datas = [];
     const [age, setAge] = React.useState(1 || props.category.id);
-
+    useEffect(()=> {
+      props.propFunction(1);
+    })
     const data = props.data.data;
     {
         data.map((item) => {

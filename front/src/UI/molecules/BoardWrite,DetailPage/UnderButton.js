@@ -46,7 +46,7 @@ export default function UnderButton(props) {
           coordinateY: dataitem.position.y,
           type: dataitem.data.type,
           explanation: dataitem.data.explanation,
-          image: i,
+          images: i,
           leader: dataitem.data.leader,
         });
       } else if (dataitem.data.type == 3) {
@@ -98,7 +98,6 @@ export default function UnderButton(props) {
     };
 
     const getData = async () => {
-      console.log(submit)
       if (submit.title == undefined) {
         alert("제목을 입력해주세요.");
       } else {

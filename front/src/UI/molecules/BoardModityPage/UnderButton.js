@@ -44,7 +44,19 @@ export default function UnderButton(props) {
           image: i,
           leader: dataitem.data.leader
         });
-      } else if(dataitem.data.type == 5){
+      } else if(dataitem.data.type == 3){
+        datas.push({
+          id: dataitem.data.id,
+          height: dataitem.data.height,
+          width: dataitem.data.width,
+          coordinateX: dataitem.position.x,
+          coordinateY: dataitem.position.y,
+          type: dataitem.data.type,
+          codes: dataitem.data.content,
+          explanation: dataitem.data.explanation,
+          leader: dataitem.data.leader
+        });
+      }else if(dataitem.data.type == 5){
         datas.push({
           id: dataitem.data.id,
           height: dataitem.data.height,
@@ -82,11 +94,11 @@ export default function UnderButton(props) {
     };
 
     const getData = async () => {
-      console.log(submit)
       if (submit.title == undefined) {
         alert("제목을 입력해주세요.");
       } else {
         const infoBody = await Api.getModifyBoard(id, submit);
+        console.log(infoBody)
         if (infoBody.status == 200) {
           alert("수정되었습니다");
           window.location.href = "/";

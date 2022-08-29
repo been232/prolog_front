@@ -119,7 +119,7 @@ export default function ModifyContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: dataitem.content,
+              content: dataitem.codes,
               explanation: dataitem.explanation,
               leader: dataitem.leader,
             },
