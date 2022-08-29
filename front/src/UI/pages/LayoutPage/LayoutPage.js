@@ -13,7 +13,7 @@ const LayoutPage = () =>  {
       setData(infoBody.data.data);
     };
     getData();
-  },[data])
+  },[])
   
   if (!data) return null;
 

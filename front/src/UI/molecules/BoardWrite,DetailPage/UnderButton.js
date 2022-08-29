@@ -92,8 +92,7 @@ export default function UnderButton(props) {
         const infoBody = await Api.getBoardWrite(submit);
         if (infoBody.status == 200) {
           alert("작성되었습니다");
-          console.log(infoBody)
-          // window.location.href = "/";
+          window.location.href = "/";
         }
       }
     };

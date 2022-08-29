@@ -79,7 +79,8 @@ const putJsonReqest = async (path, body) => {
         const data = await client.put(path, body, {
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                memberPk: user
             }
         })
         return data;
@@ -175,6 +176,12 @@ const Api = {
     },
     getBoard: async(id) => {
         return await GetJsonUserReqest(`/board/${id}`);
+    },
+    getModifyBoard: async(id, board) => {
+        return await putJsonReqest(`/board/${id}`, JSON.stringify(board));
+    },
+    getDeleteBoard: async(id) => {
+        return await deleteJsonReqest(`/board/${id}`);
     },
 };
 
