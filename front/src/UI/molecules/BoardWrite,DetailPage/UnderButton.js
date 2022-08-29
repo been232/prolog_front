@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Box } from '@mui/material';
 import OutlinedButton from '../../atoms/Commons/OutlinedButton';
 import Api from "../../../api/Api";
+import { Link } from "react-router-dom";
 
 export default function UnderButton(props) {
   const data = props.data;
@@ -9,6 +10,7 @@ export default function UnderButton(props) {
   const tags = props.tags;
   const user = props.user;
   const id = props.layoutId;
+  const category = props.category;
 
   const datas = [];
   const [image, setImage] = React.useState({
@@ -79,20 +81,19 @@ export default function UnderButton(props) {
       title: title,
       layouts: datas,
       tag: tags,
-      category : "",
+      category : category,
       attachment : [],
     };
 
     const getData = async () => {
-      console.log(submit)
       if (submit.title == undefined) {
         alert("제목을 입력해주세요.");
       } else {
         const infoBody = await Api.getBoardWrite(submit);
-        console.log(infoBody)
         if (infoBody.status == 200) {
           alert("작성되었습니다");
-          window.location.href = "/";
+          console.log(infoBody)
+          // window.location.href = "/";
         }
       }
     };
@@ -100,14 +101,11 @@ export default function UnderButton(props) {
   };
 
   return (
-    <Box
-      sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10 }}
-      onClick={handleClick}
-    >
-      <OutlinedButton content="저장하기" style={{ marginLeft: 2 }} />
-      {/* <Link to="/"> */}
-      <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
-      {/* </Link> */}
+    <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10 }}>
+      <OutlinedButton onClick={handleClick} content="저장하기" style={{ marginLeft: 2 }} />
+      <Link to="/">
+        <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
+      </Link>
     </Box>
   );
 }
