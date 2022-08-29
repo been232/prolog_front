@@ -26,7 +26,7 @@ function BoardWritePage() {
       };
       getData();
     }
-  }, [texts, data, category]);
+  }, []);
 
   if (!data) return null;
 
@@ -34,7 +34,7 @@ function BoardWritePage() {
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
       <Box>
         <BasicTextFields propFunction={highFunction} />
-        <Category data={datas} propFunction={highFunctions} />
+        <Category data={datas} category={''} propFunction={highFunctions} />
       </Box>
       <WriteContent title={texts} layout={data} category={category} />
     </Box>

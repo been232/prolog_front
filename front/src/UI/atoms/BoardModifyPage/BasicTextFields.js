@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import { TextField } from '@mui/material';
 
 export default function BasicTextFields(props) {
-  const [text, setText] = React.useState(props.data.data.post.title);
+  const [text, setText] = React.useState(props.data.post.title);
 
   const textChangeHandler = (e) => {
     setText(e.currentTarget.value);
@@ -12,7 +12,6 @@ export default function BasicTextFields(props) {
   React.useEffect(()=> {props.propFunction(text)}, [text])
 
   return (
-    <Box>
       <TextField
         variant="standard"
         placeholder="제목"
@@ -21,6 +20,5 @@ export default function BasicTextFields(props) {
         onChange={textChangeHandler}
         inputProps={{style: {fontFamily: "SUIT-Regular"}}}
       />
-    </Box>
   );
 }

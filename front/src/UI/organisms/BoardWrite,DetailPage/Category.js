@@ -3,6 +3,8 @@ import React, { useEffect } from 'react';
 
 function Category(props) {
     const datas = [];
+    const [age, setAge] = React.useState('' || props.category.id);
+
     const data = props.data.data;
     {
         data.map((item) => {
@@ -22,8 +24,6 @@ function Category(props) {
             }
         })
     }
-    
-    const [age, setAge] = React.useState('');
 
     const handleChange = (event) => {
       setAge(event.target.value);
