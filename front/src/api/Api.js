@@ -183,6 +183,11 @@ const Api = {
     getDeleteBoard: async(id) => {
         return await deleteJsonReqest(`/board/${id}`);
     },
+
+    //tag
+    getTag: async(name) => {
+        return await getRequest(`/tags?name=${name}`);
+    }
 };
 
 export default Api;
