@@ -5,8 +5,8 @@ import TextField from '@mui/material/TextField';
 import Downshift from 'downshift';
 import Paper from '@mui/material/Paper';
 import MenuList from '@mui/material/MenuList';
-// import Api from 'src/Api/Api';
 import MenuItem from '@mui/material/MenuItem';
+import Api from '../../../api/Api';
 
 export default function ChipInput(props) {
   const { placeholder, other } = props;
@@ -38,9 +38,12 @@ export default function ChipInput(props) {
     setSelectedItem(newSelectedItem);
   }
 
-  const getMembers = async (value) => { //통신후 입력마다 값 불러와야함
-    const member_list = ['gggg','zzz'];
-    setMembers(member_list);
+  const getMembers = async (value) => {
+    const getData = async () => {
+      const infoBody = await Api.getTag(value);
+      setMembers(infoBody.data.data);
+    };
+    getData();
   };
 
   const handleDelete = (item) => () => {

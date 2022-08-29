@@ -90,7 +90,7 @@ export default function Content(props) {
               width: dataitem.width,
               height: dataitem.height,
               content: dataitem.codes,
-              explanation: dataitem.explanatiexplanationon,
+              explanation: dataitem.explanation,
               board: true,
               leader: dataitem.leader,
             },
