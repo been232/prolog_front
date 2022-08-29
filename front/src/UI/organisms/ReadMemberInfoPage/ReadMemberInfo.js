@@ -26,7 +26,6 @@ const ReadMemberInfo = () => {
 
     useEffect(() => {
         const getData = async () => {
-            // ---------------- response 예시 데이터 ----------------
             const infoBody = await resBaseInfo();
             console.log(infoBody);
             setInfo({

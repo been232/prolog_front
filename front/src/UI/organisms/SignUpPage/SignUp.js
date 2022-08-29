@@ -74,10 +74,8 @@ const SignUp = () => {
       alert('이름, 아이디, 이메일, 비밀번호, 닉네임, 한줄소개를 입력하세요');
       return false;
     }
-
     console.log(info);
 
-    // -----------------------  response 예시 데이터 -----------------------
     let response = await Api.postSignup(info);
     console.log(response);
 

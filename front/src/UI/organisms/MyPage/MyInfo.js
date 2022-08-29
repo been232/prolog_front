@@ -12,12 +12,10 @@ const MyInfo = (props) => {
         Introduction: '',
     });
 
-    const memberPk = sessionStorage.getItem('userId');
     const resBaseInfo = async () => await Api.getReadMyInfo();
 
     useEffect(() => {
         const getData = async () => {
-            // ---------------- response 예시 데이터 ----------------
             const infoBody = await resBaseInfo();
             console.log(infoBody);
             setInfo({
@@ -26,16 +24,10 @@ const MyInfo = (props) => {
                 Image: infoBody.data.data.image,
                 Introduction: infoBody.data.data.introduce,
             });
-
-            // setInfo({
-            //     Email: 'sojeong@email.com',
-            //     Nickname: '북극곰구하자',
-            //     Image: "https://avatars.githubusercontent.com/u/74320060?v=4",
-            //     Introduction: '프론트엔드',
-            // });
         }
         getData();
     }, []);
+
     return (
         <Box>
             <Grid container spacing={2}>

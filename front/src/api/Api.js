@@ -71,12 +71,6 @@ const deleteJsonReqest = async (path) => {
 };
 
 const Api = {
-    // 이메일 인증코드 저장
-    emailCode: null,
-
-    // 한 페이지당 보여줄 컨텐츠 개수
-    pageCount: 3,
-
     // 로그인
     postLogin: async (info) => {
         return await postJsonReqest('/login', info );
@@ -120,7 +114,23 @@ const Api = {
         return await putJsonReqest(`/my-info-update`, info);
     },
 
-
+    // 카테고리--------------------------------------------------------------------------------
+    // 카테고리 등록
+    postAddCategory: async (info) => {
+        return await postJsonReqest(`/categories`, info);
+    },
+    // 카테고리 수정
+    putUpdateMyInfo: async (id, info) => {
+        return await putJsonReqest(`/categories/${id}`, info);
+    },
+    // 카테고리 삭제
+    deleteCategory: async (id) => {
+        return await deleteJsonReqest(`/categories/${id}`);
+    },
+    // 카테고리 목록 조회
+    getReadCategory: async (id) => {
+        return await getRequest(`/users/${id}/categories`);
+    },
 };
 
 export default Api;

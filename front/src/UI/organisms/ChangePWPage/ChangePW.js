@@ -59,7 +59,6 @@ const ChangePW = (props) => {
           return false;
         }
 
-        // -----------------------  response 예시 데이터 -----------------------
         let response = await Api.postChangePW(info);
         console.log(response);
 

@@ -8,6 +8,7 @@ import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, IconButton, TextField, Typography, Divider } from '@mui/material';
 import ContainedButton from '../../atoms/Commons/ContainedButton';
+import Api from '../../../api/Api';
 
 export default function TreeList() {
     const [isEdit, setIsEdit] = useState(false); // 카테고리 편집 상태 확인
@@ -16,9 +17,12 @@ export default function TreeList() {
     const [visible, setVisible] = useState(false); // TextField의 보여짐 여부 확인
     const [handle, setHandle] = useState(''); // 이벤트가 어떤 이벤트인지 알려주는 변수 (추가, 변경, 삭제)
 
+    const userId = sessionStorage.getItem("userId");
+    const resBaseInfo = async () => await Api.getReadCategory(userId);
+
     const data = {
-        "id": id,
-        "name": value
+        "name": value,
+        "upperId": id
     }
 
     const handleIsEdit = () => {
@@ -43,7 +47,22 @@ export default function TreeList() {
     const handleDelete = (id) => {
         setHandle('삭제');
         setId(id);
-        console.log("삭제 완료", id);
+
+        let response = await Api.deleteCategory(id);
+        console.log(response);
+    
+        if (response.data.success === true) {
+          alert("카테고리 삭제 완료");
+          const infoBody = await resBaseInfo();
+          console.log(infoBody);
+          setResponse(infoBody);
+        }
+        else if (response.data.success === false) {
+            alert('카테고리 삭제 실패');
+        }
+        else {
+            alert('카테고리 삭제 실패');
+        }
     };
 
     const handleProcess = () => {
@@ -56,18 +75,39 @@ export default function TreeList() {
         }
 
         if (handle === '추가') {
-            console.log("추가 완료", data);
-            
+            let response = await Api.postAddCategory(data);
+            console.log(response);
+        
+            if (response.data.success === true) {
+              alert("카테고리 추가 완료");
+              const infoBody = await resBaseInfo();
+              console.log(infoBody);
+              setResponse(infoBody);
+            }
+            else if (response.data.success === false) {
+                alert('카테고리 추가 실패');
+            }
+            else {
+                alert('카테고리 추가 실패');
+            }
 
         } else if (handle === '변경') {
-            console.log("변경 완료", data);
-
-        } else {
-            console.log("ㅇㅇㅇ");
+            let response = await Api.putUpdateMyInfo(id, data);
+            console.log(response);
+        
+            if (response.data.success === true) {
+              alert("카테고리 수정 완료");
+              const infoBody = await resBaseInfo();
+              console.log(infoBody);
+              setResponse(infoBody);
+            }
+            else if (response.data.success === false) {
+                alert('카테고리 수정 실패');
+            }
+            else {
+                alert('카테고리 수정 실패');
+            }
         }
-
-        //setResponse()
-        console.log(response);
     };
 
     const [response, setResponse] = useState({
@@ -106,6 +146,15 @@ export default function TreeList() {
             },
         ]
     });
+
+    useEffect(() => {
+        const getData = async () => {
+            const infoBody = await resBaseInfo();
+            console.log(infoBody);
+            setResponse(infoBody);
+        }
+        getData();
+    }, []);
 
     return (
         <Box sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}>

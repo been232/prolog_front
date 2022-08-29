@@ -48,6 +48,7 @@ function SearchBar(props) {
       ],
     });
   };
+  
   return (
     <Box
       sx={{
