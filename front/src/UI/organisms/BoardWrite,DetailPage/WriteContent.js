@@ -30,6 +30,7 @@ const nodeTypes = {
 export default function WriteContent(props) {
   const title = props.title;
   const layout = props.layout;
+  const category = props.category;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -271,7 +272,7 @@ export default function WriteContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
+      <UnderButton category={category} title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
     </Box>
   );
 }

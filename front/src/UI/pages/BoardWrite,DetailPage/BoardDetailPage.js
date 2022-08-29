@@ -12,6 +12,7 @@ function BoardDetailPage() {
   React.useEffect(()=> {
     const getData = async () => {
       const infoBody = await Api.getBoard(id);
+      console.log(infoBody);
       setData(infoBody.data.data);
     };
     getData();
@@ -20,8 +21,8 @@ function BoardDetailPage() {
   if (!data) return null;
   return (
     <Box sx={{ mx: '2rem' }}>
-      <h2 style={{ marginLeft: '5%' }}>{data.data.post.title}</h2>
-      <Content layout={data} />
+      {/* <h2 style={{ marginLeft: '5%' }}>{data.data.post.title}</h2>
+      <Content layout={data} /> */}
     </Box>
   );
 }

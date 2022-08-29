@@ -12,7 +12,6 @@ export default function BasicTextFields(props) {
   React.useEffect(()=> {props.propFunction(text)}, [text])
 
   return (
-    <Box>
       <TextField
         variant="standard"
         placeholder="제목"
@@ -20,6 +19,5 @@ export default function BasicTextFields(props) {
         onChange={textChangeHandler}
         inputProps={{style: {fontFamily: "SUIT-Regular"}}}
       />
-    </Box>
   );
 }
