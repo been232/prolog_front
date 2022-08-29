@@ -12,7 +12,7 @@ export default function ChipInput(props) {
   const { placeholder, other } = props;
   const [inputValue, setInputValue] = React.useState('');
   const [selectedItem, setSelectedItem] = React.useState(props.tag);
-  const [members, setMembers] = useState(['gggg']);
+  const [members, setMembers] = useState([]);
   const [state, setstate] = useState(false);
   const temp = '';
 
