@@ -15,6 +15,7 @@ import ChipInput from '../../molecules/BoardWrite,DetailPage/ChipInput';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
+import { data } from 'jquery';
 
 const nodeTypes = {
   LayoutNode: LayoutNode,
@@ -28,7 +29,8 @@ const nodeTypes = {
 
 export default function WriteContent(props) {
   const title = props.title;
-  const layout = props.layout[0];
+  const layout = props.layout;
+  const category = props.category;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
@@ -37,6 +39,7 @@ export default function WriteContent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [leader, setLeader] = useState(0);
   const open = Boolean(anchorEl);
+  const user = sessionStorage.getItem('userId');
 
   const handleClick = (event) => {
     setAnchorEl(event.target);
@@ -56,7 +59,7 @@ export default function WriteContent(props) {
 
   function list() {
     layout.layouts.map((dataitem) => {
-      switch (dataitem.type) {
+      switch (dataitem.dtype) {
         case 1:
           const TextNode = {
             id: dataitem.id.toString(),
@@ -65,7 +68,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -83,7 +86,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               images: {},
@@ -103,7 +106,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -123,7 +126,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -143,7 +146,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -163,7 +166,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -182,7 +185,7 @@ export default function WriteContent(props) {
               id: dataitem.id,
               x: dataitem.coordinateX,
               y: dataitem.coordinateY,
-              type: dataitem.type,
+              type: dataitem.dtype,
               width: dataitem.width,
               height: dataitem.height,
               content: '',
@@ -269,7 +272,7 @@ export default function WriteContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton id={layout.layoutId} title={title} data={nodes} tags={tag} />
+      <UnderButton category={category} title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
     </Box>
   );
 }

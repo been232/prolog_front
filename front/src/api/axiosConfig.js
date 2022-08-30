@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { base_url } from 'API/Url';
+import { base_url } from './Url';
 
 /*
 const httpsAgent = new https.Agent({
@@ -13,7 +13,7 @@ const instance = axios.create({ httpsAgent })
 */
 
 const client = axios.create({
-    baseURL: base_url + '/api'
+    baseURL: base_url
 })
 
 client.interceptors.request.use(

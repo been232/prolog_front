@@ -1,7 +1,8 @@
 
-import client from 'API/axiosConfig';
+import client from './axiosConfig';
 import qs from "qs";
 
+const user = sessionStorage.getItem('userId');
 
 const getRequest = async (path, params) => {
     try {
@@ -33,7 +34,38 @@ const postJsonReqest = async (path, body) => {
         const data = await client.post(path, body, {
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+            }
+        })
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const GetJsonUserReqest = async (path) => {
+    try {
+        const data = await client.get(path, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+                memberPk: user
+            }
+        })
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+
+const postJsonUserReqest = async (path, body) => {
+    try {
+        const data = await client.post(path, body, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                memberPk: user
             }
         })
         return data;
@@ -47,7 +79,8 @@ const putJsonReqest = async (path, body) => {
         const data = await client.put(path, body, {
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                memberPk: user
             }
         })
         return data;
@@ -125,6 +158,36 @@ const Api = {
         return await getRequest(`/mypage/post`);
     },
 
+    //채연이 연동
+    //Layout
+    getLayoutWrite: async (layout) => {
+        return await postJsonUserReqest(`/layout`,JSON.stringify(layout));
+    },
+    getLayout: async(id) => {
+        return await GetJsonUserReqest(`/layouts/${id}`);
+    },
+    getDeleteLayout: async(id) => {
+        return await deleteJsonReqest(`/layouts/${id}`);
+    },
+
+    //Board
+    getBoardWrite: async (board) => {
+        return await postJsonUserReqest(`/board`,JSON.stringify(board));
+    },
+    getBoard: async(id) => {
+        return await GetJsonUserReqest(`/board/${id}`);
+    },
+    getModifyBoard: async(id, board) => {
+        return await putJsonReqest(`/board/${id}`, JSON.stringify(board));
+    },
+    getDeleteBoard: async(id) => {
+        return await deleteJsonReqest(`/board/${id}`);
+    },
+
+    //tag
+    getTag: async(name) => {
+        return await getRequest(`/tags?name=${name}`);
+    }
 };
 
 export default Api;

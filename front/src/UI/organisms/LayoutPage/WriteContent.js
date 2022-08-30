@@ -52,6 +52,7 @@ export default function WriteContent(props) {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const user = sessionStorage.getItem('userId');
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -208,7 +209,7 @@ export default function WriteContent(props) {
           </div>
         </ReactFlowProvider>
       </Box>
-      <UnderButtons2 data={nodes} title={title}/>
+      <UnderButtons2 data={nodes} title={title} user={user}/>
     </Box>
   );
 }

@@ -16,8 +16,7 @@ import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
 import Comment from './Comment';
 
 export default function Content(props) {
-  const layout = props.layout.data;
-  const comment = props.comment;
+  const layout = props.layout;
   const tag = layout.tag;
   const postid = layout.post.id;
   const initialNodes = [];
@@ -89,7 +88,7 @@ export default function Content(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: dataitem.content,
+              content: dataitem.codes,
               explanation: dataitem.explanation,
               board: true,
               leader: dataitem.leader,
@@ -208,9 +207,9 @@ export default function Content(props) {
           </ReactFlowProvider>
         </Box>
       </Box>
-      <Comment comment={comment} postid={postid}></Comment>
+      {/* <Comment comment={comment} postid={postid}></Comment> */}
       <ChipList tag={tag} />
-      <UnderButtons id={layout.layoutId} data={nodes} tags={tag} />
+      <UnderButtons id={postid} />
     </Box>
   );
 }

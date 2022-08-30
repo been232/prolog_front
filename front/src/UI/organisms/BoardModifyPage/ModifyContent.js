@@ -29,8 +29,10 @@ const nodeTypes = {
 
 export default function ModifyContent(props) {
   const title = props.title;
-  const layout = props.layout.data;
+  const layout = props.layout;
   const initialNodes = [];
+  const postid = layout.post.id;
+  const category = props.category;
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -119,7 +121,7 @@ export default function ModifyContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: dataitem.content,
+              content: dataitem.codes,
               explanation: dataitem.explanation,
               leader: dataitem.leader,
             },
@@ -275,7 +277,7 @@ export default function ModifyContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton id={layout.layoutId} data={nodes} tags={tag} title={title} />
+      <UnderButton category={category} id={postid} layoutId={layout.layoutId} data={nodes} tags={tag} title={title} />
     </Box>
   );
 }
