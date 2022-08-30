@@ -166,7 +166,7 @@ export default function WriteContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: dataitem.content,
+              content: '',
               board: false,
               leader: false,
             },

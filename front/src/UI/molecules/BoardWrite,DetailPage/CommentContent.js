@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import CommentWriteBox from './CommentWriteBox';
 
@@ -40,6 +40,7 @@ function CommentContent(props) {
   };
   const submitComment = (e) => {
     setDisplay(!display);
+    setIsOpen('0');
     //서버에 댓글 전송하는 로직
     console.log({
       postId: postid,
@@ -49,21 +50,28 @@ function CommentContent(props) {
     });
   };
   return (
-    <>
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        marginBottom: '0.3%',
+        paddingBottom: '0.7%',
+        borderBottom: '1px solid lightgray',
+      }}
+    >
       <span style={{ marginBottom: '1%' }}>
         {writter}&nbsp;
         {`(${written})`}
       </span>
       <span style={{ maxWidth: '89%', whiteSpace: 'pre-wrap' }}>{context}</span>
-      {isBlocked && (
-        <Button
-          sx={{ width: '20px', marginLeft: '96%', marginTop: '-3%' }}
-          id={id}
-          onClick={setCommentWriteBox}
-        >
-          답글
-        </Button>
-      )}
+      <Button
+        sx={{ width: '20px', marginLeft: '96%', marginTop: '-3%' }}
+        id={id}
+        onClick={setCommentWriteBox}
+      >
+        답글
+      </Button>
+
       {display && (
         <CommentWriteBox
           onClick={submitComment}
@@ -71,7 +79,7 @@ function CommentContent(props) {
           display={'flex'}
         ></CommentWriteBox>
       )}
-    </>
+    </Box>
   );
 }
 

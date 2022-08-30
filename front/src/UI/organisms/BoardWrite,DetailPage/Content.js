@@ -17,8 +17,8 @@ import Comment from './Comment';
 
 export default function Content(props) {
   const layout = props.layout.data;
+  const comment = props.comment;
   const tag = layout.tag;
-  const comment = layout.comments;
   const postid = layout.post.id;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);

@@ -8,7 +8,7 @@ function BoardDetailPage() {
   return (
     <Box sx={{ mx: '2rem' }}>
       <h2 style={{ marginLeft: '5%' }}>{data.data.post.title}</h2>
-      <Content layout={data} />
+      <Content layout={data} comment={comment} />
     </Box>
   );
 }
@@ -113,7 +113,8 @@ const data = {
         width: 794,
       },
       {
-        content: '11',
+        content:
+          'https://drive.google.com/file/d/1-xQxIYP4gUUKWjibUpuAwsMJvt_xqYMj/view?usp=sharing',
         coordinateX: 467.5513725236415,
         coordinateY: 2954.1029916903926,
         height: 800,
@@ -142,56 +143,63 @@ const data = {
     tag: ['gggg'],
     hits: 123,
     likes: { count: 11, exist: false }, // exist : 내가 좋아요를 눌렀는지
-    comments: [
-      {
-        id: '1',
-        context: '글 내용',
-        writter: 'abc',
-        written: '2022-06-07 22:00:00',
-        upper: '0',
-        isBlocked: true,
-      },
-      {
-        id: '3',
-        context:
-          '글 내용 asdf asdf asdf asdf asdf aasdf asdf safaadfasdfasdf asf \n asdfa aasdfasdf s sdf asdfa sdf asdfa sdf ',
-        writter: 'qwr',
-        written: '2022-06-07 22:00:00',
-        upper: '0',
-        isBlocked: true,
-      },
-      {
-        id: '2',
-        context: '글 내용',
-        writter: 'efg',
-        written: '2022-06-07 22:00:00',
-        upper: '1',
-        isBlocked: false,
-      },
-      {
-        id: '4',
-        context: '글 내용2',
-        writter: 'efg',
-        written: '2022-06-07 22:00:00',
-        upper: '1',
-        isBlocked: false,
-      },
-      {
-        id: '5',
-        context: '글 내용3',
-        writter: 'eassfg',
-        written: '2022-06-07 22:00:00',
-        upper: '3',
-        isBlocked: false,
-      },
-      {
-        id: '6',
-        context: '글 내용4',
-        writter: 'eferqerg',
-        written: '2022-06-07 22:00:00',
-        upper: '0',
-        isBlocked: true,
-      },
-    ],
   },
+};
+
+const comment = {
+  success: true,
+  data: [
+    {
+      id: 1,
+      userId: 1,
+      nickname: 'nickname',
+      userImage: 'http://',
+      isCommentWriter: true,
+      isPostWriter: false,
+      context: '댓글 내용',
+      time: '2022-06-21T23:50:12',
+      lowerComments: [
+        {
+          id: 2,
+          userId: 1,
+          nickname: 'nickname2',
+          userImage: 'http://',
+          isCommentWriter: false,
+          isPostWriter: false,
+          context: '댓글 내용',
+          time: '2022-06-21T23:50:12',
+        },
+        {
+          id: 3,
+          userId: 1,
+          nickname: 'nickname3',
+          userImage: 'http://',
+          isCommentWriter: false,
+          isPostWriter: false,
+          context: '댓글 내용',
+          time: '2022-06-21T23:50:12',
+        },
+      ],
+    },
+    {
+      id: 4,
+      userId: 1,
+      nickname: 'nickname4',
+      userImage: 'http://',
+      isCommentWriter: false,
+      isPostWriter: false,
+      context: '댓글 내용',
+      time: '2022-06-21T23:50:12',
+    },
+    {
+      id: 5,
+      userId: 1,
+      nickname: 'nickname5',
+      userImage: 'http://',
+      isCommentWriter: false,
+      isPostWriter: false,
+      context: '댓글 내용',
+      time: '2022-06-21T23:50:12',
+    },
+  ],
 };

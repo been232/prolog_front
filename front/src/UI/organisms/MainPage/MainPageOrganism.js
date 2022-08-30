@@ -56,8 +56,8 @@ function MainPageOrganism(props) {
           <Box>{mainLayout.content}</Box>
         </Box>
       </Modal>
-      <PostBoxTopMolecule />
-      <PostBoxMiddleMolecule title={title} />
+      <PostBoxTopMolecule id={id} />
+      <PostBoxMiddleMolecule title={title} id={id} />
       <PostBoxBottomMolecule
         member={member}
         memberImage={memberImage}

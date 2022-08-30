@@ -1,7 +1,8 @@
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentWriteBox from '../../molecules/BoardWrite,DetailPage/CommentWriteBox';
 import CommentContent from '../../molecules/BoardWrite,DetailPage/CommentContent';
+import ReplyCommentContent from '../../molecules/BoardWrite,DetailPage/ReplyCommentContent';
 
 function Comment(props) {
   const { comment, postid } = props;
@@ -24,8 +25,8 @@ function Comment(props) {
     });
     const blank = '';
     setCommentCotent(blank);
+    setIsOpen('0');
   };
-
   return (
     <Box
       sx={{
@@ -47,22 +48,11 @@ function Comment(props) {
           flexDirection: 'column',
         }}
       >
-        {comment.map((comment) => (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              order: comment.upper == '0' ? comment.id : comment.upper,
-              marginBottom: '0.3%',
-              paddingBottom: '0.7%',
-              marginLeft: `${comment.upper == '0' ? '0' : '1.5%'}`,
-              borderBottom: '1px solid lightgray',
-            }}
-            id={comment.id}
-          >
+        {comment.data.map((comment) => (
+          <>
             <CommentContent
-              writter={comment.writter}
-              written={comment.written}
+              writter={comment.nickname}
+              written={comment.time}
               context={comment.context}
               id={comment.id}
               upper={comment.upper != '0' ? comment.upper : comment.id}
@@ -71,7 +61,16 @@ function Comment(props) {
               setIsOpen={test}
               isOpen={isOpen}
             ></CommentContent>
-          </Box>
+            {comment.lowerComments &&
+              comment.lowerComments.map((reply) => (
+                <ReplyCommentContent
+                  writter={reply.nickname}
+                  written={reply.time}
+                  id={reply.id}
+                  context={reply.context}
+                ></ReplyCommentContent>
+              ))}
+          </>
         ))}
       </Box>
       {isOpen == '0' && (

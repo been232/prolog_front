@@ -10,11 +10,11 @@ function BoardModifyPage() {
     setText(text);
   };
 
-  useEffect(() => {}, [texts,data]);
+  useEffect(() => {}, [texts, data]);
 
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
-      <BasicTextFields propFunction={highFunction} data={data}/>
+      <BasicTextFields propFunction={highFunction} data={data} />
       <ModifyContent title={texts} layout={data} />
     </Box>
   );
@@ -42,10 +42,10 @@ const data = {
         id: 2,
         images: [
           {
-            url: "blob:http://localhost:3000/6555f544-92bc-4f9b-9cde-235d921c8cc6",
+            url: 'blob:http://localhost:3000/6555f544-92bc-4f9b-9cde-235d921c8cc6',
           },
           {
-            url: "blob:http://localhost:3000/1125303c-149b-41ac-afcb-83a7c3eccd64",
+            url: 'blob:http://localhost:3000/1125303c-149b-41ac-afcb-83a7c3eccd64',
           },
         ],
         length: 2,
@@ -86,7 +86,8 @@ const data = {
         width: 794,
       },
       {
-        content: 'https://www.postman.com/galactic-water-517231/workspace/prolog/example/18419399-3d762dc1-a884-4c76-aac4-01758061136b',
+        content:
+          'https://www.postman.com/galactic-water-517231/workspace/prolog/example/18419399-3d762dc1-a884-4c76-aac4-01758061136b',
         coordinateX: 465.5513725236415,
         coordinateY: 2188.1029916903926,
         explanation: '66',
@@ -114,6 +115,16 @@ const data = {
         id: 8,
         leader: false,
         type: 1,
+        width: 794,
+      },
+      {
+        content: '11',
+        coordinateX: 467.5513725236415,
+        coordinateY: 2954.1029916903926,
+        height: 800,
+        id: 9,
+        leader: false,
+        type: 6,
         width: 794,
       },
     ],
@@ -161,5 +172,4 @@ const data = {
   },
 };
 
-  
 export default BoardModifyPage;
