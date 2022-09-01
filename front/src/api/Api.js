@@ -1,7 +1,7 @@
 
 import client from './axiosConfig';
 import qs from "qs";
-
+import axios from 'axios';
 const user = sessionStorage.getItem('userId');
 
 const getRequest = async (path, params) => {
@@ -46,6 +46,21 @@ const postJsonReqest = async (path, body) => {
 const GetJsonUserReqest = async (path) => {
     try {
         const data = await client.get(path, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'multipart/form-data',
+                memberPk: user
+            }
+        })
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+const GetJsonCategoryReqest = async (path) => {
+    try {
+        const data = await axios.get("http://113.59.178.4:9000" + path, {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'multipart/form-data',
@@ -187,6 +202,11 @@ const Api = {
     //tag
     getTag: async(name) => {
         return await getRequest(`/tags?name=${name}`);
+    },
+
+    //Category
+    getCategory: async() => {
+        return await GetJsonCategoryReqest(`/users/${user}/categories`);
     }
 };
 
