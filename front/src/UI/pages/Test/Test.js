@@ -17,7 +17,8 @@ export default function TreeList() {
     const [visible, setVisible] = useState(false); // TextField의 보여짐 여부 확인
     const [handle, setHandle] = useState(''); // 이벤트가 어떤 이벤트인지 알려주는 변수 (추가, 변경, 삭제)
 
-    const userId = sessionStorage.getItem("userId");
+    // const userId = sessionStorage.getItem("userId");
+    const userId = 1;
     const resBaseInfo = async () => await Api.getReadCategory(userId);
 
     const [response, setResponse] = useState({ data: [] });
@@ -122,10 +123,14 @@ export default function TreeList() {
     useEffect(() => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
-
+            console.log(infoBody);
             setResponse(infoBody.data);
         }
         getData();
+        return () => {
+            console.log('useEffect가 실행되면서 렌더링.');
+        }
+
     }, []);
 
     return (

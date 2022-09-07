@@ -118,6 +118,7 @@ const ChangePW = (props) => {
                                 label="비밀번호"
                                 name="password"
                                 value={info.password}
+                                type='password'
                                 onChange={handlePWChange}
                             />
                         </Grid>
@@ -125,6 +126,7 @@ const ChangePW = (props) => {
                             <AuthTextField
                                 label="비밀번호 확인"
                                 name="passwordConfirm"
+                                type='password'
                                 onChange={handlePWConfirmChange}
                             />
                             {(password === passwordConfirm) ? "" :

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import LinkButton from '../../atoms/Commons/LinkButton';
 
 const ProfileImage = (props) => {
-    const base_image = (props.Image === null) ? pros.Image : props.Image.split('blob:');
+    const base_image = (props.Image === null) ? props.Image : props.Image.split('blob:');
     const [fileUrl, setFileUrl] = useState(null);
 
     useEffect(() => {

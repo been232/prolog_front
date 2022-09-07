@@ -5,7 +5,7 @@ import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
 import CloseIcon from '@mui/icons-material/Close';
 import { Link } from 'react-router-dom';
-import { REDIRECT_URI, KAKAO_AUTH_URL } from "../../atoms/KakaoSocialLogin/OAuth";
+import { KAKAO_AUTH_URL } from "../../atoms/KakaoSocialLogin/OAuth";
 import { GITHUB_AUTH_URL } from "../../atoms/GithubSocialLogin/OAuth";
 import Api from '../../../api/Api';
 

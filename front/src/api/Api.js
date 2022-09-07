@@ -56,6 +56,20 @@ const putJsonReqest = async (path, body) => {
     }
 };
 
+const patchJsonReqest = async (path, body) => {
+    try {
+        const data = await client.patch(path, body, {
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
 const deleteJsonReqest = async (path) => {
     try {
         const data = await client.delete(path, {
@@ -99,9 +113,21 @@ const Api = {
     postChangePW: async (info) => {
         return await postJsonReqest(`/updatepw`, info);
     },
-    // 카카오 소셜 로그인: 인가코드 및 정보 전송
+    // 카카오 소셜 로그인: 인가코드 전송
+    postKakaoCode: async (info) => {
+        return await postJsonReqest(`/login/kakao`, info);
+    },
+    // 카카오 소셜 회원가입: 정보 전송
     postKakaoLogin: async (info) => {
-        return await postJsonReqest(`/login-kakao-code`, info);
+        return await postJsonReqest(`/signup/kakao`, info);
+    },
+    // 깃허브 소셜 로그인: 인가코드 전송
+    postGithubCode: async (info) => {
+        return await postJsonReqest(`/login/github`, info);
+    },
+    // 깃허브 소셜 회원가입: 정보 전송
+    postGithubLogin: async (info) => {
+        return await postJsonReqest(`/signup/github`, info);
     },
 
     // Mypage--------------------------------------------------------------------------------
@@ -120,8 +146,8 @@ const Api = {
         return await postJsonReqest(`/categories`, info);
     },
     // 카테고리 수정
-    putUpdateMyInfo: async (id, info) => {
-        return await putJsonReqest(`/categories/${id}`, info);
+    patchUpdateMyInfo: async (id, info) => {
+        return await patchJsonReqest(`/categories/${id}`, info);
     },
     // 카테고리 삭제
     deleteCategory: async (id) => {
@@ -130,6 +156,30 @@ const Api = {
     // 카테고리 목록 조회
     getReadCategory: async (id) => {
         return await getRequest(`/users/${id}/categories`);
+    },
+
+    // 통계--------------------------------------------------------------------------------
+    // 전체 통계 조회
+    getTotalStatics: async (year) => {
+        return await getRequest(`/mystatis/${year}`);
+    },
+    // 미니 통계 조회(id: 게시물의 ID)
+    getMiniStatics: async (id, year) => {
+        return await getRequest(`//myboard/statis/${id}/${year}`);
+    },
+
+    // MyPage: 게시글 조회 및 레이아웃 조회-----------------------------------------------------
+    // 내가 쓴 글 목록 조회
+    getMyPost: async (user) => {
+        return await getRequest(`/${user}/?last=0`);
+    },
+    // 좋아요 한 글 목록 조회
+    getHeartPost: async (account) => {
+        return await getRequest(`/${account}/likes/?last=0`);
+    },
+    // 레이아웃 목록 조회
+    getLayoutList: async (info) => {
+        return await getRequest(`/layouts`);
     },
 };
 

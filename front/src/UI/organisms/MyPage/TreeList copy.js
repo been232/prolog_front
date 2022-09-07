@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React from 'react';
 import TreeView from '@mui/lab/TreeView';
 import TreeItem from '@mui/lab/TreeItem';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -11,16 +11,16 @@ import ContainedButton from '../../atoms/Commons/ContainedButton';
 import Api from '../../../api/Api';
 
 export default function TreeList() {
-    const [isEdit, setIsEdit] = useState(false); // 카테고리 편집 상태 확인
-    const [id, setId] = useState(); // 이벤트 발생 카테고리 ID - 추가: 상위 카테고리의 id로 사용 , 변경/삭제: 자기자신의 id 사용
-    const [value, setValue] = useState(''); // TextField 내의 값
-    const [visible, setVisible] = useState(false); // TextField의 보여짐 여부 확인
-    const [handle, setHandle] = useState(''); // 이벤트가 어떤 이벤트인지 알려주는 변수 (추가, 변경, 삭제)
+    const [isEdit, setIsEdit] = React.useState(false); // 카테고리 편집 상태 확인
+    const [id, setId] = React.useState(); // 이벤트 발생 카테고리 ID - 추가: 상위 카테고리의 id로 사용 , 변경/삭제: 자기자신의 id 사용
+    const [value, setValue] = React.useState(''); // TextField 내의 값
+    const [visible, setVisible] = React.useState(false); // TextField의 보여짐 여부 확인
+    const [handle, setHandle] = React.useState(''); // 이벤트가 어떤 이벤트인지 알려주는 변수 (추가, 변경, 삭제)
 
     const userId = sessionStorage.getItem("userId");
     const resBaseInfo = async () => await Api.getReadCategory(userId);
 
-    const [response, setResponse] = useState({ data: [] });
+    const [response, setResponse] = React.useState({ data: [] });
 
     const data = {
         "name": value,
@@ -119,7 +119,7 @@ export default function TreeList() {
         }
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
 
