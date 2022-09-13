@@ -31,8 +31,9 @@ function MainPageOrganism(props) {
     setOpen(false);
     clearTimeout(timer);
   };
-  const { id, title, written, member, memberImage, likes, mainLayout } =
+  const { id, title, written, member, memberImage, likes, mainLayout, hits } =
     props.data;
+  // console.log(props);
   // 게시글 조회로 연동
   return (
     <Box
@@ -53,7 +54,7 @@ function MainPageOrganism(props) {
             <CloseIcon />
           </IconButton>
           {/* <p>게시글 미리보기 들어감.</p> */}
-          <Box>{mainLayout.content}</Box>
+          <Box>{}</Box>
         </Box>
       </Modal>
       <PostBoxTopMolecule id={id} />
@@ -62,6 +63,7 @@ function MainPageOrganism(props) {
         member={member}
         memberImage={memberImage}
         likes={likes}
+        hits={hits}
       />
     </Box>
   );

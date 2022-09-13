@@ -2,7 +2,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import HeartIcon from '../../atoms/MainPage/HeartIcon';
 
-function PostBoxBottomMolecule({ member, memberImage, likes }) {
+function PostBoxBottomMolecule({ member, memberImage, likes, hits }) {
   return (
     <Box
       sx={{
@@ -23,7 +23,7 @@ function PostBoxBottomMolecule({ member, memberImage, likes }) {
       >
         {/* <HeartIcon fontSize="small" />
         {likes} */}
-        <span>조회수 : {}</span>
+        <span>조회수 : {hits}</span>
       </Box>
     </Box>
   );
