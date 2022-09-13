@@ -9,6 +9,7 @@ function BoardWritePage() {
   const id = window.location.href.split("/");
   const [texts, setText] = React.useState("");
   const [data, setData] = React.useState(null);
+  const [datas, setDatas] = React.useState(null);
   const [category, setCategory] = React.useState("");
   const highFunction = (text) => {
     setText(text);
@@ -25,6 +26,11 @@ function BoardWritePage() {
         setData(infoBody.data.data);
       };
       getData();
+      const getData2 = async () => {
+        const infoBody = await Api.getCategory();
+        setDatas(infoBody.data.data);
+      };
+      getData2();
     }
   }, []);
 
@@ -42,41 +48,3 @@ function BoardWritePage() {
 }
 
 export default BoardWritePage;
-
-const datas ={
-  "success": true,
-  "data": [
-      {
-          "id": 1,
-          "name": "전체",
-          "count": 2,
-          "child": [
-              {
-                  "id": 2,
-                  "name": "개발용",
-                  "count": 1,
-                  "child": [
-                      {
-                          "id": 5,
-                          "name": "프론트",
-                          "count": 0,
-                          "child": null
-                      },
-                  ]
-              },
-              {
-                  "id": 3,
-                  "name": "취미용",
-                  "count": 0,
-                  "child": []
-              },
-              {
-                  "id": 4,
-                  "name": "전시용",
-                  "count": 0,
-                  "child": []
-              }
-          ]
-      }
-  ]
-};
