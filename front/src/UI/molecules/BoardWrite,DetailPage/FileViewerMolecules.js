@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Box } from '@mui/material';
 import FileViewer from '../../atoms/BoardWrite,DetailPage/FileDocViewer';
 function FileViewerMolecule(props) {
-  const [prv, setPrv] = useState('');
   console.log(props);
   const data = props.data;
   const board = data.board;
+  const [prv, setPrv] = useState('');
+  useEffect(() => {
+    data.content != '' && setPrv(data.content);
+  }, []);
+  console.log(data.content);
   const getFile = (e) => {
     e.preventDefault();
     const fileReader = new FileReader();
@@ -38,12 +42,13 @@ function FileViewerMolecule(props) {
           </div>
         </>
       )}
-
-      <FileViewer
-        prv={prv}
-        width={data.width}
-        height={data.height}
-      ></FileViewer>
+      {prv != '' && (
+        <FileViewer
+          prv={prv}
+          width={data.width}
+          height={data.height}
+        ></FileViewer>
+      )}
     </Box>
   );
 }

@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Chip from '@mui/material/Chip';
-import TextField from '@mui/material/TextField';
-import Downshift from 'downshift';
-import Paper from '@mui/material/Paper';
-import MenuList from '@mui/material/MenuList';
-// import Api from 'src/Api/Api';
-import MenuItem from '@mui/material/MenuItem';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
+import Chip from "@mui/material/Chip";
+import TextField from "@mui/material/TextField";
+import Downshift from "downshift";
+import Paper from "@mui/material/Paper";
+import MenuList from "@mui/material/MenuList";
+import MenuItem from "@mui/material/MenuItem";
+import Api from "../../../api/Api";
 
 export default function ChipInput(props) {
   const { placeholder, other } = props;
-  const [inputValue, setInputValue] = React.useState('');
+  const [inputValue, setInputValue] = React.useState("");
   const [selectedItem, setSelectedItem] = React.useState(props.tag);
-  const [members, setMembers] = useState(['gggg']);
+  const [members, setMembers] = useState([]);
   const [state, setstate] = useState(false);
-  const temp = '';
+  const temp = "";
 
   useEffect(() => {
     props.propfunction(selectedItem);
@@ -24,9 +24,12 @@ export default function ChipInput(props) {
     if (
       selectedItem.length &&
       !inputValue.length &&
-      event.key === 'Backspace'
+      event.key === "Backspace"
     ) {
       setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
+    } else if (event.key === "Enter") {
+      setSelectedItem([...selectedItem, inputValue]);
+      makeChip(inputValue);
     }
   }
   function handleChange(item) {
@@ -34,13 +37,16 @@ export default function ChipInput(props) {
     if (newSelectedItem.indexOf(item) === -1) {
       newSelectedItem = [...newSelectedItem, item];
     }
-    setInputValue('');
+    setInputValue("");
     setSelectedItem(newSelectedItem);
   }
 
-  const getMembers = async (value) => { //통신후 입력마다 값 불러와야함
-    const member_list = ['gggg','zzz'];
-    setMembers(member_list);
+  const getMembers = async (value) => {
+    const getData = async () => {
+      const infoBody = await Api.getTag(value);
+      setMembers(infoBody.data.data);
+    };
+    getData();
   };
 
   const handleDelete = (item) => () => {
@@ -66,14 +72,14 @@ export default function ChipInput(props) {
     const duplicatedValues = newSelectedItem.indexOf(s.trim());
 
     if (duplicatedValues !== -1) {
-      setInputValue('');
+      setInputValue("");
       return;
     }
-    if (!s.replace(/\s/g, '').length) return;
+    if (!s.replace(/\s/g, "").length) return;
 
     newSelectedItem.push(s.trim());
     setSelectedItem(newSelectedItem);
-    setInputValue('');
+    setInputValue("");
   }
 
   return (
@@ -94,17 +100,17 @@ export default function ChipInput(props) {
               <TextField
                 fullWidth
                 sx={{
-                  flex: '1',
-                  flexDirection: 'row',
+                  flex: "1",
+                  flexDirection: "row",
                   boxShadow: 2,
                   borderBottomRightRadius: 5,
                   borderBottomLeftRadius: 5,
                   borderTopRightRadius: 5,
                   borderTopLeftRadius: 5,
-                  backgroundColor: 'primary.smoothgreen',
+                  backgroundColor: "primary.smoothgreen",
                 }}
-                inputProps={{style: {fontFamily: "SUIT-Regular"}}}
-                style={{ width: '90%', marginLeft: '5%', marginTop: 20 }}
+                inputProps={{ style: { fontFamily: "SUIT-Regular" } }}
+                style={{ width: "90%", marginLeft: "5%", marginTop: 20 }}
                 placeholder="팀원의 아이디를 입력해주세요"
                 InputProps={{
                   startAdornment: selectedItem.map((item) => (
@@ -112,7 +118,7 @@ export default function ChipInput(props) {
                       key={item}
                       tabIndex={-1}
                       label={item}
-                      style={{fontFamily: "SUIT-Regular"}} 
+                      style={{ fontFamily: "SUIT-Regular" }}
                       onDelete={handleDelete(item)}
                     />
                   )),
@@ -127,7 +133,10 @@ export default function ChipInput(props) {
                 {...inputProps}
               />
               {state ? (
-                <Paper style={{ width: '90%', marginLeft: '5%'}} sx={{boxShadow: 5 }}>
+                <Paper
+                  style={{ width: "90%", marginLeft: "5%" }}
+                  sx={{ boxShadow: 5 }}
+                >
                   <MenuList>
                     {members?.map((s) => {
                       return (
@@ -138,7 +147,7 @@ export default function ChipInput(props) {
                           }}
                           key={s}
                           value={s}
-                          style={{fontFamily: "SUIT-Regular"}}
+                          style={{ fontFamily: "SUIT-Regular" }}
                         >
                           {s ?? s}
                         </MenuItem>
@@ -156,4 +165,3 @@ export default function ChipInput(props) {
     </React.Fragment>
   );
 }
-

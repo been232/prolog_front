@@ -1,17 +1,16 @@
 import { Box } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentWriteBox from '../../molecules/BoardWrite,DetailPage/CommentWriteBox';
 import CommentContent from '../../molecules/BoardWrite,DetailPage/CommentContent';
+import ReplyCommentContent from '../../molecules/BoardWrite,DetailPage/ReplyCommentContent';
 
 function Comment(props) {
   const { comment, postid } = props;
   const [commentContent, setCommentCotent] = useState('');
   const [isOpen, setIsOpen] = useState('0');
   const test = (e) => {
-    console.log(`isOpen:${e}`);
     setIsOpen(e);
   };
-  console.log(isOpen);
   const onChangeCommentContent = (e) => {
     const content = e.target.value;
     setCommentCotent(content);
@@ -24,8 +23,10 @@ function Comment(props) {
       upperCommentId: '0',
       context: commentContent,
     });
+    const blank = '';
+    setCommentCotent(blank);
+    setIsOpen('0');
   };
-
   return (
     <Box
       sx={{
@@ -47,22 +48,11 @@ function Comment(props) {
           flexDirection: 'column',
         }}
       >
-        {comment.map((comment) => (
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              order: comment.upper == '0' ? comment.id : comment.upper,
-              marginBottom: '0.3%',
-              paddingBottom: '0.7%',
-              marginLeft: `${comment.upper == '0' ? '0' : '1.5%'}`,
-              borderBottom: '1px solid lightgray',
-            }}
-            id={comment.id}
-          >
+        {comment.data.map((comment) => (
+          <>
             <CommentContent
-              writter={comment.writter}
-              written={comment.written}
+              writter={comment.nickname}
+              written={comment.time}
               context={comment.context}
               id={comment.id}
               upper={comment.upper != '0' ? comment.upper : comment.id}
@@ -71,14 +61,26 @@ function Comment(props) {
               setIsOpen={test}
               isOpen={isOpen}
             ></CommentContent>
-          </Box>
+            {comment.lowerComments &&
+              comment.lowerComments.map((reply) => (
+                <ReplyCommentContent
+                  writter={reply.nickname}
+                  written={reply.time}
+                  id={reply.id}
+                  context={reply.context}
+                ></ReplyCommentContent>
+              ))}
+          </>
         ))}
       </Box>
-      <CommentWriteBox
-        onChange={onChangeCommentContent}
-        onClick={submitComment}
-        display={'flex'}
-      ></CommentWriteBox>
+      {isOpen == '0' && (
+        <CommentWriteBox
+          onChange={onChangeCommentContent}
+          onClick={submitComment}
+          display={'flex'}
+          value={commentContent}
+        ></CommentWriteBox>
+      )}
     </Box>
   );
 }

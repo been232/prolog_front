@@ -12,12 +12,11 @@ const nodeTypes = {
 };
 
 export default function Content(props) {
-  const layout = props.layout[0];
+  const layout = props.layout;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
   const nodeitem = [];
   const [nodes, setNodes] = useNodesState(initialNodes);
-
   useEffect(() => {
     layout.layouts.map((dataitem) => {
       const newNode = {
@@ -27,7 +26,7 @@ export default function Content(props) {
           id: dataitem.id,
           x: dataitem.coordinateX,
           y: dataitem.coordinateY,
-          type: dataitem.type,
+          type: dataitem.dtype,
           width: dataitem.width,
           height: dataitem.height,
         },
@@ -55,7 +54,7 @@ export default function Content(props) {
             style={{ width: '100%', height: 800 }}
           >
             <ReactFlow
-                          fitView
+              fitView
               nodes={nodes}
               nodesDraggable={false}
               nodeTypes={nodeTypes}

@@ -15,6 +15,7 @@ import ChipInput from '../../molecules/BoardModityPage/ChipInput';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
+import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
 
 const nodeTypes = {
   LayoutNode: LayoutNode,
@@ -23,12 +24,15 @@ const nodeTypes = {
   Math: Math,
   Link: Link,
   Code: Code,
+  Viewer: Viewer,
 };
 
 export default function ModifyContent(props) {
   const title = props.title;
-  const layout = props.layout.data;
+  const layout = props.layout;
   const initialNodes = [];
+  const postid = layout.post.id;
+  const category = props.category;
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
@@ -117,7 +121,7 @@ export default function ModifyContent(props) {
               type: dataitem.type,
               width: dataitem.width,
               height: dataitem.height,
-              content: dataitem.content,
+              content: dataitem.codes,
               explanation: dataitem.explanation,
               leader: dataitem.leader,
             },
@@ -163,6 +167,23 @@ export default function ModifyContent(props) {
           };
           initialNodes.push(MathNode);
           break;
+        case 6:
+          const ViewerNode = {
+            id: dataitem.id.toString(),
+            type: 'Viewer',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.type,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: dataitem.content,
+              leader: dataitem.leader,
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(ViewerNode);
         default:
           const newNode = {
             id: dataitem.id.toString(),
@@ -202,7 +223,11 @@ export default function ModifyContent(props) {
           aria-haspopup="true"
           aria-expanded={open ? 'true' : undefined}
           onClick={handleClick}
-          style={{ float: 'right', fontFamily: 'SUIT-Regular', marginRight: '5%' }}
+          style={{
+            float: 'right',
+            fontFamily: 'SUIT-Regular',
+            marginRight: '5%',
+          }}
         >
           대표 설정
         </Button>
@@ -252,7 +277,7 @@ export default function ModifyContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton id={layout.layoutId} data={nodes} tags={tag} title={title} />
+      <UnderButton category={category} id={postid} layoutId={layout.layoutId} data={nodes} tags={tag} title={title} />
     </Box>
   );
 }
