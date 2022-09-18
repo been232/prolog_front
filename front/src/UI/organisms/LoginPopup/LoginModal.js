@@ -16,7 +16,6 @@ const styleXs = {
 };
 
 const LoginModal = (props) => {
-    const { isLogin, setIsLogin } = props;
     // 모달 관련 변수, 함수 정의
     const [open, setOpen] = useState(false);
     async function handleOpen() {
@@ -32,7 +31,7 @@ const LoginModal = (props) => {
                 onClose={handleClose}
             >
                 <Box sx={styleXs} style={{ fontFamily: "SUIT-Regular" }}>
-                    <ModalContent setIsLogin={setIsLogin} handleClose={handleClose}></ModalContent>
+                    <ModalContent handleClose={handleClose}></ModalContent>
                 </Box>
             </Modal>
         </>

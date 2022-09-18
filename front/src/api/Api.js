@@ -1,4 +1,4 @@
-import client from './axiosConfig';
+import client from '../api/axiosConfig';
 import qs from 'qs';
 import axios from 'axios';
 const user = sessionStorage.getItem('userId');
@@ -102,6 +102,20 @@ const putJsonReqest = async (path, body) => {
   }
 };
 
+const patchJsonReqest = async (path, body) => {
+  try {
+    const data = await client.patch(path, body, {
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    })
+    return data;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 const deleteJsonReqest = async (path) => {
   try {
     const data = await client.delete(path, {
@@ -117,58 +131,108 @@ const deleteJsonReqest = async (path) => {
 };
 
 const Api = {
+  // 소정이 연동 --------------------------------------------------------------------------------
+  // 로그인
+  postLogin: async (info) => {
+    return await postJsonReqest('/login', info);
+  },
+  // 이메일 인증 번호 전송
+  postEmail: async (email) => {
+    return await postJsonReqest('/email', email);
+  },
+  // 이메일 인증 번호 확인
+  postAuthEmail: async (email, emailAuthNumber) => {
+    return await postJsonReqest('/email/auth', { email, emailAuthNumber });
+  },
+  // 회원가입
+  postSignup: async (info) => {
+    return await postJsonReqest('/signup/email', info);
+  },
+  // 회원탈퇴
+  getWithdrawal: async () => {
+    return await getRequest('/memberout');
+  },
+  // 아이디 찾기
+  postFindID: async (info) => {
+    return await postJsonReqest(`/idauth`, info);
+  },
+  // 비밀번호 변경
+  postChangePW: async (info) => {
+    return await postJsonReqest(`/updatepw`, info);
+  },
+  // 카카오 소셜 로그인: 인가코드 전송
+  postKakaoCode: async (info) => {
+    return await postJsonReqest(`/login/kakao`, info);
+  },
+  // 카카오 소셜 회원가입: 정보 전송
+  postKakaoLogin: async (info) => {
+    return await postJsonReqest(`/signup/kakao`, info);
+  },
+  // 깃허브 소셜 로그인: 인가코드 전송
+  postGithubCode: async (info) => {
+    return await postJsonReqest(`/login/github`, info);
+  },
+  // 깃허브 소셜 회원가입: 정보 전송
+  postGithubLogin: async (info) => {
+    return await postJsonReqest(`/signup/github`, info);
+  },
+
+  // Mypage--------------------------------------------------------------------------------
+  // 내 정보 조회
+  getReadMyInfo: async () => {
+    return await getRequest(`/my-info`);
+  },
+  // 내 정보 수정
+  putUpdateMyInfo: async (info) => {
+    return await putJsonReqest(`/my-info-update`, info);
+  },
+
+  // 카테고리--------------------------------------------------------------------------------
+  // 카테고리 등록
+  postAddCategory: async (info) => {
+    return await postJsonReqest(`/categories`, info);
+  },
+  // 카테고리 수정
+  patchUpdateMyInfo: async (id, info) => {
+    return await patchJsonReqest(`/categories/${id}`, info);
+  },
+  // 카테고리 삭제
+  deleteCategory: async (id) => {
+    return await deleteJsonReqest(`/categories/${id}`);
+  },
+  // 카테고리 목록 조회
+  getReadCategory: async (id) => {
+    return await getRequest(`/users/${id}/categories`);
+  },
+
+  // 통계--------------------------------------------------------------------------------
+  // 전체 통계 조회
+  getTotalStatics: async (year) => {
+    return await getRequest(`/mystatis/${year}`);
+  },
+  // 미니 통계 조회(id: 게시물의 ID)
+  getMiniStatics: async (id, year) => {
+    return await getRequest(`//myboard/statis/${id}/${year}`);
+  },
+
+  // MyPage: 게시글 조회 및 레이아웃 조회-----------------------------------------------------
+  // 내가 쓴 글 목록 조회
+  getMyPost: async (user) => {
+    return await getRequest(`/${user}/?last=0`);
+  },
+  // 좋아요 한 글 목록 조회
+  getHeartPost: async (account) => {
+    return await getRequest(`/${account}/likes/?last=0`);
+  },
+  // 레이아웃 목록 조회
+  getLayoutList: async (info) => {
+    return await getRequest(`/layouts`);
+  },
   // 이메일 인증코드 저장
   emailCode: null,
 
   // 한 페이지당 보여줄 컨텐츠 개수
   pageCount: 3,
-
-  // 로그인
-  postLogin: async (email, password) => {
-    return await postJsonReqest('/auth/login', {
-      email,
-      password,
-    });
-  },
-  // 카카오 소셜로그인
-  postKakaoLogin: async (code) => {
-    return await getRequest(`/auth/login/kakao?${code}`);
-  },
-  // 로그아웃
-  postLogout: async () => {
-    return await postJsonReqest('/auth/logout', null);
-  },
-  // 이메일 인증 번호 전송
-  postEmail: async (email) => {
-    return await postJsonReqest('/auth/sendmail', { email });
-  },
-  // 이메일 인증 번호 확인
-  postAuthEmail: async (email, authkey) => {
-    console.log(email, authkey);
-    return await postJsonReqest('/auth/authmail', { email, authkey });
-  },
-  // 회원가입
-  postSignup: async (info) => {
-    return await postJsonReqest('/auth/signup', info);
-  },
-  // 회원탈퇴
-  getWithdrawal: async () => {
-    return await deleteJsonReqest('/user');
-  },
-
-  // Mypage--------------------------------------------------------------------------------
-  // 내 정보 조회
-  getInfo: async () => {
-    return await getRequest(`/mypage/my-info`);
-  },
-  // 내 정보 수정
-  postUpdateMyInfo: async (userId, user) => {
-    return await postJsonReqest(`/mypage/${userId}`, user);
-  },
-  // 내가 쓴 글 조회
-  getMyPost: async () => {
-    return await getRequest(`/mypage/post`);
-  },
 
   //채연이 연동
   //Layout

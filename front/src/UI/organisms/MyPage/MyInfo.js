@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ProfileImage from '../../molecules/MyPage/ProfileImage';
+import Api from '../../../api/Api';
 
 const MyInfo = (props) => {
     const [info, setInfo] = useState({
@@ -11,30 +12,22 @@ const MyInfo = (props) => {
         Introduction: '',
     });
 
-    // const memberPk = sessionStorage.getItem('memberId');
-    // const resBaseInfo = async () => await Api.getReadMyInfo(memberPk);
+    const resBaseInfo = async () => await Api.getReadMyInfo();
 
     useEffect(() => {
         const getData = async () => {
-            // ---------------- response 예시 데이터 ----------------
-            // const infoBody = await resBaseInfo();
-            // console.log(infoBody);
-            // setInfo({
-            //     Email: infoBody.Email,
-            //     Nickname: infoBody.Nickname,
-            //     Image: infoBody.Image,
-            //     Introduction: infoBody.Introduction,
-            // });
-
+            const infoBody = await resBaseInfo();
+            console.log(infoBody);
             setInfo({
-                Email: 'sojeong@email.com',
-                Nickname: '북극곰구하자',
-                Image: "https://avatars.githubusercontent.com/u/74320060?v=4",
-                Introduction: '프론트엔드',
+                Email: infoBody.data.data.email,
+                Nickname: infoBody.data.data.nickname,
+                Image: infoBody.data.data.image,
+                Introduction: infoBody.data.data.introduce,
             });
         }
         getData();
     }, []);
+
     return (
         <Box>
             <Grid container spacing={2}>

@@ -6,6 +6,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 import { useLocation } from 'react-router-dom';
+import Api from '../../../api/Api';
 
 const ChangePW = (props) => {
     const location = useLocation();
@@ -18,12 +19,9 @@ const ChangePW = (props) => {
     const [info, setInfo] = useState({
         name: name,
         account: id,
-        Email: email,
+        email: email,
         password: password,
     });
-
-    // const memberPk = sessionStorage.getItem('memberId');
-    // const resBaseInfo = async () => await Api.getChangePW(memberPk);
 
     // 똑같은 기능 하는 코드 하나로 합침
     const handleChange = (event) => {
@@ -43,7 +41,7 @@ const ChangePW = (props) => {
     };
 
     const emptyCheck = () => {
-        if (info.name === '' || info.account === '' || info.Email === ''
+        if (info.name === '' || info.account === '' || info.email === ''
             || info.password === '') {
             return false;
         }
@@ -61,23 +59,16 @@ const ChangePW = (props) => {
           return false;
         }
 
-        console.log(info);
+        let response = await Api.postChangePW(info);
+        console.log(response);
 
-        // -----------------------  response 예시 데이터 -----------------------
-        // let response = await Api.postSignup(info);
-        let response = {
-            data: {
-                result: "success",
-            }
-        }
-
-        if (response.data.result === "success") {
+        if (response.data.success === true) {
             // const target = '/';
             alert('비밀번호 변경 완료');
             // window.location.href = target;
         }
-        else if (response.data.result === "fail") {
-            alert(response.data.message);
+        else if (response.data.success === false) {
+            alert('비밀번호 변경 실패');
         }
         else {
             alert('비밀번호 변경 실패');
@@ -109,7 +100,7 @@ const ChangePW = (props) => {
                         <Grid item xs={12}>
                             <AuthTextField
                                 label="이메일"
-                                name="Email"
+                                name="email"
                                 value={email}
                                 onChange={handleChange}
                             />
@@ -127,6 +118,7 @@ const ChangePW = (props) => {
                                 label="비밀번호"
                                 name="password"
                                 value={info.password}
+                                type='password'
                                 onChange={handlePWChange}
                             />
                         </Grid>
@@ -134,6 +126,7 @@ const ChangePW = (props) => {
                             <AuthTextField
                                 label="비밀번호 확인"
                                 name="passwordConfirm"
+                                type='password'
                                 onChange={handlePWConfirmChange}
                             />
                             {(password === passwordConfirm) ? "" :

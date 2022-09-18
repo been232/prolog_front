@@ -7,6 +7,7 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/ReadMemberInfoPage/ProfileImage';
+import Api from '../../../api/Api';
 
 const ReadMemberInfo = () => {
     const [alarm, setAlarm] = useState(true);
@@ -14,40 +15,29 @@ const ReadMemberInfo = () => {
     const [info, setInfo] = useState({
         name: '',
         account: '',
-        Email: '',
-        Nickname: '',
-        Image: '',
-        Introduction: '',
-        Alarm: alarm,
+        email: '',
+        nickname: '',
+        image: '',
+        introduce: '',
+        alarm: alarm,
     });
 
-    // const memberPk = sessionStorage.getItem('memberId');
-    // const resBaseInfo = async () => await Api.getReadMemberInfo(memberPk);
+    const resBaseInfo = async () => await Api.getReadMyInfo();
 
     useEffect(() => {
         const getData = async () => {
-            // ---------------- response 예시 데이터 ----------------
-            // const infoBody = await resBaseInfo();
-            // console.log(infoBody);
-            // setInfo({
-            //     name: infoBody.name,
-            //     account: infoBody.account,
-            //     Email: infoBody.Email,
-            //     Nickname: infoBody.Nickname,
-            //     Image: infoBody.Image,
-            //     Introduction: infoBody.Introduction,
-            //     Alarm: infoBody.alarm,
-            // });
-
+            const infoBody = await resBaseInfo();
+            console.log(infoBody);
             setInfo({
-                name: '엄소정',
-                account: 'sojeong!',
-                Email: 'sojeong@email.com',
-                Nickname: '북극곰구하자',
-                Image: "https://avatars.githubusercontent.com/u/74320060?v=4",
-                Introduction: '프론트엔드',
-                Alarm: true,
+                name: infoBody.data.data.name,
+                account: infoBody.data.data.account,
+                email: infoBody.data.data.email,
+                nickname: infoBody.data.data.nickname,
+                image: infoBody.data.data.image,
+                introduce: infoBody.data.data.introduce,
+                alarm: infoBody.data.data.alarm,
             });
+            setAlarm(infoBody.data.data.alarm);
         }
         getData();
     }, []);
@@ -64,13 +54,13 @@ const ReadMemberInfo = () => {
         setAlarm(event.target.checked);
         setInfo((prev) => ({
             ...prev,
-            Alarm: event.target.checked,
+            alarm: event.target.checked,
         }));
     };
 
     const emptyCheck = () => {
-        if (info.name === '' || info.account === '' || info.Email === ''
-            || info.Nickname === '' || info.Introduction === '') {
+        if (info.name === '' || info.account === '' || info.email === ''
+            || info.nickname === '' || info.introduce === '') {
             return false;
         }
     };
@@ -90,23 +80,36 @@ const ReadMemberInfo = () => {
         console.log(info);
 
         // -----------------------  response 예시 데이터 -----------------------
-        // let response = await Api.postSignup(info);
-        let response = {
-            data: {
-                result: "success",
-            }
-        }
+        let response = await Api.putUpdateMyInfo(info);
 
-        if (response.data.result === "success") {
+        if (response.data.success === true) {
             // const target = '/';
             alert('회원정보 수정 완료');
             // window.location.href = target;
         }
-        else if (response.data.result === "fail") {
-            alert(response.data.message);
+        else if (response.data.success === false) {
+            alert('회원정보 수정 실패');
         }
         else {
-            alert('회원정보 수정 실패');
+            alert('');
+        }
+    };
+
+    const handleWithdraw = async () => {
+        let response = await Api.getWithdrawal();
+
+        if (response.data.success === true) {
+            const target = '/';
+            alert('탈퇴 완료');
+            sessionStorage.removeItem('token')
+            sessionStorage.removeItem('userId')
+            window.location.href = target;
+        }
+        else if (response.data.success === false) {
+            alert('탈퇴 실패');
+        }
+        else {
+            alert('');
         }
     };
 
@@ -127,7 +130,7 @@ const ReadMemberInfo = () => {
                 <Typography component="h1" variant="h5">회원정보 조회/수정</Typography>
                 <Box noValidate sx={{ mt: 3 }}>
                     <Divider sx={{ marginBottom: 2 }} />
-                    <ProfileImage setInfo={setInfo} Image={info.Image} />
+                    <ProfileImage setInfo={setInfo} Image={info.image} />
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <AuthTextField label="아이디" name="account" onChange={handleChange} value={info.account} />
@@ -135,8 +138,8 @@ const ReadMemberInfo = () => {
                         <Grid item xs={12}>
                             <AuthTextField
                                 label="이메일"
-                                name="Email"
-                                value={info.Email}
+                                name="email"
+                                value={info.email}
                                 onChange={handleChange}
                             />
                         </Grid>
@@ -151,13 +154,13 @@ const ReadMemberInfo = () => {
                         <Grid item xs={12}>
                             <AuthTextField
                                 label="닉네임"
-                                name="Nickname"
-                                value={info.Nickname}
+                                name="nickname"
+                                value={info.nickname}
                                 onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField label="한줄소개" name="Introduction" onChange={handleChange} />
+                            <AuthTextField label="한줄소개" name="introduce" value={info.introduce} onChange={handleChange} />
                         </Grid>
                         <Grid item xs={12}>
                             <FormControl component="fieldset">
@@ -165,7 +168,7 @@ const ReadMemberInfo = () => {
                                     value='start'
                                     control={<Switch checked={info.alarm} onChange={handleCheckChange} color="primary" />}
                                     label="알림 수신 여부"
-                                    name='Alarm'
+                                    name='alarm'
                                     labelPlacement='start'
                                 />
                             </FormControl>
@@ -191,12 +194,17 @@ const ReadMemberInfo = () => {
                         <Grid item sx={{ textDecoration: "underline" }}>
                             <Link to={{ pathname: `/changePW` }}
                                 state={{
-                                    id: "sojeong",
-                                    email: "sojeong@email.com",
-                                    name: "엄소정"
+                                    id: info.account,
+                                    email: info.email,
+                                    name: info.name
                                 }} >
                                 비밀번호 변경
                             </Link>
+                        </Grid>
+                    </Grid>
+                    <Grid container justifyContent="center">
+                        <Grid item sx={{ textDecoration: "underline" }}>
+                            <Typography component="h1" variant="h6" onClick={handleWithdraw}>회원탈퇴</Typography>
                         </Grid>
                     </Grid>
                 </Box>

@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import {
   Link, Avatar, Button, FormControl, Grid, Box, CssBaseline,
   Typography, Container, FormControlLabel, Switch, Divider
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { AuthTextField } from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
+import { AuthTextField } from '../../atoms/Commons/TextField';
+import { FixTextField } from '../../atoms/Commons/FixTextField';
+import Api from '../../../api/Api';
 
 const SignUp = () => {
+  const location = useLocation();
+  const email = location.state;
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   const [alarm, setAlarm] = useState(true);
@@ -15,12 +20,13 @@ const SignUp = () => {
   const [info, setInfo] = useState({
     name: '',
     account: '',
-    Email: '',
+    email: "esj5029@gmail.com",
+    // Email: email,
     password: password,
-    Nickname: '',
-    Image: '',
-    Introduction: '',
-    Alarm: alarm,
+    nickname: '',
+    image: '',
+    introduce: '',
+    alarm: alarm,
   });
 
   // 똑같은 기능 하는 코드 하나로 합침
@@ -35,7 +41,7 @@ const SignUp = () => {
     setAlarm(event.target.checked);
     setInfo((prev) => ({
       ...prev,
-      Alarm: event.target.checked,
+      alarm: event.target.checked,
     }));
   };
 
@@ -49,10 +55,12 @@ const SignUp = () => {
   };
 
   const emptyCheck = () => {
-    if (info.name === '' || info.account === '' || info.Email === '' 
-    || info.password === '' || info.Nickname === '' || info.Introduction === '') {
+    console.log(info);
+    if (info.name === '' || info.account === '' || info.email === '' 
+    || info.password === '' || info.nickname === '' || info.introduce === '') {
       return false;
     }
+
   };
 
   const handleSignup = async () => {
@@ -66,24 +74,18 @@ const SignUp = () => {
       alert('이름, 아이디, 이메일, 비밀번호, 닉네임, 한줄소개를 입력하세요');
       return false;
     }
-
     console.log(info);
 
-    // -----------------------  response 예시 데이터 -----------------------
-    // let response = await Api.postSignup(info);
-    let response = {
-      data: {
-        result: "success",
-      }
-    }
+    let response = await Api.postSignup(info);
+    console.log(response);
 
-    if (response.data.result === "success") {
-      // const target = '/';
+    if (response.data.success === true) {
+      const target = '/';
       alert('회원가입 성공');
-      // window.location.href = target;
+      window.location.href = target;
     }
-    else if (response.data.result === "fail") {
-      alert(response.data.message);
+    else if (response.data.success === false) {
+      alert(response.data);
     }
     else {
       alert('회원가입 실패');
@@ -113,16 +115,20 @@ const SignUp = () => {
               <AuthTextField label="아이디" name="account" onChange={handleChange} />
             </Grid>
             <Grid item xs={12}>
-              <AuthTextField
+              <FixTextField
                 label="이메일"
-                name="Email"
-                onChange={handleChange}
+                name="email"
+                defaultValue={email}
+                InputProps={{
+                  readOnly: true,
+                }}
               />
             </Grid>
             <Grid item xs={12}>
               <AuthTextField
                 label="비밀번호"
                 name="password"
+                type='password'
                 onChange={handlePWChange}
               />
             </Grid>
@@ -130,6 +136,7 @@ const SignUp = () => {
               <AuthTextField
                 label="비밀번호 확인"
                 name="passwordConfirm"
+                type='password'
                 onChange={handlePWConfirmChange}
               />
               {(password === passwordConfirm) ? "" :
@@ -148,12 +155,12 @@ const SignUp = () => {
             <Grid item xs={12}>
               <AuthTextField
                 label="닉네임"
-                name="Nickname"
+                name="nickname"
                 onChange={handleChange}
               />
             </Grid>
             <Grid item xs={12}>
-              <AuthTextField label="한줄소개" name="Introduction" onChange={handleChange} />
+              <AuthTextField label="한줄소개" name="introduce" onChange={handleChange} />
             </Grid>
             <Grid item xs={12}>
               <FormControl component="fieldset">
@@ -161,7 +168,7 @@ const SignUp = () => {
                   value='start'
                   control={<Switch checked={alarm} onChange={handleCheckChange} color="primary" />}
                   label="알림 수신 여부"
-                  name='Alarm'
+                  name='alarm'
                   labelPlacement='start'
                 />
               </FormControl>

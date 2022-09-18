@@ -8,7 +8,7 @@ const empty_profile = "server_url + request_url";
 
 const ProfileImage = (props) => {
     const setInfo = props.setInfo;
-    const base_image = props.Image;
+    const base_image = props.Image.split('blob:');
     const [image, setimage] = useState();
     const [fileUrl, setFileUrl] = useState(null);
 
@@ -35,7 +35,7 @@ const ProfileImage = (props) => {
 
         setInfo((prev) => ({
             ...prev,
-            Image: imageUrl,
+            image: imageUrl,
         }));
 
         // 이미지 업로드 코드 -> 백엔드에서 주는 데이터 형식보고 코드 수정 필요
@@ -60,7 +60,7 @@ const ProfileImage = (props) => {
         setFileUrl(null);
         setInfo((prev) => ({
             ...prev,
-            Image: null,
+            image: null,
         }));
     };
 

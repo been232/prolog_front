@@ -34,14 +34,7 @@ theme.typography.p = {
 };
 
 function HeaderMolecules(props) {
-  const [isLogin, setIsLogin] = useState(false);
-  const user = sessionStorage.getItem('user'); // 토큰 받아오기
-
-  const Logout = () => {
-    window.location.href = '/';
-    alert('로그아웃되었습니다.');
-    setIsLogin(false);
-  }
+  const user = sessionStorage.getItem('token'); // 토큰 받아오기
 
   return (
     <>
@@ -53,33 +46,10 @@ function HeaderMolecules(props) {
             marginTop: 2,
           }}
         >
-          {(isLogin) ?
-            (<>
-              <Box sx={{ float: 'right' }}>
-                  <ContainedButton content="로그아웃" fontSize="11px" handleClick={Logout}></ContainedButton>
-              </Box>
-              <Box sx={{ float: 'right' }}>
-                <Link to="/mypage">
-                  <AccountCircleIcons id="icon" />
-                </Link>
-              </Box>
-            </>
-            ) : (
-              <Box sx={{ float: 'right' }}>
-                <LoginModal isLogin={isLogin} setIsLogin={setIsLogin} />
-              </Box>
-            )}
-
-          <Box sx={{ float: 'right' }}>
-            <Link to="/search">
-              <SearchIcons id="icon" />
-            </Link>
-          </Box>
-          {/* 이게 찐 sessionStorage 사용해서 로그인, 로그아웃 되는 코드
           {(!(user === null)) ?
             (<>
               <Box sx={{ float: 'right' }}>
-                <Link to="/logout" state={{ setIsLogin: setIsLogin() }}>
+                <Link to="/logout" >
                   <ContainedButton content="로그아웃" fontSize="11px"></ContainedButton>
                 </Link>
               </Box>
@@ -91,7 +61,7 @@ function HeaderMolecules(props) {
             </>
             ) : (
               <Box sx={{ float: 'right' }}>
-                <LoginModal isLogin={isLogin} setIsLogin={setIsLogin} />
+                <LoginModal />
               </Box>
             )}
 
@@ -99,7 +69,7 @@ function HeaderMolecules(props) {
             <Link to="/search">
               <SearchIcons id="icon" />
             </Link>
-          </Box> */}
+          </Box>
         </Box>
       </ThemeProvider>
     </>
