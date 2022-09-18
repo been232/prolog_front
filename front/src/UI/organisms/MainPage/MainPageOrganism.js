@@ -4,6 +4,7 @@ import PostBoxBottomMolecule from '../../molecules/MainPage/PostBoxBottomMolecul
 import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecule';
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
 import CloseIcon from '@mui/icons-material/Close';
+import MainContent from '../../molecules/MainPage/MainContent';
 // import { useInterval } from './useInterval';
 const style = {
   position: 'absolute',
@@ -46,7 +47,7 @@ function MainPageOrganism(props) {
       onMouseLeave={handleClose}
     >
       <Modal open={open} onClose={handleClose}>
-        <Box sx={{ ...style, width: 400, height: 600 }}>
+        <Box sx={{ ...style, width: 600, height: 900 }}>
           <IconButton
             sx={{ position: 'fixed', top: 0, right: 0 }}
             onClick={handleClose}
@@ -54,7 +55,7 @@ function MainPageOrganism(props) {
             <CloseIcon />
           </IconButton>
           {/* <p>게시글 미리보기 들어감.</p> */}
-          <Box>{}</Box>
+          <MainContent layout={mainLayout} />
         </Box>
       </Modal>
       <PostBoxTopMolecule id={id} />

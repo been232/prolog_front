@@ -19,6 +19,9 @@ function useFetch(page, type) {
       case 'my':
         console.log('my post loading');
         return Api.getMyPost(last);
+      case 'recent':
+        console.log('recent post loading');
+        return Api.getRecentPost(last);
     }
   });
   const sendQuery = useCallback(async () => {
