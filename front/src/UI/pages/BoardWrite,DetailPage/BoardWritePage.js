@@ -34,7 +34,7 @@ function BoardWritePage() {
     }
   }, []);
 
-  if (!data) return null;
+  if (!data || !datas) return null;
 
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
