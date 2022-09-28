@@ -1,5 +1,5 @@
 import { Box, Button, IconButton, Modal, TextField } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import PostBoxBottomMolecule from '../../molecules/MainPage/PostBoxBottomMolecule';
 import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecule';
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
@@ -7,7 +7,9 @@ import ChartList from '../../organisms/StatisticsPage/ChartList';
 import UnderButton from '../../molecules/StatisticsPage/UnderButton';
 import LinkButton from '../../atoms/MyPage/LinkButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Api from '../../../api/Api';
 // import { useInterval } from './useInterval';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -47,16 +49,26 @@ const data = [
 ];
 
 function MyBoardAtoms(props) {
-  const { id, title, written, member, memberImage, likes, mainLayout } = props.data;
+  const { id, title, written, member, memberImage, likes, mainLayout } = props;
   const [open, setOpen] = useState(false);
   var timer;
-  const [text, setText] = useState(undefined);
+  const [text, setText] = useState(2022);
   const [visible, setVisible] = useState(false);
+  console.log(title);
+
+  const resBaseInfo = async () => await Api.getMiniStatics(id);
 
   const handleOpen = () => {
     timer = setTimeout(() => {
       setOpen(true);
     }, 1000);
+
+    // const getData = async () => {
+    //   // const infoBody = await resBaseInfo();
+    //   // console.log(infoBody);
+    //   // setInfo(infoBody.data);
+    // }
+    // getData();
   };
 
   const handleClose = () => {
@@ -84,7 +96,29 @@ function MyBoardAtoms(props) {
 
   };
 
-  useEffect(() => { }, [text])
+  const [data, setInfo] = useState(
+    {
+      success: true,
+      data: [
+        {
+          cumulativeView: '78',
+          tenView: '7',
+          januaryView: '1',
+          februaryView: '2',
+          marchView: '3',
+          aprilView: '4',
+          mayView: '5',
+          juneView: '6',
+          julyView: '7',
+          augustView: '8',
+          septemberView: '9',
+          octoberView: '10',
+          novemberView: '11',
+          decemberView: '12',
+        },
+      ],
+    },
+  );
 
   return (
     <Box
@@ -116,7 +150,7 @@ function MyBoardAtoms(props) {
                 <Button onClick={handleCheck} style={{ display: 'inline-block', float: 'right', marginTop: 15, fontFamily: "SUIT-Regular" }} >확인</Button>
                 <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={handleChange} label="년도 입력(숫자만)" variant="standard" />
               </Box>
-              <ChartList data={data} text={text} />
+              <ChartList data={data.data} text={text} />
               <UnderButton />
               <LinkButton id={id}/>
             </Box>
@@ -144,9 +178,11 @@ function MyBoardAtoms(props) {
           )
         }
       </Modal>
-      <PostBoxTopMolecule />
-      <PostBoxMiddleMolecule title={title} />
+      <PostBoxTopMolecule id={id} link="boardDetail" />
+      <PostBoxMiddleMolecule id={id} link="boardDetail" title={title} />
       <PostBoxBottomMolecule
+        id={id}
+        link="boardDetail"
         member={member}
         memberImage={memberImage}
         likes={likes}

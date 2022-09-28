@@ -46,7 +46,7 @@ client.interceptors.response.use(
 
                 const user = sessionStorage.getItem('token'); // 토큰 받아오기
                 const { accessToken, refreshToken } = JSON.parse(user)
-                const data = await client.get('auth/refreshtoken', {
+                const data = await client.get('auth/refresh-token', {
                     headers: {
                         REFRESHTOKEN: refreshToken
                     }

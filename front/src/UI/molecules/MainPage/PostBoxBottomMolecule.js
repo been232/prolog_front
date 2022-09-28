@@ -1,8 +1,9 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import HeartIcon from '../../atoms/MainPage/HeartIcon';
+import { Link } from 'react-router-dom';
 
-function PostBoxBottomMolecule({ member, memberImage, likes, hits }) {
+function PostBoxBottomMolecule({ id, member, memberImage, likes, hits, link }) {
   return (
     <Box
       sx={{
@@ -12,19 +13,22 @@ function PostBoxBottomMolecule({ member, memberImage, likes, hits }) {
         padding: 1.5,
       }}
     >
-      <span>
-        by <b>{member}</b>
-      </span>
-      <Box
-        sx={{
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
-        {/* <HeartIcon fontSize="small" />
+      <Link to={`/${link}/${id}`}>
+        <span>
+          by <b>{member}</b>
+        </span>
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+          }}
+        >
+          {/* <HeartIcon fontSize="small" />
         {likes} */}
-        <span>조회수 : {hits}</span>
-      </Box>
+          <span>조회수 : {hits}</span>
+        </Box>
+
+      </Link>
     </Box>
   );
 }

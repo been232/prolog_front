@@ -5,12 +5,12 @@ const user = sessionStorage.getItem('userId');
 
 const getRequest = async (path, params) => {
   try {
-    params = qs.stringify(params);
-    const data = await client.get(path + params);
-    return data;
+      params = qs.stringify(params);
+      const data = await client.get(path + params);
+      return data;
   } catch (e) {
-    console.log(e);
-    return [];
+      console.log(e);
+      return [];
   }
 };
 
@@ -212,29 +212,24 @@ const Api = {
   },
   // 미니 통계 조회(id: 게시물의 ID)
   getMiniStatics: async (id, year) => {
-    return await getRequest(`//myboard/statis/${id}/${year}`);
+    return await getRequest(`/myboard/statis/${id}`);
   },
 
   // MyPage: 게시글 조회 및 레이아웃 조회-----------------------------------------------------
   // 내가 쓴 글 목록 조회
-  getMyPost: async (user) => {
-    return await getRequest(`/${user}/?last=0`);
+  getMyPost_New: async (user) => {
+    return await getRequest(`/my-info/boards?last=0`);
   },
   // 좋아요 한 글 목록 조회
   getHeartPost: async (account) => {
-    return await getRequest(`/${account}/likes/?last=0`);
+    return await getRequest(`/my-info/likes?last=0`);
   },
   // 레이아웃 목록 조회
   getLayoutList: async (info) => {
     return await getRequest(`/layouts`);
   },
-  // 이메일 인증코드 저장
-  emailCode: null,
 
-  // 한 페이지당 보여줄 컨텐츠 개수
-  pageCount: 3,
-
-  //채연이 연동
+  //채연이 연동-----------------------------------------------------
   //Layout
   getLayoutWrite: async (layout) => {
     return await postJsonUserReqest(`/layout`, JSON.stringify(layout));

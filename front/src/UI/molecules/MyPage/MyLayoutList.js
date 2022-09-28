@@ -19,11 +19,13 @@ const datas = {
     }
 };
 
-const MyLayoutList = () => {
+const MyLayoutList = (props) => {
+    const myLayoutList = props.myLayoutList;
+    
     return (
         <>
             <Grid container spacing={3}>
-                {datas.data.layouts.map((data, i) => (
+                {myLayoutList.data.map((data, i) => (
                     <Grid
                         item
                         xl={4}
