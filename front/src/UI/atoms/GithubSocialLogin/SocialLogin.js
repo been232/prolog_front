@@ -115,7 +115,7 @@ const GithubOAuthRedirectHandler = (props) => {
     }
 
     // LoginPopUp : handleClose() 호출하기
-    handleClose();
+    // handleClose();
   }
 
   useEffect(() => {

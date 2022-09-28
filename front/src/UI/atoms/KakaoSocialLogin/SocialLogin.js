@@ -113,7 +113,7 @@ const KakaoOAuthRedirectHandler = (props) => {
     else if (response.data.success === false) {
       alert('로그인 실패: 아이디나 비밀번호를 다시 확인해주세요!');
     }
-    handleClose(); // LoginPopUp : handleClose() 호출하기
+    // handleClose(); // LoginPopUp : handleClose() 호출하기
   }
 
   useEffect(() => {
