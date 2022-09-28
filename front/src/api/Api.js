@@ -2,7 +2,7 @@ import client from '../api/axiosConfig';
 import qs from 'qs';
 import axios from 'axios';
 const user = sessionStorage.getItem('userId');
-
+console.log(user);
 const getRequest = async (path, params) => {
   try {
       params = qs.stringify(params);
@@ -254,6 +254,16 @@ const Api = {
   getDeleteBoard: async (id) => {
     return await deleteJsonReqest(`/board/${id}`);
   },
+  //comment
+  getComment: async (id) => {
+    return await GetJsonUserReqest(`/boards/${id}/comments?page=1&size=10`);
+  },
+  postComment: async (comment) => {
+    return await postJsonReqest(`/comments/submitComment`, comment);
+  },
+  deleteComment: async (id) => {
+    return await deleteJsonReqest(`/comments/deleteComment/${id}`);
+  },
 
   //tag
   getTag: async (name) => {
@@ -276,6 +286,14 @@ const Api = {
   },
   getMyPost: async (last) => {
     return await GetJsonUserReqest(`/${user}/?last=${last}`);
+  },
+  getRecentPost: async (last) => {
+    return await getRequest(`/recent/?last=${last}`);
+  },
+
+  //Search
+  getSearchResult: async (keyword) => {
+    return await getRequest(`/search?keyword=${keyword}&last=0`);
   },
 };
 

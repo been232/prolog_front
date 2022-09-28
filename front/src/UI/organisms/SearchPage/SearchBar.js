@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import React, { useState } from 'react';
+import Api from '../../../api/Api';
 import { SearchTextField } from '../../atoms/Commons/TextField';
 import { SearchButton } from '../../atoms/SearchPage/SearchButton';
 
@@ -10,43 +11,12 @@ function SearchBar(props) {
     const keyWord = e.target.value;
     setSearchKeyWord(keyWord);
   };
-  const getSearch = () => {
-    //검색하는 통신
-    console.log(`{ searchKeyWord: ${searchKeyWord} }`);
-    setDatas({
-      success: true,
-      data: [
-        {
-          id: 'asdf1f',
-          title: 'title',
-          written: '2022-06-07',
-          member: 'memberName',
-          memberImage: 'http://~',
-          likes: '8',
-          mainLayout: {
-            type: '1',
-            width: '12',
-            height: '35',
-            content: '어쩌구 저쩌구',
-          },
-        },
-        {
-          id: 'dfsf21',
-          title: 'title',
-          content: '어쩌구 저쩌구',
-          written: '2022-06-07',
-          member: 'memberName',
-          memberImage: 'http://~',
-          likes: '8',
-          mainLayout: {
-            type: '1',
-            width: '12',
-            height: '35',
-            content: '어쩌구 저쩌구',
-          },
-        },
-      ],
-    });
+  const getSearch = async () => {
+    const resultBody = await Api.getSearchResult(searchKeyWord);
+    console.log(resultBody.data.data);
+    if (resultBody.data.data.length === 0) {
+      alert(`검색 결과가 없습니다.`);
+    } else setDatas(resultBody.data.data);
   };
   
   return (
