@@ -59,7 +59,7 @@ const GetJsonUserReqest = async (path) => {
 
 const GetJsonCategoryReqest = async (path) => {
   try {
-    const data = await axios.get('http://113.59.178.4:9000' + path, {
+    const data = await client.get(path, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'multipart/form-data',

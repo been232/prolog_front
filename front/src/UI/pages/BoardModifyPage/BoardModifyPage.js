@@ -31,8 +31,6 @@ function BoardModifyPage() {
   if (!data) return null;
   return (
     <Box sx={{ marginLeft: 20, marginRight: 20 }}>
-      <BasicTextFields propFunction={highFunction} data={data} />
-      <ModifyContent title={texts} layout={data} />
       <Box>
         <BasicTextFields propFunction={highFunction} data={data} />
         <Category
