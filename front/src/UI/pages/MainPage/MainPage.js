@@ -14,11 +14,11 @@ import MainPageOrganism from '../../organisms/MainPage/MainPageOrganism';
 /* Gird Item 들은 기능 연동 후 map 으로 처리하던가 해야할듯 */
 function MainPage() {
   const [page, setPage] = useState(0);
-  const [type, setType] = useState('like');
+  const [type, setType] = useState('recent');
   const [last, setLast] = useState(0);
   const { loading, error, list } = useFetch(page, type);
   const loader = useRef(null);
-  console.log(list);
+
   // const [list, setList] = useState([]);
   // useEffect(() => {
   //   fetchData();
@@ -43,11 +43,13 @@ function MainPage() {
       setPage((prev) => prev + 1);
     }
   }, []);
+
   const option = {
     root: null,
     rootMargin: '10px',
     threshold: 0,
   };
+
   useEffect(() => {
     const observer = new IntersectionObserver(handleObserver, option);
     if (loader.current) observer.observe(loader.current);
@@ -61,10 +63,8 @@ function MainPage() {
           <MenuItem value="">
             <em>분류 선택</em>
           </MenuItem>
+          <MenuItem value="recent">최근 게시글</MenuItem>
           <MenuItem value="all">전체 게시글</MenuItem>
-          <MenuItem value="like">좋아요 한 게시글</MenuItem>
-          <MenuItem value="my">내가 쓴 게시글</MenuItem>
-          <MenuItem value="recent">최근 쓴 게시글</MenuItem>
         </Select>
       </FormControl>
       <Grid container spacing={3}>

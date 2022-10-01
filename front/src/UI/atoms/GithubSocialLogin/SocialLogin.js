@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import {
-  Link, Avatar, Button, Grid, Box, CssBaseline,
-  Typography, Container, Divider
+  Link,
+  Avatar,
+  Button,
+  Grid,
+  Box,
+  CssBaseline,
+  Typography,
+  Container,
+  Divider,
 } from '@mui/material';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 import Api from '../../../api/Api';
@@ -11,8 +18,8 @@ const GithubOAuthRedirectHandler = (props) => {
   // 인가코드 추출 및 전송
   let code = new URL(window.location.href).searchParams.get('code');
   const data = {
-    code: code
-  }
+    code: code,
+  };
   const resBaseInfo = async () => await Api.postGithubCode(data);
 
   const [require, setRequire] = useState(false);
@@ -54,15 +61,19 @@ const GithubOAuthRedirectHandler = (props) => {
   };
 
   const emptyCheck = () => {
-    if (info.name === '' || info.account === '' || info.email === ''
-      || info.password === '') {
+    if (
+      info.name === '' ||
+      info.account === '' ||
+      info.email === '' ||
+      info.password === ''
+    ) {
       return false;
     }
   };
 
   const handleSignup = async () => {
     if (password !== passwordConfirm) {
-      alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
+      alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
       return;
     }
 
@@ -78,21 +89,21 @@ const GithubOAuthRedirectHandler = (props) => {
 
     if (response.data.success === true) {
       const target = '/';
-      sessionStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
-      sessionStorage.setItem('userId', parseInt(response.headers.userid))
+      sessionStorage.setItem(
+        'token',
+        JSON.stringify(response.headers, ['accesstoken', 'refreshtoken'])
+      );
+      sessionStorage.setItem('userId', parseInt(response.headers.userid));
       alert('소셜 로그인되었습니다.');
       window.location.href = target;
-    }
-    else if (response.data.success === false) {
+    } else if (response.data.success === false) {
       alert('소셜 로그인 실패');
-    }
-    else {
+    } else {
       alert('소셜 로그인 실패');
     }
   };
 
   async function handleLogin() {
-
     const isEmpty = emptyCheck();
     if (isEmpty === false) {
       alert('아이디 또는 비밀번호를 입력하세요');
@@ -106,16 +117,18 @@ const GithubOAuthRedirectHandler = (props) => {
     console.log(response);
     if (response.data.success === true) {
       const target = '/';
-      sessionStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
-      sessionStorage.setItem('userId', parseInt(response.headers.userid))
+      sessionStorage.setItem(
+        'token',
+        JSON.stringify(response.headers, ['accesstoken', 'refreshtoken'])
+      );
+      sessionStorage.setItem('userId', parseInt(response.headers.userid));
       window.location.href = target;
-    }
-    else if (response.data.success === false) {
+    } else if (response.data.success === false) {
       alert('로그인 실패: 아이디나 비밀번호를 다시 확인해주세요!');
     }
 
     // LoginPopUp : handleClose() 호출하기
-    handleClose();
+    // handleClose();
   }
 
   useEffect(() => {
@@ -132,16 +145,18 @@ const GithubOAuthRedirectHandler = (props) => {
         handleChangeekey(key);
         setRequire(true);
         console.log(info);
-        alert("회원가입이 필요합니다! 회원가입을 진행해주세요.");
-      }
-      else if (response.data.success === false) {
+        alert('회원가입이 필요합니다! 회원가입을 진행해주세요.');
+      } else if (response.data.success === false) {
         setRequire(false);
         const target = '/';
-        sessionStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
-        sessionStorage.setItem('userId', parseInt(response.headers.userid))
+        sessionStorage.setItem(
+          'token',
+          JSON.stringify(response.headers, ['accesstoken', 'refreshtoken'])
+        );
+        sessionStorage.setItem('userId', parseInt(response.headers.userid));
         window.location.href = target;
       }
-    }
+    };
     getData();
   }, []);
 
@@ -149,23 +164,30 @@ const GithubOAuthRedirectHandler = (props) => {
     <>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        {(require) ?
-          (<Box
+        {require ? (
+          <Box
             sx={{
               marginTop: 8,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-            }}>
+            }}
+          >
             <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
-            <Typography component="h1" variant="h5">소셜 회원가입</Typography>
+            <Typography component="h1" variant="h5">
+              소셜 회원가입
+            </Typography>
             <Box noValidate sx={{ mt: 3 }}>
               <Divider sx={{ marginBottom: 2 }} />
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                  <AuthTextField label="아이디" name="account" onChange={handleChange} />
+                  <AuthTextField
+                    label="아이디"
+                    name="account"
+                    onChange={handleChange}
+                  />
                 </Grid>
                 <Grid item xs={12}>
                   <AuthTextField
@@ -178,7 +200,7 @@ const GithubOAuthRedirectHandler = (props) => {
                   <AuthTextField
                     label="비밀번호"
                     name="password"
-                    type='password'
+                    type="password"
                     onChange={handlePWChange}
                   />
                 </Grid>
@@ -186,14 +208,16 @@ const GithubOAuthRedirectHandler = (props) => {
                   <AuthTextField
                     label="비밀번호 확인"
                     name="passwordConfirm"
-                    type='password'
+                    type="password"
                     onChange={handlePWConfirmChange}
                   />
-                  {(password === passwordConfirm) ? "" :
-                    <Typography sx={{ color: "red" }}>
+                  {password === passwordConfirm ? (
+                    ''
+                  ) : (
+                    <Typography sx={{ color: 'red' }}>
                       비밀번호 불일치: 다시 입력해주세요.
                     </Typography>
-                  }
+                  )}
                 </Grid>
                 <Grid item xs={12}>
                   <AuthTextField
@@ -213,36 +237,40 @@ const GithubOAuthRedirectHandler = (props) => {
                 Sign Up
               </Button>
             </Box>
-          </Box>) : (
-            <Box
-              sx={{
-                marginTop: 8,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}>
-              <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">소셜 로그인</Typography>
-              <Box noValidate sx={{ mt: 3 }}>
-                <Divider sx={{ marginBottom: 2 }} />
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Button
-                      fullWidth
-                      variant="contained"
-                      // color="primary.main"
-                      sx={{ mt: 1, mb: 1 }}
-                      onClick={handleLogin}
-                    >
-                      Login
-                    </Button>
-                  </Grid>
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              marginTop: 8,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}
+          >
+            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              소셜 로그인
+            </Typography>
+            <Box noValidate sx={{ mt: 3 }}>
+              <Divider sx={{ marginBottom: 2 }} />
+              <Grid container spacing={2}>
+                <Grid item xs={12}>
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    // color="primary.main"
+                    sx={{ mt: 1, mb: 1 }}
+                    onClick={handleLogin}
+                  >
+                    Login
+                  </Button>
                 </Grid>
-              </Box>
+              </Grid>
             </Box>
-          )}
+          </Box>
+        )}
       </Container>
     </>
   );

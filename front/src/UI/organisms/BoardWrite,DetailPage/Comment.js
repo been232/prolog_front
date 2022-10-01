@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import CommentWriteBox from '../../molecules/BoardWrite,DetailPage/CommentWriteBox';
 import CommentContent from '../../molecules/BoardWrite,DetailPage/CommentContent';
 import ReplyCommentContent from '../../molecules/BoardWrite,DetailPage/ReplyCommentContent';
@@ -25,26 +25,22 @@ function Comment(props) {
     const content = e.target.value;
     setCommentCotent(content);
   };
-  const submitComment = async (e) => {
-    //서버에 댓글 전송하는 로직
-    // console.log({
-    //   postId: id,
-    //   userId: '0',
-    //   upperCommentId: '0',
-    //   context: commentContent,
-    // });
-    const comment = {
-      postId: id,
-      upperCommentId: null,
-      context: commentContent,
-    };
-    await Api.postComment(comment);
+  const submitComment = useCallback(async (e) => {
+    if (commentContent == '') alert('내용을 입력하세요.');
+    else {
+      const comment = {
+        postId: id,
+        upperCommentId: null,
+        context: commentContent,
+      };
+      await Api.postComment(comment);
 
-    const blank = '';
-    setCommentCotent(blank);
-    setIsOpen('0');
-    window.location.reload();
-  };
+      const blank = '';
+      setCommentCotent(blank);
+      setIsOpen('0');
+      window.location.reload();
+    }
+  });
   return (
     <Box
       sx={{
@@ -92,6 +88,8 @@ function Comment(props) {
                       context={reply.context}
                       key={reply.id}
                       userId={reply.userId}
+                      setIsOpen={test}
+                      isOpen={isOpen}
                     ></ReplyCommentContent>
                   ))}
               </>
@@ -101,13 +99,14 @@ function Comment(props) {
       {isOpen == '0' && (
         <CommentWriteBox
           onChange={onChangeCommentContent}
-          onClick={submitComment}
+          submitComment={submitComment}
           display={'flex'}
           value={commentContent}
+          type={'submit'}
         ></CommentWriteBox>
       )}
     </Box>
   );
 }
 
-export default Comment;
+export default React.memo(Comment);

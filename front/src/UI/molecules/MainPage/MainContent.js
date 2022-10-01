@@ -35,6 +35,7 @@ export default function MainContent(props) {
     list();
   }
   function list() {
+    console.log(layout.type);
     switch (layout.type) {
       case 1:
         const TextNode = {
