@@ -5,17 +5,8 @@ import Api from '../../../api/Api';
 import CommentWriteBox from './CommentWriteBox';
 
 function CommentContent(props) {
-  const {
-    writter,
-    written,
-    context,
-    id,
-    postId,
-    isBlocked,
-    setIsOpen,
-    isOpen,
-    userId,
-  } = props;
+  const { writter, written, context, id, postId, setIsOpen, isOpen, userId } =
+    props;
   const [display, setDisplay] = useState(false);
   const [type, setType] = useState('submit');
   const isAuthor = sessionStorage.getItem('userId');

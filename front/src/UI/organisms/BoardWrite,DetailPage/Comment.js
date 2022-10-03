@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CommentWriteBox from '../../molecules/BoardWrite,DetailPage/CommentWriteBox';
 import CommentContent from '../../molecules/BoardWrite,DetailPage/CommentContent';
 import ReplyCommentContent from '../../molecules/BoardWrite,DetailPage/ReplyCommentContent';
@@ -10,6 +10,14 @@ function Comment(props) {
   const [commentContent, setCommentCotent] = useState('');
   const [isOpen, setIsOpen] = useState('0');
   const [comment, setComment] = useState([]);
+
+  const notLoginAlert = () => {
+    alert('로그인 하셔야 댓글을 작성하실 수 있습니다.');
+    document.activeElement.blur();
+  };
+
+  const isAuthor = sessionStorage.getItem('userId');
+
   useEffect(() => {
     const getData = async () => {
       const commentBody = await Api.getComment(id);
@@ -18,7 +26,7 @@ function Comment(props) {
     };
     getData();
   }, []);
-  const test = (e) => {
+  const setOpen = (e) => {
     setIsOpen(e);
   };
   const onChangeCommentContent = (e) => {
@@ -64,35 +72,33 @@ function Comment(props) {
       >
         {comment &&
           comment.map((comment) => {
-            const upperId = comment.id;
             return (
-              <>
+              <div key={comment.id}>
                 <CommentContent
                   writter={comment.nickname}
                   written={comment.time}
                   context={comment.context}
                   id={comment.id}
-                  upper={comment.upper != '0' ? comment.upper : comment.id}
                   postId={id}
-                  setIsOpen={test}
+                  setIsOpen={setOpen}
                   isOpen={isOpen}
-                  key={comment.id}
                   userId={comment.userId}
                 ></CommentContent>
                 {comment.lowerComments &&
                   comment.lowerComments.map((reply) => (
-                    <ReplyCommentContent
-                      writter={reply.nickname}
-                      written={reply.time}
-                      id={reply.id}
-                      context={reply.context}
-                      key={reply.id}
-                      userId={reply.userId}
-                      setIsOpen={test}
-                      isOpen={isOpen}
-                    ></ReplyCommentContent>
+                    <div key={reply.id}>
+                      <ReplyCommentContent
+                        writter={reply.nickname}
+                        written={reply.time}
+                        id={reply.id}
+                        context={reply.context}
+                        userId={reply.userId}
+                        setIsOpen={setOpen}
+                        isOpen={isOpen}
+                      ></ReplyCommentContent>
+                    </div>
                   ))}
-              </>
+              </div>
             );
           })}
       </Box>
@@ -103,6 +109,7 @@ function Comment(props) {
           display={'flex'}
           value={commentContent}
           type={'submit'}
+          onFocus={isAuthor ? Object : notLoginAlert}
         ></CommentWriteBox>
       )}
     </Box>

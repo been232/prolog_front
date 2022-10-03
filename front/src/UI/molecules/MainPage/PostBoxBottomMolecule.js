@@ -19,11 +19,12 @@ function PostBoxBottomMolecule({ member, memberImage, likes, hits }) {
         sx={{
           display: 'flex',
           alignItems: 'center',
+          minWidth: '130px',
         }}
       >
-        {/* <HeartIcon fontSize="small" />
-        {likes} */}
-        <span>조회수 : {hits}</span>
+        <HeartIcon fontSize="small" />
+        &nbsp;{likes}
+        <span style={{ marginLeft: '20%' }}>조회수 : {hits}</span>
       </Box>
     </Box>
   );

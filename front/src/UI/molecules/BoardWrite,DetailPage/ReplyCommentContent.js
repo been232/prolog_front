@@ -6,8 +6,22 @@ import CommentWriteBox from './CommentWriteBox';
 function ReplyCommentContent(props) {
   const [display, setDisplay] = useState(false);
   const [type, setType] = useState('submit');
-  const { writter, written, context, id, postid, userId, setIsOpen, isOpen } =
-    props;
+  const notLoginAlert = () => {
+    alert('로그인 하셔야 댓글을 작성하실 수 있습니다.');
+    document.activeElement.blur();
+  };
+
+  const {
+    writter,
+    written,
+    context,
+    id,
+    postid,
+    userId,
+    setIsOpen,
+    isOpen,
+    key,
+  } = props;
   const setCommentWriteBox = (type) => {
     if (isOpen == id) {
       setDisplay(false);
@@ -63,7 +77,6 @@ function ReplyCommentContent(props) {
       <Box
         sx={{
           display: 'block',
-          position: 'relative',
           marginBottom: '2%',
         }}
       >
@@ -71,34 +84,41 @@ function ReplyCommentContent(props) {
           {writter}&nbsp;
           {`(${written})`}
         </span>
-        {userId == isAuthor && context != '삭제된 댓글입니다.' && (
-          <Button
-            sx={{
-              width: '20px',
-              position: 'absolute',
-              left: '85%',
-              color: 'gray',
-            }}
-            id={id}
-            onClick={() => setCommentWriteBox('modify')}
-          >
-            수정
-          </Button>
-        )}
-        {userId == isAuthor && context != '삭제된 댓글입니다.' && (
-          <Button
-            sx={{
-              width: '20px',
-              position: 'absolute',
-              left: '90%',
-              color: 'red',
-            }}
-            id={id}
-            onClick={deleteComment}
-          >
-            삭제
-          </Button>
-        )}
+        <Box
+          sx={{
+            display: 'flex',
+            width: '100px',
+            justifyContent: 'space-between',
+            marginLeft: '91%',
+          }}
+        >
+          {userId == isAuthor && context != '삭제된 댓글입니다.' && (
+            <Button
+              sx={{
+                width: '20px',
+                color: 'gray',
+                padding: 0,
+              }}
+              id={id}
+              onClick={() => setCommentWriteBox('modify')}
+            >
+              수정
+            </Button>
+          )}
+          {userId == isAuthor && context != '삭제된 댓글입니다.' && (
+            <Button
+              sx={{
+                width: '20px',
+                color: 'red',
+                padding: 0,
+              }}
+              id={id}
+              onClick={deleteComment}
+            >
+              삭제
+            </Button>
+          )}
+        </Box>
       </Box>
       <span style={{ maxWidth: '89%', whiteSpace: 'pre-wrap' }}>{context}</span>
       {display && (
@@ -108,6 +128,8 @@ function ReplyCommentContent(props) {
           display={'flex'}
           value={commentContent}
           type={type}
+          onFocus={notLoginAlert}
+          key={key}
         ></CommentWriteBox>
       )}
     </Box>

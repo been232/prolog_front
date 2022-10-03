@@ -13,7 +13,6 @@ function BoardDetailPage() {
   React.useEffect(() => {
     const getData = async () => {
       const infoBody = await Api.getDetailBoard(id);
-      console.log(infoBody);
       setData(infoBody.data.data);
     };
     getData();

@@ -11,10 +11,8 @@ function useFetch(page, type, searchKeyword, loaded) {
   const fetchData = useCallback((type, last, searchKeyword) => {
     switch (type) {
       case 'all':
-        // console.log('all post loading');
         return Api.getAllPost(last);
       case 'recent':
-        // console.log('recent post loading');
         return Api.getRecentPost(last);
       case 'search':
         if (loaded) return Api.getSearchResult(searchKeyword, last);
@@ -22,17 +20,14 @@ function useFetch(page, type, searchKeyword, loaded) {
   });
 
   const sendQuery = useCallback(async () => {
-    // console.log(`last=${last}`);
-    // console.log(`type=${type}`);
     try {
       setLoading(true);
       setError(false);
       const res = await fetchData(type, last, searchKeyword);
       if (res != null) {
         setList([...list, ...res.data.data]);
-        setLast(res.data.data[res.data.data.length - 1].id);
-      } else {
-        alert('검색결과 없음.');
+        if (type == 'all') setLast((prev) => prev + 15);
+        else setLast(res.data.data[res.data.data.length - 1].id);
       }
     } catch (err) {
       setError(err);

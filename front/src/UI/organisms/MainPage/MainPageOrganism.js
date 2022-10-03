@@ -21,12 +21,13 @@ const style = {
 };
 
 function MainPageOrganism(props) {
+  const link = 'boardDetail';
   const [open, setOpen] = useState(false);
   var timer;
   const handleOpen = () => {
     timer = setTimeout(() => {
       setOpen(true);
-    }, 1000);
+    }, 2000);
   };
   const handleClose = () => {
     setOpen(false);
@@ -58,8 +59,8 @@ function MainPageOrganism(props) {
           <MainContent layout={mainLayout} />
         </Box>
       </Modal>
-      <PostBoxTopMolecule id={id} />
-      <PostBoxMiddleMolecule title={title} id={id} />
+      <PostBoxTopMolecule id={id} link={link} />
+      <PostBoxMiddleMolecule title={title} id={id} link={link} />
       <PostBoxBottomMolecule
         member={member}
         memberImage={memberImage}
