@@ -184,6 +184,25 @@ export default function ModifyContent(props) {
             position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
           };
           initialNodes.push(ViewerNode);
+          break;
+          case 7:
+            const ViewerNode2 = {
+              id: dataitem.id.toString(),
+              type: 'Viewer',
+              data: {
+                id: dataitem.id,
+                x: dataitem.coordinateX,
+                y: dataitem.coordinateY,
+                type: dataitem.type,
+                width: dataitem.width,
+                height: dataitem.height,
+                content: dataitem.content,
+                leader: dataitem.leader,
+              },
+              position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+            };
+            initialNodes.push(ViewerNode2);
+            break;
         default:
           const newNode = {
             id: dataitem.id.toString(),

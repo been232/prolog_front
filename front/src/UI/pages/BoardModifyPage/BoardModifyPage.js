@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import BasicTextFields from '../../atoms/BoardModifyPage/BasicTextFields';
 import ModifyContent from '../../organisms/BoardModifyPage/ModifyContent';
 import Api from '../../../api/Api';
-import Category from '../../organisms/BoardWrite,DetailPage/Category';
+import Category from '../../organisms/BoardModifyPage/CategoryModify';
 
 function BoardModifyPage() {
   const [texts, setText] = React.useState('');

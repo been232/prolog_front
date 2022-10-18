@@ -297,6 +297,14 @@ const Api = {
   getSearchResult: async (keyword, last) => {
     return await getRequest(`/search?keyword=${keyword}&last=${last}`);
   },
+
+  //image
+  getImagePost: async (image) => {
+    return await postFormReqest(`upload`, image);
+  },
+  getImageRemovePost: async (image) => {
+    return await deleteJsonReqest(`upload/${image}`);
+  }
 };
 
 export default Api;

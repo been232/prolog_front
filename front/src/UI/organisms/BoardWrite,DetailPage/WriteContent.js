@@ -177,6 +177,25 @@ export default function WriteContent(props) {
           };
           initialNodes.push(ViewerNode);
           break;
+        case 7:
+          const ViewerNode1 = {
+            id: dataitem.id.toString(),
+            type: 'Viewer',
+            data: {
+              id: dataitem.id,
+              x: dataitem.coordinateX,
+              y: dataitem.coordinateY,
+              type: dataitem.dtype,
+              width: dataitem.width,
+              height: dataitem.height,
+              content: '',
+              board: false,
+              leader: false,
+            },
+            position: { x: dataitem.coordinateX, y: dataitem.coordinateY },
+          };
+          initialNodes.push(ViewerNode1);
+          break;
         default:
           const newNode = {
             id: dataitem.id.toString(),
@@ -272,7 +291,7 @@ export default function WriteContent(props) {
         </Box>
       </Box>
       <ChipInput propfunction={highComponent} tag={tag} />
-      <UnderButton category={category} title={title} data={nodes} tags={tag} layoutId={layout.layoutId}/>
+      <UnderButton category={category} title={title} data={nodes} tags={tag} layoutId={layout.layoutId} />
     </Box>
   );
 }
