@@ -6,6 +6,7 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import ImageLists from '../../atoms/BoardWrite,DetailPage/ImageLists';
 import AccordionListText from '../../atoms/BoardModifyPage/AccordionListText';
 import Button from '@mui/material/Button';
+import Api from '../../../api/Api';
 
 export default function ImageListAccordion(props) {
   const data = props.data;
@@ -20,12 +21,21 @@ export default function ImageListAccordion(props) {
   const ImageChange = () => {
     const imageLists = imageInput.current.files;
     let imageUrlLists = [];
-
+    let formData = new FormData();
     for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+      formData.append('file',imageLists[i]);
     }
-
+    const getData2 = async () => {
+      // for (let i = 0; i < imageLists.length; i++) {
+      //   const infoBody2 = await Api.getImageRemovePost();
+      //   console.log(data);
+      // }
+      const infoBody = await Api.getImagePost(formData);
+      for (let i = 0; i < infoBody.data.data.length; i++) {
+        imageUrlLists.push(infoBody.data.data[i].url);
+      }
+    };
+    getData2();
     data.images = imageUrlLists;
     setChange({
       ...change,
