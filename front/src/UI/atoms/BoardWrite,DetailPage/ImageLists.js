@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import SimpleImageSlider from "react-simple-image-slider";
 
 function ImageLists(props) {

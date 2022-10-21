@@ -2,20 +2,17 @@ import { Box, InputLabel , MenuItem,FormControl,Select } from '@mui/material';
 import React, { useEffect } from 'react';
 
 function Category(props) {
-  console.log(props);
     const datas = [];
+    console.log(props)
     const [age, setAge] = React.useState(1 || props.category.id);
-    useEffect(()=> {
-      props.propFunction(1);
-    })
     const data = props.data;
     {
         data.map((item) => {
-            if(item.count != 0){
+            if(item.child.length != 0){
                 datas.push(item);
                 item.child.map((items) => {
                     datas.push(items);
-                    if(items.count != 0) {
+                    if(item.child.length != 0) {
                         items.child.map((itemss) => {
                             datas.push(itemss);
                         })
