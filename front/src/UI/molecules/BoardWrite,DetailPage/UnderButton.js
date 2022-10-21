@@ -11,7 +11,7 @@ export default function UnderButton(props) {
   const user = props.user;
   const id = props.layoutId;
   const category = props.category;
-
+  
   const datas = [];
   const [image, setImage] = React.useState({
     url: '',
@@ -34,7 +34,7 @@ export default function UnderButton(props) {
         const i = [];
         if (dataitem.data.images[0] != undefined) {
           dataitem.data.images.map((images) => {
-            i.push({ url: images });
+            i.push(images);
           });
         }
 
@@ -102,6 +102,7 @@ export default function UnderButton(props) {
         alert("제목을 입력해주세요.");
       } else {
         const infoBody = await Api.getBoardWrite(submit);
+        console.log(infoBody);
         if (infoBody.status == 200) {
           alert("작성되었습니다");
           window.location.href = "/";

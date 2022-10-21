@@ -16,6 +16,7 @@ function BoardWritePage() {
   };
 
   const highFunctions = (number) => {
+    console.log(number)
     setCategory(number);
   };
 

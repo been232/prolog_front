@@ -10,22 +10,28 @@ function BoardModifyPage() {
   const id = window.location.href.split('/');
   const [data, setData] = React.useState(null);
   const [category, setCategory] = React.useState('');
+  const [number2, setnumber] = React.useState(0);
 
   const highFunction = (text) => {
     setText(text);
   };
 
   const highFunctions = (number) => {
-    setCategory(number);
+    console.log(number)
+    setnumber(number);
   };
 
   useEffect(() => {
     const getData = async () => {
       const infoBody = await Api.getBoard(id[4]);
       setData(infoBody.data.data);
-      setCategory(infoBody.data.data.category.id);
     };
     getData();
+    const getData2 = async () => {
+      const infoBody = await Api.getCategory();
+      setCategory(infoBody.data.data);
+    };
+    getData2();
   }, []);
 
   if (!data) return null;
@@ -34,12 +40,12 @@ function BoardModifyPage() {
       <Box>
         <BasicTextFields propFunction={highFunction} data={data} />
         <Category
-          data={datas}
-          category={data.category}
+          data={data}
+          category={category}
           propFunction={highFunctions}
         />
       </Box>
-      <ModifyContent title={texts} category={category} layout={data} />
+      <ModifyContent title={texts} category={number2} layout={data} />
     </Box>
   );
 }

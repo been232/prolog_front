@@ -11,6 +11,7 @@ export default function UnderButton(props) {
   const layoutID = props.layoutId;
   const datas = [];
   const category = props.category;
+  console.log(category)
   const id = window.location.href.split('/')[4];
   const handleClick = () => {
     data.map((dataitem) => {
@@ -98,7 +99,7 @@ export default function UnderButton(props) {
         alert("제목을 입력해주세요.");
       } else {
         const infoBody = await Api.getModifyBoard(id, submit);
-        console.log(infoBody)
+        console.log(infoBody);
         if (infoBody.status == 200) {
           alert("수정되었습니다");
           window.location.href = "/";

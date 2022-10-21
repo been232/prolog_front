@@ -30,6 +30,7 @@ const nodeTypes = {
 export default function WriteContent(props) {
   const title = props.title;
   const layout = props.layout;
+  console.log(layout)
   const category = props.category;
   const initialNodes = [];
   const reactFlowWrapper = useRef(null);
