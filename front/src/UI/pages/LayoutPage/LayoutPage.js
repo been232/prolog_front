@@ -10,6 +10,7 @@ const LayoutPage = () =>  {
   React.useEffect(()=> {
     const getData = async () => {
       const infoBody = await Api.getLayout(id);
+      console.log(infoBody)
       setData(infoBody.data.data);
     };
     getData();

@@ -2,7 +2,16 @@ import { Box } from '@mui/material';
 import React from 'react';
 import OutlineButton from '../../atoms/Commons/OutlinedButton';
 function CommentWriteBox(props) {
-  const { onChange, onClick, display, value } = props;
+  const {
+    onChange,
+    modifyComment,
+    submitComment,
+    display,
+    value,
+    type,
+    onFocus,
+  } = props;
+  const onClick = type == 'submit' ? submitComment : modifyComment;
   return (
     <Box
       sx={{
@@ -23,6 +32,7 @@ function CommentWriteBox(props) {
         }}
         onChange={onChange}
         value={value}
+        onClick={onFocus}
       ></textarea>
       <OutlineButton
         content={'댓글입력'}
@@ -31,6 +41,7 @@ function CommentWriteBox(props) {
           marginTop: '1%',
           marginLeft: '1%',
           maxHeight: '5em',
+          padding: 0,
         }}
         onClick={onClick}
       ></OutlineButton>

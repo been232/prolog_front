@@ -102,28 +102,27 @@ const ModalContent = (props) => {
         <TitleText title="로그인" direction="center" size="h5"></TitleText>
         <AuthTextField label="아이디" onChange={handleIdChange}></AuthTextField>
         <AuthTextField label="비밀번호" onChange={handlePwChange}></AuthTextField>
-        <Button
-          fullWidth
-          variant="contained"
-          color="secondary"
-          sx={{ mt: 1, mb: 1 }}
-          onClick={handleLogin}
-        >
-          Login
-        </Button>
-        <Link to="/auth">
+        <Box sx={{ display: 'inline-block' }}>
           <Button
             fullWidth
             variant="contained"
             color="secondary"
-            sx={{ mt: 1, mb: 3 }}
+            sx={{ mt: 1, mb: 1 }}
+            onClick={handleLogin}
           >
-            Sign up
+            Login
           </Button>
-        </Link>
-        <Divider />
-        <Box sx={{ alignItems: "center", mt: 2, display: "flex" }} >
-          <Box sx={{ textDecoration: "underline" }}>
+          <Link to="/auth">
+            <Button
+              fullWidth
+              variant="contained"
+              color="secondary"
+              sx={{ mt: 1, mb: 1 }}
+            >
+              Sign up
+            </Button>
+          </Link>
+          <Box sx={{ textDecoration: "underline", mt: 0, mb: 2, float: 'right', display: 'inline-block' }}>
             <Link to={{ pathname: `/findID` }}
               state={{
                 id: info.account,
@@ -133,6 +132,12 @@ const ModalContent = (props) => {
               아이디 찾기
             </Link>
           </Box>
+        </Box>
+
+
+        <Divider />
+
+        <Box sx={{ alignItems: "center", mt: 2, display: "flex" }} >
           <Box sx={{ marginLeft: 5, marginRight: 3 }}>
             <a id="custom-login-btn" href={KAKAO_AUTH_URL}>
               <img

@@ -13,22 +13,20 @@ function PostBoxBottomMolecule({ id, member, memberImage, likes, hits, link }) {
         padding: 1.5,
       }}
     >
-      <Link to={`/${link}/${id}`}>
-        <span>
-          by <b>{member}</b>
-        </span>
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          {/* <HeartIcon fontSize="small" />
-        {likes} */}
-          <span>조회수 : {hits}</span>
-        </Box>
-
-      </Link>
+      <span>
+        by <b>{member}</b>
+      </span>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          minWidth: '130px',
+        }}
+      >
+        <HeartIcon fontSize="small" />
+        &nbsp;{likes}
+        <span style={{ marginLeft: '20%' }}>조회수 : {hits}</span>
+      </Box>
     </Box>
   );
 }

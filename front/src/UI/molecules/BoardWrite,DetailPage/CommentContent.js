@@ -1,30 +1,28 @@
 import { Box, Button } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Position } from 'react-flow-renderer';
 import Api from '../../../api/Api';
 import CommentWriteBox from './CommentWriteBox';
 
 function CommentContent(props) {
-  const {
-    writter,
-    written,
-    context,
-    id,
-    postId,
-    isBlocked,
-    setIsOpen,
-    isOpen,
-    userId,
-  } = props;
+  const { writter, written, context, id, postId, setIsOpen, isOpen, userId } =
+    props;
   const [display, setDisplay] = useState(false);
-  const isAuthor = 1;
-  const setCommentWriteBox = () => {
+  const [type, setType] = useState('submit');
+  const isAuthor = sessionStorage.getItem('userId');
+  const [, updateState] = useState();
+  const forceUpdate = useCallback(() => updateState({}), []);
+  const setCommentWriteBox = (type) => {
     if (isOpen == id) {
       setDisplay(false);
       setIsOpen('0');
     } else {
       setDisplay(true);
       setIsOpen(id);
+    }
+    setType(type);
+    if (type == 'modify') {
+      setCommentCotent(context);
     }
   };
   useEffect(() => {
@@ -35,32 +33,45 @@ function CommentContent(props) {
 
   const [commentContent, setCommentCotent] = useState('');
 
-  const onChangeCommentContent = (e) => {
+  const onChangeCommentContent = useCallback((e) => {
     const content = e.target.value;
     setCommentCotent(content);
-  };
-  const submitComment = async (e) => {
-    setDisplay(!display);
-    setIsOpen('0');
-    //서버에 댓글 전송하는 로직
-    // console.log({
-    //   postId: postid,
-    //   userId: '0',
-    //   upperCommentId: upper,
-    //   context: commentContent,
-    // });
-    const comment = {
-      postId: postId,
-      upperCommentId: id,
-      context: commentContent,
-    };
-    await Api.postComment(comment);
-    window.location.reload();
-  };
+  }, []);
 
+  const submitComment = useCallback(
+    async (e) => {
+      if (commentContent == '') alert('내용을 입력하세요.');
+      else {
+        setDisplay(!display);
+        setIsOpen('0');
+        const comment = {
+          postId: postId,
+          upperCommentId: id,
+          context: commentContent,
+        };
+        await Api.postComment(comment);
+        window.location.reload();
+        // forceUpdate();
+      }
+    },
+    [display, postId, id, commentContent]
+  );
+  const modifyComment = useCallback(async () => {
+    if (commentContent == '') alert('내용을 입력하세요.');
+    else {
+      setDisplay(!display);
+      setIsOpen('0');
+      const comment = {
+        context: commentContent,
+      };
+      await Api.modifyComment(id, comment);
+      window.location.reload();
+    }
+  }, [display, commentContent]);
   const deleteComment = async () => {
     await Api.deleteComment(id);
     window.location.reload();
+    // forceUpdate();
   };
 
   return (
@@ -76,7 +87,6 @@ function CommentContent(props) {
       <Box
         sx={{
           display: 'block',
-          position: 'relative',
           marginBottom: '2%',
         }}
       >
@@ -84,38 +94,62 @@ function CommentContent(props) {
           {writter}&nbsp;
           {`(${written})`}
         </span>
-        <Button
-          sx={{ width: '20px', position: 'absolute', left: '85%' }}
-          id={id}
-          onClick={setCommentWriteBox}
+        <Box
+          sx={{
+            display: 'flex',
+            width: '200px',
+            justifyContent: 'space-between',
+            marginLeft: '87%',
+          }}
         >
-          답글
-        </Button>
-        {userId == isAuthor && (
           <Button
-            sx={{
-              width: '20px',
-              position: 'absolute',
-              left: '90%',
-              color: 'red',
-            }}
+            sx={{ width: '20px', padding: 0 }}
             id={id}
-            onClick={deleteComment}
+            onClick={() => setCommentWriteBox('submit')}
           >
-            삭제
+            답글
           </Button>
-        )}
+          {userId == isAuthor && context != '삭제된 댓글입니다.' && (
+            <Button
+              sx={{
+                width: '20px',
+                color: 'gray',
+                padding: 0,
+              }}
+              id={id}
+              onClick={() => setCommentWriteBox('modify')}
+            >
+              수정
+            </Button>
+          )}
+          {userId == isAuthor && context != '삭제된 댓글입니다.' && (
+            <Button
+              sx={{
+                width: '20px',
+                color: 'red',
+                padding: 0,
+              }}
+              id={id}
+              onClick={deleteComment}
+            >
+              삭제
+            </Button>
+          )}
+        </Box>
       </Box>
       <span style={{ maxWidth: '89%', whiteSpace: 'pre-wrap' }}>{context}</span>
       {display && (
         <CommentWriteBox
-          onClick={submitComment}
+          modifyComment={modifyComment}
+          submitComment={submitComment}
           onChange={onChangeCommentContent}
           display={'flex'}
+          value={commentContent}
+          type={type}
         ></CommentWriteBox>
       )}
     </Box>
   );
 }
 
-export default CommentContent;
+export default React.memo(CommentContent);

@@ -59,7 +59,7 @@ const GetJsonUserReqest = async (path) => {
 
 const GetJsonCategoryReqest = async (path) => {
   try {
-    const data = await axios.get('http://113.59.178.4:9000' + path, {
+    const data = await client.get(path, {
       headers: {
         Accept: 'application/json',
         'Content-Type': 'multipart/form-data',
@@ -107,9 +107,9 @@ const patchJsonReqest = async (path, body) => {
     const data = await client.patch(path, body, {
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
+        'Content-Type': 'application/json',
+      },
+    });
     return data;
   } catch (e) {
     console.log(e);
@@ -256,13 +256,16 @@ const Api = {
   },
   //comment
   getComment: async (id) => {
-    return await GetJsonUserReqest(`/boards/${id}/comments?page=1&size=10`);
+    return await getRequest(`/boards/${id}/comments?page=1&size=10`);
   },
   postComment: async (comment) => {
-    return await postJsonReqest(`/comments/submitComment`, comment);
+    return await postJsonUserReqest(`/comments/submitComment`, comment);
   },
   deleteComment: async (id) => {
     return await deleteJsonReqest(`/comments/deleteComment/${id}`);
+  },
+  modifyComment: async (id, comment) => {
+    return await patchJsonReqest(`/comments/modifyComment/${id}`, comment);
   },
 
   //tag
@@ -278,23 +281,25 @@ const Api = {
   getAllPost: async (last) => {
     return await getRequest(`/?last=${last}`);
   },
-  getLikePost: async (last) => {
-    return await GetJsonUserReqest(`/${user}/likes/?last=${last}`);
-  },
   getDetailBoard: async (id) => {
     return await getRequest(`/board/${id}`);
-  },
-  getMyPost: async (last) => {
-    return await GetJsonUserReqest(`/${user}/?last=${last}`);
   },
   getRecentPost: async (last) => {
     return await getRequest(`/recent/?last=${last}`);
   },
 
   //Search
-  getSearchResult: async (keyword) => {
-    return await getRequest(`/search?keyword=${keyword}&last=0`);
+  getSearchResult: async (keyword, last) => {
+    return await getRequest(`/search?keyword=${keyword}&last=${last}`);
   },
+
+  //image
+  getImagePost: async (image) => {
+    return await postFormReqest(`upload`, image);
+  },
+  getImageRemovePost: async (image) => {
+    return await deleteJsonReqest(`upload/${image}`);
+  }
 };
 
 export default Api;

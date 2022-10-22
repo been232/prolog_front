@@ -9,11 +9,10 @@ import Comment from '../../organisms/BoardWrite,DetailPage/Comment';
 function BoardDetailPage() {
   const id = window.location.href.split('/')[4];
   const [data, setData] = React.useState(null);
-  console.log(id);
+
   React.useEffect(() => {
     const getData = async () => {
       const infoBody = await Api.getDetailBoard(id);
-      console.log(infoBody);
       setData(infoBody.data.data);
     };
     getData();

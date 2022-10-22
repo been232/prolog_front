@@ -6,9 +6,11 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import ImageLists from '../../atoms/BoardWrite,DetailPage/ImageLists';
 import AccordionListText from '../../atoms/BoardModifyPage/AccordionListText';
 import Button from '@mui/material/Button';
+import Api from '../../../api/Api';
 
 export default function ImageListAccordion(props) {
   const data = props.data;
+  console.log(data);
   const [expand, setExpand] = React.useState(true);
   const imageInput = React.useRef();
   const [change, setChange] = React.useState(data);
@@ -17,15 +19,30 @@ export default function ImageListAccordion(props) {
     imageInput.current.click();
   };
 
-  const ImageChange = () => {
+  const ImageChange = async() => {
+    let imageremove = [];
+    for (let i = 0; i < data.images.length; i++) {
+      imageremove.push(data.images[i].split("/")[3]);
+    }
+    const getData3 = async () => {
+      for (let i = 0; i < imageremove.length; i++) {
+        const infoBody = await Api.getImageRemovePost(imageremove[i]);
+      }
+    };
+    getData3();
     const imageLists = imageInput.current.files;
     let imageUrlLists = [];
-
+    let formData = new FormData();
     for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+      formData.append('file',imageLists[i]);
     }
-
+    const getData2 = async () => {
+      const infoBody = await Api.getImagePost(formData);
+      for (let i = 0; i < infoBody.data.data.length; i++) {
+        imageUrlLists.push(infoBody.data.data[i].url);
+      }
+    };
+    getData2();
     data.images = imageUrlLists;
     setChange({
       ...change,

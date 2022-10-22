@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import AddToPhotosRoundedIcon from '@mui/icons-material/AddToPhotosRounded';
 import ContentText from '../../atoms/BoardWrite,DetailPage/ContentText';
+import Api from '../../../api/Api';
+
 export default function ImageListAccordion(props) {
   const data = props.data;
   const board = data.board;
@@ -24,14 +26,19 @@ export default function ImageListAccordion(props) {
   const ImageChange = () => {
     const imageLists = imageInput.current.files;
     let imageUrlLists = [];
-
+    let formData = new FormData();
     for (let i = 0; i < imageLists.length; i++) {
-      const currentImageUrl = URL.createObjectURL(imageLists[i]);
-      imageUrlLists.push(currentImageUrl);
+      formData.append('file', imageLists[i]);
     }
-
+    const getData2 = async () => {
+      const infoBody = await Api.getImagePost(formData);
+      for (let i = 0; i < infoBody.data.data.length; i++) {
+        imageUrlLists.push({ url: infoBody.data.data[i].url});
+      }
+    };
+    getData2();
     data.images = imageUrlLists;
-    if (data.images[0] != null) {
+    if (imageUrlLists != null) {
       setImage(true);
       setChange({
         ...change,
@@ -48,7 +55,7 @@ export default function ImageListAccordion(props) {
     data.explanation = text;
   };
 
-  React.useEffect(() => {}, [image]);
+  React.useEffect(() => { }, []);
 
   return (
     <div
@@ -96,7 +103,7 @@ export default function ImageListAccordion(props) {
             <Box>
               <AccordionListText data={data} propFunction={highFunction} />
               ID: {data.id}
-              <Button onClick={onCickImageUpload} style={{ float: 'right', fontFamily: "SUIT-Regular"}}>
+              <Button onClick={onCickImageUpload} style={{ float: 'right', fontFamily: "SUIT-Regular" }}>
                 사진 다시 선택
               </Button>
             </Box>
