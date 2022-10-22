@@ -4,8 +4,8 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 
 export default function ChartList(props) {
   ChartJS.register(...registerables);
-  const text = props.text;
-  const datas = props.data[0].data[0];
+  console.log(props);
+  const datas = props.data;
   const dataBar = {
     labels: [
       '1월',

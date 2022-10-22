@@ -37,6 +37,18 @@ const ModalContent = (props) => {
     }
   };
 
+  const pwCheck = () => {
+    // 패스워드 형식의 정규표현식
+    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,24}$/;
+
+    if (pwRegex.test(password) === true) {
+      return true;
+    }
+    else {
+      return false; // 패스워드 형식이 아닙니다.
+    }
+  }
+
   async function handleLogin() {
 
     const isEmpty = emptyCheck();
@@ -54,6 +66,7 @@ const ModalContent = (props) => {
       const target = '/';
       sessionStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
       sessionStorage.setItem('userId', parseInt(response.headers.userid))
+      sessionStorage.setItem('account', info.account)
       window.location.href = target;
     }
     else if (response.data.success === false) {
@@ -81,11 +94,11 @@ const ModalContent = (props) => {
         style={{ fontFamily: "SUIT-Regular" }}
       >
         <IconButton
-            sx={{ position: 'fixed', top: 0, right: 0 }}
-            onClick={handleClose}
-          >
-            <CloseIcon />
-          </IconButton>
+          sx={{ position: 'fixed', top: 0, right: 0 }}
+          onClick={handleClose}
+        >
+          <CloseIcon />
+        </IconButton>
         <TitleText title="로그인" direction="center" size="h5"></TitleText>
         <AuthTextField label="아이디" onChange={handleIdChange}></AuthTextField>
         <AuthTextField label="비밀번호" onChange={handlePwChange}></AuthTextField>
@@ -110,7 +123,17 @@ const ModalContent = (props) => {
         </Link>
         <Divider />
         <Box sx={{ alignItems: "center", mt: 2, display: "flex" }} >
-          <Box sx={{ marginLeft: 5, marginRight: 3}}>
+          <Box sx={{ textDecoration: "underline" }}>
+            <Link to={{ pathname: `/findID` }}
+              state={{
+                id: info.account,
+                email: info.email,
+                name: info.name
+              }} >
+              아이디 찾기
+            </Link>
+          </Box>
+          <Box sx={{ marginLeft: 5, marginRight: 3 }}>
             <a id="custom-login-btn" href={KAKAO_AUTH_URL}>
               <img
                 src={process.env.PUBLIC_URL + '/카카오 로그인.png'}

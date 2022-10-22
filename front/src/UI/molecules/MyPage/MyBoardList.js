@@ -24,12 +24,6 @@ const style = {
 
 const MyBoardList = (props) => {
   const myBoardList = props.myBoardList;
-  // const [open, setOpen] = useState(false);
-  // var timer;
-
-  // const handleOpen = () => {
-  //   timer = setTimeout(() => setOpen(true), 1000);
-  // };
 
   return (
     <>

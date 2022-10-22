@@ -12,9 +12,9 @@ function StatisticsPage() {
     setTexts(text);
   };
 
-  const [text, setText] = useState(2022);
+  const [year, setYear] = useState(2022);
   const handleChange = (event) => {
-    setText(event.target.value);
+    setYear(event.target.value);
   };
 
   const [data, setInfo] = useState(
@@ -41,7 +41,7 @@ function StatisticsPage() {
     },
   );
 
-  const resBaseInfo = async () => await Api.getTotalStatics(text);
+  const resBaseInfo = async () => await Api.getTotalStatics(year);
 
   useEffect(() => {
     const getData = async () => {
@@ -50,7 +50,7 @@ function StatisticsPage() {
       setInfo(infoBody.data);
     }
     getData();
-  }, [texts]);
+  }, []);
 
   function list() {
     if (texts != undefined) {
@@ -70,7 +70,7 @@ function StatisticsPage() {
             <Button onClick={highFucntion} style={{ display: 'inline-block', float: 'right', marginTop: 15 }}>확인</Button>
             <TextField type="number" style={{ display: 'inline-block', float: 'right' }} id="standard-basic" onChange={handleChange} label="년도 입력(숫자만)" variant="standard" />
           </Box>
-          <ChartList data={data} text={texts} />
+          <ChartList data={data} />
           <UnderButton />
         </Box>
       );
@@ -101,27 +101,3 @@ function StatisticsPage() {
 }
 
 export default StatisticsPage;
-
-// const data = [
-//   {
-//     success: true,
-//     data: [
-//       {
-//         cumulativeView: '78',
-//         tenView: '7',
-//         januaryView: '1',
-//         februaryView: '2',
-//         marchView: '3',
-//         aprilView: '4',
-//         mayView: '5',
-//         juneView: '6',
-//         julyView: '7',
-//         augustView: '8',
-//         septemberView: '9',
-//         octoberView: '10',
-//         novemberView: '11',
-//         decemberView: '12',
-//       },
-//     ],
-//   },
-// ];
