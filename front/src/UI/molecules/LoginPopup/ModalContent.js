@@ -41,7 +41,7 @@ const ModalContent = (props) => {
     // 패스워드 형식의 정규표현식
     const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,24}$/;
 
-    if (pwRegex.test(password) === true) {
+    if (pwRegex.test(info.password) === true) {
       return true;
     }
     else {
