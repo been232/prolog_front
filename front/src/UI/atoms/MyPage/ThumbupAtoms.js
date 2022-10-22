@@ -23,7 +23,7 @@ const style = {
 function ThumbupAtoms(props) {
   const { id, title, written, member, memberImage, likes, mainLayout } = props.data;
   return (
-    <Link to={{ pathname: `/BoardDetail/${id}` }} style={{ textDecoration: "none", color: "black" }}>
+    <>
       <Box
         sx={{
           boxShadow: 'rgb(0 0 0 / 10%) 0px 4px 16px 0px',
@@ -31,15 +31,19 @@ function ThumbupAtoms(props) {
           flexDirection: 'column',
         }}
       >
-        <PostBoxTopMolecule />
-        <PostBoxMiddleMolecule title={title} />
+        <PostBoxTopMolecule id={id} link={"BoardDetail"}/>
+        <PostBoxMiddleMolecule id={id} link={"BoardDetail"} title={title} />
         <PostBoxBottomMolecule
+          id={id}
+          link={"BoardDetail"}
           member={member}
           memberImage={memberImage}
           likes={likes}
         />
+
       </Box>
-    </Link>
+
+    </>
   );
 }
 

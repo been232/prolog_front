@@ -1,5 +1,5 @@
 import { Box, Button, IconButton, Modal, TextField } from '@mui/material';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import PostBoxBottomMolecule from '../../molecules/MainPage/PostBoxBottomMolecule';
 import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecule';
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
@@ -7,7 +7,9 @@ import ChartList from '../../organisms/StatisticsPage/ChartList';
 import UnderButton from '../../molecules/StatisticsPage/UnderButton';
 import LinkButton from '../../atoms/MyPage/LinkButton';
 import CloseIcon from '@mui/icons-material/Close';
+import Api from '../../../api/Api';
 // import { useInterval } from './useInterval';
+
 const style = {
   position: 'absolute',
   top: '50%',
@@ -49,9 +51,11 @@ const data = [
 function MyBoardAtoms(props) {
   const { id, title, written, member, memberImage, likes, mainLayout } = props.data;
   const [open, setOpen] = useState(false);
-  var timer;
-  const [text, setText] = useState(undefined);
+  const [year, setYear] = useState(2022);
   const [visible, setVisible] = useState(false);
+  var timer;
+
+  const resBaseInfo = async () => await Api.getMiniStatics(id, year);
 
   const handleOpen = () => {
     timer = setTimeout(() => {
@@ -65,26 +69,46 @@ function MyBoardAtoms(props) {
   };
 
   const handleChange = (event) => {
-    setText(event.target.value);
+    setYear(event.target.value);
   };
 
-  const handleCheck = (event) => {
-    // id와 text값을 전달해서 통신하는 코드 작성하기
-    console.log("통계 불러오기 완료");
+  const handleCheck = async () => {
+    // id와 year값을 전달해서 통신하는 코드 작성하기
+    const infoBody = await resBaseInfo();
+    console.log(infoBody);
 
-    const response = {
-      "success": true,
-    }
-
-    if (response.success) {
+    if (infoBody.data.success === true) {
+      console.log("통계 불러오기 완료");
       setVisible(true);
+      setInfo(infoBody.data);
     } else {
       setVisible(false);
     }
-
   };
 
-  useEffect(() => { }, [text])
+  const [data, setInfo] = useState(
+    {
+      success: true,
+      data: [
+        {
+          cumulativeView: '78',
+          tenView: '7',
+          januaryView: '1',
+          februaryView: '2',
+          marchView: '3',
+          aprilView: '4',
+          mayView: '5',
+          juneView: '6',
+          julyView: '7',
+          augustView: '8',
+          septemberView: '9',
+          octoberView: '10',
+          novemberView: '11',
+          decemberView: '12',
+        },
+      ],
+    },
+  );
 
   return (
     <Box
@@ -114,9 +138,9 @@ function MyBoardAtoms(props) {
                   display: 'inline-block'
                 }}>
                 <Button onClick={handleCheck} style={{ display: 'inline-block', float: 'right', marginTop: 15, fontFamily: "SUIT-Regular" }} >확인</Button>
-                <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={handleChange} label="년도 입력(숫자만)" variant="standard" />
+                <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={(event) => handleChange(event)} label="년도 입력(숫자만)" variant="standard" />
               </Box>
-              <ChartList data={data} text={text} />
+              <ChartList data={data.data} text={year} />
               <UnderButton />
               <LinkButton id={id}/>
             </Box>
@@ -136,7 +160,7 @@ function MyBoardAtoms(props) {
                   display: 'inline-block'
                 }}>
                 <Button onClick={handleCheck} style={{ display: 'inline-block', float: 'right', marginTop: 15, fontFamily: "SUIT-Regular" }}>확인</Button>
-                <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={handleChange} label="년도 입력(숫자만)" variant="standard" />
+                <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={(event) => handleChange(event)} label="년도 입력(숫자만)" variant="standard" />
               </Box>
               <UnderButton />
               <LinkButton id={id}/>
@@ -144,9 +168,11 @@ function MyBoardAtoms(props) {
           )
         }
       </Modal>
-      <PostBoxTopMolecule />
-      <PostBoxMiddleMolecule title={title} />
+      <PostBoxTopMolecule id={id} link="boardDetail" />
+      <PostBoxMiddleMolecule id={id} link="boardDetail" title={title} />
       <PostBoxBottomMolecule
+        id={id}
+        link="boardDetail"
         member={member}
         memberImage={memberImage}
         likes={likes}

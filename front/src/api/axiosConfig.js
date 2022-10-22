@@ -21,16 +21,19 @@ client.interceptors.request.use(
     function (config) {
         const user = sessionStorage.getItem('token'); // 토큰 받아오기
         const userId = sessionStorage.getItem('userId');
+        const account = sessionStorage.getItem('account');
 
         // 토큰 유무 판단 코드
         if (!user) {
             config.headers["X-AUTH-TOKEN"] = null;
             config.headers["USER-ID"] = null;
+            config.headers["ACCOUNT"] = null;
             return config
         }
         const accessToken = JSON.parse(user).accesstoken;
         config.headers["X-AUTH-TOKEN"] = accessToken;
         config.headers["USER-ID"] = userId;
+        config.headers["ACCOUNT"] = account;
         return config
     }
 )
@@ -46,7 +49,7 @@ client.interceptors.response.use(
 
                 const user = sessionStorage.getItem('token'); // 토큰 받아오기
                 const { accessToken, refreshToken } = JSON.parse(user)
-                const data = await client.get('auth/refreshtoken', {
+                const data = await client.get('auth/refresh-token', {
                     headers: {
                         REFRESHTOKEN: refreshToken
                     }

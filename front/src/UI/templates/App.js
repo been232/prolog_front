@@ -26,6 +26,7 @@ import GithubOAuthRedirectHandler from '../atoms/GithubSocialLogin/SocialLogin';
 
 import FileViewerMolecule from '../molecules/BoardWrite,DetailPage/FileViewerMolecules';
 import TreeList from '../pages/Test/Test';
+import MyBoardList from '../molecules/MyPage/MyBoardList';
 
 const App = () => {
   return (
@@ -65,6 +66,7 @@ const App = () => {
             ></Route>
 
             <Route path="/Test" element={<FileViewerMolecule />} />
+            <Route path="/stat" element={<MyBoardList />} />
             <Route path="/tree" element={<TreeList />} />
           </Routes>
           <ControlledOpenSpeedDial />

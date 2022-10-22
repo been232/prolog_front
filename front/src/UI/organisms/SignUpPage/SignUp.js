@@ -20,8 +20,7 @@ const SignUp = () => {
   const [info, setInfo] = useState({
     name: '',
     account: '',
-    email: "esj5029@gmail.com",
-    // Email: email,
+    email: "",
     password: password,
     nickname: '',
     image: '',
@@ -56,12 +55,32 @@ const SignUp = () => {
 
   const emptyCheck = () => {
     console.log(info);
-    if (info.name === '' || info.account === '' || info.email === '' 
-    || info.password === '' || info.nickname === '' || info.introduce === '') {
+    if (info.name === '' || info.account === '' || info.email === ''
+      || info.password === '' || info.nickname === '' || info.introduce === '') {
       return false;
     }
 
   };
+
+  const pwCheck = () => {
+    // 패스워드 형식의 정규표현식
+    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,24}$/;
+
+    if (pwRegex.test(password) === true) {
+      return true;
+    }
+    else {
+      return false; // 패스워드 형식이 아닙니다.
+    }
+  }
+
+  const pwCoincideCheck = () => { // 패스워드와 패스워드 확인 데이터 일치 체크
+    if(password === passwordConfirm) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 
   const handleSignup = async () => {
     if (password !== passwordConfirm) {
@@ -74,7 +93,18 @@ const SignUp = () => {
       alert('이름, 아이디, 이메일, 비밀번호, 닉네임, 한줄소개를 입력하세요');
       return false;
     }
-    console.log(info);
+
+    const isPassword = pwCheck();
+    if (isPassword === false) {
+      alert('비밀번호를 다시 입력하세요');
+      return false;
+    }
+
+    const isCoincide = pwCoincideCheck();
+    if (isCoincide === false) {
+      alert('비밀번호가 일치하지 않습니다. 다시 입력하세요.');
+      return false;
+    }
 
     let response = await Api.postSignup(info);
     console.log(response);
