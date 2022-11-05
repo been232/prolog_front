@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, IconButton, TextField, Typography, Divider } from '@mui/material';
 import ContainedButton from '../../atoms/Commons/ContainedButton';
 import Api from '../../../api/Api';
+import { convertLength } from '@mui/material/styles/cssUtils';
 
 export default function TreeList() {
     const [isEdit, setIsEdit] = useState(false); // 카테고리 편집 상태 확인
@@ -122,7 +123,7 @@ export default function TreeList() {
     useEffect(() => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
-
+            console.log(infoBody);
             setResponse(infoBody.data);
         }
         getData();
@@ -142,66 +143,71 @@ export default function TreeList() {
                 defaultExpandIcon={<ChevronRightIcon />}
                 sx={{ height: 240, flexGrow: 1, maxWidth: 400, marginTop: 1 }}
             >
-                {response.data.map(function (val, i) {
-                    return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
-                        <TreeItem
-                            nodeId={val.name}
-                            label={val.name}
-                        >
-                            {val.child.map(function (level2, i) {
-                                return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
-                                    <TreeItem
-                                        nodeId={level2.name}
-                                        label={level2.name}
-                                    >
-                                        {level2.child.map(function (level3, i) {
-                                            return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
-                                                <TreeItem
-                                                    nodeId={level3.name}
-                                                    label={level3.name}
-                                                />
-                                                {(isEdit) ?
-                                                    (<Box sx={{ float: "right" }}>
-                                                        <IconButton size="small" onClick={() => handleUpdate(level3.id)}>
-                                                            <ChangeCircleIcon fontSize="inherit" />
-                                                        </IconButton>
-                                                        <IconButton size="small" onClick={() => handleDelete(level3.id)}>
-                                                            <DeleteIcon fontSize="inherit" />
-                                                        </IconButton>
-                                                    </Box>) : ("")
-                                                }
-                                            </Box>)
-                                        })}</TreeItem>
-                                    {(isEdit) ?
-                                        (<Box sx={{ float: "right" }}>
-                                            <IconButton size="small" onClick={() => handleAdd(level2.id)}>
-                                                <AddCircleOutlineIcon fontSize="inherit" />
-                                            </IconButton>
-                                            <IconButton size="small" onClick={() => handleUpdate(level2.id)}>
-                                                <ChangeCircleIcon fontSize="inherit" />
-                                            </IconButton>
-                                            <IconButton size="small" onClick={() => handleDelete(level2.id)}>
-                                                <DeleteIcon fontSize="inherit" />
-                                            </IconButton>
-                                        </Box>) : ("")
-                                    }
-                                </Box>)
-                            })}
-                        </TreeItem>
-                        {(isEdit) ?
-                            (
-                                <Box sx={{ float: "right" }}>
-                                    <IconButton size="small" onClick={() => handleAdd(val.id)}>
-                                        <AddCircleOutlineIcon fontSize="inherit" />
-                                    </IconButton>
-                                    <IconButton size="small" onClick={() => handleUpdate(val.id)}>
-                                        <ChangeCircleIcon fontSize="inherit" />
-                                    </IconButton>
-                                </Box>
-                            ) : ("")
-                        }
-                    </Box>)
-                })}
+
+                {(response != null) ?
+                    (response.data.map(function (val, i) {
+                        return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
+                            <TreeItem
+                                nodeId={val.name}
+                                label={val.name}
+                            >
+                                {val.child.map(function (level2, i) {
+                                    return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
+                                        <TreeItem
+                                            nodeId={level2.name}
+                                            label={level2.name}
+                                        >
+                                            {level2.child.map(function (level3, i) {
+                                                return (<Box sx={{ display: "flex", flexWrap: "nowrap" }} key={i}>
+                                                    <TreeItem
+                                                        nodeId={level3.name}
+                                                        label={level3.name}
+                                                    />
+                                                    {(isEdit) ?
+                                                        (<Box sx={{ float: "right" }}>
+                                                            <IconButton size="small" onClick={() => handleUpdate(level3.id)}>
+                                                                <ChangeCircleIcon fontSize="inherit" />
+                                                            </IconButton>
+                                                            <IconButton size="small" onClick={() => handleDelete(level3.id)}>
+                                                                <DeleteIcon fontSize="inherit" />
+                                                            </IconButton>
+                                                        </Box>) : ("")
+                                                    }
+                                                </Box>)
+                                            })}</TreeItem>
+                                        {(isEdit) ?
+                                            (<Box sx={{ float: "right" }}>
+                                                <IconButton size="small" onClick={() => handleAdd(level2.id)}>
+                                                    <AddCircleOutlineIcon fontSize="inherit" />
+                                                </IconButton>
+                                                <IconButton size="small" onClick={() => handleUpdate(level2.id)}>
+                                                    <ChangeCircleIcon fontSize="inherit" />
+                                                </IconButton>
+                                                <IconButton size="small" onClick={() => handleDelete(level2.id)}>
+                                                    <DeleteIcon fontSize="inherit" />
+                                                </IconButton>
+                                            </Box>) : ("")
+                                        }
+                                    </Box>)
+                                })}
+                            </TreeItem>
+                            {(isEdit) ?
+                                (
+                                    <Box sx={{ float: "right" }}>
+                                        <IconButton size="small" onClick={() => handleAdd(val.id)}>
+                                            <AddCircleOutlineIcon fontSize="inherit" />
+                                        </IconButton>
+                                        <IconButton size="small" onClick={() => handleUpdate(val.id)}>
+                                            <ChangeCircleIcon fontSize="inherit" />
+                                        </IconButton>
+                                    </Box>
+                                ) : ("")
+                            }
+                        </Box>)
+                    })) : ("")
+                }
+
+
                 {(visible) ?
                     <Box sx={{ marginLeft: 2 }}>
                         <TextField onChange={(event) => setValue(event.target.value)}></TextField>

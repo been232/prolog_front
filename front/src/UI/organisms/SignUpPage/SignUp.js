@@ -20,7 +20,7 @@ const SignUp = () => {
   const [info, setInfo] = useState({
     name: '',
     account: '',
-    email: "",
+    email: email,
     password: password,
     nickname: '',
     image: '',
@@ -63,8 +63,8 @@ const SignUp = () => {
   };
 
   const pwCheck = () => {
-    // 패스워드 형식의 정규표현식
-    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,24}$/;
+    // 패스워드 형식의 정규표현식 : 최소 8 자 및 최대 20 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 정규식
+    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,20}$/;
 
     if (pwRegex.test(password) === true) {
       return true;
@@ -75,7 +75,7 @@ const SignUp = () => {
   }
 
   const pwCoincideCheck = () => { // 패스워드와 패스워드 확인 데이터 일치 체크
-    if(password === passwordConfirm) {
+    if (password === passwordConfirm) {
       return true;
     } else {
       return false;
@@ -169,6 +169,9 @@ const SignUp = () => {
                 type='password'
                 onChange={handlePWConfirmChange}
               />
+              <Typography variant="h6" sx={{ color: "grey" }}>
+                최소 8 자 및 최대 20 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자
+              </Typography>
               {(password === passwordConfirm) ? "" :
                 <Typography sx={{ color: "red" }}>
                   비밀번호 불일치: 다시 입력해주세요.

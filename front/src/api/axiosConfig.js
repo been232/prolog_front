@@ -58,7 +58,7 @@ client.interceptors.response.use(
                 if (data.data.result === 'fail') {
                     sessionStorage.removeItem('token')
                     window.location.href = '/login';
-                    alert('세션이 만료되었습니다.');
+                    alert('세션이 만료되었습니다.'); // 세션(토큰) 만료 알림
                     return null;
                 }
                 if (data) {

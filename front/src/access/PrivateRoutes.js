@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 
 const PrivateRoutes = ({
     user,
-    redirectPath = '/login',
+    redirectPath = '/',
     children,
   }) => {
     if (!user) {
