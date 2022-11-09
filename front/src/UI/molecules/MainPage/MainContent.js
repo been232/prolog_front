@@ -4,14 +4,12 @@ import ReactFlow, {
   ReactFlowProvider,
   useNodesState,
 } from 'react-flow-renderer';
-import UnderButtons from '../../molecules/BoardWrite,DetailPage/UnderButtons';
 import LayoutNode from '../../molecules/LayoutPage/LayoutNode';
 import Text from '../../atoms/BoardWrite,DetailPage/ContentText';
 import Image from '../../molecules/BoardWrite,DetailPage/ImageListAccordion';
 import Math from '../../molecules/BoardWrite,DetailPage/MathAccordion';
 import Link from '../../molecules/BoardWrite,DetailPage/HyperLinkAccordion';
 import Code from '../../molecules/BoardWrite,DetailPage/CodeAccordion';
-import ChipList from '../../molecules/BoardWrite,DetailPage/ChipList';
 import Viewer from '../../molecules/BoardWrite,DetailPage/FileViewerMolecules';
 
 export default function MainContent(props) {
@@ -30,7 +28,7 @@ export default function MainContent(props) {
     Code: Code,
     Viewer: Viewer,
   };
-
+  console.log(nodes);
   {
     list();
   }
@@ -57,8 +55,8 @@ export default function MainContent(props) {
         const ImageNode = {
           type: 'Image',
           data: {
-            x: layout.coordinateX,
-            y: layout.coordinateY,
+            x: 0,
+            y: 0,
             type: layout.type,
             width: layout.width,
             height: layout.height,
@@ -67,7 +65,7 @@ export default function MainContent(props) {
             board: true,
             leader: layout.leader,
           },
-          position: { x: layout.coordinateX, y: layout.coordinateY },
+          position: { x: 0, y: 0 },
         };
         initialNodes.push(ImageNode);
         break;

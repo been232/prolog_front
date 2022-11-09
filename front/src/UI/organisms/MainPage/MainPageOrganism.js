@@ -5,7 +5,6 @@ import PostBoxMiddleMolecule from '../../molecules/MainPage/PostBoxMiddleMolecul
 import PostBoxTopMolecule from '../../molecules/MainPage/PostBoxTopMolecule';
 import CloseIcon from '@mui/icons-material/Close';
 import MainContent from '../../molecules/MainPage/MainContent';
-// import { useInterval } from './useInterval';
 const style = {
   position: 'absolute',
   top: '50%',
@@ -35,8 +34,6 @@ function MainPageOrganism(props) {
   };
   const { id, title, written, member, memberImage, likes, mainLayout, hits } =
     props.data;
-  // console.log(props);
-  // 게시글 조회로 연동
   return (
     <Box
       sx={{
@@ -55,7 +52,6 @@ function MainPageOrganism(props) {
           >
             <CloseIcon />
           </IconButton>
-          {/* <p>게시글 미리보기 들어감.</p> */}
           <MainContent layout={mainLayout} />
         </Box>
       </Modal>

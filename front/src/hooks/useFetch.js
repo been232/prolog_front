@@ -16,6 +16,9 @@ function useFetch(page, type, searchKeyword, loaded) {
         return Api.getRecentPost(last);
       case 'search':
         if (loaded) return Api.getSearchResult(searchKeyword, last);
+        break;
+      default:
+        break;
     }
   });
 
@@ -26,14 +29,14 @@ function useFetch(page, type, searchKeyword, loaded) {
       const res = await fetchData(type, last, searchKeyword);
       if (res != null) {
         setList([...list, ...res.data.data]);
-        if (type == 'all') setLast((prev) => prev + 15);
+        if (type === 'all') setLast((prev) => prev + 15);
         else setLast(res.data.data[res.data.data.length - 1].id);
       }
     } catch (err) {
       setError(err);
     }
     setLoading(false);
-  }, [page, type, last]);
+  }, [fetchData, type, last, searchKeyword, list]);
 
   useEffect(() => {
     sendQuery();
