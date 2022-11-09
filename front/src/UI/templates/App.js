@@ -29,6 +29,7 @@ import MyBoardList from '../molecules/MyPage/MyBoardList';
 
 import PrivateRoutes from '../../access/PrivateRoutes';
 import isLogin from '../../access/isLogin';
+import MultiViewer from '../atoms/BoardWrite,DetailPage/MultiViewer';
 
 const App = () => {
   return (
@@ -66,7 +67,7 @@ const App = () => {
               element={<GithubOAuthRedirectHandler />}
             ></Route>
 
-            <Route path="/Test" element={<FileViewer />} />
+            <Route path="/Test" element={<MultiViewer />} />
           </Routes>
         </BrowserRouter>
       </div>

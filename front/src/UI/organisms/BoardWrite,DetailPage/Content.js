@@ -13,6 +13,7 @@ import Link from "../../molecules/BoardWrite,DetailPage/HyperLinkAccordion";
 import Code from "../../molecules/BoardWrite,DetailPage/CodeAccordion";
 import ChipList from "../../molecules/BoardWrite,DetailPage/ChipList";
 import Viewer from "../../molecules/BoardWrite,DetailPage/FileViewerMolecules";
+// import Viewer from '../../atoms/BoardWrite,DetailPage/MultiViewer'
 import Comment from "./Comment";
 
 export default function Content(props) {
