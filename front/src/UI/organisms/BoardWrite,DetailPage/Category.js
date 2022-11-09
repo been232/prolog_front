@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 function Category(props) {
     const datas = [];
-    console.log(props)
+    console.log(props);
     const [age, setAge] = React.useState(1 || props.category.id);
     const data = props.data;
     {

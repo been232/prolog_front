@@ -274,8 +274,8 @@ const Api = {
   },
 
   //Category
-  getCategory: async () => {
-    return await GetJsonCategoryReqest(`/users/${user}/categories`);
+  getCategory: async (users) => {
+    return await GetJsonCategoryReqest(`/users/${users}/categories`);
   },
   //mainPage
   getAllPost: async (last) => {

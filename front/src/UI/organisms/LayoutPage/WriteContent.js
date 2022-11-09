@@ -171,19 +171,11 @@ export default function WriteContent(props) {
             style={{fontFamily: "SUIT-Regular"}}
           />
           <Tab
-            label="Video"
-            icon={<VideoLibraryOutlinedIcon />}
-            onDragStart={(event) => onDragStart(event, 6)}
-            draggable
-            index="6"
-            style={{fontFamily: "SUIT-Regular"}}
-          />
-          <Tab
             label="FILE"
             icon={<TopicOutlinedIcon />}
             onDragStart={(event) => onDragStart(event, 7)}
             draggable
-            index="7"
+            index="6"
             style={{fontFamily: "SUIT-Regular"}}
           />
         </Tabs>

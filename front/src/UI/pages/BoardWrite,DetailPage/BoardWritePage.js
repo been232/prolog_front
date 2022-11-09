@@ -28,7 +28,9 @@ function BoardWritePage() {
       };
       getData();
       const getData2 = async () => {
-        const infoBody = await Api.getCategory();
+        const infoBody2 = await Api.getReadMyInfo();
+        const infoBody = await Api.getCategory(infoBody2.data.data.account);
+        console.log(infoBody);
         setDatas(infoBody.data.data);
       };
       getData2();

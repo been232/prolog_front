@@ -2,10 +2,10 @@ import { Box, InputLabel, MenuItem, FormControl, Select } from '@mui/material';
 import React, { useEffect } from 'react';
 import Api from "../../../api/Api";
 function CategoryModify(props) {
-  console.log(props)
   const datas = [];
-  const [age, setAge] = React.useState(1 || props.category.id);
+  const [age, setAge] = React.useState(1 || props.data.category.id);
   const data = props.category;
+  console.log(props);
   {
       data.map((item) => {
           if(item.child.length != 0){
