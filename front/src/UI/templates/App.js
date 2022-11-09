@@ -65,7 +65,7 @@ const App = () => {
               element={<GithubOAuthRedirectHandler />}
             ></Route>
 
-            <Route path="/Test" element={<FileViewerMolecule />} />
+            <Route path="/Test" element={<FileViewer />} />
             <Route path="/stat" element={<MyBoardList />} />
             <Route path="/tree" element={<TreeList />} />
           </Routes>

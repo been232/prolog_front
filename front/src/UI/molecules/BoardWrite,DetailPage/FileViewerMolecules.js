@@ -5,7 +5,8 @@ import FileViewer from '../../atoms/BoardWrite,DetailPage/FileDocViewer';
 function FileViewerMolecule(props) {
   console.log(props);
   const data = props.data;
-  const board = data.board;
+  // const board = data.board;
+  const { board } = props;
   const [prv, setPrv] = useState('');
   useEffect(() => {
     data.content != '' && setPrv(data.content);
