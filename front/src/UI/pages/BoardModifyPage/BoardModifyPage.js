@@ -9,7 +9,7 @@ function BoardModifyPage() {
   const [texts, setText] = React.useState('');
   const id = window.location.href.split('/');
   const [data, setData] = React.useState(null);
-  const [category, setCategory] = React.useState('');
+  const [category, setCategory] = React.useState([]);
   const [number2, setnumber] = React.useState(0);
 
   const highFunction = (text) => {
@@ -24,11 +24,13 @@ function BoardModifyPage() {
   useEffect(() => {
     const getData = async () => {
       const infoBody = await Api.getBoard(id[4]);
+      console.log(infoBody)
       setData(infoBody.data.data);
     };
     getData();
     const getData2 = async () => {
-      const infoBody = await Api.getCategory();
+      const infoBody2 = await Api.getReadMyInfo();
+      const infoBody = await Api.getCategory(infoBody2.data.data.account);
       setCategory(infoBody.data.data);
     };
     getData2();
@@ -51,41 +53,3 @@ function BoardModifyPage() {
 }
 
 export default BoardModifyPage;
-
-const datas = {
-  success: true,
-  data: [
-    {
-      id: 1,
-      name: '전체',
-      count: 2,
-      child: [
-        {
-          id: 2,
-          name: '개발용',
-          count: 1,
-          child: [
-            {
-              id: 5,
-              name: '프론트',
-              count: 0,
-              child: null,
-            },
-          ],
-        },
-        {
-          id: 3,
-          name: '취미용',
-          count: 0,
-          child: [],
-        },
-        {
-          id: 4,
-          name: '전시용',
-          count: 0,
-          child: [],
-        },
-      ],
-    },
-  ],
-};

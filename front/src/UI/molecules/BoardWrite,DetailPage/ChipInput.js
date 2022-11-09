@@ -44,7 +44,9 @@ export default function ChipInput(props) {
   const getMembers = async (value) => {
     const getData = async () => {
       const infoBody = await Api.getTag(value);
-      setMembers(infoBody.data.data);
+      if(infoBody.length > 0){
+        setMembers(infoBody.data.data);
+      }
     };
     getData();
   };

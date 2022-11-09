@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import OutlinedButton from "../../atoms/Commons/OutlinedButton";
 import { Link } from "react-router-dom";
 import Api from "../../../api/Api";
@@ -9,7 +9,8 @@ export default function UnderButtons2(props) {
   const datas = [];
   const user = props.user;
 
-  const handleClick = () => {
+  function handleClick() {
+    console.log(props);
     data.map((dataitem) => {
       datas.push({
         height: dataitem.height,
@@ -25,7 +26,7 @@ export default function UnderButtons2(props) {
       moldName: title,
       layouts: datas,
     };
-
+   
     const getData = async () => {
       if (submit.moldName == undefined) {
         alert("제목을 입력해주세요.");
@@ -42,7 +43,13 @@ export default function UnderButtons2(props) {
 
   return (
     <Box sx={{ float: "right", marginTop: 3, marginBottom: 3 }}>
-      <OutlinedButton onClick={handleClick} content="작성하기" style={{ marginLeft: 2 }} />
+      <Button
+        style={{ marginLeft: 2, fontFamily: 'SUIT-Regular' }}
+        variant="outlined"
+        onClick={()=> handleClick()}
+      >
+        작성하기
+      </Button>
       <Link to="/">
         <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
       </Link>

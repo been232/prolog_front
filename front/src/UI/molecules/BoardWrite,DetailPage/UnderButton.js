@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import OutlinedButton from '../../atoms/Commons/OutlinedButton';
 import Api from "../../../api/Api";
 import { Link } from "react-router-dom";
@@ -17,7 +17,7 @@ export default function UnderButton(props) {
     url: '',
   });
 
-  const handleClick = () => {
+  function handleClick () {
     data.map((dataitem) => {
       if (dataitem.data.type == 1) {
         datas.push({
@@ -114,7 +114,13 @@ export default function UnderButton(props) {
 
   return (
     <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10 }}>
-      <OutlinedButton onClick={handleClick} content="저장하기" style={{ marginLeft: 2 }} />
+      <Button
+        style={{ marginLeft: 2, fontFamily: 'SUIT-Regular' }}
+        variant="outlined"
+        onClick={()=>handleClick()}
+      >
+        저장하기
+      </Button>
       <Link to="/">
         <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
       </Link>
