@@ -89,7 +89,7 @@ function ReplyCommentContent(props) {
                         display: "flex",
                         width: "full",
                         justifyContent: "flex-end",
-                        marginTop: "-2%",
+                        marginTop: "-20px",
                     }}
                 >
                     {userId == isAuthor && context != "삭제된 댓글입니다." && (

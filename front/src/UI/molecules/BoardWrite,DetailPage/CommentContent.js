@@ -99,7 +99,7 @@ function CommentContent(props) {
                         display: "flex",
                         width: "full",
                         justifyContent: "flex-end",
-                        marginTop: "-3%",
+                        marginTop: "-20px",
                     }}
                 >
                     <Button
