@@ -39,7 +39,7 @@ const ModalContent = (props) => {
 
   const pwCheck = () => {
     // 패스워드 형식의 정규표현식
-    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,24}$/;
+    const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,20}$/;
 
     if (pwRegex.test(info.password) === true) {
       return true;
@@ -57,9 +57,6 @@ const ModalContent = (props) => {
       return false;
     }
 
-    // info 보내서 로그인 성공 여부 확인 코드 작성
-    console.log(info);
-
     let response = await Api.postLogin(info);
     console.log(response);
     if (response.data.success === true) {
@@ -71,15 +68,11 @@ const ModalContent = (props) => {
     }
     else if (response.data.success === false) {
       alert('로그인 실패: 아이디나 비밀번호를 다시 확인해주세요!');
+    } else {
+      alert('로그인 실패: 아이디나 비밀번호를 다시 확인해주세요!');
     }
 
     // LoginPopUp : handleClose() 호출하기
-    handleClose();
-  }
-
-  // 회원가입 페이지 요청 시에 LoginPopUp을 close하는 코드를 실행하려고 우선 작성함.
-  function handleSignUp() {
-    // handleClose() 호출하기
     handleClose();
   }
 
@@ -101,7 +94,7 @@ const ModalContent = (props) => {
         </IconButton>
         <TitleText title="로그인" direction="center" size="h5"></TitleText>
         <AuthTextField label="아이디" onChange={handleIdChange}></AuthTextField>
-        <AuthTextField label="비밀번호" onChange={handlePwChange}></AuthTextField>
+        <AuthTextField label="비밀번호" onChange={handlePwChange} type='password'></AuthTextField>
         <Box sx={{ display: 'inline-block' }}>
           <Button
             fullWidth

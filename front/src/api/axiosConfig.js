@@ -1,19 +1,7 @@
 import axios from 'axios';
 import { base_url } from '../api/Url';
 
-/*
-const httpsAgent = new https.Agent({
-    rejectUnauthorized: false, // (NOTE: this will disable client verification)
-    cert: fs.readFileSync("./usercert.pem"),
-    key: fs.readFileSync("./key.pem"),
-    passphrase: "YYY"
-})
-
-const instance = axios.create({ httpsAgent })
-*/
-
 const client = axios.create({
-    // baseURL: base_url + '/api'
     baseURL: base_url
 })
 
@@ -58,7 +46,7 @@ client.interceptors.response.use(
                 if (data.data.result === 'fail') {
                     sessionStorage.removeItem('token')
                     window.location.href = '/login';
-                    alert('세션이 만료되었습니다.');
+                    alert('세션이 만료되었습니다.'); // 세션(토큰) 만료 알림
                     return null;
                 }
                 if (data) {

@@ -46,7 +46,7 @@ export default function Authentication() {
         }
 
         let response = await Api.postAuthEmail(email, authkey);
-        console.log(response);
+        console.log(email, authkey, response);
         if (response.data.success === true) {
             alert('인증 완료');
             navigate('/signup', { state: email });

@@ -27,6 +27,9 @@ import FileViewerMolecule from '../molecules/BoardWrite,DetailPage/FileViewerMol
 import TreeList from '../pages/Test/Test';
 import MyBoardList from '../molecules/MyPage/MyBoardList';
 
+import PrivateRoutes from '../../access/PrivateRoutes';
+import isLogin from '../../access/isLogin';
+
 const App = () => {
   return (
     <>
@@ -35,25 +38,24 @@ const App = () => {
           <HeaderOrganisms sx={{ marginBottom: 10 }} />
           <Routes>
             <Route path="/" element={<MainPage />} />
-            <Route path="/Layout/*" element={<LayoutPage />} />
-            <Route path="/LayoutWrite/*" element={<LayoutWritePage />} />
+            <Route path="/Layout/*" element={<PrivateRoutes user={isLogin()}><LayoutPage /></PrivateRoutes>} />
+            <Route path="/LayoutWrite/*" element={<PrivateRoutes user={isLogin()}><LayoutWritePage /></PrivateRoutes>} />
             <Route path="/BoardDetail/*" element={<BoardDetailPage />} />
-            <Route path="/BoardWrite/*" element={<BoardWritePage />} />
-            <Route path="/BoardModify/*" element={<BoardModifyPage />} />
+            <Route path="/BoardWrite/*" element={<PrivateRoutes user={isLogin()}><BoardWritePage /></PrivateRoutes>} />
+            <Route path="/BoardModify/*" element={<PrivateRoutes user={isLogin()}><BoardModifyPage /></PrivateRoutes>} />
             <Route path="/signup/*" element={<SignUpPage />} />
             <Route path="/auth/*" element={<Authentication />} />
-            <Route path="/logout/*" element={<Logout />} />
+            <Route path="/logout/*" element={<PrivateRoutes user={isLogin()}><Logout /></PrivateRoutes>} />
 
             <Route path="/findID/*" element={<FindIdPage />} />
-            <Route path="/LayoutWrite/*" element={<LayoutWritePage />} />
 
-            <Route path="/memberInfo/*" element={<ReadMemberInfoPage />} />
-            <Route path="/changePW/*" element={<ChangePWPage />} />
-            <Route path="/mypage/*" element={<MyPage />} />
+            <Route path="/memberInfo/*" element={<PrivateRoutes user={isLogin()}><ReadMemberInfoPage /></PrivateRoutes>} />
+            <Route path="/changePW/*" element={<PrivateRoutes user={isLogin()}><ChangePWPage /></PrivateRoutes>} />
+            <Route path="/mypage/*" element={<PrivateRoutes user={isLogin()}><MyPage /></PrivateRoutes>} />
 
             <Route path="/search" element={<SearchPage />} />
 
-            <Route path="/AllStatistics/*" element={<StatisticsPage />} />
+            <Route path="/AllStatistics/*" element={<PrivateRoutes user={isLogin()}><StatisticsPage /></PrivateRoutes>} />
 
             <Route
               path="/oauth/login/kakao"
@@ -65,8 +67,6 @@ const App = () => {
             ></Route>
 
             <Route path="/Test" element={<FileViewer />} />
-            <Route path="/stat" element={<MyBoardList />} />
-            <Route path="/tree" element={<TreeList />} />
           </Routes>
         </BrowserRouter>
       </div>
