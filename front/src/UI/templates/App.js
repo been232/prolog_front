@@ -4,7 +4,6 @@ import HeaderOrganisms from '../organisms/Header/HeaderOrganisms';
 import BoardDetailPage from '../pages/BoardWrite,DetailPage/BoardDetailPage';
 import MainPage from '../pages/MainPage/MainPage';
 import LayoutPage from '../pages/LayoutPage/LayoutPage';
-import ControlledOpenSpeedDial from '../atoms/MainPage/ControlledOpenSpeedDial';
 import LoginPopupPage from '../pages/LoginPopupPage/LoginPopupPage';
 import Logout from '../atoms/Header/Logout';
 import SignUpPage from '../pages/SignUpPage/SignUpPage';
@@ -69,7 +68,6 @@ const App = () => {
             <Route path="/stat" element={<MyBoardList />} />
             <Route path="/tree" element={<TreeList />} />
           </Routes>
-          <ControlledOpenSpeedDial />
         </BrowserRouter>
       </div>
     </>

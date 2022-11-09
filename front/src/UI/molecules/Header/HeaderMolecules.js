@@ -49,6 +49,11 @@ function HeaderMolecules(props) {
           {(!(user === null)) ?
             (<>
               <Box sx={{ float: 'right' }}>
+                <Link to="/layoutWrite" >
+                  <ContainedButton content="레이아웃 작성" fontSize="11px"></ContainedButton>
+                </Link>
+              </Box>
+              <Box sx={{ float: 'right' }}>
                 <Link to="/logout" >
                   <ContainedButton content="로그아웃" fontSize="11px"></ContainedButton>
                 </Link>
