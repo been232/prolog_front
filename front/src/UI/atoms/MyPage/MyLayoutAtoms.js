@@ -18,7 +18,7 @@ function MyLayoutAtoms(props) {
             }}
             style={{ fontFamily: "SUIT-Regular" }}
         >
-            <PostBoxMiddleMolecule id={id} link="Layout" title={name} />
+            <PostBoxMiddleMolecule title={name} id={id} link="Layout"  />
         </Box>
     );
 }

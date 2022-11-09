@@ -8,7 +8,9 @@ import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Box, Button, IconButton, TextField, Typography, Divider } from '@mui/material';
 import ContainedButton from '../../atoms/Commons/ContainedButton';
+import ClickContainedButton from '../../atoms/MyPage/ClickContainedButton';
 import Api from '../../../api/Api';
+import { convertLength } from '@mui/material/styles/cssUtils';
 
 export default function TreeList() {
     const [isEdit, setIsEdit] = useState(false); // 카테고리 편집 상태 확인
@@ -33,6 +35,7 @@ export default function TreeList() {
 
     const handleIsEdit = () => {
         setIsEdit(!isEdit);
+        console.log(isEdit);
         if (visible) {
             setVisible(!visible);
         }
@@ -79,7 +82,7 @@ export default function TreeList() {
         // 추가 시에는 response 값으로 '정보처리기사'가 추가된 카테고리 목록이 필요함.
         // 삭제 시에는 response 값으로 '정보보안기사'가 삭제된 카테고리 목록이 필요함.
         // 변경 시에는 response 값으로 '앱'이 'App'으로 변경된 카테고리 목록이 필요함.
-        setVisible(!visible);
+            setVisible(!visible);
         if (value === "") {
             return;
         } else {
@@ -122,7 +125,7 @@ export default function TreeList() {
     useEffect(() => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
-
+            console.log(infoBody);
             setResponse(infoBody.data);
         }
         getData();
@@ -133,7 +136,7 @@ export default function TreeList() {
             <Box sx={{ display: "flex", marginLeft: 9, marginBottom: 1 }} >
                 <Typography sx={{ alignContent: "center", fontSize: "15px", marginRight: 2 }}
                     style={{ fontFamily: "SUIT-Regular" }}>* 카테고리 *</Typography>
-                <ContainedButton content="Edit" fontSize="11px" handleClick={handleIsEdit}></ContainedButton>
+                <ClickContainedButton content="Edit" fontSize="11px" handleClick={() => handleIsEdit()}></ClickContainedButton>
             </Box>
             <Divider />
             <TreeView
@@ -202,6 +205,7 @@ export default function TreeList() {
                         }
                     </Box>)
                 })}
+
                 {(visible) ?
                     <Box sx={{ marginLeft: 2 }}>
                         <TextField onChange={(event) => setValue(event.target.value)}></TextField>
