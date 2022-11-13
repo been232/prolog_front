@@ -18,4 +18,4 @@ function FileViewer(props) {
     );
 }
 
-export default FileViewer;
+export default React.memo(FileViewer);

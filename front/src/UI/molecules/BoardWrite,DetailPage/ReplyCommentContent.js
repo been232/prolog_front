@@ -22,6 +22,7 @@ function ReplyCommentContent(props) {
         isOpen,
         key,
     } = props;
+    const date = `${written[0]}-${written[1]}-${written[2]} ${written[3]}:${written[4]}:${written[5]}`;
     const setCommentWriteBox = (type) => {
         if (isOpen == id) {
             setDisplay(false);
@@ -82,7 +83,7 @@ function ReplyCommentContent(props) {
             >
                 <span style={{ marginBottom: "1%" }}>
                     {writter}&nbsp;
-                    {`(${written})`}
+                    {`(${date})`}
                 </span>
                 <Box
                     sx={{
@@ -130,7 +131,7 @@ function ReplyCommentContent(props) {
                     display={"flex"}
                     value={commentContent}
                     type={type}
-                    onFocus={notLoginAlert}
+                    onFocus={isAuthor ? Object : notLoginAlert}
                     key={key}
                 ></CommentWriteBox>
             )}

@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { Box, Button } from '@mui/material';
-import OutlinedButton from '../../atoms/Commons/OutlinedButton';
+import * as React from "react";
+import { Box, Button } from "@mui/material";
+import OutlinedButton from "../../atoms/Commons/OutlinedButton";
 
 import Api from "../../../api/Api";
 import { Link } from "react-router-dom";
@@ -75,6 +75,18 @@ export default function UnderButton(props) {
                     explanation: dataitem.data.explanation,
                     leader: dataitem.data.leader,
                 });
+            } else if (dataitem.data.type == 7) {
+                datas.push({
+                    id: parseInt(dataitem.data.id),
+                    height: dataitem.data.height,
+                    width: dataitem.data.width,
+                    coordinateX: dataitem.position.x,
+                    coordinateY: dataitem.position.y,
+                    type: dataitem.data.type,
+                    explanation: dataitem.data.explanation,
+                    leader: dataitem.data.leader,
+                    content: dataitem.data.content,
+                });
             } else {
                 datas.push({
                     id: parseInt(dataitem.data.id),
@@ -114,19 +126,25 @@ export default function UnderButton(props) {
         getData();
     };
 
-  return (
-    <Box sx={{ float: 'right', marginTop: 3, marginBottom: 3, marginRight: 10 }}>
-      <Button
-        style={{ marginLeft: 2, fontFamily: 'SUIT-Regular' }}
-        variant="outlined"
-        onClick={()=>handleClick()}
-      >
-        저장하기
-      </Button>
-      <Link to="/">
-        <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
-      </Link>
-    </Box>
-  );
-
+    return (
+        <Box
+            sx={{
+                float: "right",
+                marginTop: 3,
+                marginBottom: 3,
+                marginRight: 10,
+            }}
+        >
+            <Button
+                style={{ marginLeft: 2, fontFamily: "SUIT-Regular" }}
+                variant="outlined"
+                onClick={() => handleClick()}
+            >
+                저장하기
+            </Button>
+            <Link to="/">
+                <OutlinedButton content="목록으로" style={{ marginLeft: 2 }} />
+            </Link>
+        </Box>
+    );
 }

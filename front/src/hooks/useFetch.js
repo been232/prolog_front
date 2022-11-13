@@ -32,6 +32,8 @@ function useFetch(page, type, searchKeyword, loaded) {
                 setList([...list, ...res.data.data]);
                 if (type === "all") setLast((prev) => prev + 15);
                 else setLast(res.data.data[res.data.data.length - 1].id);
+            } else {
+                return;
             }
         } catch (err) {
             setError(err);

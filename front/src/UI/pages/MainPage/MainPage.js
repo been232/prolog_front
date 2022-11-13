@@ -18,7 +18,6 @@ function MainPage() {
     const [last, setLast] = useState(0);
     const { loading, error, list } = useFetch(page, type);
     const loader = useRef(null);
-    console.log(list);
     // const [list, setList] = useState([]);
     // useEffect(() => {
     //   fetchData();

@@ -164,7 +164,7 @@ export default function Content(props) {
                             type: dataitem.type,
                             width: dataitem.width,
                             height: dataitem.height,
-                            content: dataitem.content,
+                            content: dataitem.images[0].url,
                             board: true,
                             leader: dataitem.leader,
                         },
