@@ -8,12 +8,12 @@ import Text from "../BoardWrite,DetailPage/Text";
 export default function PreviewContent(props) {
     const { layout } = props;
     console.log(layout);
-    switch (layout.dtype) {
+    switch (layout.type) {
         case 1:
             const TextData = {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
-                type: layout.dtype,
+                type: layout.type,
                 width: layout.width,
                 height: layout.height,
                 content: layout.content,
@@ -24,10 +24,10 @@ export default function PreviewContent(props) {
             const ImageData = {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
-                type: layout.dtype,
+                type: layout.type,
                 width: layout.width,
                 height: layout.height,
-                images: layout.url,
+                images: layout.images,
                 explanation: layout.explanation,
             };
             return <ImageListAccordion data={ImageData}></ImageListAccordion>;
@@ -35,7 +35,7 @@ export default function PreviewContent(props) {
             const CodeData = {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
-                type: layout.dtype,
+                type: layout.type,
                 width: layout.width,
                 height: layout.height,
                 content: layout.codes,
@@ -49,7 +49,7 @@ export default function PreviewContent(props) {
             const MathData = {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
-                type: layout.dtype,
+                type: layout.type,
                 width: layout.width,
                 height: layout.height,
                 content: layout.content,
@@ -60,7 +60,7 @@ export default function PreviewContent(props) {
             const ViwerData = {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
-                type: layout.dtype,
+                type: layout.type,
                 width: layout.width,
                 height: layout.height,
                 content: layout.content,

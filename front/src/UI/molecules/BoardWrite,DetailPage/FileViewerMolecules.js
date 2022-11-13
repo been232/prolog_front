@@ -21,6 +21,7 @@ function FileViewerMolecule(props) {
 
         fileReader.onload = () => {
             setPrv(fileReader.result);
+            data.content = fileReader.result;
         };
     };
 

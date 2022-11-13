@@ -33,7 +33,7 @@ function MainPageOrganism(props) {
         setOpen(false);
         clearTimeout(timer);
     };
-    const { id, title, written, member, memberImage, likes, layoutDto, hits } =
+    const { id, title, written, member, memberImage, likes, mainLayout, hits } =
         props.data;
     return (
         <Box
@@ -49,8 +49,8 @@ function MainPageOrganism(props) {
                 <Box
                     sx={{
                         ...style,
-                        width: layoutDto.width,
-                        height: layoutDto.height,
+                        width: mainLayout.width,
+                        height: mainLayout.height,
                     }}
                 >
                     <IconButton
@@ -60,7 +60,7 @@ function MainPageOrganism(props) {
                         <CloseIcon />
                     </IconButton>
                     {/* <MainContent layout={mainLayout} /> */}
-                    <PreviewContent layout={layoutDto}></PreviewContent>
+                    <PreviewContent layout={mainLayout}></PreviewContent>
                 </Box>
             </Modal>
             <PostBoxTopMolecule id={id} link={link} />
