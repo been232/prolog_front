@@ -216,7 +216,7 @@ const Api = {
     },
 
     // MyPage: 게시글 조회 및 레이아웃 조회-----------------------------------------------------
-    // 내가 쓴 글 목록 조회
+    // 내가 쓴 글 목록 조회 
     getMyPost_New: async (user) => {
         return await getRequest(`/my-info/boards?last=0`);
     },

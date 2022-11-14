@@ -27,6 +27,9 @@ export default function ChipInput(props) {
       event.key === 'Backspace'
     ) {
       setSelectedItem(selectedItem.slice(0, selectedItem.length - 1));
+    } else if (event.key === "Enter") {
+      setSelectedItem([...selectedItem, inputValue]);
+      makeChip(inputValue);
     }
   }
   function handleChange(item) {
