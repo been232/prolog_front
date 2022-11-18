@@ -11,11 +11,14 @@ import ProfileImage from '../../molecules/ReadMemberInfoPage/ProfileImage';
 import Api from '../../../api/Api';
 
 const ReadMemberInfo = () => {
-    const [alarm, setAlarm] = useState(true);
+    const [alarm, setAlarm] = useState(false);
+    const [password, setPassword] = useState('');
+    const [imageId, setImageId] = useState();
 
     const [info, setInfo] = useState({
         name: '',
         account: '',
+        password: password,
         email: '',
         nickname: '',
         image: '',
@@ -29,6 +32,7 @@ const ReadMemberInfo = () => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
             console.log(infoBody);
+            imageId = infoBody.data.data.imageId;
             setInfo({
                 name: infoBody.data.data.name,
                 account: infoBody.data.data.account,
@@ -51,6 +55,11 @@ const ReadMemberInfo = () => {
         }));
     };
 
+    const handlePWChange = (event) => {
+        setPassword(event.target.value);
+        handleChange(event);
+    };
+
     const handleCheckChange = (event) => {
         setAlarm(event.target.checked);
         setInfo((prev) => ({
@@ -66,6 +75,19 @@ const ReadMemberInfo = () => {
         }
     };
 
+    const pwCheck = () => {
+        // 패스워드 형식의 정규표현식 : 최소 8 자 및 최대 20 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 정규식
+        const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,20}$/;
+
+        if (pwRegex.test(password) === true) {
+            return true;
+        }
+        else {
+            return false; // 패스워드 형식이 아닙니다.
+        }
+    }
+
+
     const handleUpdateInfo = async () => {
         // if (password !== passwordConfirm) {
         //     alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
@@ -74,17 +96,20 @@ const ReadMemberInfo = () => {
 
         const isEmpty = emptyCheck();
         if (isEmpty === false) {
-            alert('이름, 아이디, 이메일, 닉네임, 한줄소개를 입력하세요');
+            alert('이름, 아이디, 비밀번호, 이메일, 닉네임, 한줄소개를 입력하세요');
             return false;
         }
 
-        console.log(info);
-
-        // -----------------------  response 예시 데이터 -----------------------
+        const isPassword = pwCheck();
+        if (isPassword === false) {
+            alert('비밀번호를 다시 입력하세요');
+            return false;
+        }
+    
         let response = await Api.putUpdateMyInfo(info);
 
         if (response.data.success === true) {
-            // const target = '/';
+            // const target = '/mypage';
             alert('회원정보 수정 완료');
             // window.location.href = target;
         }
@@ -102,8 +127,8 @@ const ReadMemberInfo = () => {
         if (response.data.success === true) {
             const target = '/';
             alert('탈퇴 완료');
-            sessionStorage.removeItem('token')
-            sessionStorage.removeItem('userId')
+            localStorage.removeItem('token')
+            localStorage.removeItem('userId')
             window.location.href = target;
         }
         else if (response.data.success === false) {
@@ -131,10 +156,18 @@ const ReadMemberInfo = () => {
                 <Typography component="h1" variant="h5">회원정보 조회/수정</Typography>
                 <Box noValidate sx={{ mt: 3 }}>
                     <Divider sx={{ marginBottom: 2 }} />
-                    <ProfileImage setInfo={setInfo} Image={info.image} />
+                    <ProfileImage setInfo={setInfo} image={info.image} imageId={imageId} />
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <AuthTextField label="아이디" name="account" onChange={handleChange} value={info.account} />
+                        </Grid>
+                        <Grid item xs={12}>
+                            <AuthTextField
+                                label="비밀번호"
+                                name="password"
+                                type='password'
+                                onChange={handlePWChange}
+                            />
                         </Grid>
                         <Grid item xs={12}>
                             <AuthTextField
@@ -204,8 +237,8 @@ const ReadMemberInfo = () => {
                         </Grid>
                     </Grid>
                     <Grid container justifyContent="center">
-                        <Grid item sx={{ textDecoration: "underline" }}>
-                            <Typography component="h1" variant="h6" onClick={handleWithdraw}>회원탈퇴</Typography>
+                        <Grid item sx={{ textDecoration: "underline", mt: 3, mb: 2 }}>
+                            <Typography sx={{ color: "grey", fontSize: "12px" }} onClick={handleWithdraw}>회원탈퇴</Typography>
                         </Grid>
                     </Grid>
                 </Box>

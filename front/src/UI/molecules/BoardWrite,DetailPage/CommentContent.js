@@ -9,7 +9,7 @@ function CommentContent(props) {
         props;
     const [display, setDisplay] = useState(false);
     const [type, setType] = useState("submit");
-    const isAuthor = sessionStorage.getItem("userId");
+    const isAuthor = localStorage.getItem("userId");
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
     const setCommentWriteBox = (type) => {

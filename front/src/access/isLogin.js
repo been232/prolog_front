@@ -1,5 +1,5 @@
 const isLogin = () => {
-    return !!sessionStorage.getItem('token');
+    return !!localStorage.getItem('token');
 };
   
 export default isLogin;

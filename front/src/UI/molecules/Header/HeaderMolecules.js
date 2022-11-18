@@ -34,7 +34,7 @@ theme.typography.p = {
 };
 
 function HeaderMolecules(props) {
-  const user = sessionStorage.getItem('token'); // 토큰 받아오기
+  const user = localStorage.getItem('token'); // 토큰 받아오기
 
   return (
     <>

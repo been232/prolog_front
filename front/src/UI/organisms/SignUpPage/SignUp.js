@@ -6,6 +6,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import ProfileImage from '../../molecules/SignUpPage/ProfileImage';
+import TitleText from '../../atoms/LoginPopup/Title';
 import { AuthTextField } from '../../atoms/Commons/TextField';
 import { FixTextField } from '../../atoms/Commons/FixTextField';
 import Api from '../../../api/Api';
@@ -15,7 +16,7 @@ const SignUp = () => {
   const email = location.state;
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [alarm, setAlarm] = useState(true);
+  const [alarm, setAlarm] = useState(false);
 
   const [info, setInfo] = useState({
     name: '',
@@ -23,7 +24,7 @@ const SignUp = () => {
     email: email,
     password: password,
     nickname: '',
-    image: '',
+    image: null,
     introduce: '',
     alarm: alarm,
   });
@@ -33,6 +34,13 @@ const SignUp = () => {
     setInfo((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
+    }));
+  };
+
+  const handleImageChange = (url) => {
+    setInfo((prev) => ({
+      ...prev,
+      image: url,
     }));
   };
 
@@ -83,10 +91,6 @@ const SignUp = () => {
   }
 
   const handleSignup = async () => {
-    if (password !== passwordConfirm) {
-      alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-      return;
-    }
 
     const isEmpty = emptyCheck();
     if (isEmpty === false) {
@@ -102,7 +106,7 @@ const SignUp = () => {
 
     const isCoincide = pwCoincideCheck();
     if (isCoincide === false) {
-      alert('비밀번호가 일치하지 않습니다. 다시 입력하세요.');
+      alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
       return false;
     }
 
@@ -110,9 +114,9 @@ const SignUp = () => {
     console.log(response);
 
     if (response.data.success === true) {
-      const target = '/';
-      alert('회원가입 성공');
-      window.location.href = target;
+      // const target = '/';
+      // alert('회원가입 성공');
+      // window.location.href = target;
     }
     else if (response.data.success === false) {
       alert(response.data);
@@ -136,10 +140,10 @@ const SignUp = () => {
         <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">회원가입</Typography>
+        <TitleText title="회원가입" fontWeight="bold" variant="h4" component="h1" ></TitleText>
         <Box noValidate sx={{ mt: 3 }}>
           <Divider sx={{ marginBottom: 2 }} />
-          <ProfileImage setInfo={setInfo} />
+          <ProfileImage info={info} setInfo={setInfo} handleImageChange={handleImageChange} />
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <AuthTextField label="아이디" name="account" onChange={handleChange} />
@@ -161,6 +165,9 @@ const SignUp = () => {
                 type='password'
                 onChange={handlePWChange}
               />
+              <Typography sx={{ color: "grey", fontSize: "12px" }}>
+                최소 8자 ~ 최대 20자, 하나 이상의 대문자, 하나의 소문자/숫자/특수 문자
+              </Typography>
             </Grid>
             <Grid item xs={12}>
               <AuthTextField
@@ -169,11 +176,8 @@ const SignUp = () => {
                 type='password'
                 onChange={handlePWConfirmChange}
               />
-              <Typography variant="h6" sx={{ color: "grey" }}>
-                최소 8 자 및 최대 20 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자
-              </Typography>
               {(password === passwordConfirm) ? "" :
-                <Typography sx={{ color: "red" }}>
+                <Typography sx={{ color: "red", fontSize: "14px" }}>
                   비밀번호 불일치: 다시 입력해주세요.
                 </Typography>
               }

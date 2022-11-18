@@ -57,7 +57,7 @@ function ReplyCommentContent(props) {
         const content = e.target.value;
         setCommentCotent(content);
     }, []);
-    const isAuthor = sessionStorage.getItem("userId");
+    const isAuthor = localStorage.getItem("userId");
     const deleteComment = async () => {
         await Api.deleteComment(id);
         window.location.reload();

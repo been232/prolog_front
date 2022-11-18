@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { Link, Button, TextField, Grid, Box, Typography, Container } from '@mui/material';
-import ContainedButton from '../../atoms/Commons/ContainedButton';
+import ClickContainedButton from '../../atoms/MyPage/ClickContainedButton';
 import Api from '../../../api/Api';
 
 const CodeField = (props) => {
@@ -23,7 +23,7 @@ const CodeField = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={4}>
-                <ContainedButton
+                <ClickContainedButton
                     content="확인"
                     handleClick={props.handleBtn}
                 />
@@ -93,7 +93,7 @@ export default function Authentication() {
 
     const sendMail = async () => {
         const isEmpty = emptyCheck();
-        if (isEmpty === false) {
+        if (isEmpty === true) {
             alert('이메일 주소를 입력하세요.');
             return false;
         }
@@ -150,7 +150,7 @@ export default function Authentication() {
                             />
                         </Grid>
                         <Grid item xs={12} sm={4}>
-                            <ContainedButton
+                            <ClickContainedButton
                                 content="인증코드 전송"
                                 handleClick={sendMail}
                             />

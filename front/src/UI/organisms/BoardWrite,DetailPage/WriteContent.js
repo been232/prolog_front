@@ -40,7 +40,7 @@ export default function WriteContent(props) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [leader, setLeader] = useState(0);
   const open = Boolean(anchorEl);
-  const user = sessionStorage.getItem('userId');
+  const user = localStorage.getItem('userId');
 
   const handleClick = (event) => {
     setAnchorEl(event.target);

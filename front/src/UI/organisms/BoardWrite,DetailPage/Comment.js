@@ -16,7 +16,7 @@ function Comment(props) {
         document.activeElement.blur();
     };
 
-    const isAuthor = sessionStorage.getItem("userId");
+    const isAuthor = localStorage.getItem("userId");
 
     useEffect(() => {
         const getData = async () => {

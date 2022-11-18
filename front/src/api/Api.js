@@ -1,8 +1,10 @@
 import client from '../api/axiosConfig';
 import qs from 'qs';
 import axios from 'axios';
-const user = sessionStorage.getItem('userId');
-console.log(user);
+
+const user = localStorage.getItem('userId');
+//console.log(user);
+
 const getRequest = async (path, params) => {
   try {
       params = qs.stringify(params);
