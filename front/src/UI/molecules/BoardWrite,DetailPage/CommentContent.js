@@ -12,6 +12,7 @@ function CommentContent(props) {
     const isAuthor = localStorage.getItem("userId");
     const [, updateState] = useState();
     const forceUpdate = useCallback(() => updateState({}), []);
+    const date = `${written[0]}-${written[1]}-${written[2]} ${written[3]}:${written[4]}:${written[5]}`;
     const setCommentWriteBox = (type) => {
         if (isOpen == id) {
             setDisplay(false);
@@ -92,14 +93,14 @@ function CommentContent(props) {
             >
                 <span style={{ marginBottom: "1%" }}>
                     {writter}&nbsp;
-                    {`(${written})`}
+                    {`(${date})`}
                 </span>
                 <Box
                     sx={{
                         display: "flex",
                         width: "full",
                         justifyContent: "flex-end",
-                        marginTop: "-3%",
+                        marginTop: "-20px",
                     }}
                 >
                     <Button

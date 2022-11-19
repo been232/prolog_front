@@ -21,7 +21,6 @@ function Comment(props) {
     useEffect(() => {
         const getData = async () => {
             const commentBody = await Api.getComment(id);
-            console.log(commentBody.data.data);
             setComment(commentBody.data.data);
         };
         getData();
