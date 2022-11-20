@@ -37,7 +37,7 @@ const MyBoardList = (props) => {
                 item
                 xl={4}
                 lg={6}
-                sm={6}
+                sm={12}
                 id={i}
                 key={i}
               // onClick={handleOpen}

@@ -44,7 +44,6 @@ const ReadMemberInfo = () => {
             });
             setAlarm(infoBody.data.data.alarm);
             localStorage.setItem('profile', infoBody.data.data.image)
-            localStorage.setItem('profileId', infoBody.data.data.imageId)
         }
         getData();
     }, []);
@@ -111,9 +110,9 @@ const ReadMemberInfo = () => {
         let response = await Api.putUpdateMyInfo(info);
 
         if (response.data.success === true) {
-            // const target = '/memberInfo';
+            const target = '/memberInfo';
             alert('회원정보 수정 완료');
-            // window.location.href = target;
+            window.location.href = target;
         }
         else if (response.data.success === false) {
             alert('회원정보 수정 실패');
