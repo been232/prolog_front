@@ -33,3 +33,7 @@ li {
 .pg-viewer-wrapper {
     height: 800px !important;
 }
+
+#pdf-toggle-pagination {
+    display: none;
+}

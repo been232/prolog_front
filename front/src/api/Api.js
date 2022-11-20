@@ -287,6 +287,9 @@ const Api = {
     getRecentPost: async (last) => {
         return await getRequest(`/recent/?last=${last}`);
     },
+    postLikePost: async (id) => {
+        return await postJsonUserReqest(`/board/${id}`);
+    },
 
     //Search
     getSearchResult: async (keyword, last) => {

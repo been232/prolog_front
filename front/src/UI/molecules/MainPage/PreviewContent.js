@@ -1,3 +1,4 @@
+import { Box } from "@mui/material";
 import React from "react";
 import ContentText from "../../atoms/BoardWrite,DetailPage/ContentText";
 import CodeAccordion from "../BoardWrite,DetailPage/CodeAccordion";
@@ -14,8 +15,8 @@ export default function PreviewContent(props) {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
                 type: layout.type,
-                width: layout.width,
-                height: layout.height,
+                width: `${layout.width / 2}px`,
+                height: `${layout.height / 2}px`,
                 content: layout.content,
                 explanation: layout.explanation,
             };
@@ -25,8 +26,8 @@ export default function PreviewContent(props) {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
                 type: layout.type,
-                width: layout.width,
-                height: layout.height,
+                width: `${layout.width / 2}px`,
+                height: `${layout.height / 2}px`,
                 images: layout.images,
                 explanation: layout.explanation,
             };
@@ -36,8 +37,8 @@ export default function PreviewContent(props) {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
                 type: layout.type,
-                width: layout.width,
-                height: layout.height,
+                width: `${layout.width / 2}px`,
+                height: `${layout.height / 2}px`,
                 content: layout.codes,
                 explanation: layout.explanation,
             };
@@ -50,8 +51,8 @@ export default function PreviewContent(props) {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
                 type: layout.type,
-                width: layout.width,
-                height: layout.height,
+                width: `${layout.width / 2}px`,
+                height: `${layout.height / 2}px`,
                 content: layout.content,
                 explanation: layout.explanation,
             };
@@ -61,9 +62,9 @@ export default function PreviewContent(props) {
                 x: layout.coordinateX,
                 y: layout.coordinateY,
                 type: layout.type,
-                width: layout.width,
-                height: layout.height,
-                content: layout.content,
+                width: `${layout.width / 2}px`,
+                height: `${layout.height / 2}px`,
+                content: layout.images[0].url,
                 explanation: layout.explanation,
                 board: true,
             };
