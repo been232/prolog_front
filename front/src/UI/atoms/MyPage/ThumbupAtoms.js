@@ -21,7 +21,7 @@ const style = {
 };
 
 function ThumbupAtoms(props) {
-  const { id, title, written, member, memberImage, likes, mainLayout } = props.data;
+  const { id, title, written, member, memberImage, likes, mainLayout, hits } = props.data;
   return (
     <>
       <Box
@@ -39,6 +39,7 @@ function ThumbupAtoms(props) {
           member={member}
           memberImage={memberImage}
           likes={likes}
+          hits={hits}
         />
 
       </Box>

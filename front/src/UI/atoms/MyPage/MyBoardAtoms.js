@@ -49,7 +49,7 @@ const data = [
 ];
 
 function MyBoardAtoms(props) {
-  const { id, title, written, member, memberImage, likes, mainLayout } = props.data;
+  const { id, title, written, member, memberImage, likes, mainLayout, hits } = props.data;
   const [open, setOpen] = useState(false);
   const [year, setYear] = useState(2022);
   const [visible, setVisible] = useState(false);
@@ -176,6 +176,7 @@ function MyBoardAtoms(props) {
         member={member}
         memberImage={memberImage}
         likes={likes}
+        hits={hits}
       />
     </Box>
   );

@@ -68,7 +68,6 @@ const ModalContent = (props) => {
       const resBaseInfo = async () => await Api.getReadMyInfo();
       const infoBody = await resBaseInfo();
       localStorage.setItem('profile', infoBody.data.data.image)
-      localStorage.setItem('profileId', infoBody.data.data.imageId)
       
       window.location.href = target;
     }

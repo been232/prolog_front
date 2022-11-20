@@ -11,7 +11,6 @@ const ProfileImage = (props) => {
     const setInfo = props.setInfo;
     const imageId = props.imageId;
     let base_image = (props.image === null) ? null : props.image;
-    const [fileUrl, setFileUrl] = useState(base_image); // 이미지 URL
     const [FileInfo, setFileInfo] = useState({ // 이미지 업로드 reponse 보관용 Info
         id: imageId,
         name: null,
@@ -27,8 +26,6 @@ const ProfileImage = (props) => {
         }
 
         const imageUrl = URL.createObjectURL(imageFile);
-        setFileUrl(imageUrl);
-        base_image = imageUrl;
 
         const formData = new FormData();
         formData.append('file', imageFile);
@@ -48,6 +45,8 @@ const ProfileImage = (props) => {
                 image: response.data.data[0].url,
             }));
 
+            base_image = response.data.data[0].url
+
             console.log('이미지 업로드 완료');
 
         } else {
@@ -60,8 +59,6 @@ const ProfileImage = (props) => {
     const handleDeleteImage = async () => {
 
         if (FileInfo.id != undefined) {
-            setFileUrl(null);
-
             setInfo((prev) => ({
                 ...prev,
                 image: null,
@@ -82,8 +79,6 @@ const ProfileImage = (props) => {
         console.log(response);
 
         if (response.data.success) {
-            setFileUrl(null);
-
             setFileInfo({
                 id: null,
                 name: null,
@@ -113,7 +108,7 @@ const ProfileImage = (props) => {
                             <TitleText title="프로필" fontWeight="bold" ></TitleText>
                         </Box>
                         <Box sx={{ float: 'left', width: "50%", height: "100px" }}>
-                            {(imageId === null) ?
+                            {(base_image === null) ?
                                 (<AccountCircleIcon sx={{ width: "100px", height: "100px" }} />) :
                                 (<img src={base_image} alt="profile" width="100px" height="100px" style={{ objectFit: "cover", borderRadius: "70%" }} />)
                             }
