@@ -49,8 +49,8 @@ function MainPageOrganism(props) {
                 <Box
                     sx={{
                         ...style,
-                        width: mainLayout.width,
-                        height: mainLayout.height,
+                        width: `${mainLayout.width / 2}px`,
+                        height: `${mainLayout.height / 2}px`,
                     }}
                 >
                     <IconButton
@@ -66,6 +66,7 @@ function MainPageOrganism(props) {
             <PostBoxTopMolecule id={id} link={link} />
             <PostBoxMiddleMolecule title={title} id={id} link={link} />
             <PostBoxBottomMolecule
+                id={id}
                 member={member}
                 memberImage={memberImage}
                 likes={likes}

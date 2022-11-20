@@ -18,20 +18,6 @@ function MainPage() {
     const [last, setLast] = useState(0);
     const { loading, error, list } = useFetch(page, type);
     const loader = useRef(null);
-    // const [list, setList] = useState([]);
-    // useEffect(() => {
-    //   fetchData();
-    // }, [page]);
-
-    // const fetchData = useCallback(async () => {
-    //   try {
-    //     const res = await Api.getLikePost(last);
-    //     setList([...list, ...res.data.data]);
-    //     setLast(res.data.data[res.data.data.length - 1].id);
-    //   } catch (err) {}
-    // }, [last, list]);
-
-    // console.log(`last=${last}`);
     const handleType = useCallback((e) => {
         setType(e.target.value);
     });
@@ -48,7 +34,7 @@ function MainPage() {
         rootMargin: "10px",
         threshold: 0,
     };
-
+    console.log(list);
     useEffect(() => {
         const observer = new IntersectionObserver(handleObserver, option);
         if (loader.current) observer.observe(loader.current);

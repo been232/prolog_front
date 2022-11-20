@@ -18,7 +18,6 @@ function FileViewerMolecule(props) {
         const infobody = await Api.postFiles(files);
         setUrl(infobody.data.data[0].url);
         setName(infobody.data.data[0].name);
-        console.log(infobody);
         data.content = infobody.data.data[0].url;
         setPrv(data.content);
         return data.content;
@@ -62,7 +61,11 @@ function FileViewerMolecule(props) {
                 </>
             )}
             {prv != "" && (
-                <FileViewer prv={prv} width={1024} height={720}></FileViewer>
+                <FileViewer
+                    prv={prv}
+                    width={data.width}
+                    height={data.height}
+                ></FileViewer>
             )}
         </Box>
     );
