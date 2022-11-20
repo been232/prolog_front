@@ -17,7 +17,6 @@ const ChangePW = (props) => {
     const [passwordConfirm, setPasswordConfirm] = useState('');
 
     const [info, setInfo] = useState({
-        name: name,
         account: id,
         email: email,
         password: password,
@@ -47,18 +46,47 @@ const ChangePW = (props) => {
         }
     };
 
-    const handleUpdatePW = async () => {
-        if (password !== passwordConfirm) {
-            alert("비밀번호가 일치하지 않습니다. 다시 입력해주세요.");
-            return;
+    const pwCoincideCheck = () => { // 패스워드와 패스워드 확인 데이터 일치 체크
+        if (password === passwordConfirm) {
+            return true;
+        } else {
+            return false;
         }
+    }
+
+    const pwCheck = () => {
+        // 패스워드 형식의 정규표현식 : 최소 8 자 및 최대 20 자, 하나 이상의 대문자, 하나의 소문자, 하나의 숫자 및 하나의 특수 문자 정규식
+        const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*#?&=^])[A-Za-z\d@$!%*#?&=^]{8,20}$/;
+
+        if (pwRegex.test(password) === true) {
+            return true;
+        }
+        else {
+            return false; // 패스워드 형식이 아닙니다.
+        }
+    }
+
+    const handleUpdatePW = async () => {
 
         const isEmpty = emptyCheck();
         if (isEmpty === false) {
-          alert('이름, 아이디, 이메일, 비밀번호를 입력하세요');
-          return false;
+            alert('이름, 아이디, 이메일, 비밀번호를 입력하세요');
+            return false;
         }
 
+        const isPassword = pwCheck();
+        if (isPassword === false) {
+            alert('비밀번호를 다시 입력하세요');
+            return false;
+        }
+
+        const isCoincide = pwCoincideCheck();
+        if (isCoincide === false) {
+            alert('비밀번호가 일치하지 않습니다. 다시 입력해주세요.');
+            return false;
+        }
+
+        console.log(info);
         let response = await Api.postChangePW(info);
         console.log(response);
 
@@ -95,32 +123,25 @@ const ChangePW = (props) => {
                     <Divider sx={{ marginBottom: 2 }} />
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <AuthTextField label="아이디" name="account" onChange={handleChange} value={id} />
+                            <AuthTextField label="아이디" name="account" value={id} />
                         </Grid>
                         <Grid item xs={12}>
                             <AuthTextField
                                 label="이메일"
                                 name="email"
                                 value={email}
-                                onChange={handleChange}
-                            />
-                        </Grid>
-                        <Grid item xs={12}>
-                            <AuthTextField
-                                label="이름"
-                                name="name"
-                                value={info.name}
-                                onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
                             <AuthTextField
                                 label="비밀번호"
                                 name="password"
-                                value={info.password}
                                 type='password'
                                 onChange={handlePWChange}
                             />
+                            <Typography sx={{ color: "grey", fontSize: "12px" }}>
+                                최소 8자 ~ 최대 20자, 하나 이상의 대문자, 하나의 소문자/숫자/특수 문자
+                            </Typography>
                         </Grid>
                         <Grid item xs={12}>
                             <AuthTextField

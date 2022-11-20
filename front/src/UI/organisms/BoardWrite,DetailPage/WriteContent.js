@@ -28,19 +28,19 @@ const nodeTypes = {
 };
 
 export default function WriteContent(props) {
-    const title = props.title;
-    const layout = props.layout;
-    console.log(layout);
-    const category = props.category;
-    const initialNodes = [];
-    const reactFlowWrapper = useRef(null);
-    const [reactFlowInstance, setReactFlowInstance] = useState(null);
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [tag, setTag] = useState([]);
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [leader, setLeader] = useState(0);
-    const open = Boolean(anchorEl);
-    const user = sessionStorage.getItem("userId");
+  const title = props.title;
+  const layout = props.layout;
+  console.log(layout)
+  const category = props.category;
+  const initialNodes = [];
+  const reactFlowWrapper = useRef(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [tag, setTag] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [leader, setLeader] = useState(0);
+  const open = Boolean(anchorEl);
+  const user = localStorage.getItem('userId');
 
     const handleClick = (event) => {
         setAnchorEl(event.target);

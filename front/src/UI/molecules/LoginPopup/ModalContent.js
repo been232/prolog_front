@@ -61,9 +61,15 @@ const ModalContent = (props) => {
     console.log(response);
     if (response.data.success === true) {
       const target = '/';
-      sessionStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
-      sessionStorage.setItem('userId', parseInt(response.headers.userid))
-      sessionStorage.setItem('account', info.account)
+      localStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
+      localStorage.setItem('userId', parseInt(response.headers.userid))
+      localStorage.setItem('account', info.account)
+
+      const resBaseInfo = async () => await Api.getReadMyInfo();
+      const infoBody = await resBaseInfo();
+      localStorage.setItem('profile', infoBody.data.data.image)
+      localStorage.setItem('profileId', infoBody.data.data.imageId)
+      
       window.location.href = target;
     }
     else if (response.data.success === false) {

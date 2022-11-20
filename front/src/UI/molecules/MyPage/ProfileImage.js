@@ -5,21 +5,16 @@ import { Link } from 'react-router-dom';
 import LinkButton from '../../atoms/Commons/LinkButton';
 
 const ProfileImage = (props) => {
-    const base_image = (props.Image === null) ? props.Image : props.Image.split('blob:');
-    const [fileUrl, setFileUrl] = useState(null);
 
-    useEffect(() => {
-        const getData = async () => {
-            setFileUrl(base_image);
-        }
-        getData();
-    }, []);
+    const getImage = props.Image;
+    const imageId = props.imageId;
+    const base_image = (getImage === null) ? null : getImage;
 
     return (
         <>
             <Box>
                 <Box sx={{ float: "right" }}>
-                    {(base_image === null) ? (
+                    {(imageId === null) ? (
                         <Box>
                             <AccountCircleIcon sx={{ width: "100px", height: "100px" }} />
                             <Box sx={{ marginTop: 1, marginLeft: 1 }}>

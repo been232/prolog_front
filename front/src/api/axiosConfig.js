@@ -7,9 +7,9 @@ const client = axios.create({
 
 client.interceptors.request.use(
     function (config) {
-        const user = sessionStorage.getItem('token'); // 토큰 받아오기
-        const userId = sessionStorage.getItem('userId');
-        const account = sessionStorage.getItem('account');
+        const user = localStorage.getItem('token'); // 토큰 받아오기
+        const userId = localStorage.getItem('userId');
+        const account = localStorage.getItem('account');
 
         // 토큰 유무 판단 코드
         if (!user) {
@@ -34,25 +34,33 @@ client.interceptors.response.use(
         if (error.response && error.response.status === 403) {
             try {
                 const originalRequest = error.config;
-
-                const user = sessionStorage.getItem('token'); // 토큰 받아오기
+                const user = localStorage.getItem('token'); // 토큰 받아오기
                 const { accessToken, refreshToken } = JSON.parse(user)
-                const data = await client.get('auth/refresh-token', {
+
+                localStorage.removeItem('token')
+                localStorage.removeItem('userId')
+                localStorage.removeItem('account')
+                window.location.href = '/';
+                alert('세션이 만료되었습니다.'); // 세션(토큰) 만료 알림
+
+
+
+                const data = await client.post('auth/refresh-token', {
                     headers: {
                         REFRESHTOKEN: refreshToken
                     }
                 })
                 console.log(data);
                 if (data.data.result === 'fail') {
-                    sessionStorage.removeItem('token')
-                    window.location.href = '/login';
+                    localStorage.removeItem('token')
+                    window.location.href = '/';
                     alert('세션이 만료되었습니다.'); // 세션(토큰) 만료 알림
                     return null;
                 }
                 if (data) {
                     const { accessToken, refreshToken } = data.data
-                    sessionStorage.removeItem('token')
-                    sessionStorage.setItem('token', JSON.stringify(data.data, ['accessToken', 'refreshToken']))
+                    localStorage.removeItem('token')
+                    localStorage.setItem('token', JSON.stringify(data.data, ['accessToken', 'refreshToken']))
                     originalRequest.headers['accessToken'] = accessToken;
                     return await client.request(originalRequest);
                 }
