@@ -5,6 +5,7 @@ import ProfileImage from '../../molecules/MyPage/ProfileImage';
 import Api from '../../../api/Api';
 
 const MyInfo = (props) => {
+    const [imageId, setImageId] = useState();
     const [info, setInfo] = useState({
         Email: '',
         Nickname: '',
@@ -18,6 +19,7 @@ const MyInfo = (props) => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
             console.log(infoBody);
+            setImageId(infoBody.data.data.imageId);
             setInfo({
                 Email: infoBody.data.data.email,
                 Nickname: infoBody.data.data.nickname,
@@ -32,7 +34,7 @@ const MyInfo = (props) => {
         <Box>
             <Grid container spacing={2}>
                 <Grid item xs={5}>
-                    <ProfileImage Image={info.Image}></ProfileImage>
+                    <ProfileImage Image={info.Image} imageId={imageId}></ProfileImage>
                 </Grid>
                 <Grid item xs={7}>
                     <Box sx={{ marginTop: 2 }}>

@@ -32,7 +32,7 @@ const ReadMemberInfo = () => {
         const getData = async () => {
             const infoBody = await resBaseInfo();
             console.log(infoBody);
-            imageId = infoBody.data.data.imageId;
+            setImageId(infoBody.data.data.imageId);
             setInfo({
                 name: infoBody.data.data.name,
                 account: infoBody.data.data.account,
@@ -43,6 +43,8 @@ const ReadMemberInfo = () => {
                 alarm: infoBody.data.data.alarm,
             });
             setAlarm(infoBody.data.data.alarm);
+            localStorage.setItem('profile', infoBody.data.data.image)
+            localStorage.setItem('profileId', infoBody.data.data.imageId)
         }
         getData();
     }, []);
@@ -105,11 +107,11 @@ const ReadMemberInfo = () => {
             alert('비밀번호를 다시 입력하세요');
             return false;
         }
-    
+
         let response = await Api.putUpdateMyInfo(info);
 
         if (response.data.success === true) {
-            // const target = '/mypage';
+            // const target = '/memberInfo';
             alert('회원정보 수정 완료');
             // window.location.href = target;
         }

@@ -35,6 +35,8 @@ theme.typography.p = {
 
 function HeaderMolecules(props) {
   const user = localStorage.getItem('token'); // 토큰 받아오기
+  const image = localStorage.getItem('profile'); // 프로필 이미지 받아오기
+  const imageId = localStorage.getItem('profileId'); // 프로필 이미지 pk 받아오기
 
   return (
     <>
@@ -60,7 +62,13 @@ function HeaderMolecules(props) {
               </Box>
               <Box sx={{ float: 'right' }}>
                 <Link to="/mypage">
-                  <AccountCircleIcons id="icon" />
+                  {(imageId === "null") ? (
+                    <AccountCircleIcons id="icon" />
+                  ) : (
+
+                    <img src={image} alt="profile" width="33px" height="33px" style={{ objectFit: "cover", borderRadius: "70%" }} />
+                  )}
+
                 </Link>
               </Box>
             </>

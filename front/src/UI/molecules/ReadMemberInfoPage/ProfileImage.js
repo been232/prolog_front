@@ -5,16 +5,17 @@ import TitleText from '../../atoms/LoginPopup/Title';
 import DeleteButton from '../../atoms/SignUpPage/DeleteButton';
 import Api from '../../../api/Api';
 
+const domain = 'http://210.91.148.88:8080/';
+
 const ProfileImage = (props) => {
     const setInfo = props.setInfo;
-
-    const base_image = (props.image === null) ? null : props.image;
-
+    const imageId = props.imageId;
+    let base_image = (props.image === null) ? null : props.image;
     const [fileUrl, setFileUrl] = useState(base_image); // 이미지 URL
     const [FileInfo, setFileInfo] = useState({ // 이미지 업로드 reponse 보관용 Info
-      id : props.imageId,
-      name: null,
-      url : base_image
+        id: imageId,
+        name: null,
+        url: base_image
     });
 
     // 이미지 상대경로 저장
@@ -24,71 +25,82 @@ const ProfileImage = (props) => {
         if (!imageFile) {
             return;
         }
-          
+
         const imageUrl = URL.createObjectURL(imageFile);
         setFileUrl(imageUrl);
+        base_image = imageUrl;
 
         const formData = new FormData();
         formData.append('file', imageFile);
 
-    let response = await Api.getImagePost(formData);
+        let response = await Api.getImagePost(formData);
+        console.log(response)
 
-    if (response.data.success) {
-      setFileInfo({
-        id : response.data.data[0].id,
-        name : response.data.data[0].name,
-        url : response.data.data[0].url
-      });
+        if (response.data.success) {
+            setFileInfo({
+                id: response.data.data[0].id,
+                name: response.data.data[0].name,
+                url: response.data.data[0].url
+            });
 
-      setInfo((prev) => ({
-        ...prev,
-        image: response.data.data[0].url,
-      }));
+            setInfo((prev) => ({
+                ...prev,
+                image: response.data.data[0].url,
+            }));
 
-      console.log('이미지 업로드 완료');
+            console.log('이미지 업로드 완료');
 
-    } else {
-      console.log('이미지 업로드 실패');
-    }
+        } else {
+            console.log('이미지 업로드 실패');
+        }
 
     };
 
     // 이미지 삭제
     const handleDeleteImage = async () => {
 
-        if (FileInfo.id === null) {
+        if (FileInfo.id != undefined) {
             setFileUrl(null);
 
             setInfo((prev) => ({
                 ...prev,
                 image: null,
-              }));
+            }));
+            console.log("기본 프로필 이미지");
+            
             return;
         }
 
-        const response = await Api.getImageRemovePost(FileInfo.id);
+        if (base_image === null) {
+            return;
+        }
+
+        let urlList = base_image.split(domain);
+        let url = urlList[1];
+
+        let response = await Api.getImageRemovePost(url);
+        console.log(response);
 
         if (response.data.success) {
             setFileUrl(null);
 
             setFileInfo({
-              id : null,
-              name : null,
-              url : null
+                id: null,
+                name: null,
+                url: null
             });
-      
+
             setInfo((prev) => ({
-              ...prev,
-              image: null,
+                ...prev,
+                image: null,
             }));
-      
-            console.log(info);
+
             console.log('이미지 삭제 완료');
-      
-          } else {
+
+        } else {
             console.log('이미지 삭제 실패');
-          }
-  
+        }
+
 
     };
 
@@ -101,9 +113,9 @@ const ProfileImage = (props) => {
                             <TitleText title="프로필" fontWeight="bold" ></TitleText>
                         </Box>
                         <Box sx={{ float: 'left', width: "50%", height: "100px" }}>
-                            {(fileUrl === null) ?
+                            {(imageId === null) ?
                                 (<AccountCircleIcon sx={{ width: "100px", height: "100px" }} />) :
-                                (<img src={fileUrl} width="100px" height="100px" style={{ objectFit: "cover", borderRadius: "70%" }} />)
+                                (<img src={base_image} alt="profile" width="100px" height="100px" style={{ objectFit: "cover", borderRadius: "70%" }} />)
                             }
                         </Box>
                     </Box>
