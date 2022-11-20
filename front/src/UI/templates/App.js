@@ -18,7 +18,6 @@ import MyPage from "../pages/MyPage/MyPage";
 import BoardModifyPage from "../pages/BoardModifyPage/BoardModifyPage";
 import StatisticsPage from "../pages/StatisticsPage/StatisticsPage";
 import "./App.css";
-import FileViewer from "../atoms/BoardWrite,DetailPage/FileViewer";
 
 import KakaoOAuthRedirectHandler from "../atoms/KakaoSocialLogin/SocialLogin";
 import GithubOAuthRedirectHandler from "../atoms/GithubSocialLogin/SocialLogin";
@@ -29,7 +28,6 @@ import MyBoardList from "../molecules/MyPage/MyBoardList";
 
 import PrivateRoutes from "../../access/PrivateRoutes";
 import isLogin from "../../access/isLogin";
-import MultiViewer from "../atoms/BoardWrite,DetailPage/MultiViewer";
 
 const App = () => {
     return (
@@ -132,8 +130,6 @@ const App = () => {
                             path="/oauth/login/github"
                             element={<GithubOAuthRedirectHandler />}
                         ></Route>
-
-                        <Route path="/Test" element={<FileViewer />} />
                     </Routes>
                 </BrowserRouter>
             </div>

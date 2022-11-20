@@ -30,7 +30,7 @@ function useFetch(page, type, searchKeyword, loaded) {
             console.log(res);
             if (res != null) {
                 setList([...list, ...res.data.data]);
-                if (type === "all") setLast((prev) => prev + 15);
+                if (type === "all") setLast((prev) => prev + 20);
                 else setLast(res.data.data[res.data.data.length - 1].id);
             } else {
                 return;
