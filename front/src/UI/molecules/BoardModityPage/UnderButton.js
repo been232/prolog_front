@@ -15,7 +15,11 @@ export default function UnderButton(props) {
   const id = window.location.href.split('/')[4];
 
   function handleClick() {
+    let leader = 0;
     data.map((dataitem) => {
+      if(dataitem.data.leader == true) {
+        leader = leader + dataitem.data.id;
+    }
       if(dataitem.data.type == 1){
         datas.push({
           id: dataitem.data.id,
@@ -96,9 +100,13 @@ export default function UnderButton(props) {
     };
 
     const getData = async () => {
-      if (submit.title == undefined) {
+      if (submit.title == null) {
         alert("제목을 입력해주세요.");
-      } else {
+    } else if(submit.category == []) {
+        alert("카테고리를 선택해주세요.")
+    } else if(leader == 0) {
+        alert("대표레이아웃을 선택해주세요.")
+    } else {
         const infoBody = await Api.getModifyBoard(id, submit);
         console.log(infoBody);
         if (infoBody.status == 200) {

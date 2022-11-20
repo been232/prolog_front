@@ -30,7 +30,7 @@ const GithubOAuthRedirectHandler = (props) => {
   const [socialKey, setSocialKey] = useState('');
 
   const [info, setInfo] = useState({
-    social_key: socialKey,
+    social_key: '',
     name: '',
     account: '',
     email: '',
@@ -45,6 +45,7 @@ const GithubOAuthRedirectHandler = (props) => {
   };
 
   const handleChangeekey = (key) => {
+    setSocialKey(key);
     setInfo((prev) => ({
       ...prev,
       social_key: key,
@@ -89,11 +90,11 @@ const GithubOAuthRedirectHandler = (props) => {
 
     if (response.data.success === true) {
       const target = '/';
-      sessionStorage.setItem(
+      localStorage.setItem(
         'token',
         JSON.stringify(response.headers, ['accesstoken', 'refreshtoken'])
       );
-      sessionStorage.setItem('userId', parseInt(response.headers.userid));
+      localStorage.setItem('userId', parseInt(response.headers.userid));
       alert('소셜 로그인되었습니다.');
       window.location.href = target;
     } else if (response.data.success === false) {
@@ -117,11 +118,11 @@ const GithubOAuthRedirectHandler = (props) => {
     console.log(response);
     if (response.data.success === true) {
       const target = '/';
-      sessionStorage.setItem(
+      localStorage.setItem(
         'token',
         JSON.stringify(response.headers, ['accesstoken', 'refreshtoken'])
       );
-      sessionStorage.setItem('userId', parseInt(response.headers.userid));
+      localStorage.setItem('userId', parseInt(response.headers.userid));
       window.location.href = target;
     } else if (response.data.success === false) {
       alert('로그인 실패: 아이디나 비밀번호를 다시 확인해주세요!');
@@ -149,11 +150,11 @@ const GithubOAuthRedirectHandler = (props) => {
       } else if (response.data.success === false) {
         setRequire(false);
         const target = '/';
-        sessionStorage.setItem(
+        localStorage.setItem(
           'token',
           JSON.stringify(response.headers, ['accesstoken', 'refreshtoken'])
         );
-        sessionStorage.setItem('userId', parseInt(response.headers.userid));
+        localStorage.setItem('userId', parseInt(response.headers.userid));
         window.location.href = target;
       }
     };
@@ -184,15 +185,15 @@ const GithubOAuthRedirectHandler = (props) => {
               <Grid container spacing={2}>
                 <Grid item xs={12}>
                   <AuthTextField
-                    label="아이디"
-                    name="account"
+                    label="이메일"
+                    name="email"
                     onChange={handleChange}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <AuthTextField
-                    label="이메일"
-                    name="email"
+                    label="아이디"
+                    name="account"
                     onChange={handleChange}
                   />
                 </Grid>

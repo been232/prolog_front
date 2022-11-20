@@ -17,7 +17,7 @@ export default function TreeList() {
     const [visible, setVisible] = useState(false); // TextField의 보여짐 여부 확인
     const [handle, setHandle] = useState(''); // 이벤트가 어떤 이벤트인지 알려주는 변수 (추가, 변경, 삭제)
 
-    // const userId = sessionStorage.getItem("userId");
+    // const userId = localStorage.getItem("userId");
     const userId = 1;
     const resBaseInfo = async () => await Api.getReadCategory(userId);
 

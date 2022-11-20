@@ -1,8 +1,10 @@
-import client from "../api/axiosConfig";
-import qs from "qs";
-import axios from "axios";
-const user = sessionStorage.getItem("userId");
+import client from '../api/axiosConfig';
+import qs from 'qs';
+import axios from 'axios';
+
+const user = localStorage.getItem('userId');
 console.log(user);
+
 const getRequest = async (path, params) => {
     try {
         params = qs.stringify(params);
@@ -216,7 +218,7 @@ const Api = {
     },
 
     // MyPage: 게시글 조회 및 레이아웃 조회-----------------------------------------------------
-    // 내가 쓴 글 목록 조회
+    // 내가 쓴 글 목록 조회 
     getMyPost_New: async (user) => {
         return await getRequest(`/my-info/boards?last=0`);
     },

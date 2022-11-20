@@ -52,7 +52,7 @@ export default function WriteContent(props) {
     const reactFlowWrapper = useRef(null);
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [reactFlowInstance, setReactFlowInstance] = useState(null);
-    const user = sessionStorage.getItem("userId");
+    const user = localStorage.getItem("userId");
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
