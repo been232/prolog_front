@@ -138,6 +138,7 @@ export default function Authentication() {
                     <Grid container spacing={1} sx={{ mt: 1, mb: 3 }}>
                         <Grid item xs={12} sm={8} >
                             <TextField
+                                autoFocus
                                 required
                                 fullWidth
                                 id="email"

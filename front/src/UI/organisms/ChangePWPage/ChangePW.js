@@ -4,7 +4,7 @@ import {
     Typography, Container, Divider
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { AuthTextField } from '../../atoms/Commons/TextField';
+import { AuthTextField, NonFocusTextField } from '../../atoms/Commons/TextField';
 import { useLocation } from 'react-router-dom';
 import Api from '../../../api/Api';
 
@@ -123,10 +123,10 @@ const ChangePW = (props) => {
                     <Divider sx={{ marginBottom: 2 }} />
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <AuthTextField label="아이디" name="account" value={id} />
+                            <NonFocusTextField label="아이디" name="account" value={id} />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="이메일"
                                 name="email"
                                 value={email}
@@ -144,7 +144,7 @@ const ChangePW = (props) => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="비밀번호 확인"
                                 name="passwordConfirm"
                                 type='password'

@@ -17,7 +17,7 @@ import {
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import ProfileImage from "../../molecules/SignUpPage/ProfileImage";
 import TitleText from "../../atoms/LoginPopup/Title";
-import { AuthTextField } from "../../atoms/Commons/TextField";
+import { AuthTextField, NonFocusTextField } from "../../atoms/Commons/TextField";
 import { FixTextField } from "../../atoms/Commons/FixTextField";
 import Api from "../../../api/Api";
 
@@ -160,7 +160,8 @@ const SignUp = () => {
                     fontWeight="bold"
                     variant="h4"
                     component="h1"
-                ></TitleText>
+                >
+                </TitleText>
                 <Box noValidate sx={{ mt: 3 }}>
                     <Divider sx={{ marginBottom: 2 }} />
                     <ProfileImage
@@ -187,7 +188,7 @@ const SignUp = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="비밀번호"
                                 name="password"
                                 type="password"
@@ -201,7 +202,7 @@ const SignUp = () => {
                             </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="비밀번호 확인"
                                 name="passwordConfirm"
                                 type="password"
@@ -218,21 +219,21 @@ const SignUp = () => {
                             )}
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="이름"
                                 name="name"
                                 onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="닉네임"
                                 name="nickname"
                                 onChange={handleChange}
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="한줄소개"
                                 name="introduce"
                                 onChange={handleChange}
