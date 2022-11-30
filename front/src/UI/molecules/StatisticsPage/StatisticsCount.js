@@ -11,7 +11,7 @@ export default function StatisticsCount(props) {
         float: 'right',
       }}
     >
-      <h4>누적 조회수 : {data.cumulativeView}</h4>
+      <h4>누적 조회수 : {data.cumulativeViews}</h4>
     </Box>
   );
 }
