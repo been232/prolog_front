@@ -140,7 +140,7 @@ function MyBoardAtoms(props) {
                 <Button onClick={handleCheck} style={{ display: 'inline-block', float: 'right', marginTop: 15, fontFamily: "SUIT-Regular" }} >확인</Button>
                 <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={(event) => handleChange(event)} label="년도 입력(숫자만)" variant="standard" />
               </Box>
-              <ChartList data={data.data} text={year} />
+              <ChartList data={data} text={year} />
               <UnderButton />
               <LinkButton id={id}/>
             </Box>

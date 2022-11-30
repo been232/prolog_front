@@ -4,8 +4,9 @@ import { Chart as ChartJS, registerables } from 'chart.js';
 
 export default function ChartList(props) {
   ChartJS.register(...registerables);
-  console.log(props);
-  const datas = props.data;
+
+  const datas = props.data.data;
+  console.log(datas);
   const dataBar = {
     labels: [
       '1월',
@@ -30,18 +31,18 @@ export default function ChartList(props) {
         hoverBackgroundColor: 'rgba(186,219,243,1)',
         hoverBorderColor: 'rgba(186,219,243,1)',
         data: [
-          datas.januaryView,
-          datas.februaryView,
-          datas.marchView,
-          datas.aprilView,
-          datas.mayView,
-          datas.juneView,
-          datas.julyView,
-          datas.augustView,
-          datas.septemberView,
-          datas.octoberView,
-          datas.novemberView,
-          datas.decemberView,
+          datas.januaryViews,
+          datas.februaryViews,
+          datas.marchViews,
+          datas.aprilViews,
+          datas.mayViews,
+          datas.juneViews,
+          datas.julyViews,
+          datas.augustViews,
+          datas.septemberViews,
+          datas.octoberViews,
+          datas.novemberViews,
+          datas.decemberViews,
         ],
       },
     ],
