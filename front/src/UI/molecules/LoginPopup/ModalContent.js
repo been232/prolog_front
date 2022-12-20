@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Container, Box, Divider, Button, IconButton } from '@mui/material';
-import { AuthTextField } from '../../atoms/Commons/TextField';
+import { Container, Box, Divider, Button, IconButton, TextField } from '@mui/material';
+import { AuthTextField, NonFocusTextField } from '../../atoms/Commons/TextField';
 import ModalButton from '../../atoms/LoginPopup/ModalButton';
 import TitleText from '../../atoms/LoginPopup/Title';
 import CloseIcon from '@mui/icons-material/Close';
@@ -61,6 +61,7 @@ const ModalContent = (props) => {
     console.log(response);
     if (response.data.success === true) {
       const target = '/';
+
       localStorage.setItem('token', JSON.stringify(response.headers, ['accesstoken', 'refreshtoken']))
       localStorage.setItem('userId', parseInt(response.headers.userid))
       localStorage.setItem('account', info.account)
@@ -68,7 +69,7 @@ const ModalContent = (props) => {
       const resBaseInfo = async () => await Api.getReadMyInfo();
       const infoBody = await resBaseInfo();
       localStorage.setItem('profile', infoBody.data.data.image)
-      
+
       window.location.href = target;
     }
     else if (response.data.success === false) {
@@ -98,8 +99,8 @@ const ModalContent = (props) => {
           <CloseIcon />
         </IconButton>
         <TitleText title="로그인" direction="center" size="h5"></TitleText>
-        <AuthTextField label="아이디" onChange={handleIdChange}></AuthTextField>
-        <AuthTextField label="비밀번호" onChange={handlePwChange} type='password'></AuthTextField>
+        <AuthTextField label="아이디" onChange={handleIdChange} ></AuthTextField>
+        <NonFocusTextField label="비밀번호" onChange={handlePwChange} type='password'></NonFocusTextField>
         <Box sx={{ display: 'inline-block' }}>
           <Button
             fullWidth

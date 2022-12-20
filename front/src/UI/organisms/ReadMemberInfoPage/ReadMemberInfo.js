@@ -6,7 +6,7 @@ import {
     Typography, Container, FormControlLabel, Switch, Divider
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
-import { AuthTextField } from '../../atoms/Commons/TextField';
+import { AuthTextField, NonFocusTextField } from '../../atoms/Commons/TextField';
 import ProfileImage from '../../molecules/ReadMemberInfoPage/ProfileImage';
 import Api from '../../../api/Api';
 
@@ -160,7 +160,7 @@ const ReadMemberInfo = () => {
                     <ProfileImage setInfo={setInfo} image={info.image} imageId={imageId} />
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
-                            <AuthTextField label="아이디" name="account" onChange={handleChange} value={info.account} />
+                            <NonFocusTextField label="아이디" name="account" onChange={handleChange} value={info.account} />
                         </Grid>
                         <Grid item xs={12}>
                             <AuthTextField
@@ -179,7 +179,7 @@ const ReadMemberInfo = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="이름"
                                 name="name"
                                 value={info.name}
@@ -187,7 +187,7 @@ const ReadMemberInfo = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField
+                            <NonFocusTextField
                                 label="닉네임"
                                 name="nickname"
                                 value={info.nickname}
@@ -195,7 +195,7 @@ const ReadMemberInfo = () => {
                             />
                         </Grid>
                         <Grid item xs={12}>
-                            <AuthTextField label="한줄소개" name="introduce" value={info.introduce} onChange={handleChange} />
+                            <NonFocusTextField label="한줄소개" name="introduce" value={info.introduce} onChange={handleChange} />
                         </Grid>
                         <Grid item xs={12}>
                             <FormControl component="fieldset">

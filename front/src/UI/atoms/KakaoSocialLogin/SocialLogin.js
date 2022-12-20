@@ -12,7 +12,7 @@ import {
   Container,
   Divider,
 } from '@mui/material';
-import { AuthTextField } from '../../atoms/Commons/TextField';
+import { AuthTextField, NonFocusTextField } from '../../atoms/Commons/TextField';
 import Api from '../../../api/Api';
 
 const KakaoOAuthRedirectHandler = (props) => {
@@ -182,7 +182,7 @@ const KakaoOAuthRedirectHandler = (props) => {
               <Grid container spacing={2}>
 
                 <Grid item xs={12}>
-                  <AuthTextField
+                  <NonFocusTextField
                     label="이메일"
                     name="email"
                     onChange={handleChange}
@@ -196,7 +196,7 @@ const KakaoOAuthRedirectHandler = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <AuthTextField
+                  <NonFocusTextField
                     label="비밀번호"
                     name="password"
                     type="password"
@@ -204,7 +204,7 @@ const KakaoOAuthRedirectHandler = (props) => {
                   />
                 </Grid>
                 <Grid item xs={12}>
-                  <AuthTextField
+                  <NonFocusTextField
                     label="비밀번호 확인"
                     name="passwordConfirm"
                     type="password"
@@ -219,7 +219,7 @@ const KakaoOAuthRedirectHandler = (props) => {
                   )}
                 </Grid>
                 <Grid item xs={12}>
-                  <AuthTextField
+                  <NonFocusTextField
                     label="이름"
                     name="name"
                     onChange={handleChange}

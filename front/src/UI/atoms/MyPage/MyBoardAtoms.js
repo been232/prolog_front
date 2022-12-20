@@ -91,20 +91,20 @@ function MyBoardAtoms(props) {
       success: true,
       data: [
         {
-          cumulativeView: '78',
-          tenView: '7',
-          januaryView: '1',
-          februaryView: '2',
-          marchView: '3',
-          aprilView: '4',
-          mayView: '5',
-          juneView: '6',
-          julyView: '7',
-          augustView: '8',
-          septemberView: '9',
-          octoberView: '10',
-          novemberView: '11',
-          decemberView: '12',
+          cumulativeViews: '78',
+          tenViews: '7',
+          januaryViews: '1',
+          februaryViews: '2',
+          marchViews: '3',
+          aprilViews: '4',
+          mayViews: '5',
+          juneViews: '6',
+          julyViews: '7',
+          augustViews: '8',
+          septemberViews: '9',
+          octoberViews: '10',
+          novemberViews: '11',
+          decemberViews: '12',
         },
       ],
     },
@@ -140,7 +140,7 @@ function MyBoardAtoms(props) {
                 <Button onClick={handleCheck} style={{ display: 'inline-block', float: 'right', marginTop: 15, fontFamily: "SUIT-Regular" }} >확인</Button>
                 <TextField type="number" style={{ display: 'inline-block', float: 'right', fontFamily: "SUIT-Regular" }} id="standard-basic" onChange={(event) => handleChange(event)} label="년도 입력(숫자만)" variant="standard" />
               </Box>
-              <ChartList data={data.data} text={year} />
+              <ChartList data={data} text={year} />
               <UnderButton />
               <LinkButton id={id}/>
             </Box>
